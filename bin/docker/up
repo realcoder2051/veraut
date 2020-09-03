@@ -1,0 +1,11 @@
+# !/bin/sh
+# up
+
+main() {
+  docker-compose up -d
+
+  # Start monitoring cos it just makes sense!
+  ./bin/docker/watch
+}
+
+main

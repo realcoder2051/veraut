@@ -1,0 +1,9 @@
+# !/bin/sh
+# stop
+
+main() {
+  # Bring 'er down!
+  docker-compose stop
+}
+
+main

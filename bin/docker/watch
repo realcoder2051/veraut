@@ -1,0 +1,8 @@
+# !/bin/sh
+# watch
+
+main() {
+  watch "docker ps --all --filter name=starter-kit --format 'table {{.Names}}\t{{.Image}}\t{{.Status}}\t{{.Ports}}' | sort -n && echo && docker volume ls --filter name=starter-kit "
+}
+
+main
