@@ -1,0 +1,16 @@
+<div class="row">
+  <div class="col-md-9">
+    <%= f.text_field :name %>
+    <%= f.email_field :email, placeholder: 'Email' %>
+
+    <%= f.select :role,options_for_select([ "Technician", "Admin","Main Contact" ]) %>
+    <% if action_name == 'edit' %>
+      <%= f.password_field :password, hint: 'To keep the current password leave the password fields blank.' %>
+    <% else %>
+      <%= f.password_field :password %>
+    <% end %>
+    <%= f.password_field :password_confirmation %>
+    <%= f.submit value: "Save", class: "btn btn-primary" %>
+    <%= link_to 'Cancel', users_path, class: 'cancel' %>
+  </div>
+</div>

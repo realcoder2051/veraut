@@ -1,0 +1,58 @@
+<div class="navbar navbar-expand-sm navbar-main navbar-dark bg-dark pr-0" id="navbar" data-primary>
+  <div class="container-fluid p-0">
+    <!-- Navbar toggler -->
+    <button class="navbar-toggler navbar-toggler-right d-block d-md-none" type="button" data-toggle="sidebar">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Navbar Brand -->
+    <a href="<%= %>" class="navbar-brand">
+      <span class="navbar-brand-icon">
+       <svg xmlns="http://www.w3.org/2000/svg" width="25" height="26" viewBox="0 0 25 26">
+        <g fill="none" fill-rule="evenodd" transform="translate(-4 -3)">
+          <polygon points="0 0 33 0 33 33 0 33"/>
+          <path fill="#4A90E2" d="M16.4861111,25.550603 L6.25,17.7383325 L4,19.4562139 L16.5,29 L29,19.4562139 L26.7361111,17.7246985 L16.4861111,25.550603 L16.4861111,25.550603 Z M16.5,22.0875721 L26.7222222,14.2753015 L29,12.5437861 L16.5,3 L4,12.5437861 L6.26388889,14.2753015 L16.5,22.0875721 L16.5,22.0875721 Z"/>
+        </g>
+      </svg>
+      <span>Time Attendance</span>
+    </a>
+
+    <!-- <form class="search-form d-none d-sm-flex flex" action="#">
+      <button class="btn" type="submit" role="button"><i class="material-icons">search</i></button>
+      <input type="text" class="form-control" placeholder="Search">
+    </form>-->
+
+    <ul class="nav navbar-nav ml-auto d-none d-md-flex">
+      <%# <li class="nav-item">
+        <a href="" class="nav-link">
+          <i class="material-icons">help_outline</i>
+        </a>
+      </li> %>
+      <%# <li class="nav-item mr-3">
+        <%# <a href='' class="btn btn-outline-warning">
+          <i class="material-icons m  r-1">monetization_on</i> Logout
+        </a>
+
+      </li> %>
+    </ul>
+<!-- 
+    <ul class="nav navbar-nav d-none d-sm-flex border-left navbar-height align-items-center">
+      <li class="nav-item dropdown">
+        <a href="#account_menu" class="nav-link dropdown-toggle" data-toggle="dropdown" data-caret="false">
+          <img src="<%= image_path('/assets/stack/avatar/logo.png')%>" class="rounded-circle" width="32" alt="Frontted">
+        </a>
+        <div id="account_menu" class="dropdown-menu dropdown-menu-right">
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="<%= employees_path() %>">Dashboard</a>
+          <a class="dropdown-item" href="#">My profile</a>
+          <a class="dropdown-item" href="<%#= edit_user_registration_path() %>">Edit account</a>
+          <%= link_to 'Logout', class: "dropdown-item", method: :delete %>
+          <div class="dropdown-divider"></div>
+
+          <%#= link_to "Logout", destroy_user_session_path, :method => :delete, class: 'dropdown-item' %>
+        </div>
+      </li>
+    </ul> -->
+
+  </div>
+</div>
