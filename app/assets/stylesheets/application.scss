@@ -5,11 +5,12 @@
  *= require jquery-datetimepicker/build/jquery.datetimepicker.min
  *
  * Internal
- *
- * require_self
+ *= require bootstrap
+ *= require_tree .
+ *= require_self
  */
 
 /*Font Awesome.*/
-$fa-font-path: '/assets/font-awesome/fonts';
+@import 'stack/application';
 @import 'font-awesome/scss/font-awesome';
 @import 'partials/application';
