@@ -1,16 +1,59 @@
-<div class="row">
-  <div class="col-md-9">
-    <%= f.text_field :name %>
+<div class="row" >
+  <div class="col-lg-4 left-move"></div>
+    <div class="col-lg-4 left-move">
+      <%= f.text_field :name %>
+      <div class="invalid-feedback">Please provide a time.</div>
+      <div class="valid-feedback">Looks good!</div>
+    </div>
+</div>
+<div class="row" >
+  <div class="col-lg-4 left-move"></div>
+    <div class="col-lg-4 left-move">
     <%= f.email_field :email, placeholder: 'Email' %>
-
+      <div class="invalid-feedback">Please provide a email.</div>
+      <div class="valid-feedback">Looks good!</div>
+    </div>
+</div>
+<div class="row" >
+  <div class="col-lg-4 left-move"></div>
+    <div class="col-lg-4 left-move">
     <%= f.select :role,options_for_select([ "Technician", "Admin","Main Contact" ]) %>
+      <div class="invalid-feedback">Please select a role .</div>
+      <div class="valid-feedback">Looks good!</div>
+    </div>
+</div>
+
+<div class="row" >
+  <div class="col-lg-4 left-move"></div>
+    <div class="col-lg-4 left-move">
     <% if action_name == 'edit' %>
       <%= f.password_field :password, hint: 'To keep the current password leave the password fields blank.' %>
     <% else %>
       <%= f.password_field :password %>
     <% end %>
+      <div class="invalid-feedback">Please provide a correct password.</div>
+      <div class="valid-feedback">Looks good!</div>
+    </div>
+</div>
+
+<div class="row" >
+  <div class="col-lg-4 left-move"></div>
+    <div class="col-lg-4 left-move">
     <%= f.password_field :password_confirmation %>
-    <%= f.submit value: "Save", class: "btn btn-primary" %>
-    <%= link_to 'Cancel', users_path, class: 'cancel' %>
+      <div class="invalid-feedback">Please provide a same password.</div>
+      <div class="valid-feedback">Looks good!</div>
+    </div>
+</div>
+<div class="actions col-lg-12">
+  <div class="row">
+    <div class="col-lg-5 left-move"></div>
+    <div class="left-move">
+      <%= f.submit value: "Save", class: "btn btn-primary"%>
+    </div>
+    <div class="col-lg-1 right-move"></div>
+    <div class="right-move">
+      <%= link_to 'Cancel', root_path, class: "btn btn-secondary " %>
+    </div>
   </div>
 </div>
+<%=render 'layouts/stack/footer'%>

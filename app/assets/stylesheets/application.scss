@@ -1,16 +1,15 @@
 /*
- * Yarn
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
  *
- *= require bootstrap/dist/css/bootstrap
- *= require jquery-datetimepicker/build/jquery.datetimepicker.min
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
  *
- * Internal
- *= require bootstrap
- *= require_tree .
- *= require_self
- */
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
 
-/*Font Awesome.*/
+*/
 @import 'stack/application';
-@import 'font-awesome/scss/font-awesome';
-@import 'partials/application';
+@import 'custom';
+@import 'select2';

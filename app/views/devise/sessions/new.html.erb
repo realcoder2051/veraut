@@ -1,0 +1,30 @@
+
+<div class="form-row" >
+  <div class='col-lg-9' id='mt-n1'>
+      <%= bootstrap_form_for(resource,as: resource_name,url:session_path(resource_name)) do |f| %>
+      <div class='col-lg-6 left-move px-md-5'>
+        <h1>READY?</h1>
+      </div>
+      <div class='col-lg-6 left-move px-md-5'>
+        <div class="row col-sm-12 ">
+          <%= f.email_field :email %>
+        </div>
+      </div>
+      <div class='col-lg-6 left-move px-md-5'>
+        <div class="row col-sm-12 ">
+          <%= f.password_field :password %>
+        </div>
+      </div>
+      <div class='col-lg-6 left-move px-md-5'>
+        <div class="row col-sm-12">
+          <%= f.submit value: "Let's Go", class: "btn btn-primary"%>
+        </div>
+      </div>
+
+    <%end%>
+  </div>
+  <div class="col-lg-3">
+    <%= image_tag("Banner.png", :alt => "rss feed", :size => '320x680') %>
+  </div>
+
+</div>

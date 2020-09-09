@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   resources :scheduled_jobs
   resources :users
 
+
   root to: 'home#index'
 
 end

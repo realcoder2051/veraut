@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
-    <title>Time Attendance</title>
+    <title>Benefit Eqiuity Incorporation</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -9,6 +9,8 @@
 
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
 
   </head>
 
@@ -17,15 +19,17 @@
     <div class="mdk-header-layout js-mdk-header-layout">
 
       <!-- Header -->
-      <div id="header" class="mdk-header js-mdk-header m-0" data-fixed>
-        <div class="mdk-header__content">
-          <%= render 'layouts/stack/navbar'%>
+       <%if user_signed_in?%>
+        <div id="header" class="mdk-header js-mdk-header m-0" data-fixed>
+          <div class="mdk-header__content">
+            <%= render 'layouts/stack/navbar'%>
+          </div>
         </div>
-      </div>
+      <%end%>
       <!-- // END Header -->
 
       <!-- Header Layout Content -->
-      <div class="mdk-header-layout__content">
+      <!-- <div class="mdk-header-layout__content">-->
 
         <div class="mdk-drawer-layout js-mdk-drawer-layout" data-push data-responsive-width="992px">
           <div class="mdk-drawer-layout__content page">
@@ -33,12 +37,13 @@
             <%= yield %>
           </div>
           <!-- // END drawer-layout__content -->
-
-           <%= render 'layouts/stack/drawer_left' %>           
+          <% if user_signed_in?%>
+            <%= render 'layouts/stack/drawer_left' %>
+           <%end%>
         </div>
         <!-- // END drawer-layout -->
 
-      </div>
+    <!--  </div>  -->
       <!-- // END header-layout__content -->
 
     </div>
@@ -48,7 +53,7 @@
     <%= javascript_include_tag 'core-scripts', 'data-turbolinks-track' => 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => 'reload' %>
     <%= content_for :footer_scripts %>
-    <div id="modal-warning" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+    <div id="modal-warning" class="modal fade" style="display:none" tabindex="-1" role="dialog" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered modal-sm">
         <div class="modal-content">
           <div class="modal-body text-center p-4">

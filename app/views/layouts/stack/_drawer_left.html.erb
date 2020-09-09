@@ -7,209 +7,144 @@
           <!--  <img src="/assets/stack/avatar/logo.png" alt="avatar" class="avatar-img rounded-circle">-->
           </span>
           <span class="flex d-flex flex-column">
-            <strong><%="Devbox"%></strong>
+            <strong><%="BEI"%></strong>
             <small class="text-muted text-uppercase">Admin</small>
           </span>
         </a>
-       <!--   <div class="dropdown ml-auto">
-          <a href="#" data-toggle="dropdown" data-caret="false" class="text-muted"><i class="material-icons">more_vert</i></a>
-          <div id="dropdown-drawer-left" class="dropdown-menu dropdown-menu-right">
-            <div class="dropdown-item-text dropdown-item-text--lh">
-              <div><strong><%="devbox"%></strong></div>
-              <div>@<%="devbox"%></div>
-            </div>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="<%=employees_path%>">Dashboard</a>
-            <a class="dropdown-item" href="#">My profile</a>
-            <a class="dropdown-item" href="/users/edit">Edit account</a>
-            <div class="dropdown-divider"></div>
-            <% link_to 'Logout', class: "dropdown-item", method: :delete %>
-          </div>
-        </div> -->
+
       </div>
       <div class="sidebar-heading sidebar-m-t">Menu</div>
-      <ul class="sidebar-menu">
-        <li class="sidebar-menu-item active">
+      <ul class = "sidebar-menu">
+        <li class = "sidebar-menu-item active">
           <a class="sidebar-menu-button" href="<%=root_path%>">
             <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">dvr</i>
-            <span class="sidebar-menu-text">Dashboard</span>
+            <span class="sidebar-menu-text">Home</span>
           </a>
         </li>
-      </ul>
-      <ul class="sidebar-menu">
-        <li class="sidebar-menu-item active">
-          <a class="sidebar-menu-button" href="<%= attendances_path %>">
-            <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">account_box</i>
-            <span class="sidebar-menu-text">View Today Attendance</span>
-          </a>
-        </li>
-      </ul>
-      <ul class="sidebar-menu">
-        <li class="sidebar-menu-item active">
-          <a class="sidebar-menu-button" href="<%=new_attendance_path%>">
-            <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">local_hospital</i>
-            <span class="sidebar-menu-text">Add Manual Attendance </span>
-          </a>
-        </li>
-      </ul>
-      <ul class="sidebar-menu">
-        <li class="sidebar-menu-item active">
-          <a class="sidebar-menu-button" href="<%=leaves_path%>">
-            <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">question_answer</i>
-            <span class="sidebar-menu-text">View Leaves</span>
-          </a>
-        </li>
-      </ul>
-      <ul class="sidebar-menu">
-        <li class="sidebar-menu-item active">
-          <a class="sidebar-menu-button" href="<%=new_leafe_path%>">
-            <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">add_to_queue</i>
-            <span class="sidebar-menu-text">Add New Leave</span>
-          </a>
-        </li>
-      </ul>
-      <ul class="sidebar-menu">
-        <li class="sidebar-menu-item active">
-          <a class="sidebar-menu-button" href="<%=employees_path%>">
-            <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">account_box</i>
-            <span class="sidebar-menu-text">All Employees</span>
-          </a>
-        </li>
-      </ul>
-      <ul class="sidebar-menu">
-        <li class="sidebar-menu-item active">
-          <a class="sidebar-menu-button"  href="<%=new_employee_path%>">
-            <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">add_to_queue</i>
-            <span class="sidebar-menu-text">Add New Employee</span>
-          </a>
-        </li>
-      </ul>
-       <ul class="sidebar-menu">
-        <li class="sidebar-menu-item active">
-          <a class="sidebar-menu-button"  href="<%=leave_report_path%>">
-            <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">account_box</i>
-            <span class="sidebar-menu-text">Leave Report</span>
-          </a>
-        </li>
-      </ul>
-       <ul class="sidebar-menu">
-        <li class="sidebar-menu-item active">
-          <a class="sidebar-menu-button"  href="<%=attendance_report_path%>">
-            <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">account_box</i>
-            <span class="sidebar-menu-text">Attendance Report</span>
-          </a>
-        </li>
-      </ul>
+        <% if can? :read, @post %>
+        <li class = "sidebar-menu-item" id="attendace-list">
+          <a class="sidebar-menu-button" data-toggle="collapse" href="#attendance_menu" aria-expanded="false">
+            <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">dvr</i>
+            <span class="sidebar-menu-text">Users</span>
+            <span class="ml-auto sidebar-menu-toggle-icon"></span>
+        </a>
+        <%end%>
 
-      <ul class="sidebar-menu">
-        <li class="sidebar-menu-item active">
-          <a class="sidebar-menu-button" href="<%=holidays_path%>">
-            <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">account_box</i>
-            <span class="sidebar-menu-text">Holidays</span>
-          </a>
+          <ul class="sidebar-submenu collapse show" id="attendance_menu" style="">
+            <li class="sidebar-menu-item" id="view-attendance">
+              <a class="sidebar-menu-button active-item" href="<%=users_path %>">
+                <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">account_box</i>
+                <span class="sidebar-menu-text">View All Users</span>
+              </a>
+            </li>
+            <% if can? :new, @user %>
+              <li class="sidebar-menu-item active-item" id="add-attendance">
+                <a class="sidebar-menu-button" href="<%=new_user_path%>">
+                  <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">local_hospital</i>
+                  <span class="sidebar-menu-text">Create New User </span>
+                </a>
+              </li>
+            <%end%>
+
+            <% if can? :edit, @post %>
+              <li class="sidebar-menu-item active-item" id="attendance-report">
+                <a class="sidebar-menu-button"  href="<%=edit_user_path(current_user)%>">
+                  <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">account_box</i>
+                  <span class="sidebar-menu-text">Edit User</span>
+                </a>
+              </li>
+            <%end%>
+          </ul>
         </li>
-      </ul>
-      <ul class="sidebar-menu">
-        <li class="sidebar-menu-item active">
-          <a class="sidebar-menu-button"  href="<%=new_holiday_path%>">
-            <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">add_to_queue</i>
-            <span class="sidebar-menu-text">Add New Holiday</span>
+
+        <li class = "sidebar-menu-item">
+          <a class="sidebar-menu-button collapsed" data-toggle="collapse" href="#leaves_menu" aria-expanded="false">
+            <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">dvr</i>
+            <span class="sidebar-menu-text">My Active Tasks</span>
+            <span class="ml-auto sidebar-menu-toggle-icon"></span>
           </a>
-        </li>
-      </ul>
-      <div style="display: none;">
-        <div class="sidebar-heading">UI Components</div>
-        <div class="sidebar-block p-0">
-          <ul class="sidebar-menu" id="acomponents_menu">
-            <li class="sidebar-menu-item active">
-              <a class="sidebar-menu-button">
-                <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">mouse</i>
-                <span class="sidebar-menu-text">Buttons</span>
+          <ul class="sidebar-submenu collapse" id="leaves_menu">
+            <li class="sidebar-menu-item" id="view-leaves">
+              <a class="sidebar-menu-button" href="<%=root_path%>">
+                <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">question_answer</i>
+                <span class="sidebar-menu-text">View Leaves</span>
               </a>
             </li>
-            <li class="sidebar-menu-item active">
-              <a class="sidebar-menu-button">
-                <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">notifications</i>
-                <span class="sidebar-menu-text">Alerts</span>
+
+            <li class="sidebar-menu-item" id="add-leaves">
+              <a class="sidebar-menu-button" href="<%=root_path%>">
+                <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">add_to_queue</i>
+                <span class="sidebar-menu-text">Add New Leave</span>
               </a>
             </li>
-            <li class="sidebar-menu-item active">
-              <a class="sidebar-menu-button">
-                <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">aspect_ratio</i>
-                <span class="sidebar-menu-text">Modals</span>
-              </a>
-            </li>
-            <li class="sidebar-menu-item active">
-              <a class="sidebar-menu-button">
-                <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">brush</i>
-                <span class="sidebar-menu-text">Icons</span>
-              </a>
-            </li>
-            <li class="sidebar-menu-item active">
-              <a class="sidebar-menu-button">
-                <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">text_format</i>
-                <span class="sidebar-menu-text">Forms</span>
-              </a>
-            </li>
-            <li class="sidebar-menu-item active">
-              <a class="sidebar-menu-button">
-                <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">refresh</i>
-                <span class="sidebar-menu-text">Loaders</span>
-              </a>
-            </li>
-            <li class="sidebar-menu-item active">
-              <a class="sidebar-menu-button" >
-                <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">last_page</i>
-                <span class="sidebar-menu-text">Pagination</span>
-              </a>
-            </li>
-            <li class="sidebar-menu-item active">
-              <a class="sidebar-menu-button">
-                <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">person</i>
-                <span class="sidebar-menu-text">Avatars</span>
-                <span class="badge badge-warning ml-auto">PRO</span>
-              </a>
-            </li>
-            <li class="sidebar-menu-item active">
-              <a class="sidebar-menu-button">
-                <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">pie_chart_outlined</i>
-                <span class="sidebar-menu-text">Charts</span>
-                <span class="badge badge-warning ml-auto">PRO</span>
-              </a>
-            </li>
-            <li class="sidebar-menu-item active">
-              <a class="sidebar-menu-button">
-                <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">event_available</i>
-                <span class="sidebar-menu-text">Time &amp; Date</span>
-                <span class="badge badge-warning ml-auto">PRO</span>
-              </a>
-            </li>
-            <li class="sidebar-menu-item active">
-              <a class="sidebar-menu-button">
-                <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">dns</i>
-                <span class="sidebar-menu-text">Custom Tables</span>
-                <span class="badge badge-warning ml-auto">PRO</span>
-              </a>
-            </li>
-            <li class="sidebar-menu-item active">
-              <a class="sidebar-menu-button">
-                <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">control_point</i>
-                <span class="sidebar-menu-text">Drag &amp; Drop</span>
-                <span class="badge badge-warning ml-auto">PRO</span>
-              </a>
-            </li>
-              <a class="sidebar-menu-button" href="<%= employees_path %>">
-                <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">location_on</i>
-                <span class="sidebar-menu-text">Vector Maps</span>
-                <span class="badge badge-warning ml-auto">PRO</span>
+
+            <li class="sidebar-menu-item" id="leave-report">
+              <a class="sidebar-menu-button"  href="<%=root_path%>">
+                <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">account_box</i>
+                <span class="sidebar-menu-text">Leave Report</span>
               </a>
             </li>
           </ul>
-        </div>
-        <div class="sidebar-p-a">
-          <a href="https://www.frontted.com/themes/stack-rails" class="btn btn-primary btn-block" target="_blank">Purchase PRO &dollar;99</a>
-        </div>
-      </div>
+        </li>
+
+
+        <li class = "sidebar-menu-item">
+          <a class="sidebar-menu-button collapsed" data-toggle="collapse" href="#employees_menu" aria-expanded="false">
+            <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">dvr</i>
+            <span class="sidebar-menu-text">Distribution</span>
+            <span class="ml-auto sidebar-menu-toggle-icon"></span>
+          </a>
+          <ul class="sidebar-submenu collapse" id="employees_menu">
+            <li class="sidebar-menu-item" id="view-employees">
+              <a class="sidebar-menu-button" href="<%=root_path%>">
+                <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">account_box</i>
+                <span class="sidebar-menu-text">All Employees</span>
+              </a>
+            </li>
+
+            <li class="sidebar-menu-item" id="edit-employees">
+              <a class="sidebar-menu-button" href="<%=root_path%>">
+                <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">account_box</i>
+                <span class="sidebar-menu-text">Edit Employee Status</span>
+              </a>
+            </li>
+
+            <li class="sidebar-menu-item" id="add-employees">
+              <a class="sidebar-menu-button"  href="<%=root_path%>">
+                <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">add_to_queue</i>
+                <span class="sidebar-menu-text">Add New Employee</span>
+              </a>
+            </li>
+          </ul>
+        </li>
+
+
+
+        <li class = "sidebar-menu-item">
+          <a class="sidebar-menu-button collapsed" data-toggle="collapse" href="#holiday_menu" aria-expanded="false">
+            <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">dvr</i>
+            <span class="sidebar-menu-text">Data collection</span>
+            <span class="ml-auto sidebar-menu-toggle-icon"></span>
+          </a>
+          <ul class="sidebar-submenu collapse" id="holiday_menu">
+            <li class="sidebar-menu-item" id="view-holidays">
+              <a class="sidebar-menu-button" href="<%=root_path%>">
+                <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">account_box</i>
+                <span class="sidebar-menu-text">View Holidays</span>
+              </a>
+            </li>
+            <li class="sidebar-menu-item" id="add-holidays">
+              <a class="sidebar-menu-button"  href="<%=root_path%>">
+                <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">add_to_queue</i>
+                <span class="sidebar-menu-text">Add New Holiday</span>
+              </a>
+            </li>
+          </ul>
+        </li>
+
+      </ul>
+
+
 
     </div>
   </div>
