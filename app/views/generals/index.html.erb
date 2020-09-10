@@ -1,0 +1,29 @@
+<h1>Listing generals</h1>
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th>Address type</th>
+      <th>Address</th>
+      <th>Contact type</th>
+      <th>Number</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @generals.each do |general| %>
+      <tr>
+        <td><%= general.address_type %></td>
+        <td> <%= general.address %></td>
+        <td><%= general.contact_type %></td>
+        <td><%= general.number %></td>
+        <td><%= link_to 'Show', general %></td>
+        <td><%= link_to 'Edit', edit_general_path(general) %></td>
+        <td><%= link_to 'Destroy', general, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<br/>
+<%= link_to 'New General', new_general_path %>

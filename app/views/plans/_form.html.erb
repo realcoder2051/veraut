@@ -1,0 +1,77 @@
+<%= form_with(model: plan, local: true) do |form| %>
+  <% if plan.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(plan.errors.count, "error") %> prohibited this plan from being saved:</h2>
+
+      <ul>
+        <% plan.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :question1 %>
+    <%= form.text_field :question1 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :question2 %>
+    <%= form.text_field :question2 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :question3 %>
+    <%= form.text_field :question3 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :question4 %>
+    <%= form.text_field :question4 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :question5 %>
+    <%= form.text_field :question5 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :question6 %>
+    <%= form.text_field :question6 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :question7 %>
+    <%= form.text_field :question7 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :question8 %>
+    <%= form.text_field :question8 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :question9 %>
+    <%= form.text_field :question9 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :question10 %>
+    <%= form.text_field :question10 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :question11 %>
+    <%= form.text_field :question11 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :question12 %>
+    <%= form.text_field :question12 %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

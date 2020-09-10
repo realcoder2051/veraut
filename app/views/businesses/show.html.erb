@@ -1,0 +1,59 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @business.name %>
+</p>
+
+<p>
+  <strong>Ein:</strong>
+  <%= @business.ein %>
+</p>
+
+<p>
+  <strong>Date purchased or sold:</strong>
+  <%= @business.date_purchased_or_sold %>
+</p>
+
+<p>
+  <strong>Address:</strong>
+  <%= @business.address %>
+</p>
+
+<p>
+  <strong>City:</strong>
+  <%= @business.city %>
+</p>
+
+<p>
+  <strong>State:</strong>
+  <%= @business.state %>
+</p>
+
+<p>
+  <strong>Zip:</strong>
+  <%= @business.zip %>
+</p>
+
+<p>
+  <strong>Phone:</strong>
+  <%= @business.phone %>
+</p>
+
+<p>
+  <strong>Does company have employees:</strong>
+  <%= @business.does_company_have_employees %>
+</p>
+
+<p>
+  <strong>Qualified plan sponsored:</strong>
+  <%= @business.qualified_plan_sponsored %>
+</p>
+
+<p>
+  <strong>Entity type:</strong>
+  <%= @business.entity_type %>
+</p>
+
+<%= link_to 'Edit', edit_business_path(@business) %> |
+<%= link_to 'Back', businesses_path %>

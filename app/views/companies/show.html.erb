@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Company name:</strong>
+  <%= @company.company_name %>
+</p>
+
+<p>
+  <strong>Ein:</strong>
+  <%= @company.ein %>
+</p>
+
+<p>
+  <strong>Fiscal year end:</strong>
+  <%= @company.fiscal_year_end %>
+</p>
+
+<p>
+  <strong>Entity tye:</strong>
+  <%= @company.entity_tye %>
+</p>
+
+<p>
+  <strong>Naic code:</strong>
+  <%= @company.naic_code %>
+</p>
+
+<p>
+  <strong>Payroll provider:</strong>
+  <%= @company.payroll_provider %>
+</p>
+
+<p>
+  <strong>Payroll frequency:</strong>
+  <%= @company.payroll_frequency %>
+</p>
+
+<%= link_to 'Edit', edit_company_path(@company) %> |
+<%= link_to 'Back', companies_path %>

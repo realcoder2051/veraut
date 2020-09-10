@@ -1,8 +1,9 @@
 class UsersController < ApplicationController
   include Pagy::Backend
+  load_and_authorize_resource
 
   def index
-    load_collection
+    @users = User.all
   end
 
   def show
@@ -54,6 +55,7 @@ class UsersController < ApplicationController
   def build_resource
     @resource ||= resource_scope.build
     @resource.attributes = resource_params
+    Ability.new(@resource)
   end
 
   def save_resource
@@ -68,7 +70,7 @@ class UsersController < ApplicationController
 
   def resource_params
     return {} unless params[:user]
-    params[:user].permit(:name, :email, :password, :password_confirmation)
+    params[:user].permit(:name, :email, :role, :password, :password_confirmation)
   end
 
 end

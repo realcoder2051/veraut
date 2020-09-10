@@ -1,0 +1,53 @@
+<div class="row" >
+  <div class="col-lg-4 left-move"></div>
+    <div class="col-lg-4 left-move">
+      <%=f.text_field :name%>
+      <div class="invalid-feedback">Please provide a time.</div>
+      <div class="valid-feedback">Looks good!</div>
+    </div>
+</div>
+<div class="row" >
+  <div class="col-lg-4 left-move"></div>
+    <div class="col-lg-4 left-move">
+      <%=f.text_field :company_name%>
+      <div class="invalid-feedback">Please provide a time.</div>
+      <div class="valid-feedback">Looks good!</div>
+    </div>
+</div>
+<div class="row" >
+  <div class="col-lg-4 left-move"></div>
+    <div class="col-lg-4 left-move">
+    <%=f.email_field :email %>
+    <div class="invalid-feedback">Please provide a time.</div>
+      <div class="valid-feedback">Looks good!</div>
+    </div>
+</div>
+<div class="row" >
+  <div class="col-lg-4 left-move"></div>
+    <div class="col-lg-4 left-move">
+      <%=f.select :roles,options_for_select(["Technician","Main Contact"])%>
+      <div class="invalid-feedback">Please provide a time.</div>
+      <div class="valid-feedback">Looks good!</div>
+    </div>
+</div>
+<div class="row" >
+  <div class="col-lg-4 left-move"></div>
+    <div class="col-lg-4 left-move">
+      <%=f.select :rights,options_for_select(["Add/Edit/Delete Fiduciary Documents","Approval","Business","Contact"]),multiple: true %>
+      <div class="invalid-feedback">Please provide a time.</div>
+      <div class="valid-feedback">Looks good!</div>
+    </div>
+</div>
+
+<div class="actions col-lg-12">
+  <div class="row">
+    <div class="col-lg-5 left-move"></div>
+    <div class="left-move">
+      <%= f.submit value: "Save", class: "btn btn-primary"%>
+    </div>
+    <div class="col-lg-1 right-move"></div>
+    <div class="right-move">
+      <%= link_to 'Cancel', root_path, class: "btn btn-secondary " %>
+    </div>
+  </div>
+</div>

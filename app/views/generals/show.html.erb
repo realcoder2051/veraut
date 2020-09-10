@@ -1,0 +1,22 @@
+<p id="notice">
+  <%= notice %>
+</p>
+<p>
+  <b>Address type:</b>
+  <%= @general.address_type %>
+</p>
+<p>
+  <b>Address:</b>
+  <%= @general.address %>
+</p>
+<p>
+  <b>Contact type:</b>
+  <%= @general.contact_type %>
+</p>
+<p>
+  <b>Number:</b>
+  <%= @general.number %>
+</p>
+<%= link_to 'Edit', edit_general_path(@general) %>
+\|
+<%= link_to 'Back', generals_path %>

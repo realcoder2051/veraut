@@ -10,8 +10,6 @@
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
-
   </head>
 
   <body class="<%= @body_class || 'layout-default' %>">
@@ -29,7 +27,7 @@
       <!-- // END Header -->
 
       <!-- Header Layout Content -->
-      <!-- <div class="mdk-header-layout__content">-->
+    <!--  <div class="mdk-header-layout__content">-->
 
         <div class="mdk-drawer-layout js-mdk-drawer-layout" data-push data-responsive-width="992px">
           <div class="mdk-drawer-layout__content page">
@@ -39,14 +37,13 @@
           <!-- // END drawer-layout__content -->
           <% if user_signed_in?%>
             <%= render 'layouts/stack/drawer_left' %>
-           <%end%>
+          <%end%>
         </div>
         <!-- // END drawer-layout -->
-
-    <!--  </div>  -->
+        </div>
       <!-- // END header-layout__content -->
 
-    </div>
+
     <!-- // END header-layout -->
 
     <%= content_for :footer %>
