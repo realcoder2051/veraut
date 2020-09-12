@@ -127,3 +127,10 @@
         height:490px;
         overflow-y: auto;
       }
+      div.c {
+        width: 50%;
+        border: 1px solid black;
+      }
+      .label-none-text label{
+        text-transform: none;
+      }

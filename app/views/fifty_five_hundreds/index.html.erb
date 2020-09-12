@@ -1,0 +1,37 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Fifty Five Hundreds</h1>
+
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th>Question1</th>
+      <th>Question2</th>
+      <th>Question3</th>
+      <th>Question4</th>
+      <th>Question5</th>
+      <th>Question6</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @fifty_five_hundreds.each do |fifty_five_hundred| %>
+      <tr>
+        <td><%= fifty_five_hundred.question1 %></td>
+        <td><%= fifty_five_hundred.question2 %></td>
+        <td><%= fifty_five_hundred.question3 %></td>
+        <td><%= fifty_five_hundred.question4 %></td>
+        <td><%= fifty_five_hundred.question5 %></td>
+        <td><%= fifty_five_hundred.question6 %></td>
+        <td><%= link_to 'Show', fifty_five_hundred %></td>
+        <td><%= link_to 'Edit', edit_fifty_five_hundred_path(fifty_five_hundred) %></td>
+        <td><%= link_to 'Destroy', fifty_five_hundred, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Fifty Five Hundred', new_fifty_five_hundred_path %>

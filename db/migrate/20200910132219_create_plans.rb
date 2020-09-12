@@ -12,7 +12,7 @@ class CreatePlans < ActiveRecord::Migration[6.0]
       t.string :question9
       t.string :question10
       t.string :question11
-      t.string :question12
+      t.date :question12
 
       t.timestamps
     end

@@ -1,0 +1,38 @@
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Choice1</th>
+      <th scope="col">Choice2</th>
+      <th scope="col">Choice3</th>
+      <th scope="col">Choice4</th>
+      <th scope="col">Choice5</th>
+      <th scope="col">Choice6</th>
+      <th scope="col">Choice7</th>
+      <th scope="col">Choice8</th>
+      <th scope="col">Choice9</th>
+      <th scope="col">Choice10</th>
+      <th scope="col">Choice11</th>
+      <th scope="col">Choice12</th>
+    </tr>
+  </thead>
+  <% @plans.each do |plan| %>
+  <tbody>
+    <tr>
+        <td><%=plan.question1%></td>
+        <td><%=plan.question2%></td>
+        <td><%=plan.question3%></td>
+        <td><%=plan.question4%></td>
+        <td><%=plan.question5%></td>
+        <td><%=plan.question6%></td>
+        <td><%=plan.question7%></td>
+        <td><%=plan.question8%></td>
+        <td><%=plan.question9%></td>
+        <td><%=plan.question10%></td>
+        <td><%=plan.question11%></td>
+        <td><%=plan.question12%></td>
+    </tr>
+  </tbody>
+<%end%>
+</table>
+
+

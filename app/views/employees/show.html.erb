@@ -1,0 +1,79 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>First name:</strong>
+  <%= @employee.first_name %>
+</p>
+
+<p>
+  <strong>Last name:</strong>
+  <%= @employee.last_name %>
+</p>
+
+<p>
+  <strong>Ssn:</strong>
+  <%= @employee.ssn %>
+</p>
+
+<p>
+  <strong>Gender:</strong>
+  <%= @employee.gender %>
+</p>
+
+<p>
+  <strong>Date of birth:</strong>
+  <%= @employee.date_of_birth %>
+</p>
+
+<p>
+  <strong>Original date of hire:</strong>
+  <%= @employee.original_date_of_hire %>
+</p>
+
+<p>
+  <strong>Date of termination:</strong>
+  <%= @employee.date_of_termination %>
+</p>
+
+<p>
+  <strong>Date of retire:</strong>
+  <%= @employee.date_of_retire %>
+</p>
+
+<p>
+  <strong>Compensation:</strong>
+  <%= @employee.compensation %>
+</p>
+
+<p>
+  <strong>Hours:</strong>
+  <%= @employee.hours %>
+</p>
+
+<p>
+  <strong>Pre tax salary deferal:</strong>
+  <%= @employee.pre_tax_salary_deferal %>
+</p>
+
+<p>
+  <strong>Roth salary deferal:</strong>
+  <%= @employee.roth_salary_deferal %>
+</p>
+
+<p>
+  <strong>Employee match:</strong>
+  <%= @employee.employee_match %>
+</p>
+
+<p>
+  <strong>Company division:</strong>
+  <%= @employee.company_division %>
+</p>
+
+<p>
+  <strong>Union employee:</strong>
+  <%= @employee.union_employee %>
+</p>
+
+<%= link_to 'Edit', edit_employee_path(@employee) %> |
+<%= link_to 'Back', employees_path %>
