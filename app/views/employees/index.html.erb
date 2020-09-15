@@ -11,12 +11,14 @@
       <th>Ssn</th>
       <th>Gender</th>
       <th>Date of birth</th>
-      <th>Original date of hire</th>
+      <th>Date of hire</th>
       <th>Date of termination</th>
       <th>Date of retire</th>
       <th>Compensation</th>
       <th>Hours</th>
-      <th colspan="3"></th>
+      <th colspan="1">Actions</th>
+      <th><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#new_employee">Add</button></th>
+
     </tr>
   </thead>
 
@@ -33,14 +35,64 @@
         <td><%= employee.date_of_retire %></td>
         <td><%= employee.compensation %></td>
         <td><%= employee.hours %></td>
-        <td><%= link_to 'Show', employee %></td>
-        <td><%= link_to 'Edit', edit_employee_path(employee) %></td>
-        <td><%= link_to 'Destroy', employee, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td class="row"><i class="material-icons icon-20pt"><%= link_to 'slideshow', employee %></i>
+        <i class="material-icons icon-20pt"><%= link_to 'edit', edit_employee_path(employee),remote:true %></i>
+        <i class="material-icons icon-20pt"><%= link_to 'delete', employee, method: :delete, data: { confirm: 'Are you sure?' } %></i></td>
       </tr>
     <% end %>
   </tbody>
 </table>
-
 <br>
 
-<%= link_to 'New Employee', new_employee_path %>
+<div class="modal fade" id="new_employee" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" style="width:35%" position="" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="page__heading">
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb mb-0">
+              <li class="breadcrumb-item"><i class="material-icons icon-20pt">home</i></li>
+              <li class="breadcrumb-item active" aria-current="page">Employee</a></li>
+            </ol>
+          </nav>
+        </div>
+        <h5 class="modal-title" id="exampleModalLabel">Add New Employee</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <%= bootstrap_form_with(url:employees_path,model:@employee, local:true) do |f| %>
+          <%=render 'form', f: f %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+<br>
+
+<div class="modal fade" id="edit_employee" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" style="width:35%" position="" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="page__heading">
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb mb-0">
+              <li class="breadcrumb-item"><i class="material-icons icon-20pt">home</i></li>
+              <li class="breadcrumb-item active" aria-current="page">Employee</a></li>
+            </ol>
+          </nav>
+        </div>
+        <h5 class="modal-title" id="exampleModalLabel">Edit Employee</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <%= bootstrap_form_with(model:@employee, local:true) do |f| %>
+          <%=render 'form', f: f %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

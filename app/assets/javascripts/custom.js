@@ -11,15 +11,9 @@ var hash = {
      "/holidays/new" : "add-holidays",
      "/edit_status" : "edit-employees"
   }
-  
+
   function sidebar(url){
     var item = document.getElementById(hash[url]);
     var li = $(item).parent().parent().addClass("open");
     item.classList.add("active")
-  
   }
-  
-  
-  $(document).ready(function () {
-    sidebar(window.location.pathname)
-  });

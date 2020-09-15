@@ -1,4 +1,3 @@
-
 //= require stack/core-scripts
 
 // Self Initialize DOM Factory Components
@@ -65,8 +64,6 @@ $('[data-toggle="fullcalendar"]').each(function() {
   element.fullCalendar(options)
 })
 
-
-
 let drawers = document.querySelectorAll('.mdk-drawer')
 drawers = Array.prototype.slice.call(drawers)
 drawers.forEach((drawer) => {
@@ -81,7 +78,6 @@ drawers.forEach((drawer) => {
     }
   })
 })
-
 
 // SIDEBAR COLLAPSE MENUS
 $('.sidebar .collapse').on('show.bs.collapse', function (e) {
@@ -103,11 +99,9 @@ $('[data-toggle="tab"]').on('hide.bs.tab', function (e) {
   $(e.target).removeClass('active')
 })
 
-
 document.addEventListener("turbolinks:load", function() {
 
   domFactory.handler.upgradeAll();
-
 
 // Connect button(s) to drawer(s)
 var sidebarToggle = Array.prototype.slice.call(document.querySelectorAll('[data-toggle="sidebar"]'))

@@ -3,17 +3,19 @@
 <h1>Businesses</h1>
 
 <table class="table">
-  <thead class="thead-dark">
+  <thead class="thead-dark" >
     <tr>
       <th>Name</th>
       <th>Ein</th>
-      <th>Date purchased or sold</th>
+      <th>Date purchased</th>
       <th>Address</th>
       <th>Phone</th>
-      <th>Does company have employees</th>
-      <th>Qualified plan sponsored</th>
+      <th>Employees?</th>
+      <th>Plan Sponsor</th>
       <th>Entity type</th>
-      <th colspan="2"></th>
+      <th colspan="1">Actions</th>
+      <th><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#new_family">Add</button></th>
+
     </tr>
   </thead>
 
@@ -28,8 +30,9 @@
         <td><%= business.does_company_have_employees %></td>
         <td><%= business.qualified_plan_sponsored %></td>
         <td><%= business.entity_type %></td>
-        <td><%= link_to 'Edit', edit_business_path(business) %></td>
-        <td><%= link_to 'Destroy', business, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><i class="material-icons icon-20pt"><%= link_to 'slideshow', business %></i>
+        <i class="material-icons icon-20pt"><%= link_to 'edit', business %></i>
+        <i class="material-icons icon-20pt"><%= link_to 'delete', business, method: :delete, data: { confirm: 'Are you sure?' } %></i></td>
       </tr>
     <% end %>
   </tbody>
@@ -37,4 +40,28 @@
 
 <br>
 
-<%= link_to 'New Business', new_business_path %>
+<div class="modal fade" id="new_family" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" style="width:35%" position="" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="page__heading">
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb mb-0">
+              <li class="breadcrumb-item"><i class="material-icons icon-20pt">home</i></li>
+              <li class="breadcrumb-item active" aria-current="page">Businenss</a></li>
+            </ol>
+          </nav>
+        </div>
+        <h5 class="modal-title" id="exampleModalLabel">Add New Business</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <%= bootstrap_form_with(url:businesses_path,model:@business, local:true) do |f| %>
+          <%=render 'form', f: f %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

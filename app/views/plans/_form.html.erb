@@ -1,16 +1,16 @@
-<%@plans.each_with_index do |plan,index|%>
+<%plans.each_with_index do |plan, index|%>
   <div class="row" >
     <div class="col-lg-9" >
-      <%=f.label 'question'+(index+1).to_s,plan,class: "text-transform: none" %>
+      <%=f.label 'question' + (index+1).to_s, plan,class: "text-transform: none" %>
     </div>
     <div class="col-lg-3">
-    <%if index<=8%>
-      <%=f.select 'question'+(index+1).to_s,options_for_select(["Yes","No"])%>
-    <%elsif index>=9 && index<=10 %>
-      <%=f.select 'question'+(index+1).to_s,options_for_select(["Yes","No","Decison Not yet made"])%>
-    <%else%>
-      <%=f.date_field 'question'+(index+1).to_s%>
-    <%end%>
+      <%if index<=8%>
+        <%=f.select 'question'+(index+1).to_s,options_for_select(["Yes","No"])%>
+      <%elsif index>=9 && index<=10 %>
+        <%=f.select 'question'+(index+1).to_s,options_for_select(["Yes","No","Decison Not yet made"])%>
+      <%else%>
+        <%=f.date_field 'question'+(index+1).to_s%>
+      <%end%>
 
       <div class="invalid-feedback">Please provide a time.</div>
       <div class="valid-feedback">Looks good!</div>

@@ -1,6 +1,32 @@
-<h1>Editing Company</h1>
-
-<%= render 'form', company: @company %>
-
-<%= link_to 'Show', @company %> |
-<%= link_to 'Back', companies_path %>
+<div class="container-fluid page__heading-container">
+  <div class="page__heading">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb mb-0">
+        <li class="breadcrumb-item"><i class="material-icons icon-20pt">home</i></a></li>
+        <li class="breadcrumb-item active" aria-current="page">Company</a></li>
+      </ol>
+    </nav>
+    <h1 class="m-0">Edit Company</h1>
+  </div>
+</div>
+<div class="anyClass">
+  <div class="card card-">
+    <div class="row no-gutters">
+      <div class="col-lg-12 card-form__body card-body">
+        <%= bootstrap_form_with(model:@company, local:true) do |f| %>
+          <% if @company.errors.any? %>
+            <div id="error_explanation">
+              <h2><%= pluralize(@company.errors.count, "error") %> prohibited this user from being saved:</h2>
+              <ul>
+              <% @company.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+              </ul>
+            </div>
+          <% end %>
+          <%=render 'form', f: f %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

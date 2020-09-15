@@ -1,70 +1,69 @@
 <div class="row" >
-  <div class="col-lg-4 left-move"></div>
-    <div class="col-lg-4 left-move">
-      <%= f.text_field :company_name  %>
-      <div class="invalid-feedback">Please provide a time.</div>
-      <div class="valid-feedback">Looks good!</div>
-    </div>
+  <div class="col-lg-2 left-move"></div>
+  <div class="col-lg-8 left-move">
+    <%= f.text_field :company_name  %>
+    <div class="invalid-feedback">Please provide a time.</div>
+    <div class="valid-feedback">Looks good!</div>
+  </div>
 </div>
 <div class="row" >
-  <div class="col-lg-4 left-move"></div>
-    <div class="col-lg-4 left-move">
-     <%= f.text_field :ein %>
-      <div class="invalid-feedback">Please provide a time.</div>
-      <div class="valid-feedback">Looks good!</div>
-    </div>
+  <div class="col-lg-2 left-move"></div>
+  <div class="col-lg-8 left-move">
+    <%= f.text_field :ein %>
+    <div class="invalid-feedback">Please provide a time.</div>
+    <div class="valid-feedback">Looks good!</div>
+  </div>
 </div>
 <div class="row" >
-  <div class="col-lg-4 left-move"></div>
-    <div class="col-lg-4 left-move">
-     <%= f.date_field :fiscal_year_end %>
-      <div class="invalid-feedback">Please provide a time.</div>
-      <div class="valid-feedback">Looks good!</div>
-    </div>
+  <div class="col-lg-2 left-move"></div>
+  <div class="col-lg-8 left-move">
+    <%= f.date_field :fiscal_year_end %>
+    <div class="invalid-feedback">Please provide a time.</div>
+    <div class="valid-feedback">Looks good!</div>
+  </div>
 </div>
 <div class="row" >
-  <div class="col-lg-4 left-move"></div>
-    <div class="col-lg-4 left-move">
-     <%= f.select :entity_type,options_for_select([ "BiWeekly", "Monthly","Schedules" ]) %>
-      <div class="invalid-feedback">Please provide a time.</div>
-      <div class="valid-feedback">Looks good!</div>
-    </div>
+  <div class="col-lg-2 left-move"></div>
+  <div class="col-lg-8 left-move">
+    <%= f.select :entity_type,options_for_select([ "BiWeekly", "Monthly","Schedules" ]) %>
+    <div class="invalid-feedback">Please provide a time.</div>
+    <div class="valid-feedback">Looks good!</div>
+  </div>
 </div>
 <div class="row" >
-  <div class="col-lg-4 left-move"></div>
-    <div class="col-lg-4 left-move">
-     <%= f.text_field :naic_code %>
-      <div class="invalid-feedback">Please provide a time.</div>
-      <div class="valid-feedback">Looks good!</div>
-    </div>
+  <div class="col-lg-2 left-move"></div>
+  <div class="col-lg-8 left-move">
+    <%= f.text_field :naic_code %>
+    <div class="invalid-feedback">Please provide a time.</div>
+    <div class="valid-feedback">Looks good!</div>
+  </div>
 </div>
 <div class="row" >
-  <div class="col-lg-4 left-move"></div>
-    <div class="col-lg-4 left-move">
-     <%= f.text_field :payroll_provider%>
-      <div class="invalid-feedback">Please provide a time.</div>
-      <div class="valid-feedback">Looks good!</div>
-    </div>
+  <div class="col-lg-2 left-move"></div>
+  <div class="col-lg-8 left-move">
+    <%= f.text_field :payroll_provider%>
+    <div class="invalid-feedback">Please provide a time.</div>
+    <div class="valid-feedback">Looks good!</div>
+  </div>
 </div>
 <div class="row" >
-  <div class="col-lg-4 left-move"></div>
-    <div class="col-lg-4 left-move">
-     <%= f.select :payroll_frequency,options_for_select(["","LLC", "C Corp","Church"]) %>
-      <div class="invalid-feedback">Please provide a time.</div>
-      <div class="valid-feedback">Looks good!</div>
-    </div>
+  <div class="col-lg-2 left-move"></div>
+  <div class="col-lg-8 left-move">
+    <%= f.select :payroll_frequency,options_for_select(["","LLC", "C Corp","Church"]) %>
+    <div class="invalid-feedback">Please provide a time.</div>
+    <div class="valid-feedback">Looks good!</div>
+  </div>
 </div>
-
-
-  <div class="actions col-lg-12">
-    <div class="row">
-      <div class="col-lg-5 left-move"></div>
-      <div class="left-move">
-        <%= f.submit value: "Save", class: "btn btn-primary"%>
-      </div>
-      <div class="col-lg-1 right-move"></div>
-      <div class="right-move">
-        <%= link_to 'Cancel', root_path, class: "btn btn-secondary " %>
-      </div>
+<div class="actions col-lg-12">
+  <div class="row">
+    <div class="col-lg-3 left-move"></div>
+    <div class="left-move">
+      <%= f.submit value: "Save", class: "btn btn-primary"%>
+    </div>
+    <div class="col-lg-1 right-move"></div>
+    <div class="right-move">
+      <%= link_to 'Cancel', root_path, class: "btn btn-secondary " %>
     </div>
   </div>
+</div>
+<br>

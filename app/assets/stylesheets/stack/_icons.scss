@@ -14,7 +14,7 @@
         url(asset-path("#{$MD-icon-path-name}.woff")) format('woff'),
         url(asset-path("#{$MD-icon-path-name}.ttf")) format('truetype');
  }
- 
+
  .material-icons {
    font-family: 'Material Icons';
    font-weight: normal;
@@ -27,7 +27,7 @@
    word-wrap: normal;
    white-space: nowrap;
    direction: ltr;
- 
+
    /* Support for all WebKit browsers. */
    -webkit-font-smoothing: antialiased;
    /* Support for Safari and Chrome. */

@@ -127,10 +127,41 @@
         height:490px;
         overflow-y: auto;
       }
-      div.c {
-        width: 50%;
-        border: 1px solid black;
+      .modal-open{
+        height:490px;
+        overflow-y: auto
       }
-      .label-none-text label{
-        text-transform: none;
+      .modal-backdrop {
+        z-index: 1040 !important;
+        height:100vh
       }
+      .modal-content {
+          margin: 2px auto;
+          z-index: 1100 !important;
+      }
+      .modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 1050;
+        display: none;
+        width: 100%;
+        overflow: hidden;
+        outline: 0;
+    }
+      .modal-backdrop {
+        height:100vh;
+        /* bug fix - no overlay */
+        display: none;
+      }
+      .mdk-drawer-layout__content{
+        height: 100vh;
+        min-height: 100%;
+      }
+      .modal-body {
+        max-height: calc(100vh - 210px);
+        overflow-y: auto;
+    }
+    // .family-edit{
+
+    // }

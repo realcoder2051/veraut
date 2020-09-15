@@ -1,38 +1,42 @@
-<table class="table">
-  <thead class="thead-dark">
-    <tr>
-      <th scope="col">Choice1</th>
-      <th scope="col">Choice2</th>
-      <th scope="col">Choice3</th>
-      <th scope="col">Choice4</th>
-      <th scope="col">Choice5</th>
-      <th scope="col">Choice6</th>
-      <th scope="col">Choice7</th>
-      <th scope="col">Choice8</th>
-      <th scope="col">Choice9</th>
-      <th scope="col">Choice10</th>
-      <th scope="col">Choice11</th>
-      <th scope="col">Choice12</th>
-    </tr>
-  </thead>
-  <% @plans.each do |plan| %>
-  <tbody>
-    <tr>
-        <td><%=plan.question1%></td>
-        <td><%=plan.question2%></td>
-        <td><%=plan.question3%></td>
-        <td><%=plan.question4%></td>
-        <td><%=plan.question5%></td>
-        <td><%=plan.question6%></td>
-        <td><%=plan.question7%></td>
-        <td><%=plan.question8%></td>
-        <td><%=plan.question9%></td>
-        <td><%=plan.question10%></td>
-        <td><%=plan.question11%></td>
-        <td><%=plan.question12%></td>
-    </tr>
-  </tbody>
-<%end%>
-</table>
-
-
+<div class="anyClass">
+  <table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">1</th>
+        <th scope="col">2</th>
+        <th scope="col">3</th>
+        <th scope="col">4</th>
+        <th scope="col">5</th>
+        <th scope="col">6</th>
+        <th scope="col">7</th>
+        <th scope="col">8</th>
+        <th scope="col">9</th>
+        <th scope="col">10</th>
+        <th scope="col">11</th>
+        <th scope="col">12</th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+    <% @plans.each do |plan| %>
+      <tbody>
+        <tr>
+            <td><%=plan.question1%></td>
+            <td><%=plan.question2%></td>
+            <td><%=plan.question3%></td>
+            <td><%=plan.question4%></td>
+            <td><%=plan.question5%></td>
+            <td><%=plan.question6%></td>
+            <td><%=plan.question7%></td>
+            <td><%=plan.question8%></td>
+            <td><%=plan.question9%></td>
+            <td><%=plan.question10%></td>
+            <td><%=plan.question11%></td>
+            <td><%=plan.question12%></td>
+            <td><%= link_to 'Show', plan %></td>
+          <td><%= link_to 'Edit', edit_plan_path(plan) %></td>
+          <td><%= link_to 'Destroy', plan, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      </tbody>
+    <%end%>
+  </table>
+</div>
