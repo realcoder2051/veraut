@@ -1,5 +1,9 @@
 class BusinessesController < InheritedResources::Base
 
+  def edit
+    render json: Business.find(params[:id]),:layout => false
+  end
+
   def update
     business = Business.find(params[:id])
     if business.update_attributes(business_params)

@@ -1,28 +1,31 @@
+
 <p id="notice"><%= notice %></p>
 <h1>Families</h1>
-<table class="table">
-  <thead class="thead-dark">
-    <tr>
-      <th>Name</th>
-      <th>Relationship</th>
-      <th>Related to</th>
-      <th colspan="1">Actions</th>
-      <th><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#new_family">Add</button></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @families.each do |family| %>
+<div class="anyClass">
+  <table class="table">
+    <thead class="thead-dark">
       <tr>
-        <td><%= family.name %></td>
-        <td><%= family.relationship %></td>
-        <td><%= family.related_to %></td>
-        <td><i class="material-icons icon-20pt"><%= link_to 'slideshow', family %></i>
-        <i class="material-icons icon-20pt family-edit" data-toggle="modal" ><%=link_to 'edit',edit_family_path(family),remote:true%></i>
-        <i class="material-icons icon-20pt"><%= link_to 'delete', family, method: :delete, data: { confirm: 'Are you sure?' } %></i></td>
+        <th>Name</th>
+        <th>Relationship</th>
+        <th>Related to</th>
+        <th colspan="1">Actions</th>
+        <th><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#new_family">Add</button></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+      <% @families.each do |family| %>
+        <tr>
+          <td><%= family.name %></td>
+          <td><%= family.relationship %></td>
+          <td><%= family.related_to %></td>
+          <td><i class="material-icons icon-20pt"><%= link_to 'slideshow', family %></i>
+          <i class="material-icons icon-20pt family-edit" data-toggle="modal" ><%=link_to 'edit',edit_family_path(family),remote:true%></i>
+          <i class="material-icons icon-20pt"><%= link_to 'delete', family, method: :delete, data: { confirm: 'Are you sure?' } %></i></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
 <br>
 
 <div class="modal fade" id="new_family" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -69,7 +72,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <%= bootstrap_form_with(model:@family,local:true) do |f| %>
+        <%= bootstrap_form_tag url:'#',method: :put do |f| %>
           <%=render 'form', f: f %>
         <% end %>
       </div>
