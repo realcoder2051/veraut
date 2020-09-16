@@ -1,4 +1,4 @@
-$('.family-edit').click(function(event) {
+$('.business-edit').click(function(event) {
     console.log(event);
     Rails.ajax({
       url: $(this).children().attr('href'),
@@ -21,4 +21,3 @@ $('.family-edit').click(function(event) {
       error: function(data) {}
     })
   });
-  

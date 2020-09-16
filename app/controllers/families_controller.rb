@@ -14,7 +14,6 @@ class FamiliesController < InheritedResources::Base
     if @family.update_attributes(family_params)
       redirect_to families_path
     end
-
   end
 
   # def show
@@ -24,6 +23,7 @@ class FamiliesController < InheritedResources::Base
   #     format.json { render json: @family.to_json} 
   #   end
   # end
+
   def index
     @families = Family.all.order('created_at')
   end

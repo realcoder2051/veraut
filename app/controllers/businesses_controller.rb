@@ -1,15 +1,21 @@
 class BusinessesController < InheritedResources::Base
 
   def edit
-    render json: Business.find(params[:id]),:layout => false
+    @business = Business.find(params[:id])
+    render json: @business
   end
 
   def update
-    business = Business.find(params[:id])
-    if business.update_attributes(business_params)
+    @business = Business.find(params[:id])
+    if @business.update_attributes(business_params)
       redirect_to businesses_path
     end
+
   end
+  def index
+    @businesses = Business.all.order('created_at')
+  end
+
 
   def create
     business = Business.new(business_params)

@@ -1,42 +1,43 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Businesses</h1>
-
-<table class="table">
-  <thead class="thead-dark" >
-    <tr>
-      <th>Name</th>
-      <th>Ein</th>
-      <th>Date purchased</th>
-      <th>Address</th>
-      <th>Phone</th>
-      <th>Employees?</th>
-      <th>Plan Sponsor</th>
-      <th>Entity type</th>
-      <th colspan="1">Actions</th>
-      <th><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#new_business">Add</button></th>
-
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @businesses.each do |business| %>
+<div class="anyClass">
+  <table class="table">
+    <thead class="thead-dark" >
       <tr>
-        <td><%= business.name %></td>
-        <td><%= business.ein %></td>
-        <td><%= business.date_purchased_or_sold %></td>
-        <td><%= business.address %></td>
-        <td><%= business.phone %></td>
-        <td><%= business.does_company_have_employees %></td>
-        <td><%= business.qualified_plan_sponsored %></td>
-        <td><%= business.entity_type %></td>
-        <td><i class="material-icons icon-20pt"><%= link_to 'slideshow', business %></i>
-        <i class="material-icons icon-20pt"><%= link_to 'edit', edit_business_path(business),remote:true %></i>
-        <i class="material-icons icon-20pt"><%= link_to 'delete', business, method: :delete, data: { confirm: 'Are you sure?' } %></i></td>
+        <th>Name</th>
+        <th>Ein</th>
+        <th>Date purchased</th>
+        <th>Address</th>
+        <th>Phone</th>
+        <th>Employees?</th>
+        <th>Plan Sponsor</th>
+        <th>Entity type</th>
+        <th colspan="1">Actions</th>
+        <th><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#new_business">Add</button></th>
+
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+
+    <tbody>
+      <% @businesses.each do |business| %>
+        <tr>
+          <td><%= business.name %></td>
+          <td><%= business.ein %></td>
+          <td><%= business.date_purchased_or_sold %></td>
+          <td><%= business.address %></td>
+          <td><%= business.phone %></td>
+          <td><%= business.does_company_have_employees %></td>
+          <td><%= business.qualified_plan_sponsored %></td>
+          <td><%= business.entity_type %></td>
+          <td><i class="material-icons icon-20pt"><%= link_to 'slideshow', business %></i>
+          <i class="material-icons icon-20pt business-edit"><%= link_to 'edit', edit_business_path(business),remote:true %></i>
+          <i class="material-icons icon-20pt"><%= link_to 'delete', business, method: :delete, data: { confirm: 'Are you sure?' } %></i></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
 <br>
 <div class="modal fade" id="new_business" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" style="width:35%" position="" role="document">
@@ -83,7 +84,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <%= bootstrap_form_with(model:@business,local:true) do |f| %>
+        <%= bootstrap_form_tag url:'#',method: :put do |f| %>
           <%=render 'form', f: f %>
         <% end %>
       </div>

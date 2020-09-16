@@ -6,7 +6,6 @@ $('.family-edit').click(function(event) {
     data: "",
     success: function(data) {
       console.log(data);
-
       $('#edit_family #name').val(data.name)
       $('#edit_family #relationship').val(data.relationship)
       $('#edit_family #related_to').val(data.related_to)
