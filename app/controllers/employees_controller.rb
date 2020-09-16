@@ -1,7 +1,8 @@
 class EmployeesController < InheritedResources::Base
 
   def edit
-    render json: Employee.find(params[:id]),:layout => false
+    employee = Employee.find(params[:id])
+    render json: employee
   end
 
   def update
@@ -9,6 +10,10 @@ class EmployeesController < InheritedResources::Base
     if employee.update_attributes(employee_params)
       redirect_to employees_path
     end
+  end
+
+  def index
+    @employees = Employee.all.order('created_at')
   end
 
   def create

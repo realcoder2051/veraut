@@ -5,13 +5,13 @@ class FamiliesController < InheritedResources::Base
   # end
 
   def edit
-    @family = Family.find(params[:id])
-    render json: @family
+    family = Family.find(params[:id])
+    render json: family
   end
 
   def update
-    @family = Family.find(params[:id])
-    if @family.update_attributes(family_params)
+    family = Family.find(params[:id])
+    if family.update_attributes(family_params)
       redirect_to families_path
     end
   end

@@ -16,6 +16,7 @@ $('.business-edit').click(function(event) {
         $('#edit_business #does_company_have_employees').val(data.does_company_have_employees)
         $('#edit_business #qualified_plan_sponsored').val(data.qualified_plan_sponsored)
         $('#edit_business #entity_type').val(data.entity_type)
+        $('#edit_business form').attr('action', '/businesses/'+data.id);
         $('#edit_business').modal("show");
       },
       error: function(data) {}

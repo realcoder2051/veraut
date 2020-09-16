@@ -21,6 +21,7 @@ $('.employee-edit').click(function(event) {
         $('#edit_employee #employee_match').val(data.employee_match)
         $('#edit_employee #company_division').val(data.company_division)
         $('#edit_employee #union_employee').val(data.union_employee)
+        $('#edit_employee form').attr('action', '/employees/'+data.id);
         $('#edit_employee').modal("show");
       },
       error: function(data) {}

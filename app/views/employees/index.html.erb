@@ -1,14 +1,11 @@
 <p id="notice"><%= notice %></p>
-
 <h1>Employees</h1>
-
-
 <table class="table">
   <thead class="thead-dark">
     <tr>
       <th>First name</th>
       <th>Last name</th>
-      <th>Ssn</th>
+      <th>SSN</th>
       <th>Gender</th>
       <th>Date of birth</th>
       <th>Date of hire</th>
@@ -18,10 +15,8 @@
       <th>Hours</th>
       <th colspan="1">Actions</th>
       <th><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#new_employee">Add</button></th>
-
     </tr>
   </thead>
-
   <tbody>
     <% @employees.each do |employee| %>
       <tr>
@@ -36,14 +31,13 @@
         <td><%= employee.compensation %></td>
         <td><%= employee.hours %></td>
         <td class="row"><i class="material-icons icon-20pt"><%= link_to 'slideshow', employee %></i>
-        <i class="material-icons icon-20pt"><%= link_to 'edit', edit_employee_path(employee),remote:true %></i>
+        <i class="material-icons icon-20pt employee-edit"><%= link_to 'edit', edit_employee_path(employee),remote:true %></i>
         <i class="material-icons icon-20pt"><%= link_to 'delete', employee, method: :delete, data: { confirm: 'Are you sure?' } %></i></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 <br>
-
 <div class="modal fade" id="new_employee" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" style="width:35%" position="" role="document">
     <div class="modal-content">
@@ -70,7 +64,6 @@
   </div>
 </div>
 <br>
-
 <div class="modal fade" id="edit_employee" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" style="width:35%" position="" role="document">
     <div class="modal-content">
@@ -89,7 +82,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <%= bootstrap_form_with(model:@employee, local:true) do |f| %>
+         <%= bootstrap_form_tag url:'#',method: :put do |f| %>
           <%=render 'form', f: f %>
         <% end %>
       </div>
