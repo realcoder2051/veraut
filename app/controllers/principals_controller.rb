@@ -1,5 +1,10 @@
 class PrincipalsController < InheritedResources::Base
 
+  def edit
+    principal = Principal.find(params[:id])
+    render json: principal
+  end
+
   def update
     principal = Principal.find(params[:id])
     if principal.update_attributes(principal_params)
@@ -14,6 +19,10 @@ class PrincipalsController < InheritedResources::Base
     else
       redirect_to new_principal_path
     end
+  end
+
+  def index
+    @principals = Principal.all.order('created_at')
   end
 
   private

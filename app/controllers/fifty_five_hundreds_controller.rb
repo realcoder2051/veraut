@@ -22,7 +22,7 @@ class FiftyFiveHundredsController < InheritedResources::Base
   private
 
     def fifty_five_hundred_params
-      params.require(:fifty_five_hundred).permit(:question1, :question2, :question3, :question4, :question5, :question6)
+      params.permit(:question1, :question2, :question3, :question4, :question5, :question6)
     end
 
 end

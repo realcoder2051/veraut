@@ -10,13 +10,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_16_094945) do
+ActiveRecord::Schema.define(version: 2020_09_17_091641) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_stat_statements"
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
   enable_extension "uuid-ossp"
+
+  create_table "addresses", force: :cascade do |t|
+    t.string "address1"
+    t.string "address2"
+    t.string "city"
+    t.string "state"
+    t.string "zip"
+    t.string "address_type"
+    t.bigint "general_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["general_id"], name: "index_addresses_on_general_id"
+  end
 
   create_table "businesses", force: :cascade do |t|
     t.string "name"
@@ -34,37 +47,6 @@ ActiveRecord::Schema.define(version: 2020_09_16_094945) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "calendar_dates", id: :integer, default: nil, force: :cascade do |t|
-    t.date "date_actual", null: false
-    t.bigint "epoch", null: false
-    t.string "day_suffix", null: false
-    t.string "day_name", null: false
-    t.integer "day_of_week", null: false
-    t.integer "day_of_month", null: false
-    t.integer "day_of_quarter", null: false
-    t.integer "day_of_year", null: false
-    t.integer "week_of_month", null: false
-    t.integer "week_of_year", null: false
-    t.string "week_of_year_iso", null: false
-    t.integer "month_actual", null: false
-    t.string "month_name", null: false
-    t.string "month_name_short", null: false
-    t.integer "quarter_actual", null: false
-    t.string "quarter_name", null: false
-    t.integer "year_actual", null: false
-    t.date "first_day_of_week", null: false
-    t.date "last_day_of_week", null: false
-    t.date "first_day_of_month", null: false
-    t.date "last_day_of_month", null: false
-    t.date "first_day_of_quarter", null: false
-    t.date "last_day_of_quarter", null: false
-    t.date "first_day_of_year", null: false
-    t.date "last_day_of_year", null: false
-    t.boolean "weekend"
-    t.datetime "created_at"
-    t.index ["date_actual"], name: "index_calendar_dates_on_date_actual"
-  end
-
   create_table "companies", force: :cascade do |t|
     t.string "company_name"
     t.string "ein"
@@ -75,6 +57,15 @@ ActiveRecord::Schema.define(version: 2020_09_16_094945) do
     t.string "payroll_frequency"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "contact_numbers", force: :cascade do |t|
+    t.string "number"
+    t.string "contact_type"
+    t.bigint "general_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["general_id"], name: "index_contact_numbers_on_general_id"
   end
 
   create_table "contacts", force: :cascade do |t|
@@ -189,4 +180,5 @@ ActiveRecord::Schema.define(version: 2020_09_16_094945) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "addresses", "generals"
 end

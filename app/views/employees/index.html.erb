@@ -1,4 +1,3 @@
-<p id="notice"><%= notice %></p>
 <h1>Employees</h1>
 <table class="table">
   <thead class="thead-dark">
@@ -31,7 +30,7 @@
         <td><%= employee.compensation %></td>
         <td><%= employee.hours %></td>
         <td class="row"><i class="material-icons icon-20pt"><%= link_to 'slideshow', employee %></i>
-        <i class="material-icons icon-20pt employee-edit"><%= link_to 'edit', edit_employee_path(employee),remote:true %></i>
+        <i class="material-icons icon-20pt modal-edit"><%= link_to 'edit', edit_employee_path(employee),remote:true %></i>
         <i class="material-icons icon-20pt"><%= link_to 'delete', employee, method: :delete, data: { confirm: 'Are you sure?' } %></i></td>
       </tr>
     <% end %>

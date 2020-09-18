@@ -1,34 +1,33 @@
 <p id="notice"><%= notice %></p>
 <h1>Principals</h1>
-<table class="table">
-  <thead class="thead-dark">
-    <tr>
-      <th>Name</th>
-      <th>Title</th>
-      <th>Officer</th>
-      <th>Ownership</th>
-      <th colspan="1">Actions</th>
-      <th><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#new_family">Add</button></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @principals.each do |principal| %>
+<div class="anyClass">
+  <table class="table">
+    <thead class="thead-dark">
       <tr>
-        <td><%= principal.name %></td>
-        <td><%= principal.title %></td>
-        <td><%= principal.officer %></td>
-        <td><%= principal.ownership %></td>
-        <td><i class="material-icons icon-20pt"><%= link_to 'slideshow', principal %></i>
-        <i class="material-icons icon-20pt family_edit" data-toggle="modal" ><%=link_to 'edit',edit_principal_path(principal),remote:true%></i>
-        <i class="material-icons icon-20pt"><%= link_to 'delete', principal, method: :delete, data: { confirm: 'Are you sure?' } %></i></td>
+        <th>Name</th>
+        <th>Title</th>
+        <th>Officer</th>
+        <th>Ownership</th>
+        <th colspan="1">Actions</th>
+        <th><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#new_family">Add</button></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+      <% @principals.each do |principal| %>
+        <tr>
+          <td><%= principal.name %></td>
+          <td><%= principal.title %></td>
+          <td><%= principal.officer %></td>
+          <td><%= principal.ownership %></td>
+          <td><i class="material-icons icon-20pt"><%= link_to 'slideshow', principal %></i>
+          <i class="material-icons icon-20pt modal-edit"><%=link_to 'edit',edit_principal_path(principal),remote:true%></i>
+          <i class="material-icons icon-20pt"><%= link_to 'delete', principal, method: :delete, data: { confirm: 'Are you sure?' } %></i></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
 <br>
-
-
 <div class="modal fade" id="new_family" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" style="width:35%" position="" role="document">
     <div class="modal-content">
@@ -48,6 +47,31 @@
       </div>
       <div class="modal-body">
         <%= bootstrap_form_with(url:principals_path,model:@principal, local:true) do |f| %>
+          <%=render 'form', f: f %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="edit_principal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" style="width:35%" position="" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="page__heading">
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb mb-0">
+              <li class="breadcrumb-item"><i class="material-icons icon-20pt">home</i></li>
+              <li class="breadcrumb-item active" aria-current="page">Principal</a></li>
+            </ol>
+          </nav>
+        </div>
+        <h5 class="modal-title" id="exampleModalLabel">Edit Principal</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <%= bootstrap_form_tag url:'#',method: :put do |f| %>
           <%=render 'form', f: f %>
         <% end %>
       </div>

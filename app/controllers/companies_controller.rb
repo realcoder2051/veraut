@@ -9,13 +9,20 @@ class CompaniesController < InheritedResources::Base
     end
   end
 
+  def edit
+    company = Company.find(params[:id])
+    render json: company
+  end
+
   def update
     company = Company.find(params[:id])
     if company.update_attributes(company_params)
       redirect_to companies_path
-    else
-      redirect to edit_company_path(company)
     end
+  end
+
+  def index
+    @companies = Company.all.order('created_at')
   end
 
   private

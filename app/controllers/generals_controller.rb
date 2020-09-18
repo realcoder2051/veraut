@@ -16,10 +16,15 @@ class GeneralsController < InheritedResources::Base
     end
   end
 
+  def index
+    @addresses = Address.all
+    @numbers = ContactNumber.all
+  end
+
   private
 
     def general_params
-      params.require(:general).permit(:address_type, :address, :contact_type, :number)
+      params.permit(:address_type, :address, :contact_type, :number)
     end
 
 end

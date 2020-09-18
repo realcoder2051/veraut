@@ -28,7 +28,7 @@
           <td><%= business.qualified_plan_sponsored %></td>
           <td><%= business.entity_type %></td>
           <td><i class="material-icons icon-20pt"><%= link_to 'slideshow', business %></i>
-          <i class="material-icons icon-20pt business-edit"><%= link_to 'edit', edit_business_path(business),remote:true %></i>
+          <i class="material-icons icon-20pt modal-edit"><%= link_to 'edit', edit_business_path(business),remote:true %></i>
           <i class="material-icons icon-20pt"><%= link_to 'delete', business, method: :delete, data: { confirm: 'Are you sure?' } %></i></td>
         </tr>
       <% end %>

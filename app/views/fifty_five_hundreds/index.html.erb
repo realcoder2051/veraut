@@ -1,7 +1,3 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Fifty Five Hundreds</h1>
-
 <table class="table">
   <thead class="thead-dark">
     <tr>
@@ -11,10 +7,10 @@
       <th>Question4</th>
       <th>Question5</th>
       <th>Question6</th>
-      <th colspan="3"></th>
+      <th colspan="1"></th>
+      <th><%=link_to 'Add',new_fifty_five_hundred_path, class:"btn btn-primary"%></th>
     </tr>
   </thead>
-
   <tbody>
     <% @fifty_five_hundreds.each do |fifty_five_hundred| %>
       <tr>
@@ -24,14 +20,11 @@
         <td><%= fifty_five_hundred.question4 %></td>
         <td><%= fifty_five_hundred.question5 %></td>
         <td><%= fifty_five_hundred.question6 %></td>
-        <td><%= link_to 'Show', fifty_five_hundred %></td>
-        <td><%= link_to 'Edit', edit_fifty_five_hundred_path(fifty_five_hundred) %></td>
-        <td><%= link_to 'Destroy', fifty_five_hundred, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td class="row"><i class="material-icons icon-20pt"><%= link_to 'slideshow', fifty_five_hundred %></i>
+        <i class="material-icons icon-20pt"><%= link_to 'edit', edit_fifty_five_hundred_path(fifty_five_hundred) %></i>
+        <i class="material-icons icon-20pt"><%= link_to 'delete', fifty_five_hundred, method: :delete, data: { confirm: 'Are you sure?' } %></td></i>
       </tr>
     <% end %>
   </tbody>
 </table>
-
 <br>
-
-<%= link_to 'New Fifty Five Hundred', new_fifty_five_hundred_path %>

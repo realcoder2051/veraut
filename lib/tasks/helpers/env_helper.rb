@@ -4,5 +4,4 @@ class EnvHelper
     return if Rails.env.development?
     raise 'This task can only be run in development'
   end
-
 end

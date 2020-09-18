@@ -1,4 +1,4 @@
-$('.employee-edit').click(function(event) {
+$('.modal-edit').click(function(event) {
     console.log(event);
     Rails.ajax({
       url: $(this).children().attr('href'),
@@ -6,13 +6,13 @@ $('.employee-edit').click(function(event) {
       data: "",
       success: function(data) {
         console.log(data);
-        $('#edit_family #name').val(data.name)
-        $('#edit_family #relationship').val(data.relationship)
-        $('#edit_family #related_to').val(data.related_to)
-        $('#edit_family form').attr('action', '/families/'+data.id);
-        $('#edit_family').modal("show");
+        $('#edit_principal #name').val(data.name)
+        $('#edit_principal #title').val(data.title)
+        $('#edit_principal #officer').val(data.officer)
+        $('#edit_principal #ownership').val(data.ownership)
+        $('#edit_principal form').attr('action', '/principals/'+data.id);
+        $('#edit_principal').modal("show");
       },
       error: function(data) {}
     })
   });
-  

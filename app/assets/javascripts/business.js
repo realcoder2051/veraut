@@ -1,4 +1,4 @@
-$('.business-edit').click(function(event) {
+$('.modal-edit').click(function(event) {
     console.log(event);
     Rails.ajax({
       url: $(this).children().attr('href'),
