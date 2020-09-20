@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_17_091641) do
+ActiveRecord::Schema.define(version: 2020_09_18_071709) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_stat_statements"
@@ -148,6 +148,18 @@ ActiveRecord::Schema.define(version: 2020_09_17_091641) do
     t.string "title"
     t.boolean "officer"
     t.integer "ownership"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "rights", force: :cascade do |t|
+    t.string "right_type"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "roles", force: :cascade do |t|
+    t.string "role_name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

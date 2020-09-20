@@ -1,52 +1,65 @@
-<%= form_with(model: address, local: true) do |form| %>
-  <% if address.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(address.errors.count, "error") %> prohibited this address from being saved:</h2>
 
-      <ul>
-        <% address.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= form.label :address1 %>
-    <%= form.text_field :address1 %>
+<div class="row" >
+  <div class="col-lg-4 left-move"></div>
+  <div class="col-lg-4 left-move">
+    <%=f.text_field :address1%>
+    <div class="invalid-feedback">Please provide a time.</div>
+    <div class="valid-feedback">Looks good!</div>
   </div>
-
-  <div class="field">
-    <%= form.label :address2 %>
-    <%= form.text_field :address2 %>
+</div>
+<div class="row" >
+  <div class="col-lg-4 left-move"></div>
+  <div class="col-lg-4 left-move">
+    <%=f.text_field :address2%>
+    <div class="invalid-feedback">Please provide a time.</div>
+    <div class="valid-feedback">Looks good!</div>
   </div>
+</div>
 
-  <div class="field">
-    <%= form.label :city %>
-    <%= form.text_field :city %>
+<div class="row" >
+  <div class="col-lg-4 left-move"></div>
+  <div class="col-lg-4 left-move">
+    <%=f.text_field :city%>
+    <div class="invalid-feedback">Please provide a time.</div>
+    <div class="valid-feedback">Looks good!</div>
   </div>
+</div>
 
-  <div class="field">
-    <%= form.label :state %>
-    <%= form.text_field :state %>
+<div class="row" >
+  <div class="col-lg-4 left-move"></div>
+  <div class="col-lg-4 left-move">
+    <%=f.text_field :state%>
+    <div class="invalid-feedback">Please provide a time.</div>
+    <div class="valid-feedback">Looks good!</div>
   </div>
+</div>
 
-  <div class="field">
-    <%= form.label :zip %>
-    <%= form.text_field :zip %>
+<div class="row" >
+  <div class="col-lg-4 left-move"></div>
+  <div class="col-lg-4 left-move">
+    <%=f.text_field :zip%>
+    <div class="invalid-feedback">Please provide a time.</div>
+    <div class="valid-feedback">Looks good!</div>
   </div>
-
-  <div class="field">
-    <%= form.label :address_type %>
-    <%= form.text_field :address_type %>
+</div>
+<div class="row" >
+  <div class="col-lg-4 left-move"></div>
+  <div class="col-lg-4 left-move">
+    <%=f.select :address_type,options_for_select("Biling Address","Mailing Address")%>
+    <div class="invalid-feedback">Please provide a time.</div>
+    <div class="valid-feedback">Looks good!</div>
   </div>
-
-  <div class="field">
-    <%= form.label :general_id %>
-    <%= form.text_field :general_id %>
+</div>
+<div class="actions col-lg-12">
+  <div class="row">
+    <div class="col-lg-5 left-move"></div>
+      <div class="left-move">
+        <%= f.submit value: "Save", class: "btn btn-primary"%>
+      </div>
+      <div class="col-lg-1 right-move"></div>
+        <div class="right-move">
+          <%= link_to 'Cancel', generals_path, class: "btn btn-secondary " %>
+        </div>
   </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>
+</div>
+<br>
