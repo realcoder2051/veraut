@@ -6,7 +6,7 @@
 
   <div class="dt.col-sm-3">Name
     | &nbsp;::&nbsp;
-    <%=@resource.name%>
+    <%=@resource.username%>
   </div>
 
   <div class="dt.col-sm-3">Email
@@ -15,7 +15,7 @@
   </div>
   <div class="dt.col-sm-3">Role
     | &nbsp;::&nbsp;
-    <%=@resource.role%>
+    <%=@resource.roles.pluck(:name)%>
   </div>
 
   <div class="dt.col-sm-3">Created at

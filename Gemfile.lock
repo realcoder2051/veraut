@@ -344,6 +344,8 @@ GEM
       actionpack (>= 5.0)
       railties (>= 5.0)
     rexml (3.2.4)
+    role_model (0.8.2)
+    rolify (5.3.0)
     rspec (3.9.0)
       rspec-core (~> 3.9.0)
       rspec-expectations (~> 3.9.0)
@@ -514,6 +516,8 @@ DEPENDENCIES
   rails (~> 6.0.3.1)
   rails-jquery-autocomplete
   ransack (~> 2.3.2)
+  role_model
+  rolify
   rspec-rails
   rswag-api
   rswag-ui

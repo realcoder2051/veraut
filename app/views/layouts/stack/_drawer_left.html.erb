@@ -11,7 +11,6 @@
            <!-- <small class="text-muted text-uppercase">Admin</small>-->
           </span>
         </a>
-
       </div>
       <div class="anyClass">
       <div class="sidebar-heading sidebar-m-t">Menu</div>
@@ -22,15 +21,14 @@
             <span class="sidebar-menu-text">Home</span>
           </a>
         </li>
-        <% if can? :read, @user %>
-        <li class = "sidebar-menu-item" id="attendace-list">
-          <a class="sidebar-menu-button" data-toggle="collapse" href="#attendance_menu" aria-expanded="false">
-            <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">dvr</i>
-            <span class="sidebar-menu-text">Users</span>
-            <span class="ml-auto sidebar-menu-toggle-icon"></span>
-        </a>
-        <%end%>
-
+        <%# if can? :read, @user %>
+          <li class = "sidebar-menu-item" id="attendace-list">
+            <a class="sidebar-menu-button" data-toggle="collapse" href="#attendance_menu" aria-expanded="false">
+              <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">dvr</i>
+              <span class="sidebar-menu-text">Users</span>
+              <span class="ml-auto sidebar-menu-toggle-icon"></span>
+            </a>
+        <%#end%>
           <ul class="sidebar-submenu collapse show" id="attendance_menu" style="">
             <li class="sidebar-menu-item" id="view-attendance">
               <a class="sidebar-menu-button active-item" href="<%=users_path %>">
@@ -38,23 +36,23 @@
                 <span class="sidebar-menu-text">View All Users</span>
               </a>
             </li>
-            <% if can? :new, @user %>
+             <%# if can? :new, @user %>
               <li class="sidebar-menu-item active-item" id="add-attendance">
                 <a class="sidebar-menu-button" href="<%=new_user_path%>">
                   <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">local_hospital</i>
                   <span class="sidebar-menu-text">Create New User </span>
                 </a>
               </li>
-            <%end%>
+            <%#end%>
 
-            <% if can? :edit, @post %>
+            <%# if can? :edit, @post %>
               <li class="sidebar-menu-item active-item" id="attendance-report">
                 <a class="sidebar-menu-button"  href="<%=edit_user_path(current_user)%>">
                   <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">account_box</i>
                   <span class="sidebar-menu-text">Edit User</span>
                 </a>
               </li>
-            <%end%>
+            <%#end%>
           </ul>
         </li>
         <li class = "sidebar-menu-item">
@@ -130,8 +128,31 @@
                 <span class="sidebar-menu-text">Employees</span>
               </a>
             </li>
+          </li>
+        </ul>
+<!--Roles List -->
+        <li class = "sidebar-menu-item" id="roles-list">
+          <a class="sidebar-menu-button" data-toggle="collapse" href="#roles-menu" aria-expanded="false">
+            <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">dvr</i>
+            <span class="sidebar-menu-text">Roles</span>
+            <span class="ml-auto sidebar-menu-toggle-icon"></span>
+          </a>
+          <ul class="sidebar-submenu collapse show" id="roles-menu" style="">
+            <li class="sidebar-menu-item" id="view-roles">
+              <a class="sidebar-menu-button active-item" href="<%=roles_path %>">
+                <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">account_box</i>
+                <span class="sidebar-menu-text">View Roles</span>
+              </a>
+            </li>
+            <li class="sidebar-menu-item active-item" id="assign-roles">
+              <a class="sidebar-menu-button" href="<%=new_role_path%>">
+                <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">local_hospital</i>
+                <span class="sidebar-menu-text">Assign Roles </span>
+              </a>
+            </li>
           </ul>
         </li>
+        <!--end Roles-->
       </ul>
       </div>
        <div style="display: none;">
