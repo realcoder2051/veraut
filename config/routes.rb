@@ -1,8 +1,6 @@
 Rails.application.routes.draw do
 
-  resources :role_rights
   resources :roles
-  resources :rights
   resources :contact_numbers
   resources :addresses
   resources :employees

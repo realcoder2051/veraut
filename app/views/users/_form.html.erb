@@ -1,7 +1,7 @@
 <div class="row" >
   <div class="col-lg-4 left-move"></div>
   <div class="col-lg-4 left-move">
-    <%= f.text_field :name %>
+    <%= f.text_field :username %>
     <div class="invalid-feedback">Please provide a time.</div>
     <div class="valid-feedback">Looks good!</div>
   </div>
@@ -17,12 +17,11 @@
 <div class="row" >
   <div class="col-lg-4 left-move"></div>
   <div class="col-lg-4 left-move">
-  <%= f.select :role,options_for_select([ "Technician", "Admin","Main Contact" ]) %>
+    <%= f.select :name,options_for_select(@roles.collect{ |u| [u.name, u.name]}), {include_blank: false}, {multiple: true} %>
     <div class="invalid-feedback">Please select a role .</div>
     <div class="valid-feedback">Looks good!</div>
   </div>
 </div>
-
 <div class="row" >
   <div class="col-lg-4 left-move"></div>
   <div class="col-lg-4 left-move">
@@ -35,7 +34,6 @@
     <div class="valid-feedback">Looks good!</div>
   </div>
 </div>
-
 <div class="row" >
   <div class="col-lg-4 left-move"></div>
   <div class="col-lg-4 left-move">
@@ -57,3 +55,5 @@
   </div>
 </div>
 <%=render 'layouts/stack/footer'%>
+<br>
+<br>
