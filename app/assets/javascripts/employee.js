@@ -5,7 +5,7 @@ $('.modal-edit').click(function(event) {
       type: "get",
       data: "",
       success: function(data) {
-        debugger;
+        // debugger;
         $('#edit_employee #first_name').val(data.first_name)
         $('#edit_employee #last_name').val(data.last_name)
         $('#edit_employee #ssn').val(data.ssn)
@@ -27,3 +27,17 @@ $('.modal-edit').click(function(event) {
       error: function(data) {}
     })
   });
+
+  $('#file').change(function() {
+    $('#target').submit();
+  });
+
+
+  $('.import').click(function(){
+    $('#file').click();   
+  return false;
+  });
+
+
+
+
