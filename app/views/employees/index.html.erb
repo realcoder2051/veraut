@@ -42,7 +42,7 @@
           <%= search_form_for @q, url: '#', class: "", method: "get" do |f| %>
             <div class="float-left px-3">
               <div class="search-form search-form--light ">
-                <%= f.search_field :ssn_eq, value: @ssn, placeholder: "Search by ssn", title: "SSN" ,:class=>"form-control search" %>
+                <%= f.search_field :first_name_cont, value: @first_name, placeholder: "Search by firstName", title: "first_name" ,:class=>"form-control search" %>
                 <button class="btn" type="button" role="button"><i class="material-icons">search</i></button>
               </div>
             </div>
@@ -58,9 +58,6 @@
 
           <form action=<%= bulk_delete_employees_path%> method='get'>
             <%= render 'employee.table', employees: @employees  %>
-              <div class="card-body float-left">
-                <button type="submit" class="btn btn-danger">Bulk Delete</button>
-              </div>
               <div class="pagination card-body float-right" >
               <%= will_paginate @employees %>
               </div>

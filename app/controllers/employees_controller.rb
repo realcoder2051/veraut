@@ -27,7 +27,7 @@ class EmployeesController < InheritedResources::Base
 
   def index
     ransack_search = params[:q]
-    @ssn = ransack_search[:ssn_eq] if ransack_search.present?    
+    @first_name = ransack_search[:first_name_cont] if ransack_search.present?    
     respond_to do |format|
       format.xlsx 
       format.html { render :index }
@@ -61,7 +61,7 @@ class EmployeesController < InheritedResources::Base
      if result.count.positive?
        @q.sorts = 'first_name asc' if @q.sorts.empty?
      end
-    @employees = result.paginate(:page => params[:page], per_page:10)
+    @employees = result.paginate(:page => params[:page], per_page:10).order('status ASC')
   end
 
   def employee_params
