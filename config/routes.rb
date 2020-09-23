@@ -3,7 +3,13 @@ Rails.application.routes.draw do
   resources :roles
   resources :contact_numbers
   resources :addresses
-  resources :employees
+  resources :employees do
+    collection do
+      get 'bulk_delete', to:  'employees#bulk_delete'
+    end
+  end
+  get 'save_employee', to: 'employees#save_employee'
+
   resources :fifty_five_hundreds
   resources :plans
   resources :contacts
@@ -27,4 +33,7 @@ Rails.application.routes.draw do
   resources :distribution
   resources :data_collection
   root to: 'home#index'
+
+  post 'import_file' => 'employees#import_store'
+
 end

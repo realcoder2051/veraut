@@ -10,11 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
+
 ActiveRecord::Schema.define(version: 2020_09_18_071709) do
-=======
+
 ActiveRecord::Schema.define(version: 2020_09_21_051803) do
->>>>>>> user_roles
+
+ActiveRecord::Schema.define(version: 2020_09_22_133647) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_stat_statements"
@@ -100,6 +101,8 @@ ActiveRecord::Schema.define(version: 2020_09_21_051803) do
     t.boolean "union_employee"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "is_new", default: true
+    t.integer "status", default: 0
   end
 
   create_table "families", force: :cascade do |t|
@@ -156,7 +159,6 @@ ActiveRecord::Schema.define(version: 2020_09_21_051803) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-<<<<<<< HEAD
   create_table "rights", force: :cascade do |t|
     t.string "right_type"
     t.datetime "created_at", precision: 6, null: false
@@ -174,17 +176,16 @@ ActiveRecord::Schema.define(version: 2020_09_21_051803) do
     t.integer "frequency_quantity"
     t.string "frequency_period"
     t.string "at"
-=======
   create_table "roles", force: :cascade do |t|
     t.string "name"
     t.string "resource_type"
     t.bigint "resource_id"
->>>>>>> user_roles
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id"
     t.index ["resource_type", "resource_id"], name: "index_roles_on_resource_type_and_resource_id"
   end
+
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -203,6 +204,7 @@ ActiveRecord::Schema.define(version: 2020_09_21_051803) do
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
+
 
   create_table "users_roles", id: false, force: :cascade do |t|
     t.bigint "user_id"

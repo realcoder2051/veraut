@@ -1,0 +1,29 @@
+<div class="table-responsive border-bottom" data-toggle="lists" data-lists-values='["js-lists-values-employee-name"]' >
+  <table class="table mb-0 thead-border-top-0">
+    <thead>
+      <tr>
+        <th>
+          <div class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input js-toggle-check-all" data-target="#{{ id }}" id="customCheckAll">
+            <label class="custom-control-label" for="customCheckAll"><span class="text-hide">Toggle all</span></label>
+          </div>
+        </th>
+        <th><%= sort_link(@q, :first_name) %></th>
+        <th><%= sort_link(@q, :last_name) %></th>
+        <th><%= sort_link(@q, :ssn) %></th>
+        <th><%= sort_link(@q, :gender) %></th>
+        <th><%= sort_link(@q, :date_of_birth) %></th>
+        <th><%= sort_link(@q, :original_date_of_hire) %></th>
+        <th><%= sort_link(@q, :date_of_termination) %></th>
+        <th><%= sort_link(@q, :date_of_retire) %></th>
+        <th><%= sort_link(@q, :compensation) %></th>
+        <th><%= sort_link(@q, :hours) %></th>
+         <th colspan="1">Actions</th>
+        <th><%= sort_link(@q, :status) %></th>
+      </tr>
+    </thead>
+    <tbody class="list" id="blah" >
+      <%= render partial: 'employee', collection: employees %>
+    </tbody>
+  </table>
+</div>
