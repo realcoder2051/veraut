@@ -16,13 +16,14 @@ class RolesController < InheritedResources::Base
   end
 
   def update
+    role = Role.find(params[:id])
     if role.update_attributes(role_params)
       redirect_to roles_path
     end
   end
 
   def index
-    @roles = Role.select(:name).distinct
+    @roles = Role.all
   end
 
   def destroy

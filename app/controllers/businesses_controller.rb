@@ -1,8 +1,10 @@
 class BusinessesController < InheritedResources::Base
 
+  def new
+    @business = Business.new
+  end
   def edit
-    business = Business.find(params[:id])
-    render json: business
+    @business = Business.find(params[:id])
   end
 
   def update
@@ -28,7 +30,7 @@ class BusinessesController < InheritedResources::Base
   private
 
     def business_params
-      params.permit(:name, :ein, :date_purchased_or_sold, :address, :city, :state, :zip, :phone, :does_company_have_employees, :qualified_plan_sponsored, :entity_type)
+      params.require(:business).permit(:name, :ein, :date_purchased_or_sold, :address, :city, :state, :zip, :phone, :does_company_have_employees, :qualified_plan_sponsored, :entity_type)
     end
 
 end

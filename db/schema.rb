@@ -10,11 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(version: 2020_09_18_071709) do
-=======
-ActiveRecord::Schema.define(version: 2020_09_21_051803) do
->>>>>>> user_roles
+ActiveRecord::Schema.define(version: 2020_09_22_095207) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_stat_statements"
@@ -156,30 +152,10 @@ ActiveRecord::Schema.define(version: 2020_09_21_051803) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-<<<<<<< HEAD
-  create_table "rights", force: :cascade do |t|
-    t.string "right_type"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "roles", force: :cascade do |t|
-    t.string "role_name"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "scheduled_jobs", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.string "job_class"
-    t.integer "frequency_quantity"
-    t.string "frequency_period"
-    t.string "at"
-=======
   create_table "roles", force: :cascade do |t|
     t.string "name"
     t.string "resource_type"
     t.bigint "resource_id"
->>>>>>> user_roles
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id"

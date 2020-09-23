@@ -11,14 +11,14 @@ class UsersController < ApplicationController
   end
 
   def new
-    @roles = Role.select(:name).distinct
+    @roles = Role.all
     build_resource
   end
 
   def create
     build_resource
-    roles = params[:user][:name]
-    (roles.drop(1)).each do |role|
+    roles = params[:user][:name].drop(1)
+    roles.each do |role|
       user_role = @resource.add_role role
       user_role.resource = @resource
     end
@@ -26,27 +26,36 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @roles = Role.select(:name).distinct
+    @roles = Role.all
     load_resource
-    params.except(:name)
   end
 
   def update
-    @roles = Role.all
-    load_resource
-    #@user=User.find(params[:id])
     build_resource
     if params[:user][:password].blank? && params[:user][:password_confirmation].blank?
       params[:user].delete(:password)
       params[:user].delete(:password_confirmation)
     end
-    roles = params[:user][:name]
-    (roles.drop(1)).each do |role|
-      user_role = @resource.add_role role
-      user_role.resource = @resource
-      #user_role.resource.roles.update_attributes(resource_params)
+    user = User.find(params[:id])
+    previous_role = user.roles
+    user.remove_role :previous_role
+    roles = params[:user][:name].drop(1)
+    roles.each do |role|
+      # user.username = params[:user][:username]
+      # user.email = params[:user][:email]
+      # user.password=
+      #user_role = @resource.add_role role
+      #user_role.resource = @resource
+      # user_role = @resource.add_role role
+      # user_role.resource = @resource
+      user.add_role role
     end
-    @resource.update_attributes(resource_params)
+    user.update_attributes(resource_params)
+      # user_role.resource = @resource
+      # user_role.resource.roles.update_attributes(resource_params)
+    #@resource.update_attributes(resource_params)
+    
+
     redirect_to users_path
   end
 
@@ -88,7 +97,7 @@ class UsersController < ApplicationController
 
   def resource_params
     return {} unless params[:user]
-    params[:user].permit(:username, :email, :name, :password, :password_confirmation)
+    params[:user].permit(:username, :email, :password, :password_confirmation)
   end
 
 end

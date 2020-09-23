@@ -1,5 +1,9 @@
 class CompaniesController < InheritedResources::Base
 
+  def new
+    @company = Company.new
+  end
+
   def create
     company = Company.new(company_params)
     if company.save
@@ -10,8 +14,7 @@ class CompaniesController < InheritedResources::Base
   end
 
   def edit
-    company = Company.find(params[:id])
-    render json: company
+    @company = Company.find(params[:id])
   end
 
   def update
@@ -21,14 +24,10 @@ class CompaniesController < InheritedResources::Base
     end
   end
 
-  def index
-    @companies = Company.all.order('created_at')
-  end
-
   private
 
     def company_params
-      params.permit(:company_name, :ein, :fiscal_year_end, :entity_type, :naic_code, :payroll_provider, :payroll_frequency)
+      params.require(:company).permit(:company_name, :ein, :fiscal_year_end, :entity_type, :naic_code, :payroll_provider, :payroll_frequency)
     end
 
 end

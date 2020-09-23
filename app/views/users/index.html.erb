@@ -1,4 +1,4 @@
-<div class="anyClass">
+<div class="full-scroll">
   <table class="table">
     <thead class="thead-dark">
       <tr>
@@ -12,12 +12,12 @@
     <% @users.each do |user| %>
       <tbody>
         <tr>
-            <td><%=user.username%></td>
-            <td><%=user.email%></td>
-            <td><%=user.roles.pluck(:name).join(' ')%></td>
-            <td><i class="material-icons icon-20pt"><%= link_to 'slideshow',user %></i>
-            <i class="material-icons icon-20pt"><%= link_to 'edit', edit_user_path(user) %></i>
-            <i class="material-icons icon-20pt"><%= link_to 'delete', user, method: :delete, data: { confirm: 'Are you sure?' } %></i></td>
+          <td><%=user.username%></td>
+          <td><%=user.email%></td>
+          <td><%=user.roles.pluck(:name).join(', ')%></td>
+          <td><i class="material-icons icon-20pt"><%= link_to 'slideshow',user %></i>
+          <i class="material-icons icon-20pt"><%= link_to 'edit', edit_user_path(user) %></i>
+          <i class="material-icons icon-20pt"><%= link_to 'delete', user, method: :delete, data: { confirm: 'Are you sure?' } %></i></td>
         </tr>
       </tbody>
     <%end%>

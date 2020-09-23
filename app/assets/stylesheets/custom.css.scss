@@ -127,6 +127,10 @@
         height:490px;
         overflow-y: auto;
       }
+      .full-scroll{
+        height:600px;
+        overflow-y: auto;
+      }
       .modal-open{
         height:490px;
         overflow-y: auto
@@ -164,6 +168,6 @@
      .modal-edit{
      }
      .cancel-row{
-       margin-left: 0%;
+       margin-left: 1%;
        margin-right: 0%;
      }

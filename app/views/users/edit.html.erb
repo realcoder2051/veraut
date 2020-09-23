@@ -1,13 +1,14 @@
- <div class="page__heading">
-    <nav aria-label="breadcrumb">
-      <ol class="breadcrumb mb-0">
-        <li class="breadcrumb-item"><i class="material-icons icon-20pt">home</i></li>
-        <li class="breadcrumb-item active" aria-current="page">User</a></li>
-      </ol>
-    </nav>
-    <h1 class="m-0">Edit User </h1>
-</div>
-<div class="anyClass">
+ <div class="container-fluid full-scroll">
+  <div class="page__heading">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb mb-0">
+          <li class="breadcrumb-item"><i class="material-icons icon-20pt">home</i></li>
+          <li class="breadcrumb-item active" aria-current="page">User</a></li>
+        </ol>
+      </nav>
+      <h1 class="m-0">Edit User </h1>
+  </div>
+
   <div class="card card-">
     <div class="row no-gutters">
       <div class="col-lg-12 card-form__body card-body">
@@ -16,13 +17,13 @@
             <div id="error_explanation">
               <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
               <ul>
-              <% @user.errors.full_messages.each do |message| %>
+                <% @user.errors.full_messages.each do |message| %>
                 <li><%= message %></li>
-              <% end %>
+                <% end %>
               </ul>
-          </div>
+            </div>
           <% end %>
-            <%=render 'form', f: f %>
+          <%=render 'form', f: f %>
         <% end %>
       </div>
     </div>
