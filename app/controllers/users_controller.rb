@@ -16,6 +16,7 @@ class UsersController < ApplicationController
   end
 
   def create
+    @roles = Role.all
     build_resource
     roles = params[:user][:name].drop(1)
     roles.each do |role|
@@ -37,8 +38,10 @@ class UsersController < ApplicationController
       params[:user].delete(:password_confirmation)
     end
     user = User.find(params[:id])
-    previous_role = user.roles
-    user.remove_role :previous_role
+    previous_roles = user.roles
+    previous_roles.each do |p|
+      user.remove_role :p.destroy
+    end
     roles = params[:user][:name].drop(1)
     roles.each do |role|
       # user.username = params[:user][:username]
