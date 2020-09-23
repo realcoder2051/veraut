@@ -12,7 +12,10 @@ var hash = {
   "/fifty_five_hundreds" : "view-5500",
   "/employees" : "view-employee",
   "/distribution" : "distribution",
-  "/my_active_task" : "active-task"
+  "/my_active_task" : "active-task",
+  "/roles" : "view-roles",
+  "/roles/new" : "add-role",
+
   };
 
 

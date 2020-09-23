@@ -66,7 +66,11 @@
         <li class = "sidebar-menu-item" id= "distribution">
           <a class="sidebar-menu-button collapsed" href="<%=distribution_index_path%>" aria-expanded="false">
             <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">dvr</i>
-            <span class="sidebnewnu-button collapsed" data-toggle="collapse" href="#holiday_menu" aria-expanded="false">
+            <span class="sidebar-menu-text">Distribution</span>
+          </a>
+        </li>
+        <li class = "sidebar-menu-item">
+          <a class="sidebar-menu-button collapsed" data-toggle="collapse" href="#holiday_menu" aria-expanded="false">
             <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">dvr</i>
             <span class="sidebar-menu-text">Data collection</span>
             <span class="ml-auto sidebar-menu-toggle-icon"></span>
@@ -128,9 +132,7 @@
             </li>
           </ul>
         </li>
-      </ul>
-      </div>
-      <!--Roles List -->
+        <!--Roles List -->
         <li class = "sidebar-menu-item" id="roles-list">
           <a class="sidebar-menu-button" data-toggle="collapse" href="#roles-menu" aria-expanded="false">
             <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">dvr</i>
@@ -144,7 +146,7 @@
                 <span class="sidebar-menu-text">View Roles</span>
               </a>
             </li>
-            <li class="sidebar-menu-item active-item" id="assign-roles">
+            <li class="sidebar-menu-item active-item" id="add-role">
               <a class="sidebar-menu-button" href="<%=new_role_path%>">
                 <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">local_hospital</i>
                 <span class="sidebar-menu-text">Add New Role </span>
@@ -153,7 +155,8 @@
           </ul>
         </li>
         <!--end Roles-->
-
+      </ul>
+    </div>
        <div style="display: none;">
         <div class="sidebar-heading">UI Components</div>
         <div class="sidebar-block p-0">
