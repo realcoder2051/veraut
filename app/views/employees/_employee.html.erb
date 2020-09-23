@@ -14,7 +14,7 @@
   </td>
   <td>
     <div class="media align-items-center">
-      <%=employee.ssn.to_s.insert(3,'-').insert(6,'-')%>
+      <%=employee.ssn.to_s.insert(3,'-').insert(6,'-') rescue nil%>
     </div>
   </td>
   <td>
