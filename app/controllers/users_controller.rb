@@ -1,7 +1,8 @@
 class UsersController < ApplicationController
   include Pagy::Backend
   load_and_authorize_resource
-
+  before_action :build_resource,only: [:new,:create,:update]
+  before_action :load_resource,only: [:edit,:destroy]
   def index
     @users = resource_scope
   end
@@ -12,12 +13,10 @@ class UsersController < ApplicationController
 
   def new
     @roles = Role.all
-    build_resource
   end
 
   def create
     @roles = Role.all
-    build_resource
     roles = params[:user][:name].drop(1)
     roles.each do |role|
       user_role = @resource.add_role role
@@ -28,42 +27,27 @@ class UsersController < ApplicationController
 
   def edit
     @roles = Role.all
-    load_resource
   end
 
   def update
-    build_resource
     if params[:user][:password].blank? && params[:user][:password_confirmation].blank?
       params[:user].delete(:password)
       params[:user].delete(:password_confirmation)
     end
     user = User.find(params[:id])
     previous_roles = user.roles
-    previous_roles.each do |p|
-      user.remove_role :p.destroy
+    previous_roles.each do |previous|
+      user.remove_role previous.name
     end
     roles = params[:user][:name].drop(1)
     roles.each do |role|
-      # user.username = params[:user][:username]
-      # user.email = params[:user][:email]
-      # user.password=
-      #user_role = @resource.add_role role
-      #user_role.resource = @resource
-      # user_role = @resource.add_role role
-      # user_role.resource = @resource
       user.add_role role
     end
     user.update_attributes(resource_params)
-      # user_role.resource = @resource
-      # user_role.resource.roles.update_attributes(resource_params)
-    #@resource.update_attributes(resource_params)
-    
-
     redirect_to users_path
   end
 
   def destroy
-    load_resource
     user_role = @resource.remove_role  @resource.name
     destroy_resource
   end
@@ -85,7 +69,6 @@ class UsersController < ApplicationController
   def build_resource
     @resource ||= resource_scope.build
     @resource.attributes = resource_params
-    #Ability.new(@resource)
   end
 
   def save_resource

@@ -3,7 +3,6 @@ class User < ApplicationRecord
   resourcify
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :registerable, :timeoutable, :omniauthable
-  #belongs_to:role,optional:true
   rolify :before_add => :before_add_method
   devise :database_authenticatable,
          :recoverable,

@@ -1,7 +1,4 @@
-
-1.times do
-  User.create(email: "aamir@devbox.co",username:"Aamir",password:"devbox123") 
-end
+User.create(email: "aamir@devbox.co",username:"Aamir",password:"devbox123")
 @messages = []
 
 #
