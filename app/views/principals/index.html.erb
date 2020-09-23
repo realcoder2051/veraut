@@ -19,7 +19,7 @@
           <td><%= principal.title %></td>
           <td><%= principal.officer %></td>
           <td><%= principal.ownership %></td>
-          <td><i class="material-icons icon-20pt"><%= link_to 'slideshow', principal %></i>
+          <td>
           <i class="material-icons icon-20pt modal-edit"><%=link_to 'edit',edit_principal_path(principal),remote:true%></i>
           <i class="material-icons icon-20pt"><%= link_to 'delete', principal, method: :delete, data: { confirm: 'Are you sure?' } %></i></td>
         </tr>

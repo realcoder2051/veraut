@@ -22,54 +22,13 @@
             <span class="sidebar-menu-text">Home</span>
           </a>
         </li>
-        <% if can? :read, @user %>
-        <li class = "sidebar-menu-item" id="attendace-list">
-          <a class="sidebar-menu-button" data-toggle="collapse" href="#attendance_menu" aria-expanded="false">
-            <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">dvr</i>
-            <span class="sidebar-menu-text">Users</span>
-            <span class="ml-auto sidebar-menu-toggle-icon"></span>
-        </a>
-        <%end%>
-
-          <ul class="sidebar-submenu collapse show" id="attendance_menu" style="">
-            <li class="sidebar-menu-item" id="view-attendance">
-              <a class="sidebar-menu-button active-item" href="<%=users_path %>">
-                <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">account_box</i>
-                <span class="sidebar-menu-text">View All Users</span>
-              </a>
-            </li>
-            <% if can? :new, @user %>
-              <li class="sidebar-menu-item active-item" id="add-attendance">
-                <a class="sidebar-menu-button" href="<%=new_user_path%>">
-                  <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">local_hospital</i>
-                  <span class="sidebar-menu-text">Create New User </span>
-                </a>
-              </li>
-            <%end%>
-
-            <% if can? :edit, @post %>
-              <li class="sidebar-menu-item active-item" id="attendance-report">
-                <a class="sidebar-menu-button"  href="<%=edit_user_path(current_user)%>">
-                  <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">account_box</i>
-                  <span class="sidebar-menu-text">Edit User</span>
-                </a>
-              </li>
-            <%end%>
-          </ul>
-        </li>
-        <li class = "sidebar-menu-item" id= "active-task">
+         <li class = "sidebar-menu-item" id= "active-task">
           <a class="sidebar-menu-button" href="<%=my_active_task_index_path%>" aria-expanded="false">
             <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">dvr</i>
             <span class="sidebar-menu-text">My Active Tasks</span>
           </a>
         </li>
-        <li class = "sidebar-menu-item" id= "distribution">
-          <a class="sidebar-menu-button collapsed" href="<%=distribution_index_path%>" aria-expanded="false">
-            <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">dvr</i>
-            <span class="sidebar-menu-text">Distribution</span>
-          </a>
-        </li>
-        <li class = "sidebar-menu-item">
+         <li class = "sidebar-menu-item">
           <a class="sidebar-menu-button collapsed" data-toggle="collapse" href="#holiday_menu" aria-expanded="false">
             <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">dvr</i>
             <span class="sidebar-menu-text">Data collection</span>
@@ -113,7 +72,7 @@
               </a>
             </li>
              <li class="sidebar-menu-item" id="view-plan">
-              <a class="sidebar-menu-button" href="<%=plans_path%>">
+            <a class="sidebar-menu-button" href="<%=plans_path%>">
                 <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">add_to_queue</i>
                 <span class="sidebar-menu-text">Plans</span>
               </a>
@@ -132,18 +91,50 @@
             </li>
           </ul>
         </li>
-        <!--Roles List -->
+        <li class = "sidebar-menu-item" id= "distribution">
+          <a class="sidebar-menu-button collapsed" href="<%=distribution_index_path%>" aria-expanded="false">
+            <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">dvr</i>
+            <span class="sidebar-menu-text">Distribution</span>
+          </a>
+        </li>
+        <% if can? :read, @user %>
+        <li class = "sidebar-menu-item" id="attendace-list">
+          <a class="sidebar-menu-button" data-toggle="collapse" href="#attendance_menu" aria-expanded="false">
+            <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">dvr</i>
+            <span class="sidebar-menu-text"> Users</span>
+            <span class="ml-auto sidebar-menu-toggle-icon"></span>
+        </a>
+        <%end%>
+
+          <ul class="sidebar-submenu collapse show" id="attendance_menu" style="">
+            <li class="sidebar-menu-item" id="view-user">
+              <a class="sidebar-menu-button active-item" href="<%=users_path %>">
+                <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">account_box</i>
+                <span class="sidebar-menu-text">View All Users</span>
+              </a>
+            </li>
+            <% if can? :edit, @post %>
+              <li class="sidebar-menu-item active-item" id="new-user">
+                <a class="sidebar-menu-button"  href="<%=new_user_path%>">
+                  <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">account_box</i>
+                  <span class="sidebar-menu-text">Add New User</span>
+                </a>
+              </li>
+            <%end%>
+          </ul>
+        </li>
+          <!--Roles List -->
         <li class = "sidebar-menu-item" id="roles-list">
           <a class="sidebar-menu-button" data-toggle="collapse" href="#roles-menu" aria-expanded="false">
             <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">dvr</i>
-            <span class="sidebar-menu-text">Roles</span>
+            <span class="sidebar-menu-text">Roles and Permissions</span>
             <span class="ml-auto sidebar-menu-toggle-icon"></span>
           </a>
           <ul class="sidebar-submenu collapse show" id="roles-menu" style="">
             <li class="sidebar-menu-item" id="view-roles">
               <a class="sidebar-menu-button active-item" href="<%=roles_path %>">
                 <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">account_box</i>
-                <span class="sidebar-menu-text">View Roles</span>
+                <span class="sidebar-menu-text">View All Roles</span>
               </a>
             </li>
             <li class="sidebar-menu-item active-item" id="add-role">

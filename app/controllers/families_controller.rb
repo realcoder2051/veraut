@@ -28,7 +28,9 @@ class FamiliesController < InheritedResources::Base
     @families = Family.all.order('created_at')
   end
 
-  def createhttp://3.23.210.212:3000/users/sign_in
+  def create
+    family = Family.new(family_params)
+    if family.save
       redirect_to families_path
     else
       redirect_to new_family_path

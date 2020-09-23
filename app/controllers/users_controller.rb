@@ -83,7 +83,7 @@ class UsersController < ApplicationController
 
   def resource_params
     return {} unless params[:user]
-    params[:user].permit(:http://3.23.210.212:3000/users/sign_inusername, :email, :password, :password_confirmation)
+    params[:user].permit(:username, :email, :password, :password_confirmation)
   end
 
 end

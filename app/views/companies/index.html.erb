@@ -23,7 +23,7 @@
           <td><%= company.naic_code %></td>
           <td><%= company.payroll_provider %></td>
           <td><%= company.payroll_frequency %></td>
-          <td><i class="material-icons icon-20pt"><%= link_to 'slideshow', company %></i>
+          <td>
           <i class="material-icons icon-20pt modal-edit"><%= link_to 'edit', edit_company_path(company) %></i>
           <i class="material-icons icon-20pt"><%= link_to 'delete', company, method: :delete, data: { confirm: 'Are you sure?' } %></i></td>
         </tr>

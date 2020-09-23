@@ -1,4 +1,15 @@
-<div class="full-scroll">
+<div class="container-fluid full-scroll">
+ <div class="page__heading cancel-row">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb mb-0">
+        <li class="breadcrumb-item"><i class="material-icons icon-20pt">home</i></li>
+        <li class="breadcrumb-item active" aria-current="page">User</a></li>
+      </ol>
+    </nav>
+    <div style="display:inline-block" class=" col-md-4  w-50 p-12 px-md-1 ">
+     <h1>View User</h1> <%=link_to 'Add New User',new_user_path, class:"btn btn-primary" %>
+    </div>
+  </div>
   <table class="table">
     <thead class="thead-dark">
       <tr>
@@ -6,7 +17,6 @@
         <th scope="col">Email</th>
         <th scope="col">Role Type</th>
         <th colspan="1">Actions</th>
-        <th><%=link_to 'Add New User',new_user_path, class:"btn btn-primary" %></th>
       </tr>
     </thead>
     <% @users.each do |user| %>
