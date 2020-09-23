@@ -1,35 +1,45 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Contacts</h1>
-
-<table class="table">
-  <thead class="thead-dark">
-    <tr>
-      <th>Name</th>
-      <th>Company name</th>
-      <th>Email</th>
-      <th>Roles</th>
-      <th>Rights</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @contacts.each do |contact| %>
+<div class="container-fluid full-scroll">
+ <div class="page__heading cancel-row">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb mb-0">
+        <li class="breadcrumb-item"><i class="material-icons icon-20pt">home</i></li>
+        <li class="breadcrumb-item active" aria-current="page">Contact</a></li>
+      </ol>
+    </nav>
+    <div class="row">
+      <div style="display:inline-block" class=" col-lg-4  w-50 p-12 px-md-1 ">
+      <h1 class="ml-3">View Contact</h1> 
+      </div>
+      <div class="col-lg-2 offset-lg-6">
+        <%=link_to 'New Contact',new_contact_path, class:"btn btn-primary m-1 float-right" %>
+      </div>
+    </div>
+  </div>
+  <table class="table mb-0 thead-border-top-0 mt-1  table-hover">
+    <thead class="table-info">
       <tr>
-        <td><%= contact.name %></td>
-        <td><%= contact.company_name %></td>
-        <td><%= contact.email %></td>
-        <td><%= contact.roles %></td>
-        <td><%= contact.rights %></td>
-        <td>
-        <td><%= link_to 'Edit', edit_contact_path(contact) %></td>
-        <td><%= link_to 'Destroy', contact, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <th>Name</th>
+        <th>Company name</th>
+        <th>Email</th>
+        <th>Roles</th>
+        <th>Rights</th>
+        <th colspan="3"></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
 
-<br>
-
-<%= link_to 'New Contact', new_contact_path %>
+    <tbody>
+      <% @contacts.each do |contact| %>
+        <tr class ="cursor-pointer" data-link="<%= contact_path(contact) %>">
+          <td><%= contact.name %></td>
+          <td><%= contact.company_name %></td>
+          <td><%= contact.email %></td>
+          <td><%= contact.roles %></td>
+          <td><%= contact.rights %></td>
+          <td>
+          <td><%= link_to 'Edit', edit_contact_path(contact) %></td>
+          <td><%= link_to 'Destroy', contact, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

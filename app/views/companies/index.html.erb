@@ -1,6 +1,22 @@
-<div class="full-scroll">
-  <table class="table">
-    <thead class="thead-dark">
+<div class="container-fluid full-scroll">
+ <div class="page__heading cancel-row">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb mb-0">
+        <li class="breadcrumb-item"><i class="material-icons icon-20pt">home</i></li>
+        <li class="breadcrumb-item active" aria-current="page">Companies</a></li>
+      </ol>
+    </nav>
+    <div class="row">
+      <div style="display:inline-block" class=" col-lg-4  w-50 p-12 px-md-1 ">
+      <h1 class="ml-3">View Company</h1> 
+      </div>
+      <div class="col-lg-2 offset-lg-6">
+        <%=link_to 'New Company',new_contact_path, class:"btn btn-primary m-1 float-right" %>
+      </div>
+    </div>
+  </div>
+  <table class="table mb-0 thead-border-top-0 mt-1  table-hover">
+    <thead class="table-info">
       <tr>
         <th>Company name</th>
         <th>Ein</th>
@@ -10,12 +26,11 @@
         <th>Payroll provider</th>
         <th>Payroll frequency</th>
         <th colspan="1">Actions</th>
-        <th><%=link_to 'Add Company',new_company_path, class:"btn btn-primary" %></th>
       </tr>
     </thead>
     <tbody>
       <% @companies.each do |company| %>
-        <tr>
+        <tr class ="cursor-pointer" data-link="<%= company_path(company) %>">
           <td><%= company.company_name %></td>
           <td><%= company.ein %></td>
           <td><%= company.fiscal_year_end %></td>

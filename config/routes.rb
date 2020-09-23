@@ -11,12 +11,11 @@ Rails.application.routes.draw do
   get 'save_employee', to: 'employees#save_employee'
 
   resources :fifty_five_hundreds, only: [:update,:create]
-
     get '5500', to: 'fifty_five_hundreds#index', as: :fifty_5500
     get '5500/new', to: 'fifty_five_hundreds#new',as: :fifty_5500_new
     get '5500/:id/edit',to: 'fifty_five_hundreds#edit',as: :fifty_5500_edit
     delete '5500/:id',to: 'fifty_five_hundreds#destroy',as: :fifty_5500_delete
-
+    get '5500/:id',to: 'fifty_five_hundreds#show',as: :fifty_5500_show
 
   resources :plans
   resources :contacts

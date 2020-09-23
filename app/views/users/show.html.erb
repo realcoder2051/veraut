@@ -1,35 +1,46 @@
- <h1>User</h1>
-  <div class="dt.col-sm-3">ID
-    &nbsp | &nbsp;::&nbsp;
-    <%=@resource.id%>
+<div class="container-fluid page__heading-container" id="show-view">
+<div class="page__heading d-flex align-items-center">
+  <div class="flex">
+    <h1 class="m-0"><%= @resource.username %></h1>
   </div>
+</div>
+</div>
 
-  <div class="dt.col-sm-3">Name
-    | &nbsp;::&nbsp;
-    <%=@resource.username%>
-  </div>
-
-  <div class="dt.col-sm-3">Email
-    | &nbsp;::&nbsp;
-    <%=@resource.email%>
-  </div>
-  <div class="dt.col-sm-3">Role
-    | &nbsp;::&nbsp;
-    <%=@resource.roles.pluck(:name)%>
-  </div>
-
-  <div class="dt.col-sm-3">Created at
-    | &nbsp;::&nbsp;
-    <%=@resource.created_at%>
-  </div>
-
-  <div class="dt.col-sm-3">Updated at
-    | &nbsp;::&nbsp;
-    <%=@resource.updated_at%>
-  </div>
-
-<%= link_to 'Back', users_path %>
-| &nbsp;::&nbsp;
-<%= link_to 'Edit', edit_user_path(@resource) %>
-| &nbsp;::&nbsp;
-<%= link_to 'Delete', user_path(@resource), method: :delete, data: { confirm: 'Are you sure you want to delete this user?' } %>
+<div class="container-fluid page__container"  > 
+  <div class= "row ">
+  <div class="col-lg-5">
+  <div class="card card-form__body">
+    <div class = "table-responsive">
+      <table class="table mb-0 thead-border-top-0 mt-1  table-hover table-bordered">
+        <tbody>
+          <tr>
+            <td> id </td>
+            <td> <%=@resource.id%> </td>
+          </tr>
+          <tr>
+            <td> username </td>
+            <td> <%=@resource.username%> </td>
+          </tr>
+          <tr>
+            <td> email </td>
+            <td> <%=@resource.email %> </td>
+          </tr>
+          <tr> 
+            <td> role </td> 
+            <td> <%=@resource.roles.pluck(:name)%> </td>
+           </tr> 
+          <tr> 
+            <td> created_at </td> 
+            <td> <%=@resource.created_at %>
+          </tr> 
+          <tr> 
+            <td> updated_at </td> 
+            <td> <%=@resource.updated_at %>
+          </tr>        
+        </tbody>
+       </table>
+      </div>
+    </div> 
+    </div>
+</div> 
+</div>

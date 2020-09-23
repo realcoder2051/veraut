@@ -1,9 +1,7 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Role name:</strong>
-  <%= @role.name %>
-</p>
-
-<%= link_to 'Edit', edit_role_path(@role) %> |
-<%= link_to 'Back', roles_path %>
+<div class="container-fluid page__heading-container">
+<div class="page__heading d-flex align-items-center">
+  <div class="flex">
+    <h1 class="m-0"><%= @role.name %></h1>
+  </div>
+</div>
+</div>

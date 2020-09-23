@@ -23,7 +23,7 @@
           </a>
         </li>
          <li class = "sidebar-menu-item" id= "active-task">
-          <a class="sidebar-menu-button" href="<%=my_active_task_index_path%>" aria-expanded="false">
+          <a class="sidebar-menu-button" href="<%=my_active_task_index_path%>" aria-expanded="false"  >
             <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">dvr</i>
             <span class="sidebar-menu-text">My Active Tasks</span>
           </a>
@@ -98,11 +98,11 @@
           </a>
         </li>
         <% if can? :read, @user %>
-        <li class = "sidebar-menu-item" id="attendace-list">
+        <li class = "sidebar-menu-item">
           <a class="sidebar-menu-button" data-toggle="collapse" href="#attendance_menu" aria-expanded="false">
             <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">dvr</i>
             <span class="sidebar-menu-text"> Users</span>
-            <span class="ml-auto sidebar-menu-toggle-icon"></span>
+            <span class="ml-auto sidebar-menu-toggle-icon" id="show-user"></span>
         </a>
         <%end%>
 

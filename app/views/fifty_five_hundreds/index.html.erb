@@ -1,20 +1,23 @@
-<div class="full-scroll">
-  <div class="container-fluid page__heading-container">
-  <div class="page__heading d-flex align-items-center">
-    <div class="flex">
-      <nav aria-label="breadcrumb">
-        <ol class="breadcrumb mb-0">
-          <li class="breadcrumb-item"><a href=<%='#'%>><i class="material-icons icon-20pt">home</i></a></li>
-          <li class="breadcrumb-item active" aria-current="page"><a href=<%='#'%>>5500</a></li>
-        </ol>
-      </nav>
-      <h1 class="m-0">5500</h1>
+<div class="container-fluid full-scroll">
+ <div class="page__heading cancel-row">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb mb-0">
+        <li class="breadcrumb-item"><i class="material-icons icon-20pt">home</i></li>
+        <li class="breadcrumb-item active" aria-current="page">5500</a></li>
+      </ol>
+    </nav>
+   <div class="row">
+      <div style="display:inline-block" class=" col-lg-4  w-50 p-12 px-md-1 ">
+      <h1 class="ml-3">View 5500</h1> 
+      </div>
+      <div class="col-lg-2 offset-lg-6">
+        <%=link_to 'New 5500',fifty_5500_new_path, class:"btn btn-primary m-1 float-right" %>
+      </div>
     </div>
   </div>
-  </div>
 
-<table class="table">
-  <thead class="thead-dark">
+<table class="table mb-0 thead-border-top-0 mt-1  table-hover">
+    <thead class="table-info">
     <tr>
       <th>Question1</th>
       <th>Question2</th>
@@ -22,13 +25,12 @@
       <th>Question4</th>
       <th>Question5</th>
       <th>Question6</th>
-      <th colspan="1"></th>
-      <th><%=link_to 'Add',fifty_5500_new_path, class:"btn btn-primary"%></th>
+      <th colspan="1">Actions</th>
     </tr>
   </thead>
     <tbody>
       <% @fifty_five_hundreds.each do |fifty_five_hundred| %>
-        <tr>
+        <tr class ="cursor-pointer" data-link="<%= fifty_5500_show_path(fifty_five_hundred) %>">
           <td><%= fifty_five_hundred.question1 %></td>
           <td><%= fifty_five_hundred.question2 %></td>
           <td><%= fifty_five_hundred.question3 %></td>

@@ -1,18 +1,32 @@
-<h1>Families</h1>
-<div class="anyClass">
-  <table class="table">
-    <thead class="thead-dark">
+<div class="container-fluid full-scroll">
+ <div class="page__heading cancel-row">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb mb-0">
+        <li class="breadcrumb-item"><i class="material-icons icon-20pt">home</i></li>
+        <li class="breadcrumb-item active" aria-current="page">Family</a></li>
+      </ol>
+    </nav>
+    <div class="row">
+      <div style="display:inline-block" class=" col-lg-4  w-50 p-12 px-md-1 ">
+      <h1 class="ml-3">View Family</h1> 
+      </div>
+      <div class="col-lg-2 offset-lg-6">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#new_family">Add New Family</button>
+      </div>
+    </div>
+  </div>
+  <table class="table mb-0 thead-border-top-0 mt-1  table-hover">
+    <thead class="table-info">
       <tr>
         <th>Name</th>
         <th>Relationship</th>
         <th>Related to</th>
         <th colspan="1">Actions</th>
-        <th><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#new_family">Add</button></th>
       </tr>
     </thead>
     <tbody>
       <% @families.each do |family| %>
-        <tr>
+        <tr class ="cursor-pointer" data-link="<%= family_path(family) %>">
           <td><%= family.name %></td>
           <td><%= family.relationship %></td>
           <td><%= family.related_to %></td>

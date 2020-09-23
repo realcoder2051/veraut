@@ -1,6 +1,22 @@
-<div class="full-scroll">
-  <table class="table">
-    <thead class="thead-dark">
+<div class="container-fluid full-scroll">
+ <div class="page__heading cancel-row">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb mb-0">
+        <li class="breadcrumb-item"><i class="material-icons icon-20pt">home</i></li>
+        <li class="breadcrumb-item active" aria-current="page">Plan</a></li>
+      </ol>
+    </nav>
+    <div class="row">
+      <div style="display:inline-block" class=" col-lg-4  w-50 p-12 px-md-1 ">
+      <h1 class="ml-3">View Plan</h1> 
+      </div>
+      <div class="col-lg-2 offset-lg-6">
+        <%=link_to 'Add New Plan',new_plan_path, class:"btn btn-primary m-1 float-right" %>
+      </div>
+    </div>
+  </div>
+  <table class="table mb-0 thead-border-top-0 mt-1  table-hover">
+    <thead class="table-info">
       <tr>
         <th scope="col">1</th>
         <th scope="col">2</th>
@@ -15,12 +31,11 @@
         <th scope="col">11</th>
         <th scope="col">12</th>
         <th colspan="1" style="padding-left:0;padding-right:0">Action</th>
-        <th><%=link_to 'Add',new_plan_path, class:"btn btn-primary"%></th>
       </tr>
     </thead>
     <% @plans.each do |plan| %>
       <tbody>
-        <tr>
+      <tr class ="cursor-pointer" data-link="<%= plan_path(plan) %>">
           <td><%=plan.question1%></td>
           <td><%=plan.question2%></td>
           <td><%=plan.question3%></td>

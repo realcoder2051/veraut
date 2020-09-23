@@ -1,20 +1,34 @@
-<p id="notice"><%= notice %></p>
-<h1>Principals</h1>
-<div class="anyClass">
-  <table class="table">
-    <thead class="thead-dark">
+<div class="container-fluid full-scroll">
+ <div class="page__heading cancel-row">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb mb-0">
+        <li class="breadcrumb-item"><i class="material-icons icon-20pt">home</i></li>
+        <li class="breadcrumb-item active" aria-current="page">Principal</a></li>
+      </ol>
+    </nav>
+    <div class="row">
+      <div style="display:inline-block" class=" col-lg-4  w-50 p-12 px-md-1 ">
+      <h1 class="ml-3">View Principal</h1> 
+      </div>
+      <div class="col-lg-2 offset-lg-6">
+        <%=link_to 'New Principal',new_principal_path, class:"btn btn-primary m-1 float-right" %>
+      </div>
+    </div>
+
+  </div>
+  <table class="table mb-0 thead-border-top-0 mt-1  table-hover">
+    <thead class="table-info">
       <tr>
         <th>Name</th>
         <th>Title</th>
         <th>Officer</th>
         <th>Ownership</th>
         <th colspan="1">Actions</th>
-        <th><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#new_family">Add</button></th>
       </tr>
     </thead>
     <tbody>
       <% @principals.each do |principal| %>
-        <tr>
+        <tr class ="cursor-pointer" data-link="<%= principal_path(principal) %>">
           <td><%= principal.name %></td>
           <td><%= principal.title %></td>
           <td><%= principal.officer %></td>

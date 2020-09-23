@@ -1,6 +1,7 @@
 var hash = {
   "/users/new": "new-user",
   "/users" : "view-user",
+  "/users/:id" : "show-user",
   "/users/:id/edit" : "attendance-report",
   "/generals": "view-general",
   "/companies" : "view-company",

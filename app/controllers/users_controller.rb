@@ -3,8 +3,13 @@ class UsersController < ApplicationController
   load_and_authorize_resource
   before_action :build_resource,only: [:new,:create,:update]
   before_action :load_resource,only: [:edit,:destroy]
+  before_action :fetch_user, only: %i[index]
+
+
   def index
-    @users = resource_scope
+    ransack_search = params[:q]
+    @username = ransack_search[:username_cont] if ransack_search.present?
+    #@users = resource_scope
   end
 
   def show
@@ -53,6 +58,14 @@ class UsersController < ApplicationController
   end
 
   private
+  def fetch_user
+    @q = User.ransack(params[:q])
+    result = @q.result
+     if result.count.positive?
+       @q.sorts = 'username asc' if @q.sorts.empty?
+     end
+    @users = result.paginate(:page => params[:page], per_page:10)
+  end
 
   def resource_scope
     User.all.order('created_at')
@@ -83,7 +96,7 @@ class UsersController < ApplicationController
 
   def resource_params
     return {} unless params[:user]
-    params[:user].permit(:username, :email, :password, :password_confirmation)
+     params[:user].permit(:username, :email, :password, :password_confirmation)
   end
 
 end
