@@ -1,12 +1,7 @@
 class FamiliesController < InheritedResources::Base
 
-  # def edit
-  #   render json: Family.find(params[:id]),:layout => false
-  # end
-
   def edit
-    family = Family.find(params[:id])
-    render json: family
+    @family = Family.find(params[:id])
   end
 
   def update
@@ -40,7 +35,7 @@ class FamiliesController < InheritedResources::Base
   private
 
   def family_params
-    params.permit(:name, :relationship, :related_to)
+    params.require(:family).permit(:name, :relationship, :related_to)
   end
 
 end

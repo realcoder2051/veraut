@@ -11,7 +11,7 @@
       <h1 class="ml-3">View Family</h1> 
       </div>
       <div class="col-lg-2 offset-lg-6">
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#new_family">Add New Family</button>
+        <%=link_to 'New Family',new_family_path, class:"btn btn-primary m-1 float-right" %>
       </div>
     </div>
   </div>
@@ -30,7 +30,7 @@
           <td><%= family.name %></td>
           <td><%= family.relationship %></td>
           <td><%= family.related_to %></td>
-          <td><i class="material-icons icon-20pt modal-edit" ><%=link_to 'edit',edit_family_path(family),remote:true%></i>
+          <td><i class="material-icons icon-20pt modal-edit" ><%=link_to 'edit',edit_family_path(family)%></i>
           <i class="material-icons icon-20pt"><%= link_to 'delete', family, method: :delete, data: { confirm: 'Are you sure?' } %></i></td>
         </tr>
       <% end %>
@@ -38,54 +38,3 @@
   </table>
 </div>
 <br>
-
-<div class="modal fade" id="new_family" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" style="width:35%" position="" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <div class="page__heading">
-          <nav aria-label="breadcrumb">
-            <ol class="breadcrumb mb-0">
-              <li class="breadcrumb-item"><i class="material-icons icon-20pt">home</i></li>
-              <li class="breadcrumb-item active" aria-current="page">Family</a></li>
-            </ol>
-          </nav>
-        </div>
-        <h5 class="modal-title" id="exampleModalLabel">Add New Family</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <%= bootstrap_form_with(url:families_path,model:@family, local:true) do |f| %>
-          <%=render 'form', f: f %>
-        <% end %>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="modal fade" id="edit_family" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" style="width:35%" position="" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <div class="page__heading">
-          <nav aria-label="breadcrumb">
-            <ol class="breadcrumb mb-0">
-              <li class="breadcrumb-item"><i class="material-icons icon-20pt">home</i></li>
-              <li class="breadcrumb-item active" aria-current="page">Family</a></li>
-            </ol>
-          </nav>
-        </div>
-        <h5 class="modal-title" id="exampleModalLabel">Edit Family</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <%= bootstrap_form_tag url:'#',method: :put do |f| %>
-          <%=render 'form', f: f %>
-        <% end %>
-      </div>
-    </div>
-  </div>
-</div>

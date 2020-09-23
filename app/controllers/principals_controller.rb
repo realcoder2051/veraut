@@ -1,8 +1,7 @@
 class PrincipalsController < InheritedResources::Base
 
   def edit
-    principal = Principal.find(params[:id])
-    render json: principal
+    @principal = Principal.find(params[:id])
   end
 
   def update
@@ -28,7 +27,7 @@ class PrincipalsController < InheritedResources::Base
   private
 
     def principal_params
-      params.permit(:name, :title, :officer, :ownership)
+      params.require(:principal).permit(:name, :title, :officer, :ownership)
     end
 
 end
