@@ -42,6 +42,16 @@ gem 'dropzonejs-rails', '~> 0.8.4'
 gem 'chart-js-rails', '~> 0.1.7'
 gem 'sprockets', '~> 3.7.2'
 gem 'bcrypt', '~> 3.1.7'
+# Export file 
+gem 'rubyzip'
+gem 'axlsx'
+gem 'axlsx_rails'
+# Progress Bar
+gem 'nprogress-rails'
+# pagination
+gem 'will_paginate-bootstrap', '~> 1.0'
+
+
 
 # Use Active Storage variant
 gem 'image_processing', '~> 1.2'
@@ -98,3 +108,5 @@ group :test do
   gem 'capybara', '>= 2.15'
   gem 'mocha'
 end
+
+gem "roo", "~> 2.8"

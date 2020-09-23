@@ -1,17 +1,31 @@
 <div class="full-scroll">
-  <table class="table">
-    <thead class="thead-dark">
-      <tr>
-        <th>Question1</th>
-        <th>Question2</th>
-        <th>Question3</th>
-        <th>Question4</th>
-        <th>Question5</th>
-        <th>Question6</th>
-        <th colspan="1"></th>
-        <th><%=link_to 'Add',new_fifty_five_hundred_path, class:"btn btn-primary"%></th>
-      </tr>
-    </thead>
+  <div class="container-fluid page__heading-container">
+  <div class="page__heading d-flex align-items-center">
+    <div class="flex">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb mb-0">
+          <li class="breadcrumb-item"><a href=<%='#'%>><i class="material-icons icon-20pt">home</i></a></li>
+          <li class="breadcrumb-item active" aria-current="page"><a href=<%='#'%>>5500</a></li>
+        </ol>
+      </nav>
+      <h1 class="m-0">5500</h1>
+    </div>
+  </div>
+  </div>
+
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th>Question1</th>
+      <th>Question2</th>
+      <th>Question3</th>
+      <th>Question4</th>
+      <th>Question5</th>
+      <th>Question6</th>
+      <th colspan="1"></th>
+      <th><%=link_to 'Add',fifty_5500_new_path, class:"btn btn-primary"%></th>
+    </tr>
+  </thead>
     <tbody>
       <% @fifty_five_hundreds.each do |fifty_five_hundred| %>
         <tr>
@@ -22,11 +36,11 @@
           <td><%= fifty_five_hundred.question5 %></td>
           <td><%= fifty_five_hundred.question6 %></td>
           <td class="row"><i class="material-icons icon-20pt"><%= link_to 'slideshow', fifty_five_hundred %></i>
-          <i class="material-icons icon-20pt"><%= link_to 'edit', edit_fifty_five_hundred_path(fifty_five_hundred) %></i>
-          <i class="material-icons icon-20pt"><%= link_to 'delete', fifty_five_hundred, method: :delete, data: { confirm: 'Are you sure?' } %></td></i>
+          <i class="material-icons icon-20pt"><%= link_to 'edit', fifty_5500_edit_path(fifty_five_hundred) %></i>
+          <i class="material-icons icon-20pt"><%= link_to 'delete', fifty_5500_delete_url(fifty_five_hundred), method: :delete, data: { confirm: 'Are you sure?' } %></td></i>
         </tr>
       <% end %>
     </tbody>
   </table>
 </div>
-<br>
+<div class="row"></div>

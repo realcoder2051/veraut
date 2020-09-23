@@ -9,12 +9,12 @@ default: &default
 
 development:
   <<: *default
-  database: bei_clientportal
+  database: bei_clientportal_dev
 
-test:
-  <<: *default
-  database: bei_clientportal
+# test:
+#   <<: *default
+#   database: bei_clientportal
 
-production:
-  <<: *default
-  database: bei_clientportal
+# production:
+#   <<: *default
+#   database: bei_clientportal

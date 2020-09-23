@@ -6,8 +6,10 @@ body {
 .mdk-header-layout,
 .mdk-drawer-layout,
 .mdk-drawer-layout__content {
-  height: initial;
+  height: 100vh;
   min-height: 100%;
+
+  overflow-y: auto;
 }
 
 .page {

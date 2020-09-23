@@ -11,3 +11,9 @@
 //= require jquery-ui/widgets/autocomplete
 //= require autocomplete-rails
 //= require_tree
+//= require nprogress
+//= require nprogress-turbolinks
+
+
+
+Turbolinks.ProgressBar.enable();
