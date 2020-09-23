@@ -11,11 +11,11 @@
     </thead>
     <% @users.each do |user| %>
       <tbody>
-        <tr>
+        <tr data-link="<%= user_path(user) %>">
           <td><%=user.username%></td>
           <td><%=user.email%></td>
           <td><%=user.roles.pluck(:name).join(', ')%></td>
-          <td><i class="material-icons icon-20pt"><%= link_to 'slideshow',user %></i>
+          <td>
           <i class="material-icons icon-20pt"><%= link_to 'edit', edit_user_path(user) %></i>
           <i class="material-icons icon-20pt"><%= link_to 'delete', user, method: :delete, data: { confirm: 'Are you sure?' } %></i></td>
         </tr>

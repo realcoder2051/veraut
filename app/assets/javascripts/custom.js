@@ -18,6 +18,9 @@ var hash = {
 
   };
 
+  $("tr[data-link]").click(function() {
+    window.location = $(this).data("link")
+  })
 
   function sidebar(url){
   if(url != "/welcome" && url != "/"){
