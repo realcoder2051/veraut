@@ -30,7 +30,7 @@
     </thead>
     <tbody>
       <% @companies.each do |company| %>
-        <tr class ="cursor-pointer" data-link="<%= company_path(company) %>">
+        <tr class ="redirect_to_show cursor-pointer" data-url="<%= company_path(company) %>">
           <td><%= company.company_name %></td>
           <td><%= company.ein %></td>
           <td><%= company.fiscal_year_end %></td>
@@ -39,8 +39,9 @@
           <td><%= company.payroll_provider %></td>
           <td><%= company.payroll_frequency %></td>
           <td>
-          <i class="material-icons icon-20pt modal-edit"><%= link_to 'edit', edit_company_path(company) %></i>
-          <i class="material-icons icon-20pt"><%= link_to 'delete', company, method: :delete, data: { confirm: 'Are you sure?' } %></i></td>
+          <a href=<%=edit_company_path(company)%> ><i class="material-icons icon-20pt modal-edit">edit</i></a>
+          <a data-confirm="Are you sure?" rel="nofollow" data-method="delete" href=<%=company_path(company)%>><i class="material-icons">delete</i></a>
+          </td>
         </tr>
       <% end %>
     </tbody>

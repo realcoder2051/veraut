@@ -3,13 +3,12 @@ class EmployeesController < InheritedResources::Base
 
 
   def edit
-    employee = Employee.find(params[:id])
-    render json: employee
+    @employee = Employee.find(params[:id])
   end
 
   def update
-    employee = Employee.find(params[:id])
-    if employee.update_attributes(employee_params)
+    @employee = Employee.find(params[:id])
+    if @employee.update_attributes(employee_params)
       redirect_to employees_path
     end
   end
@@ -35,8 +34,8 @@ class EmployeesController < InheritedResources::Base
   end
 
   def create
-    employee = Employee.new(employee_params)
-    if employee.save
+    @employee = Employee.new(employee_params) 
+    if @employee.save
       redirect_to employees_path
     else
       redirect_to new_employee_path
@@ -50,7 +49,7 @@ class EmployeesController < InheritedResources::Base
       Employee.update_imported_store(file)
       redirect_to employees_path
     else
-      redirect_to employees_path, flash: {danger: 'csvかxlsxファイルをアップロードしてください。'} 
+      redirect_to employees_path
     end
   end
 

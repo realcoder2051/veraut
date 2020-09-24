@@ -55,6 +55,7 @@ class UsersController < ApplicationController
   def destroy
     user_role = @resource.remove_role  @resource.name
     destroy_resource
+    
   end
 
   private

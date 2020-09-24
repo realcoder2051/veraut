@@ -1,8 +1,8 @@
 var hash = {
   "/users/new": "new-user",
   "/users" : "view-user",
-  "/users/:id" : "show-user",
-  "/users/:id/edit" : "attendance-report",
+  "/users/show " : "view-user",
+  "/users/:id/edit" : "view-user",
   "/generals": "view-general",
   "/companies" : "view-company",
   "/companies/new" : "view-company",
@@ -18,8 +18,8 @@ var hash = {
   "/contacts/new": "view-contact",
   "/plans" : "view-plan",
   "/plans/new" : "view-plan",
-  "/5500" : "view-5500",
-  "/5500/new": "view-5500",
+  "/5500" : "view-fiftyfive",
+  "/5500/new": "view-fiftyfive",
   "/employees" : "view-employee",
   "/employees/new" : "view-employee",
   "/distribution" : "distribution",
@@ -29,11 +29,21 @@ var hash = {
 
   };
 
-  $("tr[data-link]").click(function() {
-    window.location = $(this).data("link")
-  })
+  $(document).ready((function () {
+    sidebar(window.location.pathname);
+  
+    }));
 
   function sidebar(url){
+   
+
+    if (url.match(/\d/g)!= null && url!= "/5500" && url!= "/5500/new" )
+    {
+      search_index = url.search(/\d/g)
+      str = url.substring(0,search_index-1)
+      url = str;
+    }
+
   if(url != "/welcome" && url != "/"){
     document.getElementById("home").classList.remove("active")
     var item = document.getElementById(hash[url]);
@@ -46,7 +56,36 @@ var hash = {
 
   }
 }
-  $(document).ready((function () {
-  sidebar(window.location.pathname);
 
-  }));
+ $(".redirect_to_show").click(function(e){
+  if (e.target.tagName !== "I") {
+    window.location = e.currentTarget.dataset.url;
+  }
+
+})
+  
+
+
+  // $('#dataTable tbody tr td:not(:last-child)').click(function ()    {
+  //   //location.href = $(this).parent().find('td a').attr('href'); 
+  //   });   
+//    $('#dataTable tbody tr td:not(:last-child)').hover(
+//     function() { 
+//         $(this).css('cursor','pointer');
+//         $(this).addClass('table-hover');
+
+//     },
+//     function() {
+//         $(this).css('cursor','auto');
+//     }
+// );
+//    $('#dataTable tbody tr td:not(:last-child)').hover(
+//     function() { 
+//         $(this).css('cursor','pointer');
+//         $(this).addClass('table-hover');
+
+//     },
+//     function() {
+//         $(this).css('cursor','auto');
+//     }
+// );

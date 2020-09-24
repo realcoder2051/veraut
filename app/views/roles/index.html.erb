@@ -25,11 +25,12 @@
     </thead>
     <tbody>
       <% @roles.each do |role| %>
-        <tr class ="cursor-pointer" data-link="<%= role_path(role) %>">
+        <tr class ="redirect_to_show cursor-pointer" data-url="<%= role_path(role) %>">
           <td><%= role.name %></td>
           <td>
-          <i class="material-icons icon-20pt"><%= link_to 'edit', edit_role_path(role) %></i>
-          <i class="material-icons icon-20pt"><%= link_to 'delete', role, method: :delete, data: { confirm: 'Are you sure?' } %></i></td>
+          <a href=<%=edit_role_path(role)%> ><i class="material-icons icon-20pt modal-edit">edit</i></a>
+          <a data-confirm="Are you sure?" rel="nofollow" data-method="delete" href=<%=role_path(role)%>><i class="material-icons">delete</i></a>
+          </td>
         </tr>
       <% end %>
     </tbody>

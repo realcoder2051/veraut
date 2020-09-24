@@ -30,7 +30,7 @@
   </thead>
     <tbody>
       <% @fifty_five_hundreds.each do |fifty_five_hundred| %>
-        <tr class ="cursor-pointer" data-link="<%= fifty_5500_show_path(fifty_five_hundred) %>">
+        <tr class ="redirect_to_show cursor-pointer" data-url="<%= fifty_5500_show_path(fifty_five_hundred) %>">
           <td><%= fifty_five_hundred.question1 %></td>
           <td><%= fifty_five_hundred.question2 %></td>
           <td><%= fifty_five_hundred.question3 %></td>
@@ -38,8 +38,9 @@
           <td><%= fifty_five_hundred.question5 %></td>
           <td><%= fifty_five_hundred.question6 %></td>
           <td class="row">
-          <i class="material-icons icon-20pt"><%= link_to 'edit', fifty_5500_edit_path(fifty_five_hundred) %></i>
-          <i class="material-icons icon-20pt"><%= link_to 'delete', fifty_5500_delete_url(fifty_five_hundred), method: :delete, data: { confirm: 'Are you sure?' } %></td></i>
+          <a href=<%=fifty_5500_edit_path(fifty_five_hundred)%> ><i class="material-icons icon-20pt modal-edit">edit</i></a>
+          <a data-confirm="Are you sure?" rel="nofollow" data-method="delete" href=<%=fifty_5500_delete_url(fifty_five_hundred)%>><i class="material-icons">delete</i></a>
+          </td>
         </tr>
       <% end %>
     </tbody>

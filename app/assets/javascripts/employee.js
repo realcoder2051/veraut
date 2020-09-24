@@ -38,8 +38,8 @@ $('.import').click(function(){
 return false;
 });
 
-$('#employee_ssn').keyup(function(){
-  $(this).val($(this).val().replace(/(\d{3})\-?(\d{2})\-?(\d{4})/,'$1-$2-$3'))
-});
+// $('#employee_ssn').keyup(function(){
+//   $(this).val($(this).val().replace(/(\d{3})\-?(\d{2})\-?(\d{4})/,'$1-$2-$3'))
+// });
 
 $(".status:contains('pending')").css('color','red')

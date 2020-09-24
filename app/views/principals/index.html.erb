@@ -28,14 +28,15 @@
     </thead>
     <tbody>
       <% @principals.each do |principal| %>
-        <tr class ="cursor-pointer" data-link="<%= principal_path(principal) %>">
+        <tr class ="redirect_to_show cursor-pointer" data-url="<%= principal_path(principal) %>">
           <td><%= principal.name %></td>
           <td><%= principal.title %></td>
           <td><%= principal.officer %></td>
           <td><%= principal.ownership %></td>
           <td>
-          <i class="material-icons icon-20pt modal-edit"><%=link_to 'edit',edit_principal_path(principal)%></i>
-          <i class="material-icons icon-20pt"><%= link_to 'delete', principal, method: :delete, data: { confirm: 'Are you sure?' } %></i></td>
+          <a href=<%=edit_principal_path(principal)%> ><i class="material-icons icon-20pt modal-edit">edit</i></a>
+          <a data-confirm="Are you sure?" rel="nofollow" data-method="delete" href=<%=principal_path(principal)%>><i class="material-icons">delete</i></a>
+          </td>
         </tr>
       <% end %>
     </tbody>
