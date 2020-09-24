@@ -20,6 +20,10 @@ class UsersController < ApplicationController
     @roles = Role.all
   end
 
+  def edit
+    @roles = Role.all
+  end
+
   def create
     @roles = Role.all
     roles = params[:user][:name].drop(1)
@@ -30,25 +34,22 @@ class UsersController < ApplicationController
     save_resource or render :new
   end
 
-  def edit
-    @roles = Role.all
-  end
-
   def update
     if params[:user][:password].blank? && params[:user][:password_confirmation].blank?
       params[:user].delete(:password)
       params[:user].delete(:password_confirmation)
     end
-    user = User.find(params[:id])
-    previous_roles = user.roles
+    load_user
+    previous_roles = @resource.roles
     previous_roles.each do |previous|
-      user.remove_role previous.name
+      @resource.remove_role previous.name
     end
     roles = params[:user][:name].drop(1)
     roles.each do |role|
-      user.add_role role
+      user = @resource.add_role role
+      user.resource = @resource
     end
-    user.update_attributes(resource_params)
+    @resource.update_attributes(resource_params)
     redirect_to users_path
   end
 
@@ -77,6 +78,10 @@ class UsersController < ApplicationController
 
   def load_resource
     @resource ||= resource_scope.find params[:id]
+  end
+
+  def load_user
+    @resource = resource_scope.find params[:id]
   end
 
   def build_resource

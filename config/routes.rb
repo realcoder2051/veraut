@@ -32,8 +32,6 @@ Rails.application.routes.draw do
     mount Sidekiq::Web,   at: '/sidekiq'
   end
 
-  resources :calendar_dates, only: %i[index show]
-  resources :scheduled_jobs
   resources :users
   resources :my_active_task
   resources :distribution
