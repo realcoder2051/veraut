@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   include Pagy::Backend
   load_and_authorize_resource
   before_action :build_resource,only: [:new,:create,:update]
-  before_action :load_resource,only: [:edit,:destroy]
+  before_action :load_resource,only: [:destroy]
   before_action :fetch_user, only: %i[index]
 
 
@@ -21,6 +21,7 @@ class UsersController < ApplicationController
   end
 
   def edit
+    load_user
     @roles = Role.all
   end
 
@@ -29,7 +30,7 @@ class UsersController < ApplicationController
     roles = params[:user][:name].drop(1)
     roles.each do |role|
       user_role = @resource.add_role role
-      user_role.resource = @resource
+    #  user_role.resource = @resource
     end
     save_resource or render :new
   end
@@ -47,7 +48,7 @@ class UsersController < ApplicationController
     roles = params[:user][:name].drop(1)
     roles.each do |role|
       user = @resource.add_role role
-      user.resource = @resource
+     # user.resource = @resource
     end
     @resource.update_attributes(resource_params)
     redirect_to users_path
