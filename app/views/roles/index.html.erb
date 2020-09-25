@@ -20,19 +20,20 @@
     <thead class="table-info">
       <tr>
         <th>Role</th>
-        <th colspan="1">Actions</th>
+        <th >Rights</th>
+        <th >Actions</th>
       </tr>
     </thead>
     <tbody>
-      <% @roles.each do |role| %>
-        <tr class ="cursor-pointer" data-link="<%= role_path(role) %>">
-          <td><%= role.name %></td>
+      <% @roles_rights.each do |role_right| %>
+        <tr class ="cursor-pointer" data-link="<%= role_path(role_right) %>">
+          <td><%= role_right.role.name %></td>
+          <td><%= parse_json_array(role_right.role_type)%>
           <td>
-          <i class="material-icons icon-20pt"><%= link_to 'edit', edit_role_path(role) %></i>
-          <i class="material-icons icon-20pt"><%= link_to 'delete', role, method: :delete, data: { confirm: 'Are you sure?' } %></i></td>
+          <i class="material-icons icon-20pt"><%= link_to 'edit', edit_role_path(role_right) %></i>
+          <i class="material-icons icon-20pt"><%= link_to 'delete', role_path(role_right), method: :delete, data: { confirm: 'Are you sure?' } %></i></td>
         </tr>
       <% end %>
     </tbody>
   </table>
 </div>
-<br>

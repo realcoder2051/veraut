@@ -26,6 +26,8 @@ var hash = {
   "/my_active_task" : "active-task",
   "/roles" : "view-roles",
   "/roles/new" : "add-role",
+  "/rights" : "view-rights",
+  "/rights/new" : "add-right",
 
   };
 
