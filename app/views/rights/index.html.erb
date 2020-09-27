@@ -1,0 +1,37 @@
+<div class="container-fluid full-scroll">
+ <div class="page__heading cancel-row">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb mb-0">
+        <li class="breadcrumb-item"><i class="material-icons icon-20pt">home</i></li>
+        <li class="breadcrumb-item active" aria-current="page">Right</a></li>
+      </ol>
+    </nav>
+    <div class="row">
+      <div style="display:inline-block" class=" col-lg-4  w-50 p-12 px-md-1 ">
+        <h1 class="ml-3">View Rights</h1> 
+      </div>
+      <div class="col-lg-2 offset-lg-6">
+        <%=link_to 'Add New Right',new_right_path, class:"btn btn-primary m-1 float-right" %>
+      </div>
+    </div>
+  </div>
+  <table class="table mb-0 thead-border-top-0 mt-1  table-hover">
+    <thead class="table-info">
+      <tr>
+        <th>Rights</th>
+        <th colspan="1">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @rights.each do |right| %>
+        <tr class ="cursor-pointer" data-link="<%= right_path(right) %>">
+          <td><%= right.right_type %></td>
+          <td>
+          <i class="material-icons icon-20pt"><%= link_to 'edit', edit_right_path(right) %></i>
+          <i class="material-icons icon-20pt"><%= link_to 'delete', right, method: :delete, data: { confirm: 'Are you sure?' } %></i></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+<br>

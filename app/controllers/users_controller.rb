@@ -17,7 +17,7 @@ class UsersController < ApplicationController
   end
 
   def new
-    @roles = Role.a  byebugll
+    @roles = Role.all 
   end
 
   def edit

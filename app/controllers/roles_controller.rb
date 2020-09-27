@@ -46,8 +46,8 @@ class RolesController < InheritedResources::Base
 
   def destroy
     role_right = RolesRight.find(params[:id])
-    if role_right.destroy
-      if role_right.role.destroy
+    if role_right.role.destroy
+      if role_right.destroy
         redirect_to roles_path
       end
     end

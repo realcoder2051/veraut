@@ -156,8 +156,12 @@ ActiveRecord::Schema.define(version: 2020_09_24_093430) do
 
   create_table "rights", force: :cascade do |t|
     t.string "right_type"
+    t.bigint "role_id"
+    t.bigint "roles_right_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["role_id"], name: "index_rights_on_role_id"
+    t.index ["roles_right_id"], name: "index_rights_on_roles_right_id"
   end
 
   create_table "roles", force: :cascade do |t|
