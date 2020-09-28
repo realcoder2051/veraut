@@ -1,14 +1,30 @@
-<p>
-  <strong>Name:</strong>
-  <%= @family.name %>
-</p>
+<div class="container-fluid page__heading-container" id="show-view">
+<div class="page__heading d-flex align-items-center">
+  <div class="flex">
+    <h1 class="m-0"><%= @family.name %></h1>
+  </div>
+</div>
+</div>
 
-<p>
-  <strong>Relationship:</strong>
-  <%= @family.relationship %>
-</p>
-
-<p>
-  <strong>Related to:</strong>
-  <%= @family.related_to %>
-</p>
+<div class="container-fluid page__container"  > 
+  <div class= "row ">
+    <div class="col-lg-5">
+      <div class="card card-form__body">
+        <div class = "table-responsive">
+          <table class="table mb-0 thead-border-top-0 mt-1  table-hover table-bordered">
+            <tbody>
+              <tr>
+                <td> Relationship </td>
+                <td> <%=@family.relationship%> </td>
+              </tr>
+              <tr>
+                <td> Related To </td>
+                <td> <%=@family.related_to%> </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

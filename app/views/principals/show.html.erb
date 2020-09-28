@@ -1,19 +1,34 @@
-<p>
-  <strong>Name:</strong>
-  <%= @principal.name %>
-</p>
+<div class="container-fluid page__heading-container" id="show-view">
+<div class="page__heading d-flex align-items-center">
+  <div class="flex">
+    <h1 class="m-0"><%= @principal.name %></h1>
+  </div>
+</div>
+</div>
 
-<p>
-  <strong>Title:</strong>
-  <%= @principal.title %>
-</p>
-
-<p>
-  <strong>Officer:</strong>
-  <%= @principal.officer %>
-</p>
-
-<p>
-  <strong>Ownership:</strong>
-  <%= @principal.ownership %>
-</p>
+<div class="container-fluid page__container"  > 
+  <div class= "row ">
+    <div class="col-lg-5">
+      <div class="card card-form__body">
+        <div class = "table-responsive">
+          <table class="table mb-0 thead-border-top-0 mt-1  table-hover table-bordered">
+            <tbody>
+              <tr>
+                <td> Title </td>
+                <td> <%=@principal.title%> </td>
+              </tr>
+              <tr>
+                <td> Officer </td>
+                <td> <%=@principal.officer%> </td>
+              </tr>
+              <tr>
+                <td> Ownership </td>
+                <td> <%=@principal.ownership %> </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div> 
+    </div>
+  </div> 
+</div>

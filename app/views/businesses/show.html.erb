@@ -1,54 +1,62 @@
-<p>
-  <strong>Name:</strong>
-  <%= @business.name %>
-</p>
+<div class="container-fluid page__heading-container" id="show-view">
+<div class="page__heading d-flex align-items-center">
+  <div class="flex">
+    <h1 class="m-0"><%= @business.name %></h1>
+  </div>
+</div>
+</div>
 
-<p>
-  <strong>Ein:</strong>
-  <%= @business.ein %>
-</p>
-
-<p>
-  <strong>Date purchased or sold:</strong>
-  <%= @business.date_purchased_or_sold %>
-</p>
-
-<p>
-  <strong>Address:</strong>
-  <%= @business.address %>
-</p>
-
-<p>
-  <strong>City:</strong>
-  <%= @business.city %>
-</p>
-
-<p>
-  <strong>State:</strong>
-  <%= @business.state %>
-</p>
-
-<p>
-  <strong>Zip:</strong>
-  <%= @business.zip %>
-</p>
-
-<p>
-  <strong>Phone:</strong>
-  <%= @business.phone %>
-</p>
-
-<p>
-  <strong>Does company have employees:</strong>
-  <%= @business.does_company_have_employees %>
-</p>
-
-<p>
-  <strong>Qualified plan sponsored:</strong>
-  <%= @business.qualified_plan_sponsored %>
-</p>
-
-<p>
-  <strong>Entity type:</strong>
-  <%= @business.entity_type %>
-</p>
+<div class="container-fluid page__container"  > 
+  <div class= "row ">
+    <div class="col-lg-5">
+      <div class="card card-form__body">
+        <div class = "table-responsive">
+          <table class="table mb-0 thead-border-top-0 mt-1  table-hover table-bordered">
+            <tbody>
+              <tr>
+                <td> EIN </td>
+                <td> <%=@business.ein%> </td>
+              </tr>
+              <tr>
+                <td> Date Purchased Or Sold </td>
+                <td> <%=@business.date_purchased_or_sold%> </td>
+              </tr>
+              <tr>
+                <td> Address </td>
+                <td> <%=@business.address %> </td>
+              </tr>
+              <tr>
+                <td> City </td>
+                <td> <%=@business.city%> </td>
+              </tr>
+              <tr>
+                <td> State </td>
+                <td> <%=@business.state%> </td>
+              </tr>
+              <tr>
+                <td> Zip </td>
+                <td> <%=@business.zip %> </td>
+              </tr>
+               <tr>
+                <td> Phone </td>
+                <td> <%=@business.phone%> </td>
+              </tr>
+              <tr>
+                <td> Does Company Have Employees? </td>
+                <td> <%=@business.does_company_have_employees%> </td>
+              </tr>
+              <tr>
+                <td> Qualified Plan Sponsored </td>
+                <td> <%=@business.qualified_plan_sponsored %> </td>
+              </tr>
+              <tr>
+                <td> Entity Type </td>
+                <td> <%=@business.entity_type %> </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div> 
+    </div>
+  </div> 
+</div>

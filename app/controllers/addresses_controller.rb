@@ -46,7 +46,6 @@ class AddressesController < InheritedResources::Base
     end
   end
 
-
   private
 
     def address_params
