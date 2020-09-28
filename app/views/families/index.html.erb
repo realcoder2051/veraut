@@ -26,12 +26,14 @@
     </thead>
     <tbody>
       <% @families.each do |family| %>
-        <tr class ="cursor-pointer" data-link="<%= family_path(family) %>">
+        <tr class ="redirect_to_show cursor-pointer" data-url=<%= family_path(family) %>>
           <td><%= family.name %></td>
           <td><%= family.relationship %></td>
           <td><%= family.related_to %></td>
-          <td><i class="material-icons icon-20pt modal-edit" ><%=link_to 'edit',edit_family_path(family)%></i>
-          <i class="material-icons icon-20pt"><%= link_to 'delete', family, method: :delete, data: { confirm: 'Are you sure?' } %></i></td>
+          <td>
+          <a href=<%=edit_family_path(family)%> ><i class="material-icons icon-20pt modal-edit">edit</i></a>
+          <a data-confirm="Are you sure?" rel="nofollow" data-method="delete" href=<%=family_path(family)%>><i class="material-icons">delete</i></a>
+          </td>
         </tr>
       <% end %>
     </tbody>

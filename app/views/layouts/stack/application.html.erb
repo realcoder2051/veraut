@@ -15,8 +15,10 @@
 
   <body class="<%= @body_class || 'layout-default' %>">
     <!-- Header Layout -->
+    <% if !user_signed_in?%>
+        <%= yield %>
+    <% else%>
     <div class="mdk-header-layout js-mdk-header-layout">
-
       <!-- Header -->
        <%if user_signed_in?%>
         <div id="header" class="mdk-header js-mdk-header m-0" data-fixed>
@@ -26,11 +28,9 @@
         </div>
       <%end%>
       <!-- // END Header -->
-
+<div class="mdk-header-layout__content" style="display:none"></div>
       <!-- Header Layout Content -->
-    <!--  <div class="mdk-header-layout__content">-->
-
-        <div class="mdk-drawer-layout js-mdk-drawer-layout" data-push data-responsive-width="992px">
+      <div class="mdk-drawer-layout js-mdk-drawer-layout" data-push data-responsive-width="992px">
           <div class="mdk-drawer-layout__content page">
             <%# CONTENT  %>
             <%= yield %>
@@ -40,6 +40,9 @@
             <%= render 'layouts/stack/drawer_left' %>
           <%end%>
         </div>
+      <%end %>
+    <!--  <div class="mdk-header-layout__content">-->
+        
         <!-- // END drawer-layout -->
         </div>
       <!-- // END header-layout__content -->

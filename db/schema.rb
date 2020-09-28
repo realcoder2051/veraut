@@ -10,7 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 2020_09_24_093430) do
+=======
+ActiveRecord::Schema.define(version: 2020_09_22_133647) do
+>>>>>>> 3df8c6fb5062a0ab08731419a45da30a2dccc3db
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_stat_statements"
@@ -154,6 +158,7 @@ ActiveRecord::Schema.define(version: 2020_09_24_093430) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+<<<<<<< HEAD
   create_table "rights", force: :cascade do |t|
     t.string "right_type"
     t.bigint "role_id"
@@ -164,6 +169,8 @@ ActiveRecord::Schema.define(version: 2020_09_24_093430) do
     t.index ["roles_right_id"], name: "index_rights_on_roles_right_id"
   end
 
+=======
+>>>>>>> 3df8c6fb5062a0ab08731419a45da30a2dccc3db
   create_table "roles", force: :cascade do |t|
     t.string "name"
     t.string "resource_type"
@@ -174,12 +181,15 @@ ActiveRecord::Schema.define(version: 2020_09_24_093430) do
     t.index ["resource_type", "resource_id"], name: "index_roles_on_resource_type_and_resource_id"
   end
 
+<<<<<<< HEAD
   create_table "roles_rights", force: :cascade do |t|
     t.bigint "role_id"
     t.json "role_type"
     t.index ["role_id"], name: "index_roles_rights_on_role_id"
   end
 
+=======
+>>>>>>> 3df8c6fb5062a0ab08731419a45da30a2dccc3db
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "username", default: "", null: false

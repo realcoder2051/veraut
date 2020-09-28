@@ -212,3 +212,23 @@
   th {
     font-size: large !important;
   }
+
+  .sidebar-light .open {
+    background: #ffffff;
+}
+.sidebar-light {
+  color: rgba(0, 0, 0, 0.54);
+  background: #ffffff;
+}
+
+#error_explanation {
+  color: rgb(221, 61, 77);
+}
+
+.amd-head {
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  z-index: 0;
+  
+}

@@ -29,15 +29,16 @@
 
     <tbody>
       <% @contacts.each do |contact| %>
-        <tr class ="cursor-pointer" data-link="<%= contact_path(contact) %>">
+        <tr class ="redirect_to_show cursor-pointer" data-url="<%= contact_path(contact) %>">
           <td><%= contact.name %></td>
           <td><%= contact.company_name %></td>
           <td><%= contact.email %></td>
           <td><%= contact.roles %></td>
           <td><%= contact.rights %></td>
           <td>
-          <td><%= link_to 'Edit', edit_contact_path(contact) %></td>
-          <td><%= link_to 'Destroy', contact, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <a href=<%=edit_contact_path(contact)%> ><i class="material-icons icon-20pt modal-edit">edit</i></a>
+          <a data-confirm="Are you sure?" rel="nofollow" data-method="delete" href=<%=contact_path(contact)%>><i class="material-icons">delete</i></a>
+          </td>
         </tr>
       <% end %>
     </tbody>
