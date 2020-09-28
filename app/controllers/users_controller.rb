@@ -21,6 +21,7 @@ class UsersController < ApplicationController
   end
 
   def create
+    
     @roles = Role.all
     roles = params[:user][:name].drop(1)
     roles.each do |role|
@@ -28,6 +29,7 @@ class UsersController < ApplicationController
       user_role.resource = @resource
     end
     save_resource or render :new
+    
   end
 
   def edit

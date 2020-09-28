@@ -10,7 +10,7 @@ class User < ApplicationRecord
          :trackable,
          :validatable
 
-  validates :username, presence: true
+  validates :username,:password, presence: true
 
   scope :ordered, -> { order(name: :asc) }
 

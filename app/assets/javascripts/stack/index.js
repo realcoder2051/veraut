@@ -2,7 +2,7 @@
 
 // Self Initialize DOM Factory Components
 domFactory.handler.autoInit()
-$('#customCheckAll').click(function(){
+$('#customCheckAll').click(function () {
   $('input:checkbox').not(this).prop('checked', this.checked);
 });
 $('select').addClass('form-control');
@@ -20,14 +20,14 @@ sidebarToggle.forEach(function (toggle) {
   })
 })
 
-$('.text-muted, .flex-column, .flex.d-flex.align-items-center.text-body.text-underline-0').click(function() {
+$('.text-muted, .flex-column, .flex.d-flex.align-items-center.text-body.text-underline-0').click(function () {
   $("#dropdown-drawer-left").toggleClass('show');
 })
-$('.next-options, .flex-column, .flex.d-flex.align-items-center.text-body.text-underline-0').click(function() {
+$('.next-options, .flex-column, .flex.d-flex.align-items-center.text-body.text-underline-0').click(function () {
   $("#next-options").toggleClass('show');
 })
 
-$('[data-toggle="fullcalendar"]').each(function() {
+$('[data-toggle="fullcalendar"]').each(function () {
   const element = $(this)
   const options = {
     themeSystem: 'bootstrap4',
@@ -50,13 +50,13 @@ $('[data-toggle="fullcalendar"]').each(function() {
     droppable: true,
     eventLimit: true,
     selectable: true,
-    drop: function(date) {
+    drop: function (date) {
       onDrop($(this), date, element)
     },
-    select: function(start, end, jsEvent) {
+    select: function (start, end, jsEvent) {
       onSelect(start, end, jsEvent, element)
     },
-    eventClick: function(event, jsEvent, view) {
+    eventClick: function (event, jsEvent, view) {
       onEventClick(event, jsEvent, view, element)
     }
   }
@@ -99,12 +99,12 @@ $('[data-toggle="tab"]').on('hide.bs.tab', function (e) {
   $(e.target).removeClass('active')
 })
 
-document.addEventListener("turbolinks:load", function() {
+document.addEventListener("turbolinks:load", function () {
 
   domFactory.handler.upgradeAll();
 
-// Connect button(s) to drawer(s)
-var sidebarToggle = Array.prototype.slice.call(document.querySelectorAll('[data-toggle="sidebar"]'))
+  // Connect button(s) to drawer(s)
+  var sidebarToggle = Array.prototype.slice.call(document.querySelectorAll('[data-toggle="sidebar"]'))
 
   sidebarToggle.forEach(function (toggle) {
     toggle.addEventListener('click', function (e) {
@@ -130,10 +130,10 @@ var sidebarToggle = Array.prototype.slice.call(document.querySelectorAll('[data-
   });
 
   // DRAG AND DROP
-  $('[data-toggle="dragula"]').each(function() {
+  $('[data-toggle="dragula"]').each(function () {
     var element = $(this)
     var options = {
-      moves: function(el, source, handle, sibling) {
+      moves: function (el, source, handle, sibling) {
         return void 0 !== element.data('dragula-moves')
           ? handle.classList.contains(element.data('dragula-moves'))
           : true
@@ -158,7 +158,7 @@ var sidebarToggle = Array.prototype.slice.call(document.querySelectorAll('[data-
 
 
 
-  $('[data-toggle="fullcalendar"]').each(function() {
+  $('[data-toggle="fullcalendar"]').each(function () {
     const element = $(this)
     const options = {
       themeSystem: 'bootstrap4',
@@ -181,13 +181,13 @@ var sidebarToggle = Array.prototype.slice.call(document.querySelectorAll('[data-
       droppable: true,
       eventLimit: true,
       selectable: true,
-      drop: function(date) {
+      drop: function (date) {
         onDrop($(this), date, element)
       },
-      select: function(start, end, jsEvent) {
+      select: function (start, end, jsEvent) {
         onSelect(start, end, jsEvent, element)
       },
-      eventClick: function(event, jsEvent, view) {
+      eventClick: function (event, jsEvent, view) {
         onEventClick(event, jsEvent, view, element)
       }
     }
@@ -198,7 +198,7 @@ var sidebarToggle = Array.prototype.slice.call(document.querySelectorAll('[data-
 
   // DATERANGE
 
-  $('[data-toggle="daterangepicker"]').each(function() {
+  $('[data-toggle="daterangepicker"]').each(function () {
     const element = $(this)
     const format = void 0 !== element.data('daterangepicker-locale-format')
       ? element.data('daterangepicker-locale-format')
@@ -258,7 +258,7 @@ var sidebarToggle = Array.prototype.slice.call(document.querySelectorAll('[data-
 
   // LISTS
 
-  $('[data-toggle="lists"]').each(function() {
+  $('[data-toggle="lists"]').each(function () {
     var element = $(this)
     var options = {
       valueNames: void 0 !== element.data('lists-values')
@@ -281,7 +281,7 @@ var sidebarToggle = Array.prototype.slice.call(document.querySelectorAll('[data-
 
   // VECTOR
 
-  $('[data-toggle="vector-map"]').each(function() {
+  $('[data-toggle="vector-map"]').each(function () {
     var element = $(this)
     var values = element.data('vector-map-values') ? maps[element.data('vector-map-values')] || {} : {}
     let pins = {}
@@ -294,7 +294,7 @@ var sidebarToggle = Array.prototype.slice.call(document.querySelectorAll('[data-
         }
       }
     }
-    catch(e) {}
+    catch (e) { }
 
     var options = {
       map: element.data('vector-map-map'),
@@ -317,7 +317,7 @@ var sidebarToggle = Array.prototype.slice.call(document.querySelectorAll('[data-
       color: settings.colors.gray[50],
       selectedColor: settings.colors.primary[300],
       hoverColor: settings.colors.primary[100],
-      scaleColors: [ settings.colors.primary[50], settings.colors.primary[500] ],
+      scaleColors: [settings.colors.primary[50], settings.colors.primary[500]],
       borderWidth: 1,
       borderColor: '#ffffff',
       borderOpacity: 1,
@@ -326,9 +326,9 @@ var sidebarToggle = Array.prototype.slice.call(document.querySelectorAll('[data-
       pins,
       pinMode: 'content',
       onLabelShow: function (e, label, code) {
-        label.html(label.html() + ' - ' + values[ code ])
+        label.html(label.html() + ' - ' + values[code])
       },
-      onRegionSelect: function(event, code, region) {
+      onRegionSelect: function (event, code, region) {
         if (options.focusOnSelect) {
           map.setFocus(code)
         }
@@ -365,7 +365,7 @@ var sidebarToggle = Array.prototype.slice.call(document.querySelectorAll('[data-
     }
   })
 
-  $('[data-toggle=vector-map-focus]').on('click', function(e) {
+  $('[data-toggle=vector-map-focus]').on('click', function (e) {
     e.preventDefault()
 
     const element = $(this)

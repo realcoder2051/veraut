@@ -1,20 +1,24 @@
-<div class="container-fluid full-scroll">
-  <div class="page__heading" style="padding-left: 0.5em;padding-right: 0.5em;">
-      <nav aria-label="breadcrumb">
-        <ol class="breadcrumb mb-0">
-          <li class="breadcrumb-item"><i class="material-icons icon-20pt">home</i></li>
-          <li class="breadcrumb-item active" aria-current="page">Plan</a></li>
-          <li class="breadcrumb-item active" aria-current="page">New Plan</li>
-        </ol>
-      </nav>
-      <h1 class="m-0">Add New Plan</h1>
-  </div>
-  <div class="card card-">
-    <div class="row no-gutters">
-      <div class="col-lg-12 card-form__body card-body" style="padding-left: 0.5em;padding-right: 0.5em;  ">
-        <%= bootstrap_form_with(url:plans_path,model:@plan, local:true) do |f| %>
-          <%=render 'form', f: f %>
-        <% end %>
+<div class ="employee-form-scroll" > 
+  <div class="container-fluid page__heading-container">
+    <div class="page__heading" style="padding-left: 0.5em;padding-right: 0.5em;">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb mb-0">
+            <li class="breadcrumb-item"><i class="material-icons icon-20pt">home</i></li>
+            <li class="breadcrumb-item active" aria-current="page">Plan</a></li>
+            <li class="breadcrumb-item active" aria-current="page">New Plan</li>
+          </ol>
+        </nav>
+        <h1 class="m-0">Add New Plan</h1>
+    </div>
+    <div class="container-fluid page__container">
+      <div class="card card-">
+        <div class="row no-gutters">
+          <div class="col-lg-12 card-form__body card-body" style="padding-left: 0.5em;padding-right: 0.5em;  ">
+            <%= bootstrap_form_with(url:plans_path,model:@plan, local:true) do |f| %>
+              <%=render 'form', f: f %>
+            <% end %>
+          </div>
+        </div>
       </div>
     </div>
   </div>

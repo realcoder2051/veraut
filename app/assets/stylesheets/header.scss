@@ -1,0 +1,102 @@
+.bei-header  {
+    position: relative;
+    z-index: 1;
+    margin-bottom: 1.25rem;
+    height: 200px;
+  }
+
+.bei-header :last-child {
+    margin-bottom: 0;
+  }
+
+.bei-header[data-condenses], .bei-header[data-reveals] {
+  will-change: transform;
+}
+
+.bei-header [data-fx-condenses] {
+    transform-origin: left top;
+    opacity: 0;
+  }
+
+.bei-header [data-primary] {
+    z-index: 1;
+  }
+
+.bei-header__bg {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    overflow: hidden;
+  }
+
+.bei-header__bg-front {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    pointer-events: none;
+    background-size: cover;
+  }
+
+  .bei-header__bg-rear {
+    opacity: 0;
+  }
+
+
+  .bei-header__content {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+
+  /* line 71, node_modules/material-design-kit/src/header/header.scss */
+.bei-header[data-condenses] .bei-header__content {
+    z-index: 0;
+  }
+  
+  /* line 74, node_modules/material-design-kit/src/header/header.scss */
+  .bei-header[data-condenses] [data-primary] {
+    z-index: 1;
+  }
+  
+  /* line 80, node_modules/material-design-kit/src/header/header.scss */
+  .bei-header--shadow::after {
+    position: absolute;
+    right: 0;
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    content: "";
+    pointer-events: none;
+    opacity: 0;
+    box-shadow: inset 0px 5px 6px -3px rgba(0, 0, 0, 0.4);
+    will-change: opacity;
+    z-index: -1;
+  }
+  
+  /* line 95, node_modules/material-design-kit/src/header/header.scss */
+  .bei-header--shadow-show::after {
+    opacity: 1;
+  }
+  
+  /* line 99, node_modules/material-design-kit/src/header/header.scss */
+  .bei-header--fixed {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    margin-bottom: 0;
+  }
+
+
+  /* line 108, node_modules/material-design-kit/src/header/header.scss */
+.bei-header[disabled], .bei-header[disabled]::after,
+.bei-header[disabled] .bei-header__bg-rear,
+.bei-header[disabled] .bei-header__bg-front,
+.bei-header[disabled] .bei-header__content > [data-primary] {
+  transition: none !important;
+}

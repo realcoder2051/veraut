@@ -30,12 +30,14 @@ var hash = {
   };
 
   $(document).ready((function () {
-    sidebar(window.location.pathname);
+    if (document.getElementById("home")){
+      sidebar(window.location.pathname);
+    }
   
     }));
 
   function sidebar(url){
-   
+  
 
     if (url.match(/\d/g)!= null && url!= "/5500" && url!= "/5500/new" )
     {
@@ -44,7 +46,7 @@ var hash = {
       url = str;
     }
 
-  if(url != "/welcome" && url != "/"){
+  if(url != "/"){
     document.getElementById("home").classList.remove("active")
     var item = document.getElementById(hash[url]);
     var li = $(item).parent().parent().addClass("open");
@@ -65,27 +67,3 @@ var hash = {
 })
   
 
-
-  // $('#dataTable tbody tr td:not(:last-child)').click(function ()    {
-  //   //location.href = $(this).parent().find('td a').attr('href'); 
-  //   });   
-//    $('#dataTable tbody tr td:not(:last-child)').hover(
-//     function() { 
-//         $(this).css('cursor','pointer');
-//         $(this).addClass('table-hover');
-
-//     },
-//     function() {
-//         $(this).css('cursor','auto');
-//     }
-// );
-//    $('#dataTable tbody tr td:not(:last-child)').hover(
-//     function() { 
-//         $(this).css('cursor','pointer');
-//         $(this).addClass('table-hover');
-
-//     },
-//     function() {
-//         $(this).css('cursor','auto');
-//     }
-// );
