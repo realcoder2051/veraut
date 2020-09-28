@@ -32,17 +32,6 @@
                </tr>
             </thead>
 
-<<<<<<< HEAD
-            <tbody>
-              <% @users.each do |user| %>
-                  <tr class ="cursor-pointer" data-link="<%= user_path(user) %>">
-                    <td><%=user.username%></td>
-                    <td><%=user.email%></td>
-                    <td><%=user.roles.pluck(:name).join(', ')%></td>
-                    <td>
-                    <i class="material-icons icon-20pt"><%= link_to 'edit', edit_user_path(user) %></i>
-                    <i class="material-icons icon-20pt"><%= link_to 'delete', user, method: :delete, data: { confirm: 'Are you sure?' } %></i></td>
-=======
             <tbody >
               <% @users.each do |user| %>
                   <tr class="redirect_to_show cursor-pointer" data-url=<%= user_path(user) %>>
@@ -50,10 +39,9 @@
                     <td ><%=user.email%></td>
                     <td ><%=user.roles.pluck(:name).join(', ')%></td>
                     <td>
-                    <a href=<%=edit_user_path(user)%> ><i class="material-icons">edit</i></a>
-                    <a data-confirm="Are you sure?" rel="nofollow" data-method="delete" href=<%=user_path(user)%>><i class="material-icons">delete</i></a>
-                  </td>
->>>>>>> 3df8c6fb5062a0ab08731419a45da30a2dccc3db
+                      <a href=<%=edit_user_path(user)%> ><i class="material-icons">edit</i></a>
+                      <a data-confirm="Are you sure?" rel="nofollow" data-method="delete" href=<%=user_path(user)%>><i class="material-icons">delete</i></a>
+                    </td>
                   </tr>
               <%end%>
             </tbody>
@@ -63,7 +51,7 @@
   </div>
 
   <div class="pagination card-body float-right" >
-   <%= will_paginate @employees %>
+    <%= will_paginate @employees %>
   </div>
 
 </div>
