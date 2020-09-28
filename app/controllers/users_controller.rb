@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   include Pagy::Backend
   load_and_authorize_resource
   before_action :build_resource,only: [:new,:create,:update]
-  before_action :load_resource,only: [:edit,:destroy]
+  before_action :load_resource,only: [:destroy]
   before_action :fetch_user, only: %i[index]
 
 
@@ -20,20 +20,21 @@ class UsersController < ApplicationController
     @roles = Role.all
   end
 
+  def edit
+    load_user
+    @roles = Role.all
+  end
+
   def create
     
     @roles = Role.all
     roles = params[:user][:name].drop(1)
     roles.each do |role|
       user_role = @resource.add_role role
-      user_role.resource = @resource
+    #  user_role.resource = @resource
     end
     save_resource or render :new
     
-  end
-
-  def edit
-    @roles = Role.all
   end
 
   def update
@@ -41,16 +42,17 @@ class UsersController < ApplicationController
       params[:user].delete(:password)
       params[:user].delete(:password_confirmation)
     end
-    user = User.find(params[:id])
-    previous_roles = user.roles
+    load_user
+    previous_roles = @resource.roles
     previous_roles.each do |previous|
-      user.remove_role previous.name
+      @resource.remove_role previous.name
     end
     roles = params[:user][:name].drop(1)
     roles.each do |role|
-      user.add_role role
+      user = @resource.add_role role
+     # user.resource = @resource
     end
-    user.update_attributes(resource_params)
+    @resource.update_attributes(resource_params)
     redirect_to users_path
   end
 
@@ -80,6 +82,10 @@ class UsersController < ApplicationController
 
   def load_resource
     @resource ||= resource_scope.find params[:id]
+  end
+
+  def load_user
+    @resource = resource_scope.find params[:id]
   end
 
   def build_resource

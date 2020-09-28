@@ -63,3 +63,13 @@ en:
       not_saved:
         one: "1 error prohibited this %{resource} from being saved:"
         other: "%{count} errors prohibited this %{resource} from being saved:"
+    models:
+      user:
+        attributes:
+          email:
+            blank: "Please enter an email address"
+            taken: "That email is already taken"
+            invalid: "Please enter a valid email address"
+          password:
+            blank: "Please Specify a Password"
+            too_short: "Password must be at least %{count} characters long"

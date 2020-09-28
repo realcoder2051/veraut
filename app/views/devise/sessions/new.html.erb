@@ -6,17 +6,17 @@
       </div>
       <div class='col-lg-6 left-move px-md-5'>
         <div class="row col-sm-12 ">
-          <%= f.email_field :email %>
+          <%= f.email_field :email,required: true %>
         </div>
       </div>
       <div class='col-lg-6 left-move px-md-5'>
         <div class="row col-sm-12 ">
-          <%= f.password_field :password %>
+          <%= f.password_field :password,required: true %>
         </div>
       </div>
       <div class='col-lg-6 left-move px-md-5'>
         <div class="row col-sm-12">
-          <%= f.submit value: "Let's Go", class: "btn btn-primary"%>
+          <input type="submit" name="commit" value="Let's Go" class="btn btn-primary" data-disable-with="logging User">
         </div>
       </div>
       <% if alert.present? %>
