@@ -2,7 +2,11 @@ Rails.application.routes.draw do
 
   resources :roles
   resources :rights
-  resources :contact_numbers
+  resources :contact_numbers 
+  get 'contact_number/add',to: 'contact_numbers#add_new_contact_number'
+  post 'contact_number/create',to: 'contact_numbers#create_new_contact_number'
+  get 'address/add',to: 'addresses#add_new_address'
+  post 'address/create',to: 'addresses#create_new_address'
   resources :addresses
   resources :employees do
     collection do

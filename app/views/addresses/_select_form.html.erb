@@ -1,0 +1,33 @@
+<div class="row" >
+  <div class="col-lg-4 left-move"></div>
+  <div class="col-lg-4 left-move">
+    <%=f.select :address1,options_for_select(@addresses.collect{ |u| [u.address1,u.id] })%>
+    <div class="invalid-feedback">Please provide a time.</div>
+    <div class="valid-feedback">Looks good!</div>
+  </div>
+    <div class="left-move w-40 p-15 px-md-12" style="display:inline-block">
+    <%=link_to 'Add New address',address_add_path, class:"btn btn-primary"%>
+  </div>
+</div>
+
+<div class="row" >
+  <div class="col-lg-4 left-move"></div>
+  <div class="col-lg-4 left-move">
+    <%=f.select :address_type,options_for_select(["Biling Address","Mailing Address"])%>
+    <div class="invalid-feedback">Please provide a time.</div>
+    <div class="valid-feedback">Looks good!</div>
+  </div>
+</div>
+<div class="actions col-lg-12">
+  <div class="row">
+    <div class="col-lg-5 left-move"></div>
+      <div class="left-move">
+        <%= f.submit value: "Save", class: "btn btn-primary"%>
+      </div>
+      <div class="col-lg-1 right-move"></div>
+        <div class="right-move">
+          <%= link_to 'Cancel', generals_path, class: "btn btn-secondary " %>
+        </div>
+  </div>
+</div>
+<br>

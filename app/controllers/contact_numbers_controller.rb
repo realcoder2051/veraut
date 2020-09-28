@@ -7,10 +7,24 @@ class ContactNumbersController < InheritedResources::Base
     end
   end
 
-  def edit
+  def new
     @numbers = ContactNumber.all
-    contact_number = ContactNumber.find(params[:id])
-    render json: contact_number
+    @number = ContactNumber.new
+  end
+
+  def add_new_contact_number
+    @number = ContactNumber.new
+  end
+
+  def create_new_contact_number
+    contact_number = ContactNumber.new(contact_number_params)
+    if contact_number.save
+      redirect_to generals_path
+    end
+  end
+
+  def edit
+    @number = ContactNumber.find(params[:id])
   end
 
   def update
@@ -34,7 +48,7 @@ class ContactNumbersController < InheritedResources::Base
   private
 
     def contact_number_params
-      params.permit(:number, :contact_type, :general_id)
+      params.require(:contact_number).permit(:number, :contact_type, :general_id)
     end
 
 end

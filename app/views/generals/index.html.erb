@@ -8,147 +8,62 @@
     </nav>
     <h1>General Information</h1>
     <div class="row">
-      <div style="display:inline-block" class=" col-md-6  w-50 p-12 px-md-1 ">
-        <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#new_address">Add
-          Address</button>
+      <div style="display:inline-block" class=" col-md-5  w-50 p-12 px-md-1 ">
+        <%=link_to "Add Address",new_address_path,class: "btn btn-secondary" %>
       </div>
-      <div style="display:inline-block" class=" col-md-  w-50 p-12 px-md-1 ">
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#new_contact">Add
-          Contact</button>
+      <div class="col-lg-2"></div>
+      <div style="display:inline-block" class=" col-md-5  w-50 p-12 px-md-1 right-move">
+          <%=link_to "Add Contact",new_contact_number_path,class: "btn btn-primary" %>
       </div>
     </div>
   </div>
   <div class="row">
-    <div class="col-lg-5">
+    <div class="col-lg-7">
       <table class="table mb-0 thead-border-top-0 mt-1  table-hover">
         <thead class="table-info">
           <tr>
             <th>Type</th>
-            <th>Address</th>
+            <th colspan="3">Address</th>
             <th colspan="1">Actions</th>
           </tr>
         </thead>
         <tbody>
           <%@addresses.each do |address| %>
-          <tr>
-            <td><%= address.address_type %></td>
-            <td col-lg-3> <%= address.address1 %></td>
-            <td>
-              <i class="material-icons icon-20pt modal-edit"><%= link_to 'edit', edit_address_path(address) %></i>
-              <i
-                class="material-icons icon-20pt"><%= link_to 'delete', address, method: :delete, data: { confirm: 'Are you sure?' } %></i>
-            </td>
-          </tr>
-          <%end%>
+            <tr>
+              <td><%= address.address_type %></td>
+              <td colspan="3"><%= address.address1+address.address2+","+address.city+","+address.state+","+address.zip+","+address.address_type %></td>
+              <td>
+                <i class="material-icons icon-20pt modal-edit"><%= link_to 'edit', edit_address_path(address) %></i>
+                <i class="material-icons icon-20pt"><%= link_to 'delete', address, method: :delete, data: { confirm: 'Are you sure?' } %></i>
+              </td>
+            </tr>
+          <% end %>
         </tbody>
       </table>
     </div>
-<div class="col-lg-7">
-    <table class="table mb-0 thead-border-top-0 mt-1  table-hover">
-      <thead class="table-info">
-        <tr>
-          <th>Type</th>
-          <th colspan="3">Contact</th>
-          <th colspan="1">Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        <%@numbers.each do |number| %>
-        <tr>
-          <td><%= number.contact_type %></td>
-          <td colspan="3"> <%= number.number %></td>
-          <td>
-            <i
-              class="material-icons icon-20pt modal-edit"><%= link_to 'edit', edit_contact_number_path(number),remote:true %></i>
-            <i
-              class="material-icons icon-20pt"><%= link_to 'delete', number, method: :delete, data: { confirm: 'Are you sure?' } %></i>
-          </td>
-        </tr>
-        <%end%>
-        </tbody>
-    </table>
-  </div>
-  </div>
-  <br>
+<div class="col-lg-5">
+  <table class="table mb-0 thead-border-top-0 mt-1  table-hover">
+    <thead class="table-info">
+      <tr>
+        <th>Type</th>
+        <th colspan="2">Contact</th>
+        <th colspan="1">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <%@numbers.each do |number| %>
+      <tr>
+        <td><%= number.contact_type %></td>
+        <td colspan="2"> <%= number.number %></td>
+        <td>
+          <i class="material-icons icon-20pt modal-edit"><%= link_to 'edit', edit_contact_number_path(number) %></i>
+          <i class="material-icons icon-20pt"><%= link_to 'delete', number, method: :delete, data: { confirm: 'Are you sure?' } %></i>
+        </td>
+      </tr>
+      <%end%>
+    </tbody>
+  </table>
 </div>
-<div class="modal fade" id="new_contact" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-  aria-hidden="true">
-  <div class="modal-dialog" style="width:35%" position="" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <div class="page__heading">
-          <nav aria-label="breadcrumb">
-            <ol class="breadcrumb mb-0">
-              <li class="breadcrumb-item"><i class="material-icons icon-20pt">home</i></li>
-              <li class="breadcrumb-item active" aria-current="page">General</a></li>
-            </ol>
-          </nav>
-        </div>
-        <br>
-        <h5 class="modal-title" id="exampleModalLabel">Add Contact Number</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <%= bootstrap_form_with(url:contact_numbers_path,model:@number, local:true) do |f| %>
-        <%=render 'add_contact', f: f %>
-        <% end %>
-      </div>
-    </div>
-  </div>
 </div>
-<div class="modal fade" id="add_new_number" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-  aria-hidden="true">
-  <div class="modal-dialog" style="width:35%" position="" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <div class="page__heading">
-          <nav aria-label="breadcrumb">
-            <ol class="breadcrumb mb-0">
-              <li class="breadcrumb-item"><i class="material-icons icon-20pt">home</i></li>
-              <li class="breadcrumb-item active" aria-current="page">General</a></li>
-            </ol>
-          </nav>
-        </div>
-        <br>
-        <h5 class="modal-title" id="exampleModalLabel">Add Contact Number</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <%= bootstrap_form_with(url:contact_numbers_path,model:@number, local:true) do |f| %>
-        <%=render 'add_number', f: f %>
-        <% end %>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="modal fade" id="edit_contact_number" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-  aria-hidden="true">
-  <div class="modal-dialog" style="width:35%" position="" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <div class="page__heading">
-          <nav aria-label="breadcrumb">
-            <ol class="breadcrumb mb-0">
-              <li class="breadcrumb-item"><i class="material-icons icon-20pt">home</i></li>
-              <li class="breadcrumb-item active" aria-current="page">General</a></li>
-            </ol>
-          </nav>
-        </div>
-        <h5 class="modal-title" id="exampleModalLabel">Edit Company</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <%= bootstrap_form_tag url:'#',method: :put do |f| %>
-        <%=render 'edit_contact', f: f %>
-        <% end %>
-      </div>
-    </div>
-  </div>
+<br>
 </div>

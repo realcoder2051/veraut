@@ -1,15 +1,14 @@
 <div class="row">
-  <div class="col-lg-2 left-move"></div>
-  <div class="col-lg-5 left-move">
-    <%= f.select :number,options_for_select(@numbers.collect{ |u| [u.number] }) %>
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#add_new_number">Add</button>
+  <div class="col-lg-4 left-move"></div>
+  <div class="col-lg-4 left-move">
+    <%= f.number_field :number %>
     <div class="invalid-feedback">Please provide a time.</div>
     <div class="valid-feedback">Looks good!</div>
   </div>
 </div>
 <div class="row">
-  <div class="col-lg-2 left-move"></div>
-  <div class="col-lg-5 left-move">
+  <div class="col-lg-4 left-move"></div>
+  <div class="col-lg-4 left-move">
     <%= f.select :contact_type,options_for_select([ "Main", "Cell" ]) %>
     <div class="invalid-feedback">Please provide a time.</div>
     <div class="valid-feedback">Looks good!</div>
@@ -17,7 +16,7 @@
 </div>
 <div class="actions col-lg-12">
   <div class="row">
-    <div class="col-lg-2 left-move"></div>
+    <div class="col-lg-5 left-move"></div>
     <div class="left-move">
       <%= f.submit value: "Save", class: "btn btn-primary"%>
     </div>

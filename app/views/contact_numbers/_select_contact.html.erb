@@ -1,14 +1,17 @@
 <div class="row">
-  <div class="col-lg-2 left-move"></div>
-  <div class="col-lg-5 left-move">
-    <%= f.number_field :number %>
+  <div class="col-lg-4 left-move"></div>
+  <div class="col-lg-4 left-move">
+    <%= f.select :number,options_for_select(@numbers.collect{ |u| [u.number] }) %>
     <div class="invalid-feedback">Please provide a time.</div>
     <div class="valid-feedback">Looks good!</div>
   </div>
+  <div class="left-move w-40 p-15 px-md-12" style="display:inline-block">
+    <%=link_to 'Add New Contact',contact_number_add_path, class:"btn btn-primary"%>
+  </div>
 </div>
 <div class="row">
-  <div class="col-lg-2 left-move"></div>
-  <div class="col-lg-5 left-move">
+  <div class="col-lg-4 left-move"></div>
+  <div class="col-lg-4 left-move">
     <%= f.select :contact_type,options_for_select([ "Main", "Cell" ]) %>
     <div class="invalid-feedback">Please provide a time.</div>
     <div class="valid-feedback">Looks good!</div>
@@ -16,7 +19,7 @@
 </div>
 <div class="actions col-lg-12">
   <div class="row">
-    <div class="col-lg-2 left-move"></div>
+    <div class="col-lg-5 left-move"></div>
     <div class="left-move">
       <%= f.submit value: "Save", class: "btn btn-primary"%>
     </div>
