@@ -1,0 +1,25 @@
+        <tr class ="redirect_to_show cursor-pointer" data-url="<%= document_path(document)%>">
+        <td>
+            <div class="media align-items-center">
+            <%=document.doc.filename%>
+            </div>
+        </td>
+        <td>
+            <div class="media align-items-center">
+            <%=document.document_type%>
+            </div>
+        </td>
+        <td>
+            <div class="media align-items-center">
+            <%=document.description %>
+            </div>
+        </td>
+        <td>
+        <i class="material-icons icon-20pt modal-edit"><%= link_to 'edit', edit_document_path(document) %></i>
+        <i class="material-icons icon-20pt"><%= link_to 'delete', document, method: :delete, data: { confirm: 'Are you sure?' } %></i>
+        </td>
+        </tr>
+
+
+
+

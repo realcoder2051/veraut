@@ -1,0 +1,33 @@
+<div class="mt-1 float-left ">
+    <h4 > Documents </h4>
+</div>
+<div class="mr-3 float-right btn-size">
+    <%= link_to 'Add',new_document_path,id: 'add_document', class:"btn btn-primary px-6" %>
+</div>
+<div class="table-responsive border-bottom" data-toggle="lists" data-lists-values='["js-lists-values-employee-name"]' >
+  <table class="table mb-0 thead-border-top-0 mt-1">
+    <thead>
+      <tr class="table-info">
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+         <th colspan="1">Actions</th>
+      </tr>
+    </thead>
+    <tbody class="list" id="blah" >
+      <% @documents.each do |document| %>
+        <% if (document.user_id == current_user.id) %>
+          <tr class ="redirect_to_show cursor-pointer" data-url= "<%= document_path(document)%>">
+            <td><%= document.doc.filename%></td>
+            <td><%= document.document_type %></td>
+            <td><%= document.description %></td>  
+            <td>
+            <a href=<%=edit_document_path(document)%> ><i class="material-icons icon-20pt modal-edit">edit</i></a>
+            <a data-confirm="Are you sure?" rel="nofollow"  data-method="delete" %><i class="material-icons">delete</i></a>
+            </td>
+          </tr>
+       <% end %>
+      <% end %>
+    </tbody>
+  </table>
+</div>

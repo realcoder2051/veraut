@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :documents
+  resources :approvals
   resources :roles
   resources :rights
   resources :contact_numbers 
