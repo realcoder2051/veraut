@@ -61,7 +61,7 @@ class EmployeesController < InheritedResources::Base
      if result.count.positive?
        @q.sorts = 'first_name asc' if @q.sorts.empty?
      end
-    @employees = result.paginate(:page => params[:page], per_page:10).order('status ASC').where(task_id: session[:task_id])
+    @employees = result.paginate(:page => params[:page], per_page:10).order('status ASC')
   end
 
   def employee_params
