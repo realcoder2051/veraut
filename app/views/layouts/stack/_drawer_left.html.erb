@@ -20,12 +20,14 @@
               <span class="sidebar-menu-text">Home</span>
             </a>
           </li>
-          <li class = "sidebar-menu-item" id= "active-task">
-            <a class="sidebar-menu-button" href="<%=tasks_path%>" aria-expanded="false"  >
-              <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">dvr</i>
-              <span class="sidebar-menu-text">My Active Tasks</span>
-            </a>
-          </li>
+          <% if can? :edit,technician %>
+            <li class = "sidebar-menu-item" id= "active-task">
+              <a class="sidebar-menu-button" href="<%=tasks_path%>" aria-expanded="false"  >
+                <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">dvr</i>
+                <span class="sidebar-menu-text">My Active Tasks</span>
+              </a>
+            </li>
+          <%end%>
           <li class = "sidebar-menu-item">
             <a class="sidebar-menu-button collapsed" data-toggle="collapse" href="#holiday_menu" aria-expanded="false">
               <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">dvr</i>

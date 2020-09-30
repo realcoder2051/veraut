@@ -9,7 +9,7 @@
 <div class="row" >
   <div class="col-lg-4 left-move"></div>
   <div class="col-lg-4 left-move">
-    <%= f.select :right_type,options_for_select(@rights.collect{ |u| [u.right_type, u.id]}), {include_blank: false}, {multiple: true} %>
+    <%= f.select :right_type,options_for_select(@rights.collect{ |u| [u.right_type, u.id]}, @roles_right.role_type["rights"].split(",")), {include_blank: false}, {multiple: true} %>
     <div class="invalid-feedback">Please provide a time.</div>
     <div class="valid-feedback">Looks good!</div>
   </div>
