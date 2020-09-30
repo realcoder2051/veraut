@@ -25,7 +25,7 @@
 <div class="row" >
   <div class="col-lg-4 left-move"></div>
   <div class="col-lg-4 left-move">
-    <%= f.select :entity_type,options_for_select([ "BiWeekly", "Monthly","Schedules" ]) %>
+    <%= f.select :entity_type,options_for_select([ "BiWeekly", "Monthly","Schedules" ], @company[:entity_type]) %>
     <div class="invalid-feedback">Please provide a time.</div>
     <div class="valid-feedback">Looks good!</div>
   </div>

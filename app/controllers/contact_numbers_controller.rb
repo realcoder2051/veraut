@@ -25,7 +25,7 @@ class ContactNumbersController < InheritedResources::Base
     end
   end
 
-  def edit
+	def edit
     @number = ContactNumber.find(params[:id])
   end
 

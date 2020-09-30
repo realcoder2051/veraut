@@ -25,7 +25,7 @@
 <div class="row" >
   <div class="col-lg-4 left-move"></div>
   <div class="col-lg-4 left-move">
-    <%=f.select :roles,options_for_select(["Technician","Main Contact"])%>
+    <%=f.select :roles,options_for_select(["Technician","Main Contact"], @contact[:roles])%>
     <div class="invalid-feedback">Please provide a time.</div>
     <div class="valid-feedback">Looks good!</div>
   </div>
@@ -33,7 +33,7 @@
 <div class="row" >
   <div class="col-lg-4 left-move"></div>
   <div class="col-lg-4 left-move">
-    <%=f.select :rights,options_for_select(["Add/Edit/Delete Fiduciary Documents","Approval","Business","Contact"]),multiple: true %>
+    <%=f.select :rights,options_for_select(["Add/Edit/Delete Fiduciary Documents","Approval","Business","Contact"], @contact[:rights]),multiple: true %>
     <div class="invalid-feedback">Please provide a time.</div>
     <div class="valid-feedback">Looks good!</div>
   </div>

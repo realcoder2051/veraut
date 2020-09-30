@@ -48,7 +48,7 @@
               <li class="sidebar-menu-item" id="view-principal">
                 <a class="sidebar-menu-button" href="<%=principals_path%>">
                   <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">add_to_queue</i>
-                  <span class="sidebar-menu-text">Principal</span>
+                  <span class="sidebar-menu-text">Principals</span>
                 </a>
               </li>
               <li class="sidebar-menu-item" id="view-family">
@@ -99,6 +99,12 @@
             <a class="sidebar-menu-button collapsed" href="<%=distribution_index_path%>" aria-expanded="false">
               <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">dvr</i>
               <span class="sidebar-menu-text">Distribution</span>
+            </a>
+					</li>
+					<li class = "sidebar-menu-item" id= "document">
+            <a class="sidebar-menu-button collapsed" href="<%=documents_path%>" aria-expanded="false">
+              <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">dvr</i>
+              <span class="sidebar-menu-text">Document</span>
             </a>
           </li>
           <% if can? :read, @user %>

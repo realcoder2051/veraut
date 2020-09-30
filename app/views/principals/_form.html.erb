@@ -9,7 +9,7 @@
 <div class="row" >
   <div class="col-lg-4 left-move"></div>
   <div class="col-lg-4 left-move">
-    <%=f.select :title,options_for_select([ "Buisness","Local Buisness","Education"]) %>
+    <%=f.select :title,options_for_select([ "Buisness","Local Buisness","Education"], @principal[:title]) %>
     <div class="invalid-feedback">Please provide a time.</div>
     <div class="valid-feedback">Looks good!</div>
   </div>

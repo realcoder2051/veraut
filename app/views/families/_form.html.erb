@@ -9,7 +9,7 @@
 <div class="row" >
   <div class="col-lg-4 left-move"></div>
   <div class="col-lg-4 left-move">
-    <%= f.select :relationship,options_for_select([ "Adopted Child", "Child","GrandChild","GrandParent","Parent","Sibling","Spouse" ]) %>
+    <%= f.select :relationship,options_for_select([ "Adopted Child", "Child","GrandChild","GrandParent","Parent","Sibling","Spouse" ], @family[:relationship]) %>
     <div class="invalid-feedback">Please provide a time.</div>
     <div class="valid-feedback">Looks good!</div>
   </div>
@@ -17,7 +17,7 @@
 <div class="row" >
   <div class="col-lg-4 left-move"></div>
   <div class="col-lg-4 left-move">
-    <%= f.select :related_to,options_for_select([ "Peter Tres", "Tom Tester" ]) %>
+    <%= f.select :related_to,options_for_select([ "Peter Tres", "Tom Tester" ], @family[:related_to]) %>
     <div class="invalid-feedback">Please provide a time.</div>
     <div class="valid-feedback">Looks good!</div>
   </div>
