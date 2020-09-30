@@ -1,8 +1,9 @@
 class User < ApplicationRecord
-  rolify
+
   resourcify
   has_many_attached :documents
   has_many :documents, dependent: :destroy
+  belongs_to :role
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :registerable, :timeoutable, :omniauthable

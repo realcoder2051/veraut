@@ -17,7 +17,7 @@
 <div class="row" >
   <div class="col-lg-4 left-move"></div>
   <div class="col-lg-4 left-move">
-    <%= f.select :name,options_for_select(@roles.collect{ |u| [u.name, u.name]}), {include_blank: false}, {multiple: true} %>
+    <%= f.select :name,options_for_select(@roles.collect{ |u| [u.name, u.id]}) %>
     <div class="invalid-feedback">Please select a role .</div>
     <div class="valid-feedback">Looks good!</div>
   </div>

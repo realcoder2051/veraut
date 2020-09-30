@@ -26,11 +26,8 @@ class UsersController < ApplicationController
 
   def create
     @roles = Role.all
-    roles = params[:user][:name].drop(1)
-    roles.each do |role|
-      user_role = @resource.add_role role
-    end
-
+    role_id = params[:user][:name].to_i
+    @resource[:role_id] = role_id
     if @resource.save
       task_group = TaskGroup.create(user_id: @resource.id)
       if task_group.save
@@ -46,16 +43,11 @@ class UsersController < ApplicationController
       params[:user].delete(:password_confirmation)
     end
     user = User.find(params[:id])
-    previous_roles = user.roles
-    previous_roles.each do |previous|
-      user.remove_role previous.name
+    role = params[:user][:name].to_i
+    user[:role_id] = role
+    if user.update_attributes(resource_params)
+      redirect_to users_path
     end
-    roles = params[:user][:name].drop(1)
-    roles.each do |role|
-      user.add_role role
-    end
-    user.update_attributes(resource_params)
-    redirect_to users_path
   end
 
   def destroy
