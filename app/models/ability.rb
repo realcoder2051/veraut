@@ -21,13 +21,13 @@ class Ability
     #   can :manage, User
     # end
 
-    user.roles.each do |role|
-      if role == "Technician"
-        can :read, :all
-      else
-        can :manage, :all
-      end
-    end
+    # user.roles.each do |role|
+    #   if role == "Technician"
+    #     can :read, :all
+    #   else
+    #     can :manage, :all
+    #   end
+    # end
     #
     # The first argument to `can` is the action you are giving the user
     # permission to do.
