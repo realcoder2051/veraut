@@ -19,7 +19,6 @@
   <table class="table mb-0 thead-border-top-0 mt-1  table-hover">
     <thead class="table-info">
       <tr>
-        <th>ID</th>
         <th>Task Name</th>
         <th colspan="2">Actions</th>
       </tr>
@@ -27,7 +26,6 @@
     <tbody>
       <% @tasks.each do |task| %>
         <tr class="redirect_to_show cursor-pointer" data-url=<%= task_path(task) %>>
-          <td><%=task.id%>
           <td><%= task.task_name %></td>
           <td>
           <a href=<%=edit_task_path(task)%> ><i class="material-icons">edit</i></a>
