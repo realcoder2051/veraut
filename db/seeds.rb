@@ -1,4 +1,4 @@
-User.create(email: "amir@devbox.co",username:"Aamir",password:"devbox123")
+User.create(email: "aamir@devbox.co",username:"Aamir",password:"devbox123")
 @messages = []
 
 #
@@ -27,9 +27,6 @@ end
 # -------------------
 # End: Helper methods
 #
-
-notify 'Creating schedule job seeds'
-create_scheduled_job_seed(job_class: 'StarterKitWorker', frequency_quantity: 1, frequency_period: 'minutes')
 
 notify 'Creating user seeds'
 users = [{ name: 'user1', email: 'user1@devbox.co' }]
