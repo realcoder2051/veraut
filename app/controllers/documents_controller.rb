@@ -16,7 +16,7 @@ class DocumentsController < InheritedResources::Base
     @document = Document.new(document_params)
     @document[:user_id] = current_user.id
     if @document.save
-      redirect_to new_document_path
+      redirect_to approvals_path
     else
       redirect_to new_document_path
     end
@@ -33,8 +33,8 @@ class DocumentsController < InheritedResources::Base
   end
 
   def destroy
-    @document = Document.find(params[:id])
-    @document.destroy
+    document = Document.find(params[:id])
+    document.destroy
     redirect_to '/approvals', :notice => "Your document has been deleted"
   end
 

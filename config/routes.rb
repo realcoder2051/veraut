@@ -1,5 +1,6 @@
-Rails.application.routes.draw do
+  Rails.application.routes.draw do
 
+  resources :notes
   resources :documents
   resources :approvals
   resources :roles
