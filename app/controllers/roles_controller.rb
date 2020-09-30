@@ -29,6 +29,7 @@ class RolesController < InheritedResources::Base
   end
 
   def update
+
     role = Role.find(params[:id])
     rights = params[:role][:right_type].drop(1)
     rights = { rights: rights.join(',') }
@@ -43,6 +44,7 @@ class RolesController < InheritedResources::Base
     @rights = Right.all
     @roles_rights = RolesRight.all
   end
+
   def destroy
     role_right = RolesRight.find(params[:id])
     if role_right.role.destroy

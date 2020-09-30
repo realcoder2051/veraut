@@ -14,7 +14,7 @@
       <div class="row no-gutters">
         <div class="col-lg-12 card-form__body card-body">
           <%= bootstrap_form_for(@resource) do |f| %>
-            <% if @user.errors.any? %>
+            <% if @resource.errors.any? %>
               <div id="error_explanation">
                 <h2><%= pluralize(@resource.errors.count, "error") %> prohibited this user from being saved:</h2>
                 <ul>

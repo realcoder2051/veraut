@@ -8,10 +8,10 @@
     </nav>
     <div class="row">
       <div style="display:inline-block" class=" col-lg-4  w-50 p-12 px-md-1 ">
-      <h1 class="ml-3">View Task</h1> 
+      <h1 class="ml-3">View Task</h1>
       </div>
       <div class="col-lg-2 offset-lg-6">
-        <%=link_to 'Add New Task',new_task_path, class:"btn btn-primary m-1 float-right" %>
+        <%=link_to 'Add New Task',new_task_path,id:"new_task", class:"btn btn-primary m-1 float-right" %>
       </div>
     </div>
   </div>
@@ -29,7 +29,11 @@
           <td>
           <a href=<%=edit_task_path(task)%> ><i class="material-icons">edit</i></a>
           <a data-confirm="Are you sure?" rel="nofollow" data-method="delete" href=<%=task_path(task)%>><i class="material-icons">delete</i></a>
-          <td><%=link_to 'Begin Task',general_path(task.id),id:"begin-task",class:"btn btn-primary"%></td>
+          <% if task.flag%>
+            <td><%=link_to 'View Task',general_path(task.id),id:"begin-task",class:"btn btn-primary"%></td>
+          <% else %>
+            <td><%=link_to 'Begin Task',general_path(task.id),id:"begin-task",class:"btn btn-primary"%></td>
+          <%end%>
         </tr>
       <% end %>
     </tbody>
