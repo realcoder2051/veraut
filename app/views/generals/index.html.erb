@@ -29,12 +29,12 @@
         </thead>
         <tbody>
           <%@addresses.each do |address| %>
-            <tr>
+           <tr class="redirect_to_show cursor-pointer" data-url=<%= address_path(address) %>>
               <td><%= address.address_type %></td>
               <td colspan="3"><%= address.address1+address.address2+","+address.city+","+address.state+","+address.zip+","+address.address_type %></td>
               <td>
-                <i class="material-icons icon-20pt modal-edit"><%= link_to 'edit', edit_address_path(address) %></i>
-                <i class="material-icons icon-20pt"><%= link_to 'delete', address, method: :delete, data: { confirm: 'Are you sure?' } %></i>
+                <a href=<%=edit_address_path(address)%> ><i class="material-icons">edit</i></a>
+                <a data-confirm="Are you sure?" rel="nofollow" data-method="delete" href=<%=address_path(address)%>><i class="material-icons">delete</i></a>
               </td>
             </tr>
           <% end %>
@@ -52,13 +52,12 @@
     </thead>
     <tbody>
       <%@numbers.each do |number| %>
-      <tr>
+        <tr class="redirect_to_show cursor-pointer" data-url=<%= contact_number_path(number) %>>
         <td><%= number.contact_type %></td>
         <td colspan="2"> <%= number.number %></td>
         <td>
-          <i class="material-icons icon-20pt modal-edit"><%= link_to 'edit', edit_contact_number_path(number) %></i>
-          <i class="material-icons icon-20pt"><%= link_to 'delete', number, method: :delete, data: { confirm: 'Are you sure?' } %></i>
-        </td>
+          <a href=<%=edit_contact_number_path(number)%> ><i class="material-icons">edit</i></a>
+          <a data-confirm="Are you sure?" rel="nofollow" data-method="delete" href=<%=contact_number_path(number)%>><i class="material-icons">delete</i></a>        </td>
       </tr>
       <%end%>
     </tbody>

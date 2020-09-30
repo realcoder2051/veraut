@@ -20,11 +20,12 @@ class FamiliesController < InheritedResources::Base
   # end
 
   def index
-    @families = Family.all.order('created_at')
+    @families = Family.all.order('created_at').where(task_id: session[:task_id])
   end
 
   def create
     family = Family.new(family_params)
+    family.update(task_id: session[:task_id])
     if family.save
       redirect_to families_path
     else

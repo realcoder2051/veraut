@@ -9,7 +9,7 @@
 <div class="row" >
   <div class="col-lg-4 left-move"></div>
   <div class="col-lg-4 left-move">
-    <%= f.text_field :ein %>
+    <%= f.number_field :ein %>
     <div class="invalid-feedback">Please provide a time.</div>
     <div class="valid-feedback">Looks good!</div>
   </div>
@@ -49,7 +49,7 @@
 <div class="row" >
   <div class="col-lg-4 left-move"></div>
   <div class="col-lg-4 left-move">
-    <%= f.select :payroll_frequency,options_for_select(["","LLC", "C Corp","Church"]) %>
+    <%= f.select :payroll_frequency,options_for_select(["LLC", "C Corp","Church"]) %>
     <div class="invalid-feedback">Please provide a time.</div>
     <div class="valid-feedback">Looks good!</div>
   </div>

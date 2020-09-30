@@ -2,12 +2,12 @@ module FiftyFiveHundredsHelper
 
   def questions
     @questions ||= [
-    "1. Were any contribution transmitted to plan later than 7 business days after the payroll date (ERISA Regulation 2510.3-102",
-    "2.Were there any formal plan participants that returned to work during this plan year? If yes please provide there detail original name ,original date of hire ,date of termination and date of retirement in censum form",
-    "3.Has the employer utilized the services of any leased or contract employee?",
-    "4. Will a request for extension",
-    "5.Were there any formal plan participants that returned to work during this plan year? If yes please provide there detail original name ,original date of hire ,date of termination and date of retirement in censum form",
-    "6.Has the employer utilized the services of any leased or contract employee?"
+    "1. Did the plan hold any assets whose current value was neither readily determinable on an established market nor set by an independent third party appraiser?",
+    "2.Did the plan receive any noncash contributions whose current value was neither readily determinable on an established market nor set by an independent third party appraiser?",
+    "3.Is the plan covered by a Fidelity Bond?",
+    "4. If yes, please enter the Fidelity Bond amount.",
+    "5.Were any loans by the plan or fixed income obligations due to the plan in default as of the end of the close of the plan year or classified as uncollectible?  Disregard participant loans secured by the participant’s account balance.",
+    "6.Were any leases to which the plan was a party in default or classified during the year as uncollectible?"
     ]
   end
 

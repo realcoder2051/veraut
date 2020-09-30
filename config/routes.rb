@@ -1,12 +1,15 @@
 Rails.application.routes.draw do
 
+  resources :task_groups
+  resources :tasks
   resources :roles
   resources :rights
-  resources :contact_numbers 
+  resources :contact_numbers
   get 'contact_number/add',to: 'contact_numbers#add_new_contact_number'
   post 'contact_number/create',to: 'contact_numbers#create_new_contact_number'
   get 'address/add',to: 'addresses#add_new_address'
   post 'address/create',to: 'addresses#create_new_address'
+  get 'general/',to: 'generals#find_task'
   resources :addresses
   resources :employees do
     collection do
@@ -31,6 +34,7 @@ Rails.application.routes.draw do
   resources :companies
   resources :generals
   devise_for :users
+  get 'users/sign_in',to: 'user/sessions#destroy'
 
   authenticate :user do
     mount PgHero::Engine, at: '/pghero'
@@ -38,7 +42,6 @@ Rails.application.routes.draw do
   end
 
   resources :users
-  resources :my_active_task
   resources :distribution
   resources :data_collection
   root to: 'home#index'

@@ -3,6 +3,8 @@ var hash = {
   "/users" : "view-user",
   "/users/show " : "view-user",
   "/users/:id/edit" : "view-user",
+  "/contact_numbers/:id": "view-general",
+  "/addresses/:id": "view-general",
   "/generals": "view-general",
   "/companies" : "view-company",
   "/companies/new" : "view-company",
@@ -39,8 +41,6 @@ var hash = {
     }));
 
   function sidebar(url){
-  
-
     if (url.match(/\d/g)!= null && url!= "/5500" && url!= "/5500/new" )
     {
       search_index = url.search(/\d/g)
@@ -67,5 +67,3 @@ var hash = {
   }
 
 })
-  
-

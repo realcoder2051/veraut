@@ -1,7 +1,7 @@
 <div class="container-fluid page__heading-container" id="show-view">
 <div class="page__heading d-flex align-items-center">
   <div class="flex">
-    <h1 class="m-0"><%=  @roles_right.role.name %></h1>
+    <h1 class="m-0"><%= "Address Details"  %></h1>
   </div>
 </div>
 </div>
@@ -14,8 +14,28 @@
       <table class="table mb-0 thead-border-top-0 mt-1  table-hover table-bordered">
         <tbody>
           <tr>
-            <td> Rights </td>
-            <td> <%=parse_json_array(@roles_right.role_type)%> </td>
+            <td> Address1 </td>
+            <td> <%=@address.address1%> </td>
+          </tr>
+          <tr>
+            <td>Address2 </td>
+            <td> <%=@address.address1%> </td>
+          </tr>
+          <tr>
+            <td>City </td>
+            <td> <%=@address.city%> </td>
+          </tr>
+          <tr>
+            <td>State </td>
+            <td> <%=@address.state%> </td>
+          </tr>
+          <tr>
+            <td>Zip </td>
+            <td> <%=@address.zip%> </td>
+          </tr>
+          <tr>
+            <td>Address Type </td>
+            <td> <%=@address.address_type%> </td>
           </tr>
         </tbody>
        </table>
@@ -24,48 +44,3 @@
     </div>
 </div> 
 </div>
-
-
-
-
-
-
-
-
-
-
-
-<p>
-  <strong>Address1:</strong>
-  <%= @address.address1 %>
-</p>
-
-<p>
-  <strong>Address2:</strong>
-  <%= @address.address2 %>
-</p>
-
-<p>
-  <strong>City:</strong>
-  <%= @address.city %>
-</p>
-
-<p>
-  <strong>State:</strong>
-  <%= @address.state %>
-</p>
-
-<p>
-  <strong>Zip:</strong>
-  <%= @address.zip %>
-</p>
-
-<p>
-  <strong>Address type:</strong>
-  <%= @address.address_type %>
-</p>
-
-<p>
-  <strong>General:</strong>
-  <%= @address.general_id %>
-</p>

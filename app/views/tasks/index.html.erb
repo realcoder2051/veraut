@@ -1,0 +1,40 @@
+<div class="container-fluid full-scroll">
+ <div class="page__heading cancel-row">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb mb-0">
+        <li class="breadcrumb-item"><i class="material-icons icon-20pt">home</i></li>
+        <li class="breadcrumb-item active" aria-current="page">Task</a></li>
+      </ol>
+    </nav>
+    <div class="row">
+      <div style="display:inline-block" class=" col-lg-4  w-50 p-12 px-md-1 ">
+      <h1 class="ml-3">View Task</h1> 
+      </div>
+      <div class="col-lg-2 offset-lg-6">
+        <%=link_to 'Add New Task',new_task_path, class:"btn btn-primary m-1 float-right" %>
+      </div>
+    </div>
+
+  </div>
+  <table class="table mb-0 thead-border-top-0 mt-1  table-hover">
+    <thead class="table-info">
+      <tr>
+        <th>ID</th>
+        <th>Task Name</th>
+        <th colspan="2">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @tasks.each do |task| %>
+        <tr class="redirect_to_show cursor-pointer" data-url=<%= task_path(task) %>>
+          <td><%=task.id%>
+          <td><%= task.task_name %></td>
+          <td>
+          <a href=<%=edit_task_path(task)%> ><i class="material-icons">edit</i></a>
+          <a data-confirm="Are you sure?" rel="nofollow" data-method="delete" href=<%=task_path(task)%>><i class="material-icons">delete</i></a>
+          <td><%=link_to 'Begin Task',general_path(task.id),id:"begin-task",class:"btn btn-primary"%></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

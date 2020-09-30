@@ -3,6 +3,7 @@ class AddressesController < InheritedResources::Base
   def create
     address = Address.find(params[:address][:address1])
     address = Address.new(address1: address.address1,address2: address.address2,city: address.address1,state: address.state,zip: address.zip,address_type: params[:address][:address_type])
+    address.update(task_id: session[:task_id])
     if address.save
       redirect_to generals_path
     end
@@ -18,11 +19,12 @@ class AddressesController < InheritedResources::Base
 
   def new
     @address = Address.new
-    @addresses = Address.all.order('created_at')
+    @addresses = Address.all.order('created_at').where(task_id: session[:task_id])
   end
 
   def create_new_address
     address = Address.new(address_params)
+    address.update(task_id: session[:task_id])
     if address.save
       redirect_to generals_path
     end

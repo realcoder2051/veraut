@@ -9,11 +9,16 @@ class ContactsController < InheritedResources::Base
 
   def create
     contact = Contact.new(contact_params)
+    contact.update(task_id: session[:task_id])
     if contact.save
       redirect_to contacts_path
     else
       redirect_to new_contact_path
     end
+  end
+
+  def index
+    @contacts = Contact.all.order('created_at').where(task_id: session[:task_id])
   end
 
   private

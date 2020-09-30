@@ -485,6 +485,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  actionmailer
   active_storage_base64
   activeadmin
   acts-as-taggable-on (~> 6.0)

@@ -5,7 +5,6 @@ class UsersController < ApplicationController
   before_action :load_resource,only: [:destroy]
   before_action :fetch_user, only: %i[index]
 
-
   def index
     ransack_search = params[:q]
     @username = ransack_search[:username_cont] if ransack_search.present?
@@ -17,24 +16,30 @@ class UsersController < ApplicationController
   end
 
   def new
-    @roles = Role.all 
+    @roles = Role.all
   end
 
   def edit
-    load_user
+    load_users
     @roles = Role.all
   end
 
   def create
-    
     @roles = Role.all
     roles = params[:user][:name].drop(1)
+
     roles.each do |role|
       user_role = @resource.add_role role
-    #  user_role.resource = @resource
     end
-    save_resource or render :new
-    
+
+    if @resource.save
+      task_group = TaskGroup.create(user_id: @resource.id)
+      if task_group.save
+        #UserMailer.welcome_email(@resource).deliver
+        redirect_to users_path
+      end
+    end
+  # save_resource or render :new
   end
 
   def update
@@ -50,7 +55,6 @@ class UsersController < ApplicationController
     roles = params[:user][:name].drop(1)
     roles.each do |role|
       user = @resource.add_role role
-     # user.resource = @resource
     end
     @resource.update_attributes(resource_params)
     redirect_to users_path
@@ -59,7 +63,6 @@ class UsersController < ApplicationController
   def destroy
     user_role = @resource.remove_role  @resource.name
     destroy_resource
-    
   end
 
   private

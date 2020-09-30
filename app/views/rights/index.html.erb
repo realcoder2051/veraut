@@ -24,11 +24,12 @@
     </thead>
     <tbody>
       <% @rights.each do |right| %>
-        <tr class ="cursor-pointer" data-link="<%= right_path(right) %>">
+        <tr class="redirect_to_show cursor-pointer" data-url=<%= right_path(right) %>>
           <td><%= right.right_type %></td>
           <td>
-          <i class="material-icons icon-20pt"><%= link_to 'edit', edit_right_path(right) %></i>
-          <i class="material-icons icon-20pt"><%= link_to 'delete', right, method: :delete, data: { confirm: 'Are you sure?' } %></i></td>
+          <a href=<%=edit_right_path(right)%> ><i class="material-icons">edit</i></a>
+          <a data-confirm="Are you sure?" rel="nofollow" data-method="delete" href=<%=right_path(right)%>><i class="material-icons">delete</i></a>
+          </td>
         </tr>
       <% end %>
     </tbody>

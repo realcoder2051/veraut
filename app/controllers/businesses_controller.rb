@@ -15,11 +15,12 @@ class BusinessesController < InheritedResources::Base
   end
 
   def index
-    @businesses = Business.all.order('created_at')
+    @businesses = Business.all.order('created_at').where(task_id: session[:task_id])
   end
 
   def create
     business = Business.new(business_params)
+    business.update(task_id: session[:task_id])
     if business.save
       redirect_to businesses_path
     else

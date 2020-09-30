@@ -26,12 +26,12 @@
     </thead>
     <tbody>
       <% @roles_rights.each do |role_right| %>
-        <tr class ="cursor-pointer" data-link="<%= role_path(role_right) %>">
+        <tr class="redirect_to_show cursor-pointer" data-url=<%= role_path(role_right) %>>
           <td><%= role_right.role.name %></td>
           <td><%= parse_json_array(role_right.role_type)%>
           <td>
-          <i class="material-icons icon-20pt"><%= link_to 'edit', edit_role_path(role_right) %></i>
-          <i class="material-icons icon-20pt"><%= link_to 'delete', role_path(role_right), method: :delete, data: { confirm: 'Are you sure?' } %></i></td>
+          <a href=<%=edit_role_path(role_right)%> ><i class="material-icons">edit</i></a>
+          <a data-confirm="Are you sure?" rel="nofollow" data-method="delete" href=<%=role_path(role_right)%>><i class="material-icons">delete</i></a>
         </tr>
       <% end %>
     </tbody>

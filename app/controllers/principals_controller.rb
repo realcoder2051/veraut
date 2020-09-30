@@ -13,6 +13,7 @@ class PrincipalsController < InheritedResources::Base
 
   def create
     principal = Principal.new(principal_params)
+    principal.update(task_id: session[:task_id])
     if principal.save
       redirect_to principals_path
     else
@@ -21,7 +22,7 @@ class PrincipalsController < InheritedResources::Base
   end
 
   def index
-    @principals = Principal.all.order('created_at')
+    @principals = Principal.all.order('created_at').where(task_id: session[:task_id])
   end
 
   private

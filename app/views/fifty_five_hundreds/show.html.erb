@@ -1,29 +1,46 @@
-<p>
-  <strong>1. Were any contribution transmitted to plan later than 7 business days after the payroll date (ERISA Regulation 2510.3-102</strong>&nbsp;&nbsp;
-  <%= @fifty_five_hundred.question1 %>
-</p>
+<div class="container-fluid page__heading-container" id="show-view">
+  <div class="page__heading d-flex align-items-center">
+    <div class="flex">
+      <h1 class="m-0"><%= "5500" %></h1>
+    </div>
+  </div>
+</div>
 
-<p>
-  <strong>2.Were there any formal plan participants that returned to work during this plan year? If yes please provide there detail original name ,original date of hire ,date of termination and date of retirement in censum form:</strong>&nbsp;&nbsp;
-  <%= @fifty_five_hundred.question2 %>
-</p>
-
-<p>
-  <strong>3.Has the employer utilized the services of any leased or contract employee?:</strong>&nbsp;&nbsp;
-  <%= @fifty_five_hundred.question3 %>
-</p>
-
-<p>
-  <strong>4. Will a request for extension:</strong>&nbsp;&nbsp;
-  <%= @fifty_five_hundred.question4 %>
-</p>
-
-<p>
-  <strong>5.Were there any formal plan participants that returned to work during this plan year? If yes please provide there detail original name ,original date of hire ,date of termination and date of retirement in censum form:</strong>&nbsp;&nbsp;
-  <%= @fifty_five_hundred.question5 %>
-</p>
-
-<p>
-  <strong>6.Has the employer utilized the services of any leased or contract employee?:</strong>&nbsp;&nbsp;
-  <%= @fifty_five_hundred.question6 %>
-</p>
+<div class="container-fluid page__container"  > 
+  <div class= "row ">
+  <div class="col-lg-8">
+  <div class="card card-form__body">
+    <div class = "table-responsive">
+      <table class="table mb-0 thead-border-top-0 mt-1  table-hover table-bordered">
+        <tbody>
+          <tr>
+            <td> 1.Did the plan hold any assets whose current value was neither readily determinable on an established market nor set by an independent third party appraiser? </td>
+            <td> <%= @fifty_five_hundred.question3%> </td>
+          </tr>
+          <tr>
+            <td> 2.Did the plan receive any noncash contributions whose current value was neither readily determinable on an established market nor set by an independent third party appraiser? </td>
+            <td> <%= @fifty_five_hundred.question2%> </td>
+          </tr>
+          <tr>
+            <td>3.Is the plan covered by a Fidelity Bond? </td>
+            <td> <%= @fifty_five_hundred.question3 %> </td>
+          </tr>
+          <tr>
+            <td> 4.If yes, please enter the Fidelity Bond amount.</td>
+            <td> <%= @fifty_five_hundred.question4%> </td>
+           </tr>
+          <tr>
+            <td>5.Were any loans by the plan or fixed income obligations due to the plan in default as of the end of the close of the plan year or classified as uncollectible?  Disregard participant loans secured by the participant’s account balance. </td> 
+            <td> <%= @fifty_five_hundred.question5 %></td>
+          </tr>
+          <tr>
+            <td>6.Were any leases to which the plan was a party in default or classified during the year as uncollectible? </td> 
+            <td> <%= @fifty_five_hundred.question6 %></td>
+          </tr>
+        </tbody>
+       </table>
+      </div>
+    </div>
+    </div>
+</div>
+</div>

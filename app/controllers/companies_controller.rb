@@ -6,11 +6,16 @@ class CompaniesController < InheritedResources::Base
 
   def create
     company = Company.new(company_params)
+    company.update(task_id: session[:task_id])
     if company.save
       redirect_to companies_path
     else
       redirect_to new_companies_path
     end
+  end
+
+  def index
+    @companies = Company.all.order('created_at').where(task_id: session[:task_id])
   end
 
   def edit
