@@ -14,15 +14,6 @@ def add_message(str)
   @messages << "  #{str}"
 end
 
-def create_scheduled_job_seed(params)
-  if ScheduledJob.where(job_class: params[:job_class]).exists?
-    add_message "#{params[:job_class]} already exists."
-  else
-    ScheduledJob.create!(params)
-    add_message "Created scheduled job for #{params[:job_class]}."
-  end
-end
-
 def create_user_seed(params)
   if User.where(email: params[:email]).exists?
     add_message "#{params[:name]} already exists."
