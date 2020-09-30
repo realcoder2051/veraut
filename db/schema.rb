@@ -10,8 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_29_053432) do
-ActiveRecord::Schema.define(version: 2020_09_29_130313) do
+ActiveRecord::Schema.define(version: 2020_09_29_134940) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_stat_statements"
@@ -50,7 +49,9 @@ ActiveRecord::Schema.define(version: 2020_09_29_130313) do
     t.bigint "general_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "task_id"
     t.index ["general_id"], name: "index_addresses_on_general_id"
+    t.index ["task_id"], name: "index_addresses_on_task_id"
   end
 
   create_table "approvals", force: :cascade do |t|
@@ -76,6 +77,8 @@ ActiveRecord::Schema.define(version: 2020_09_29_130313) do
     t.string "entity_type"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "task_id"
+    t.index ["task_id"], name: "index_businesses_on_task_id"
   end
 
   create_table "companies", force: :cascade do |t|
@@ -88,6 +91,8 @@ ActiveRecord::Schema.define(version: 2020_09_29_130313) do
     t.string "payroll_frequency"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "task_id"
+    t.index ["task_id"], name: "index_companies_on_task_id"
   end
 
   create_table "contact_numbers", force: :cascade do |t|
@@ -96,7 +101,9 @@ ActiveRecord::Schema.define(version: 2020_09_29_130313) do
     t.bigint "general_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "task_id"
     t.index ["general_id"], name: "index_contact_numbers_on_general_id"
+    t.index ["task_id"], name: "index_contact_numbers_on_task_id"
   end
 
   create_table "contacts", force: :cascade do |t|
@@ -107,6 +114,8 @@ ActiveRecord::Schema.define(version: 2020_09_29_130313) do
     t.string "rights"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "task_id"
+    t.index ["task_id"], name: "index_contacts_on_task_id"
   end
 
   create_table "documents", force: :cascade do |t|
@@ -139,6 +148,8 @@ ActiveRecord::Schema.define(version: 2020_09_29_130313) do
     t.datetime "updated_at", precision: 6, null: false
     t.boolean "is_new", default: true
     t.integer "status", default: 0
+    t.bigint "task_id"
+    t.index ["task_id"], name: "index_employees_on_task_id"
   end
 
   create_table "families", force: :cascade do |t|
@@ -147,6 +158,8 @@ ActiveRecord::Schema.define(version: 2020_09_29_130313) do
     t.string "related_to"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "task_id"
+    t.index ["task_id"], name: "index_families_on_task_id"
   end
 
   create_table "fifty_five_hundreds", force: :cascade do |t|
@@ -158,6 +171,8 @@ ActiveRecord::Schema.define(version: 2020_09_29_130313) do
     t.string "question6"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "task_id"
+    t.index ["task_id"], name: "index_fifty_five_hundreds_on_task_id"
   end
 
   create_table "generals", force: :cascade do |t|
@@ -192,6 +207,8 @@ ActiveRecord::Schema.define(version: 2020_09_29_130313) do
     t.date "question12"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "task_id"
+    t.index ["task_id"], name: "index_plans_on_task_id"
   end
 
   create_table "principals", force: :cascade do |t|
@@ -201,6 +218,8 @@ ActiveRecord::Schema.define(version: 2020_09_29_130313) do
     t.integer "ownership"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "task_id"
+    t.index ["task_id"], name: "index_principals_on_task_id"
   end
 
   create_table "rights", force: :cascade do |t|
@@ -227,6 +246,13 @@ ActiveRecord::Schema.define(version: 2020_09_29_130313) do
     t.bigint "role_id"
     t.json "role_type"
     t.index ["role_id"], name: "index_roles_rights_on_role_id"
+  end
+
+  create_table "task_groups", force: :cascade do |t|
+    t.bigint "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_task_groups_on_user_id"
   end
 
   create_table "tasks", force: :cascade do |t|

@@ -15,6 +15,7 @@ class NotesController < InheritedResources::Base
 
   def create  
     @note = Note.new(note_params)
+    @note[:created_by] = current_user.email
     if @note.save
       redirect_to approvals_path
     else
@@ -48,7 +49,7 @@ def fetch_note
 end
 
 def note_params
-  params.require(:note).permit(:description, :data_collection_step, :created_by)
+  params.require(:note).permit(:description, :data_collection_step)
 end
 
 end
