@@ -30,6 +30,7 @@ var hash = {
   "/roles/new" : "add-role",
   "/rights" : "view-rights",
   "/rights/new" : "add-right",
+  "/approvals" : "view-approval",
 
   };
 

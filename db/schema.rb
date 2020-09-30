@@ -11,12 +11,34 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema.define(version: 2020_09_29_053432) do
+ActiveRecord::Schema.define(version: 2020_09_29_130313) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_stat_statements"
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
   enable_extension "uuid-ossp"
+
+  create_table "active_storage_attachments", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "record_type", null: false
+    t.bigint "record_id", null: false
+    t.bigint "blob_id", null: false
+    t.datetime "created_at", null: false
+    t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
+    t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
+  end
+
+  create_table "active_storage_blobs", force: :cascade do |t|
+    t.string "key", null: false
+    t.string "filename", null: false
+    t.string "content_type"
+    t.text "metadata"
+    t.bigint "byte_size", null: false
+    t.string "checksum", null: false
+    t.datetime "created_at", null: false
+    t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+  end
 
   create_table "addresses", force: :cascade do |t|
     t.string "address1"
@@ -29,6 +51,15 @@ ActiveRecord::Schema.define(version: 2020_09_29_053432) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["general_id"], name: "index_addresses_on_general_id"
+  end
+
+  create_table "approvals", force: :cascade do |t|
+    t.date "date"
+    t.boolean "status"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_approvals_on_user_id"
   end
 
   create_table "businesses", force: :cascade do |t|
@@ -78,6 +109,16 @@ ActiveRecord::Schema.define(version: 2020_09_29_053432) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "documents", force: :cascade do |t|
+    t.string "name"
+    t.string "document_type"
+    t.string "description"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_documents_on_user_id"
+  end
+
   create_table "employees", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
@@ -124,6 +165,14 @@ ActiveRecord::Schema.define(version: 2020_09_29_053432) do
     t.string "address"
     t.string "contact_type"
     t.string "number"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "notes", force: :cascade do |t|
+    t.string "description"
+    t.string "data_collection_step"
+    t.string "created_by"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -214,4 +263,7 @@ ActiveRecord::Schema.define(version: 2020_09_29_053432) do
     t.index ["user_id"], name: "index_users_roles_on_user_id"
   end
 
+  add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "approvals", "users"
+  add_foreign_key "documents", "users"
 end

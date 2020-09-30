@@ -1,0 +1,48 @@
+<div class="mt-1 float-left ">
+  <h4 > Notes </h4>
+</div>
+<div class="mr-3 float-right btn-size">
+<%= link_to 'Add', new_note_path,id: 'add_note', class:"btn btn-primary px-6 mt-1" %>
+</div>
+
+
+<div class="table-responsive border-bottom" data-toggle="lists" data-lists-values='["js-lists-values-employee-name"]' >
+  <table class="table mb-0 thead-border-top-0 mt-1">
+    <thead>
+      <tr class="table-info">
+
+        <th>Note</th>
+        <th>Data_collection</th>
+        <th>Date</th>
+        <th>Created_by</th>
+        <th colspan="1">Actions</th>
+      </tr>
+    </thead>
+    <% count = 0 %>
+    <tbody class="list" id="blah" >
+      <% @notes.each do |note| %>
+        <% if (note.created_by == current_user.email) %>
+          <% count += 1 %>
+          <tr class ="redirect_to_show cursor-pointer" data-url="<%= note_path(note) %>">
+            <td><%= note.description%></td>
+            <td><%= note.data_collection_step %></td>
+            <td><%= note.created_at %></td>
+            <td><%= note.created_by %></td>  
+            <td>
+            <a href=<%=edit_note_path(note)%> ><i class="material-icons icon-20pt modal-edit">edit</i></a>
+            <a data-confirm="Are you sure?" rel="nofollow" data-method="delete" href=<%=note_path(note)%>><i class="material-icons">delete</i></a>
+            </td>
+          </tr>
+      <% end %>
+      <% end %>
+      <% if count == 0 %>
+        <tr> 
+          <td> no results found </td>
+        </tr>
+      <%end%>
+    </tbody>
+  </table>
+</div>
+
+
+

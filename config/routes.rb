@@ -1,7 +1,10 @@
-Rails.application.routes.draw do
+  Rails.application.routes.draw do
 
   resources :task_groups
   resources :tasks
+  resources :notes
+  resources :documents
+  resources :approvals
   resources :roles
   resources :rights
   resources :contact_numbers
