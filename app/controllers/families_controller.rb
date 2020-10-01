@@ -15,7 +15,7 @@ class FamiliesController < InheritedResources::Base
   #   @family = Family.find(params[:id])
   #   respond_to do |format|
   #     format.html
-  #     format.json { render json: @family.to_json} 
+  #     format.json { render json: @family.to_json}
   #   end
   # end
 

@@ -22,6 +22,7 @@ class UsersController < ApplicationController
   def edit
     load_resource
     @roles = Role.all
+    @role = @resource.role
   end
 
   def create
@@ -51,7 +52,6 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    user_role = @resource.remove_role @resource.name
     destroy_resource
   end
 
@@ -94,7 +94,7 @@ class UsersController < ApplicationController
 
   def resource_params
     return {} unless params[:user]
-     params[:user].permit(:username, :email, :password, :password_confirmation)
+     params[:user].permit(:username, :email, :password, :password_confirmation,:role_id)
   end
 
 end

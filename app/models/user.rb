@@ -15,7 +15,6 @@ class User < ApplicationRecord
          :validatable
   #belongs_to :task_group,optional:true
   has_one :task_group
-
   validates :username,:password, presence: true
 
   scope :ordered, -> { order(name: :asc) }
