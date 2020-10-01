@@ -11,4 +11,7 @@ module UserHelper
   #   end
   # end
 
+  def resource_available
+    @resource.role[:name] if @resource.role.present?
+  end
 end

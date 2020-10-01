@@ -17,6 +17,7 @@ class Ability
     # if user.username
     #   can :manage,:all
     # end
+
     if user.role.name=="Admin"
       can :manage,:all
     elsif user.role.name=="Manager"
