@@ -122,9 +122,11 @@ ActiveRecord::Schema.define(version: 2020_09_30_153147) do
     t.string "name"
     t.string "document_type"
     t.string "description"
-    t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "task_id"
+    t.bigint "user_id"
+    t.index ["task_id"], name: "index_documents_on_task_id"
     t.index ["user_id"], name: "index_documents_on_user_id"
   end
 
@@ -190,6 +192,8 @@ ActiveRecord::Schema.define(version: 2020_09_30_153147) do
     t.string "created_by"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "task_id"
+    t.index ["task_id"], name: "index_notes_on_task_id"
   end
 
   create_table "plans", force: :cascade do |t|
@@ -294,5 +298,4 @@ ActiveRecord::Schema.define(version: 2020_09_30_153147) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "approvals", "users"
-  add_foreign_key "documents", "users"
 end

@@ -76,3 +76,34 @@ var hash = {
 })
 
 
+function address(id,value)
+{
+	$.ajax({
+    url: `/address/get_address/${value}`,
+    type: "GET",
+    dataType: "json",
+    success: function(response) {
+			var add1 = response.data.address1
+			var add2 = response.data.address2
+			var city = response.data.city
+			var state = response.data.state
+			var zip = response.data.zip
+			var address_type = response.data.address_type
+
+			$("#first_address").val(add1)
+			$("#second_address").val(add2)
+			$("#address_city").val(city)
+			$("#address_state").val(state)
+			$("#address_zip").val(zip)
+			$("#address_address_type").val(address_type)
+    }
+})
+
+}
+$("#number_dropdown").change(function (event) {
+	var a = $( "#number_dropdown option:selected" ).text();
+	$("#contact_number_number").val(a)
+
+
+});
+
