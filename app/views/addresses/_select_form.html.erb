@@ -1,33 +1,81 @@
-<div class="row" >
-  <div class="col-lg-4 left-move"></div>
-  <div class="col-lg-4 left-move">
-    <%=f.select :address1,options_for_select(@addresses.collect{ |u| [u.address1,u.id] })%>
-    <div class="invalid-feedback">Please provide a time.</div>
-    <div class="valid-feedback">Looks good!</div>
-  </div>
-    <div class="left-move w-40 p-15 px-md-12" style="display:inline-block">
-    <%=link_to 'Add New address',address_add_path, class:"btn btn-primary"%>
-  </div>
+<div class="row">
+	<div class="col-lg-4 left-move"></div>
+	<div class="col-lg-4 left-move">
+	 <%= f.select :address1, options_for_select(@addresses.collect { |u| [u.address1,u.id] }), { class: "form-control search", prompt: "Select Existing Address"}, onchange: "address(this.id,this.value)" %> 
+		<!-- <%= select_tag "address_dropdown",options_from_collection_for_select(@addresses, "id","address1" ),{:onChange => 'address(this.address1); return false;', prompt: "Select Existing address", class: "selectItem"}  %> -->
+
+		<div class="label-address", id= "label-address">
+			<%= f.label :address1, "or add new address"%>
+		</div>
+		<div class="invalid-feedback">Please provide a time.</div>
+		<div class="valid-feedback">Looks good!</div>
+	</div>
 </div>
 
-<div class="row" >
-  <div class="col-lg-4 left-move"></div>
-  <div class="col-lg-4 left-move">
-    <%=f.select :address_type,options_for_select(["Biling Address","Mailing Address"])%>
-    <div class="invalid-feedback">Please provide a time.</div>
-    <div class="valid-feedback">Looks good!</div>
-  </div>
+
+
+<div class="row">
+	<div class="col-lg-4 left-move"></div>
+	<div class="col-lg-4 left-move">
+		<%=f.text_field :address1 , { :id => 'first_address' } %>
+		<div class="invalid-feedback">Please provide a time.</div>
+		<div class="valid-feedback">Looks good!</div>
+	</div>
 </div>
+<div class="row">
+	<div class="col-lg-4 left-move"></div>
+	<div class="col-lg-4 left-move">
+		<%=f.text_field :address2,  { :id => 'second_address' } %>
+		<div class="invalid-feedback">Please provide a time.</div>
+		<div class="valid-feedback">Looks good!</div>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-lg-4 left-move"></div>
+	<div class="col-lg-4 left-move">
+		<%=f.text_field :city%>
+		<div class="invalid-feedback">Please provide a time.</div>
+		<div class="valid-feedback">Looks good!</div>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-lg-4 left-move"></div>
+	<div class="col-lg-4 left-move">
+		<%=f.select :state,options_for_select(['Alabama','Alaska','American Samoa','Arizona','Arkansas','California','Colorado','Connecticut','Delaware','District of Columbia','Federated States of Micronesia','Florida','Georgia','Guam','Hawaii','Idaho','Illinois','Indiana','Iowa','Kansas','Kentucky','Louisiana','Maine','Marshall Islands','Maryland','Massachusetts','Michigan','Minnesota','Mississippi','Missouri','Montana','Nebraska','Nevada','New Hampshire','New Jersey','New Mexico','New York','North Carolina','North Dakota','Northern Mariana Islands','Ohio','Oklahoma','Oregon','Palau','Pennsylvania','Puerto Rico','Rhode Island','South Carolina','South Dakota','Tennessee','Texas','Utah','Vermont','Virgin Island','Virginia','Washington','West Virginia','Wisconsin','Wyoming'], @address[:state])%>
+		<div class="invalid-feedback">Please provide a time.</div>
+		<div class="valid-feedback">Looks good!</div>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-lg-4 left-move"></div>
+	<div class="col-lg-4 left-move">
+		<%=f.text_field :zip%>
+		<div class="invalid-feedback">Please provide a time.</div>
+		<div class="valid-feedback">Looks good!</div>
+	</div>
+</div>
+<div class="row">
+	<div class="col-lg-4 left-move"></div>
+	<div class="col-lg-4 left-move">
+		<%=f.select :address_type,options_for_select(["Biling Address","Mailing Address"], @address[:address_type])%>
+		<div class="invalid-feedback">Please provide a time.</div>
+		<div class="valid-feedback">Looks good!</div>
+	</div>
+</div>
+
 <div class="actions col-lg-12">
-  <div class="row">
-    <div class="col-lg-5 left-move"></div>
-      <div class="left-move">
-        <%= f.submit value: "Save", class: "btn btn-primary"%>
-      </div>
-      <div class="col-lg-1 right-move"></div>
-        <div class="right-move">
-          <%= link_to 'Cancel', generals_path, class: "btn btn-secondary " %>
-        </div>
-  </div>
+	<div class="row">
+		<div class="col-lg-5 left-move"></div>
+		<div class="left-move">
+			<%= f.submit value: "Save", class: "btn btn-primary"%>
+		</div>
+		<div class="col-lg-1 right-move"></div>
+		<div class="right-move">
+			<%= link_to 'Cancel', generals_path, class: "btn btn-secondary " %>
+		</div>
+	</div>
 </div>
 <br>

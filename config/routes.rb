@@ -4,7 +4,7 @@
   resources :tasks
   resources :notes
   resources :documents
-  resources :approvals
+	resources :approvals
   resources :roles
   resources :rights
   resources :contact_numbers
@@ -13,7 +13,9 @@
   get 'address/add',to: 'addresses#add_new_address'
   post 'address/create',to: 'addresses#create_new_address'
   get 'general/',to: 'generals#find_task'
-  resources :addresses
+	resources :addresses
+		get '/address/get_address/:id', to: 'addresses#get_address'
+
   resources :employees do
     collection do
       get 'bulk_delete', to:  'employees#bulk_delete'
