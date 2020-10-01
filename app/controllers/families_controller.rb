@@ -11,14 +11,6 @@ class FamiliesController < InheritedResources::Base
     end
   end
 
-  # def show
-  #   @family = Family.find(params[:id])
-  #   respond_to do |format|
-  #     format.html
-  #     format.json { render json: @family.to_json}
-  #   end
-  # end
-
   def index
     @families = Family.all.order('created_at').where(task_id: session[:task_id])
   end

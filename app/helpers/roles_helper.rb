@@ -12,6 +12,10 @@ module RolesHelper
     right.right_type
   end
 
+  def role_right_available(role_right)
+    role_right.role.name if role_right.role.present?
+  end
+
   def is_role_and_right_exist?
     if Role.all.length>0 and RolesRight.all.length>0
       return true

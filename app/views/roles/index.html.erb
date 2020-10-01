@@ -27,7 +27,7 @@
     <tbody>
       <% @roles_rights.each do |role_right| %>
         <tr class="redirect_to_show cursor-pointer" data-url=<%= role_path(role_right) %>>
-          <td><%= role_right.role.name %></td>
+          <td><%= role_right_available(role_right) %></td>
           <td><%= parse_json_array(role_right.role_type)%>
           <td>
           <a href=<%=edit_role_path(role_right)%> ><i class="material-icons">edit</i></a>

@@ -1,39 +1,7 @@
 <div class="row" >
   <div class="col-lg-4 left-move"></div>
   <div class="col-lg-4 left-move">
-    <%=f.text_field :name%>
-    <div class="invalid-feedback">Please provide a time.</div>
-    <div class="valid-feedback">Looks good!</div>
-  </div>
-</div>
-<div class="row" >
-  <div class="col-lg-4 left-move"></div>
-  <div class="col-lg-4 left-move">
-    <%=f.text_field :company_name%>
-    <div class="invalid-feedback">Please provide a time.</div>
-    <div class="valid-feedback">Looks good!</div>
-  </div>
-</div>
-<div class="row" >
-  <div class="col-lg-4 left-move"></div>
-  <div class="col-lg-4 left-move">
-  <%=f.email_field :email %>
-  <div class="invalid-feedback">Please provide a time.</div>
-    <div class="valid-feedback">Looks good!</div>
-  </div>
-</div>
-<div class="row" >
-  <div class="col-lg-4 left-move"></div>
-  <div class="col-lg-4 left-move">
-    <%=f.select :roles,options_for_select(["Technician","Main Contact"], @contact[:roles])%>
-    <div class="invalid-feedback">Please provide a time.</div>
-    <div class="valid-feedback">Looks good!</div>
-  </div>
-</div>
-<div class="row" >
-  <div class="col-lg-4 left-move"></div>
-  <div class="col-lg-4 left-move">
-    <%=f.select :rights,options_for_select(["Add/Edit/Delete Fiduciary Documents","Approval","Business","Contact"], @contact[:rights]),multiple: true %>
+    <%=f.text_field :change_request_view %>
     <div class="invalid-feedback">Please provide a time.</div>
     <div class="valid-feedback">Looks good!</div>
   </div>

@@ -5,8 +5,8 @@ class ContactsController < InheritedResources::Base
     if contact.update_attributes(contact_params)
       redirect_to contacts_path
     end
-	end
-	
+  end
+
 	def edit
   	@contact = Contact.find(params[:id])
   end
@@ -23,6 +23,7 @@ class ContactsController < InheritedResources::Base
 
   def index
     @contacts = Contact.all.order('created_at').where(task_id: session[:task_id])
+    @roles_rights = RolesRight.all
   end
 
   private

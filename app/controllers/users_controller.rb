@@ -29,13 +29,13 @@ class UsersController < ApplicationController
     @roles = Role.all
     role_id = params[:user][:name].to_i
     @resource[:role_id] = role_id
-    if @resource.save
-      task_group = TaskGroup.create(user_id: @resource.id)
-      if task_group.save
-        #UserMailer.welcome_email(@resource).deliver
+    #if @resource.save
+     # task_group = TaskGroup.create(user_id: @resource.id)
+      #if task_group.save
+        UserMailer.welcome_email(@resource).deliver_now
         redirect_to users_path
-      end
-    end
+      #end
+    #end
   end
 
   def update

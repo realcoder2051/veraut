@@ -14,15 +14,15 @@ class Ability
     #   can :read, :all
     # end
 
-    # if user.username
-    #   can :manage,:all
-    # end
-
-    if user.role.name=="Admin"
+    if user.username
       can :manage,:all
-    elsif user.role.name=="Manager"
-      can :manage, :Task,:User
     end
+
+    # if user.role.name=="Admin"
+    #   can :manage,:all
+    # elsif user.role.name=="Manager"
+    #   can :manage, :Task,:User
+    # end
 
 
     # if user.admin?  # additional permissions for administrators
