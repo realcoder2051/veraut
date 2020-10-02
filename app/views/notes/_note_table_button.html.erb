@@ -1,0 +1,8 @@
+<div class="mt-1 float-left ">
+	<h4 > Notes </h4>
+</div>
+<div class="mr-3 float-right btn-size">
+	<%= link_to 'Add', new_note_path,id: 'add_note', class:"btn btn-primary px-6 mt-1" %>
+</div>
+
+<%= render '/notes/approval_note_table'  %> 

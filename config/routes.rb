@@ -2,14 +2,15 @@
 
   resources :task_groups
   resources :tasks
-  resources :notes
+	resources :notes
+		get 'note/delete_note/:id', to: 'notes#delete_note'
   resources :documents
 	resources :approvals
   resources :roles
   resources :rights
   resources :contact_numbers
   post 'approval',to: 'approvals#send_email'
-  get 'contact_number/add',to: 'contact_numbers#add_new_contact_number'
+  get 'contact_number/ add',to: 'contact_numbers#add_new_contact_number'
   post 'contact_number/create',to: 'contact_numbers#create_new_contact_number'
   get 'address/add',to: 'addresses#add_new_address'
   post 'address/create',to: 'addresses#create_new_address'
@@ -40,6 +41,7 @@
   resources :principals
 	resources :companies
 		post 'company/create_note', to: 'companies#create_note'
+		delete 'company/delete_note', to: 'companies#delete_note'
 		post 'company', to: 'companies#create_note'
   resources :generals
   devise_for :users

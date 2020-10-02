@@ -124,7 +124,9 @@ ActiveRecord::Schema.define(version: 2020_10_02_045438) do
     t.string "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "task_id"
     t.bigint "user_id"
+    t.index ["task_id"], name: "index_documents_on_task_id"
     t.index ["user_id"], name: "index_documents_on_user_id"
   end
 
@@ -190,6 +192,8 @@ ActiveRecord::Schema.define(version: 2020_10_02_045438) do
     t.string "created_by"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "task_id"
+    t.index ["task_id"], name: "index_notes_on_task_id"
   end
 
   create_table "plans", force: :cascade do |t|
