@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_30_153147) do
+ActiveRecord::Schema.define(version: 2020_10_02_045438) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_stat_statements"
@@ -124,9 +124,7 @@ ActiveRecord::Schema.define(version: 2020_09_30_153147) do
     t.string "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.bigint "task_id"
     t.bigint "user_id"
-    t.index ["task_id"], name: "index_documents_on_task_id"
     t.index ["user_id"], name: "index_documents_on_user_id"
   end
 
@@ -192,8 +190,6 @@ ActiveRecord::Schema.define(version: 2020_09_30_153147) do
     t.string "created_by"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.bigint "task_id"
-    t.index ["task_id"], name: "index_notes_on_task_id"
   end
 
   create_table "plans", force: :cascade do |t|
@@ -265,6 +261,7 @@ ActiveRecord::Schema.define(version: 2020_09_30_153147) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.boolean "flag", default: false
+    t.boolean "is_submitted", default: false
     t.index ["task_group_id"], name: "index_tasks_on_task_group_id"
   end
 

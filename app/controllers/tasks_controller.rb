@@ -28,7 +28,10 @@ class TasksController < InheritedResources::Base
   end
 
   def index
-    @tasks = Task.all.where(task_group_id: current_user.task_group.id)
+    id = current_user.task_group.id
+    @active_tasks = Task.where("is_submitted=true and task_group_id=?",id).all
+    @inactive_tasks = Task.where("is_submitted=false and task_group_id=?",id).all
+
   end
 
   private

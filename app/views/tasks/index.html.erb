@@ -1,5 +1,5 @@
 <div class="container-fluid full-scroll">
- <div class="page__heading cancel-row">
+  <div class="page__heading cancel-row">
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb mb-0">
         <li class="breadcrumb-item"><i class="material-icons icon-20pt">home</i></li>
@@ -8,13 +8,14 @@
     </nav>
     <div class="row">
       <div style="display:inline-block" class=" col-lg-4  w-50 p-12 px-md-1 ">
-      <h1 class="ml-3">View Task</h1>
+        <h1 class="ml-3">View Task</h1>
       </div>
       <div class="col-lg-2 offset-lg-6">
         <%=link_to 'Add New Task',new_task_path,id:"new_task", class:"btn btn-primary m-1 float-right" %>
       </div>
     </div>
   </div>
+  <div class="serbg" style="color:blue"><h3>Active Tasks</h3></div>
   <table class="table mb-0 thead-border-top-0 mt-1  table-hover">
     <thead class="table-info">
       <tr>
@@ -23,7 +24,31 @@
       </tr>
     </thead>
     <tbody>
-      <% @tasks.each do |task| %>
+      <% @active_tasks.each do |task| %>
+        <tr class="redirect_to_show cursor-pointer" data-url=<%= task_path(task) %>>
+          <td><%= task.task_name %></td>
+          <td>
+            <a href=<%=edit_task_path(task)%> ><i class="material-icons">edit</i></a>
+            <a data-confirm="Are you sure?" rel="nofollow" data-method="delete" href=<%=task_path(task)%>><i class="material-icons">delete</i></a>
+          <% if task.flag%>
+            <td><%=link_to 'View Task',general_path(task.id),id:"begin-task",class:"btn btn-primary"%></td>
+          <% else %>
+            <td><%=link_to 'Begin Task',general_path(task.id),id:"begin-task",class:"btn btn-primary"%></td>
+          <%end%>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <div class="serbg" style="color:blue"><h3>Inactive Tasks</h3></div>
+  <table class="table mb-0 thead-border-top-0 mt-1  table-hover">
+    <thead class="table-info">
+      <tr>
+        <th>Task Name</th>
+        <th colspan="2">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @inactive_tasks.each do |task| %>
         <tr class="redirect_to_show cursor-pointer" data-url=<%= task_path(task) %>>
           <td><%= task.task_name %></td>
           <td>

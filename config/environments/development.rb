@@ -68,10 +68,10 @@ Rails.application.configure do
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-  address:              'smtp.gmail.com',
+  address:              'smtp.zoho.com',
   port:                  587,
-  domain:               'gmail.com',
-  user_name:            'hariszahid944@gmail.com',
+  domain:               'zoho.com',
+  user_name:            'mohammad.haris@devbox.co',
   password:             'harris..,,12345',
   authentication:       'plain',
   enable_starttls_auto: true

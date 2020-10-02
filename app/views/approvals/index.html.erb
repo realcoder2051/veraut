@@ -13,7 +13,7 @@
     </div>
   </div>
 
-  <div class="container-fluid page__container"  > 
+  <div class="container-fluid page__container">
     <div>
       <div class="mr-3 float-right btn-size">
       <th><button type="button" class="btn btn-success  px-6 " data-toggle="modal" data-target="#new_approval ">Sign and Submit</button></th>
@@ -39,28 +39,23 @@
       </div>
     </div>
   </div>
-  
 </div>
-
-
 
 <div class="modal fade" id="new_approval" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-<div class="modal-dialog" style="width:35%" position="" role="document">
-<div class="modal-content">
-<div class="modal-header">
-<div class="page__heading">
-
-</div>
-<h5 class="modal-title" id="exampleModalLabel">Sign and submit Collection </h5>
-<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-<span aria-hidden="true">&times;</span>
-</button>
-</div>
-<div class="modal-body">
-<%= bootstrap_form_tag(url:'#')do |f| %>
-<%=render 'form', f: f %>
-<% end %>
-</div>
-</div>
-</div>
+  <div class="modal-dialog" style="width:35%" position="" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+      <div class="page__heading"></div>
+    <h5 class="modal-title" id="exampleModalLabel">Sign and submit Collection </h5>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    </div>
+      <div class="modal-body">
+        <%= bootstrap_form_tag(url:'approval')do |f| %>
+          <%=render 'form', f: f %>
+        <% end %>
+      </div>
+    </div>
+  </div>
 </div>

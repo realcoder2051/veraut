@@ -2,21 +2,28 @@ class ApprovalsController < InheritedResources::Base
   before_action :fetch_document, only: %i[index]
   before_action :fetch_note, only: %i[index]
 
-
-
   def index
     @approvals = Approval.all.order('created_at')
     @approval = Approval.new
   end
 
   def destroy
-    byebug
     note = Note.find(params[:id])
     note.destroy
     redirect_to approvals_path
   end
 
-
+  def send_email
+    name = params[:name]
+    title = params[:title]
+    phone = params[:phone]
+    email = params[:email]
+    if UserMailer.welcome_email(name,title,phone,email).deliver
+      task = Task.find(session[:task_id])
+      task.update(is_submitted: true)
+      redirect_to approvals_path
+    end
+  end
 
   private
 

@@ -1,11 +1,12 @@
 class UserMailer < ApplicationMailer
- default :from => 'hariszahid944@gmail.com'
+ default :from => 'mohammad.haris@devbox.co'
 
-  def welcome_email(user)
-    @resource = user
-    #@url  = "http://example.com/login"
-    #mail :to => user.email, subject: "Welcome to My Awesome Site"
-    mail(:to => @resource.email, :subject => "Welcome to My Awesome Site")
+  def welcome_email(name,title,phone,email)
+    @name = name
+    @title = title
+    @phone = phone
+    @email = email
+    mail(:to => email, :subject => "Welcome to Benefit Equity")
   end
 
 end
