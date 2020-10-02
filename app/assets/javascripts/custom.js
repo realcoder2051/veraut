@@ -113,6 +113,20 @@ $("#add_note_popup").click(function (event) {
 })
 
 
+$(".delete_href").click(function (event) {	
+	debugger
+	var note_id = event.currentTarget.dataset.id
+	event.currentTarget.closest('tr').remove();
+	$.ajax({
+		url: `/note/delete_note/${note_id}`,
+		type: "GET",
+		dataType: "json",
+		success: function (response) {
+			console.log("success")
+
+		}
+	})
+})
 
 
 
@@ -127,13 +141,10 @@ $("#save_note").click(function (event) {
 		},
 		dataType: "json",
 		success: function (response) {
-			// var $row = $('<tr>' +
-			// 	'<td>' + response.data.description + '</td>' +
-			// 	'<td>' + response.data.created_at + '</td>' +
-			// 	'<td>' + response.data.created_by + '</td>' +
-			
-			// 	'</tr>');
-			// $('table> tbody:last').append($row);
+			console.log(response);
+			$row = response.html;
+
+			$('table> tbody:last').append($row);
 		}
 	})
 	$("#new_approval").show();

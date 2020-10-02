@@ -27,11 +27,17 @@ class NotesController < InheritedResources::Base
     if @note.update_attributes(note_params)
       redirect_to approvals_path
     end
-  end
+	end
+	
   def destroy
     @note.destroy
     redirect_to approvals_path
-  end
+	end
+	
+	def delete_note
+		note = Note.find_by(id: params[:id])
+		note.destroy
+	end
 
 
 private

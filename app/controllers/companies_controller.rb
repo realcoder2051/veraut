@@ -30,6 +30,8 @@ class CompaniesController < InheritedResources::Base
       redirect_to companies_path
     end
 	end
+
+
 	
 	def create_note
 		@note = Note.new
@@ -38,9 +40,17 @@ class CompaniesController < InheritedResources::Base
 		puts current_user.email
 		@note[:created_by] = current_user.email
 		if @note.save
-			render json: { data: @note }
+			render json: {
+					html: render_to_string(partial: '/notes/note.html.erb', locals: { note: @note })
+			}
 		end
 	end
+
+	# def delete_note
+	# 	note = Note.find(params[:id])
+	# 	note.destroy
+	# 	redirect_to companies_path
+	# end
 
 	private
 
