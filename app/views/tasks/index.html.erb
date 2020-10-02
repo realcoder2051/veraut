@@ -10,12 +10,22 @@
       <div style="display:inline-block" class=" col-lg-4  w-50 p-12 px-md-1 ">
         <h1 class="ml-3">View Task</h1>
       </div>
-      <div class="col-lg-2 offset-lg-6">
-        <%=link_to 'Add New Task',new_task_path,id:"new_task", class:"btn btn-primary m-1 float-right" %>
+    </div>
+    <div class="actions col-lg-12">
+      <div class="row">
+        <div class="col-lg-9 left-move"></div>
+        <div class="left-move">
+          <%=link_to 'Add New Task',new_task_path,id:"new_task", class:"btn btn-primary m-1 float-right" %>
+        </div>
+        <div class="right-move">
+            <%=link_to 'Refresh',close_task_path,id:"new_task", class:"btn btn-primary m-1 float-right" %>
+        </div>
       </div>
     </div>
   </div>
-  <div class="serbg" style="color:blue"><h3>Active Tasks</h3></div>
+  <div class="info" style="background-color: blue;">
+    <h5 style="color: white;">Active Tasks</h5>
+  </div>
   <table class="table mb-0 thead-border-top-0 mt-1  table-hover">
     <thead class="table-info">
       <tr>
@@ -39,7 +49,11 @@
       <% end %>
     </tbody>
   </table>
-  <div class="serbg" style="color:blue"><h3>Inactive Tasks</h3></div>
+  <div class="row"></div>
+  <div class="row"></div>
+  <div class="info" style="background-color: blue;">
+    <h5 style="color: white;">InActive Tasks</h5>
+  </div>
   <table class="table mb-0 thead-border-top-0 mt-1  table-hover">
     <thead class="table-info">
       <tr>

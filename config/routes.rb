@@ -14,6 +14,7 @@
   get 'address/add',to: 'addresses#add_new_address'
   post 'address/create',to: 'addresses#create_new_address'
   get 'general/',to: 'generals#find_task'
+  get 'close_task',to: 'tasks#close_task'
 	resources :addresses
 		get '/address/get_ address/:id', to: 'addresses#get_address'
 

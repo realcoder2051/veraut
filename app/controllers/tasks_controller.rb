@@ -39,6 +39,11 @@ class TasksController < InheritedResources::Base
     end
   end
 
+  def close_task
+    session[:task_id] = nil
+    redirect_to tasks_path
+  end
+
   def index
     id = current_user.task_group.id
     @active_tasks = Task.where("is_submitted=true and task_group_id=?",id).all
