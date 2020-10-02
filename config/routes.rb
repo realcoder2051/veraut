@@ -16,7 +16,7 @@
   get 'general/',to: 'generals#find_task'
   get 'close_task',to: 'tasks#close_task'
 	resources :addresses
-		get '/address/get_ address/:id', to: 'addresses#get_address'
+		get '/address/get_address/:id', to: 'addresses#get_address'
 
   resources :employees do
     collection do

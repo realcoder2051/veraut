@@ -23,27 +23,25 @@
       </div>
     </div>
   </div>
-  <div class="info" style="background-color: blue;">
-    <h5 style="color: white;">Active Tasks</h5>
-  </div>
+  <div class="task" style="font-size: large !important;">Active Tasks</div>
   <table class="table mb-0 thead-border-top-0 mt-1  table-hover">
-    <thead class="table-info">
+    <thead class="table-info task">
       <tr>
-        <th>Task Name</th>
-        <th colspan="2">Actions</th>
+        <th colspan="3">Task Name</th>
+        <th colspan="5">Actions</th>
       </tr>
     </thead>
     <tbody>
       <% @active_tasks.each do |task| %>
         <tr class="redirect_to_show cursor-pointer" data-url=<%= task_path(task) %>>
-          <td><%= task.task_name %></td>
-          <td>
+          <td colspan="3"><%= task.task_name %></td>
+          <td colspan="2">
             <a href=<%=edit_task_path(task)%> ><i class="material-icons">edit</i></a>
             <a data-confirm="Are you sure?" rel="nofollow" data-method="delete" href=<%=task_path(task)%>><i class="material-icons">delete</i></a>
           <% if task.flag%>
-            <td><%=link_to 'View Task',general_path(task.id),id:"begin-task",class:"btn btn-primary"%></td>
+            <td colspan="3"><%=link_to 'View Task',general_path(task.id),id:"begin-task",class:"btn btn-primary"%></td>
           <% else %>
-            <td><%=link_to 'Begin Task',general_path(task.id),id:"begin-task",class:"btn btn-primary"%></td>
+            <td colspan="3"><%=link_to 'Begin Task',general_path(task.id),id:"begin-task",class:"btn btn-primary"%></td>
           <%end%>
         </tr>
       <% end %>
@@ -51,27 +49,27 @@
   </table>
   <div class="row"></div>
   <div class="row"></div>
-  <div class="info" style="background-color: blue;">
-    <h5 style="color: white;">InActive Tasks</h5>
+  <div class="task" style="font-size: large !important;">
+    InActive Tasks</h5>
   </div>
   <table class="table mb-0 thead-border-top-0 mt-1  table-hover">
-    <thead class="table-info">
+    <thead class="table-info task">
       <tr>
-        <th>Task Name</th>
-        <th colspan="2">Actions</th>
+        <th colspan="3">Task Name</th>
+        <th colspan="5">Actions</th>
       </tr>
     </thead>
     <tbody>
       <% @inactive_tasks.each do |task| %>
         <tr class="redirect_to_show cursor-pointer" data-url=<%= task_path(task) %>>
-          <td><%= task.task_name %></td>
-          <td>
+          <td colspan="3"><%= task.task_name %></td>
+          <td colspan="2">
           <a href=<%=edit_task_path(task)%> ><i class="material-icons">edit</i></a>
           <a data-confirm="Are you sure?" rel="nofollow" data-method="delete" href=<%=task_path(task)%>><i class="material-icons">delete</i></a>
           <% if task.flag%>
-            <td><%=link_to 'View Task',general_path(task.id),id:"begin-task",class:"btn btn-primary"%></td>
+            <td colspan="3"><%=link_to 'View Task',general_path(task.id),id:"begin-task",class:"btn btn-primary"%></td>
           <% else %>
-            <td><%=link_to 'Begin Task',general_path(task.id),id:"begin-task",class:"btn btn-primary"%></td>
+            <td colspan="3"><%=link_to 'Begin Task',general_path(task.id),id:"begin-task",class:"btn btn-primary"%></td>
           <%end%>
         </tr>
       <% end %>

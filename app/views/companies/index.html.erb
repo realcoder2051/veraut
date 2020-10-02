@@ -33,24 +33,26 @@
 				<th colspan="1">Actions</th>
 			</tr>
 		</thead>
-		<tbody>
-			<% @companies.each do |company| %>
-			<tr class="redirect_to_show cursor-pointer" data-url="<%= company_path(company) %>">
-				<td><%= company.company_name %></td>
-				<td><%= company.ein %></td>
-				<td><%= company.fiscal_year_end %></td>
-				<td><%= company.entity_type %></td>
-				<td><%= company.naic_code %></td>
-				<td><%= company.payroll_provider %></td>
-				<td><%= company.payroll_frequency %></td>
-				<td>
-					<a href=<%=edit_company_path(company)%>><i class="material-icons icon-20pt modal-edit">edit</i></a>
-					<a data-confirm="Are you sure?" rel="nofollow" data-method="delete" href=<%=company_path(company)%>><i
-							class="material-icons">delete</i></a>
-				</td>
-			</tr>
-			<% end %>
-		</tbody>
+		<% if session[:task_id]%>
+			<tbody>
+				<% @companies.each do |company| %>
+				<tr class="redirect_to_show cursor-pointer" data-url="<%= company_path(company) %>">
+					<td><%= company.company_name %></td>
+					<td><%= company.ein %></td>
+					<td><%= company.fiscal_year_end %></td>
+					<td><%= company.entity_type %></td>
+					<td><%= company.naic_code %></td>
+					<td><%= company.payroll_provider %></td>
+					<td><%= company.payroll_frequency %></td>
+					<td>
+						<a href=<%=edit_company_path(company)%>><i class="material-icons icon-20pt modal-edit">edit</i></a>
+						<a data-confirm="Are you sure?" rel="nofollow" data-method="delete" href=<%=company_path(company)%>><i
+								class="material-icons">delete</i></a>
+					</td>
+				</tr>
+				<% end %>
+			</tbody>
+		<%end%>
 	</table>
 </div>
 <br>

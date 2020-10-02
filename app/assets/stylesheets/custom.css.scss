@@ -230,9 +230,19 @@
   position: relative;
   overflow: hidden;
   z-index: 0;
-  
 }
 table.fixed {
   table-layout: fixed;
   width: 100%;
+}
+.task{
+  font-size: .8rem;
+    letter-spacing: 1.2px;
+    color: rgba(147, 159, 173, 0.84);
+    line-height: .9375rem;
+    margin-bottom: .5rem;
+    font-weight: bold;
+    box-sizing: border-box;
+    border-bottom: 2px solid #efefef;
+    line-height: 1.25rem;
 }
