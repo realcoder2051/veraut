@@ -1,5 +1,6 @@
 class CompaniesController < InheritedResources::Base
 
+
   def new
     @company = Company.new
   end
@@ -15,7 +16,8 @@ class CompaniesController < InheritedResources::Base
   end
 
   def index
-    @companies = Company.all.order('created_at').where(task_id: session[:task_id])
+		@companies = Company.all.order('created_at').where(task_id: session[:task_id])
+		@notes = Note.all
   end
 
   def edit
@@ -27,12 +29,27 @@ class CompaniesController < InheritedResources::Base
     if company.update_attributes(company_params)
       redirect_to companies_path
     end
-  end
+	end
+	
+	def create_note
+		@note = Note.new
+		@note[:description] = params[:des]
+		@note[:data_collection_step] = request.original_fullpath[1,7]
+		puts current_user.email
+		@note[:created_by] = current_user.email
+		if @note.save
+			render json: { data: @note }
+		end
+	end
 
-  private
+	private
 
-    def company_params
-      params.require(:company).permit(:company_name, :ein, :fiscal_year_end, :entity_type, :naic_code, :payroll_provider, :payroll_frequency)
-    end
+	def note_params
+		params.permit(:description)
+	end
+	
+	def company_params
+		params.require(:company).permit(:company_name, :ein, :fiscal_year_end, :entity_type, :naic_code, :payroll_provider, :payroll_frequency)
+	end
 
 end

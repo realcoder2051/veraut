@@ -1,52 +1,175 @@
 <div class="container-fluid full-scroll">
- <div class="page__heading cancel-row">
-    <nav aria-label="breadcrumb">
-      <ol class="breadcrumb mb-0">
-        <li class="breadcrumb-item"><i class="material-icons icon-20pt">home</i></li>
-        <li class="breadcrumb-item active" aria-current="page">Companies</a></li>
-      </ol>
-    </nav>
-    <div class="row">
-      <div style="display:inline-block" class=" col-lg-4  w-50 p-12 px-md-1 ">
-      <h1 class="ml-3">View Company</h1> 
-      </div>
-      <div class="col-lg-2 offset-lg-6">
-        <%=link_to 'New Company',new_company_path, class:"btn btn-primary m-1 float-right" %>
-      </div>
-    </div>
-  </div>
-  <table class="table mb-0 thead-border-top-0 mt-1  table-hover">
-    <thead class="table-info">
-      <tr>
-        <th>Company name</th>
-        <th>Ein</th>
-        <th>Fiscal year end</th>
-        <th>Entity type</th>
-        <th>Naic code</th>
-        <th>Payroll provider</th>
-        <th>Payroll frequency</th>
-        <th colspan="1">Actions</th>
-      </tr>
-    </thead>
-    <%if session[:task_id]%>
-      <tbody>
-        <% @companies.each do |company| %>
-          <tr class ="redirect_to_show cursor-pointer" data-url="<%= company_path(company) %>">
-            <td><%= company.company_name %></td>
-            <td><%= company.ein %></td>
-            <td><%= company.fiscal_year_end %></td>
-            <td><%= company.entity_type %></td>
-            <td><%= company.naic_code %></td>
-            <td><%= company.payroll_provider %></td>
-            <td><%= company.payroll_frequency %></td>
-            <td>
-            <a href=<%=edit_company_path(company)%> ><i class="material-icons icon-20pt modal-edit">edit</i></a>
-            <a data-confirm="Are you sure?" rel="nofollow" data-method="delete" href=<%=company_path(company)%>><i class="material-icons">delete</i></a>
-            </td>
-          </tr>
-        <% end %>
-      </tbody>
-    <%end%>
-  </table>
+	<div class="page__heading cancel-row">
+		<nav aria-label="breadcrumb">
+			<ol class="breadcrumb mb-0">
+				<li class="breadcrumb-item"><i class="material-icons icon-20pt">home</i></li>
+				<li class="breadcrumb-item active" aria-current="page">Companies</a></li>
+			</ol>
+		</nav>
+		<div class="row">
+			<div style="display:inline-block" class=" col-lg-4  w-50 p-12 px-md-1 ">
+				<h1 class="ml-3">View Company</h1>
+			</div>
+			<div class="float-right mt-1">
+				<button type="button" class="btn btn-success  px-51 " data-toggle="modal"
+					data-target="#new_approval ">Notes</button>
+			</div>
+			<div class="float-right mb-2">
+				<%=link_to 'New Company',new_company_path, class:"btn btn-primary m-1 float-right" %>
+			</div>
+
+		</div>
+	</div>
+	<table class="table mb-0 thead-border-top-0 mt-1  table-hover">
+		<thead class="table-info">
+			<tr>
+				<th>Company name</th>
+				<th>Ein</th>
+				<th>Fiscal year end</th>
+				<th>Entity type</th>
+				<th>Naic code</th>
+				<th>Payroll provider</th>
+				<th>Payroll frequency</th>
+				<th colspan="1">Actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			<% @companies.each do |company| %>
+			<tr class="redirect_to_show cursor-pointer" data-url="<%= company_path(company) %>">
+				<td><%= company.company_name %></td>
+				<td><%= company.ein %></td>
+				<td><%= company.fiscal_year_end %></td>
+				<td><%= company.entity_type %></td>
+				<td><%= company.naic_code %></td>
+				<td><%= company.payroll_provider %></td>
+				<td><%= company.payroll_frequency %></td>
+				<td>
+					<a href=<%=edit_company_path(company)%>><i class="material-icons icon-20pt modal-edit">edit</i></a>
+					<a data-confirm="Are you sure?" rel="nofollow" data-method="delete" href=<%=company_path(company)%>><i
+							class="material-icons">delete</i></a>
+				</td>
+			</tr>
+			<% end %>
+		</tbody>
+	</table>
 </div>
 <br>
+
+<div class="modal fade" id="new_approval" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+	aria-hidden="true">
+	<div class="modal-dialog" style="width:3 5%," position="" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<div class="page__heading">
+				</div>
+				<h5 class="modal-title" id="exampleModalLabel">Note</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<div class="mt-1 float-left ">
+					<h4> Notes </h4>
+				</div>
+				<div class="mr-3 float-right btn-size">
+					<button class="btn btn-success px-4 mt-1" , id="add_note_popup" , data-toggle="modal" data-target="#add_note">
+						Add Note 
+					</button>
+				</div>
+				<!-- notes table -->
+				<!-- <div class="table-responsive border-bottom" data-toggle="lists"
+					data-lists-values='["js-lists-values-employee-name"]'>
+					<table class="table mb-0 thead-border-top-0 mt-1" id="notes_table">
+						<thead>
+							<tr class="table-info">
+
+								<th>Note</th>
+								<th>Date</th>
+								<th>Created_by</th>
+								<th colspan="1">Actions</th>
+							</tr>
+						</thead>
+						<% count = 0 %>
+						<tbody class="list" id="blah">
+							<% @notes.each do |note| %>
+							<% if (note.created_by == current_user.email && note.data_collection_step == "company") %>
+							<% count += 1 %>
+							<tr class="redirect_to_show cursor-pointer" data-url="<%= note_path(note) %>">
+								<td><%= note.description%></td>
+								<td><%= note.created_at %></td>
+								<td><%= note.created_by %></td>
+								<td>
+									<a href=<%=edit_note_path(note)%>><i class="material-icons icon-20pt modal-edit">edit</i></a>
+									<a data-confirm="Are you sure?" rel="nofollow" data-method="delete" href=<%=note_path(note)%>><i
+											class="material-icons">delete</i></a>
+								</td>
+							</tr>
+							<% end %>
+							<% end %>
+							<% if count == 0 %>
+							<tr>
+								<td> no results found </td>
+							</tr>
+							<%end%>
+						</tbody>
+					</table>
+				</div> -->
+				<div >
+					<%=render '/notes/note.table' %>
+				</div>
+				<!-- notes table -->
+				<%= bootstrap_form_tag(url:'#')do |f| %>
+				<div class="show_form" hidden>
+					<%=render '/notes/form', f: f %>
+				</div>
+				<% end %>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<!-- Add note modal -->
+
+<div class="modal fade" id="add_note" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+	aria-hidden="true">
+	<div class="modal-dialog" style="width:3 5%," position="" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<div class="page__heading">
+				</div>
+				<h5 class="modal-title" id="exampleModalLabel">Note</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<!-- notes form -->
+				<%= bootstrap_form_tag(url:'company')do |f| %>
+				<div class="form-row">
+					<div class="col-lg-3 left-move"></div>
+					<div class="col-lg-4 left-move">
+						<%= f.text_area :description %>
+						<div class="invalid-feedback">Please provide a time.</div>
+						<div class="valid-feedback">Looks good!</div>
+					</div>
+				</div>
+				<div class="actions col-lg-12">
+					<div class="row">
+						<div class="col-lg-3 left-move  my-2"></div>
+						<div class="left-move my-2 ml-2">
+							<button class="btn btn-primary" , id="save_note"> save </button>
+						</div>
+						<div class="col-lg-1 right-move"></div>
+						<div class="right-move my-2">
+							<%= link_to 'Cancel', root_path, class: "btn btn-secondary " %>
+						</div>
+					</div>
+				</div>
+				<% end %>
+				
+				<!-- notes form -->
+			</div>
+		</div>
+	</div>
+</div>
