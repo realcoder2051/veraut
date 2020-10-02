@@ -18,8 +18,8 @@ class GeneralsController < InheritedResources::Base
 
   def index
     #find_task(task)
-    @addresses = Address.all.order('created_at').where(task_id: session[:task_id])
-    @numbers = ContactNumber.all.order('created_at').where(task_id: session[:task_id])
+      @addresses = Address.all.order('created_at').where(task_id: session[:task_id])
+      @numbers = ContactNumber.all.order('created_at').where(task_id: session[:task_id])
   end
 
   def find_task
