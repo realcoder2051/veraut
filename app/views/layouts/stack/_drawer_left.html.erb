@@ -27,13 +27,21 @@
                 <span class="sidebar-menu-text">My Active Tasks</span>
               </a>
             </li>
-          <%if session[:task_id]%>
+          <%#if session[:task_id]%>
             <li class = "sidebar-menu-item">
-              <a class="sidebar-menu-button collapsed" data-toggle="collapse" href="#holiday_menu" aria-expanded="false">
-                <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">dvr</i>
-                <span class="sidebar-menu-text">Data collection</span>
-                <span class="ml-auto sidebar-menu-toggle-icon"></span>
-              </a>
+              <%if session[:task_id]==nil%>
+                <a class="sidebar-menu-button collapsed disable-menu-item" data-toggle="collapse" href="#holiday_menu" aria-expanded="false">
+                  <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons disable-menu-item">dvr</i>
+                  <span class="sidebar-menu-text">Data collection</span>
+                  <span class="ml-auto sidebar-menu-toggle-icon disable-menu-item"></span>
+                </a>
+              <% elsif session[:task_id]%>
+                <a class="sidebar-menu-button collapsed" data-toggle="collapse" href="#holiday_menu" aria-expanded="false">
+                  <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">dvr</i>
+                  <span class="sidebar-menu-text">Data collection</span>
+                  <span class="ml-auto sidebar-menu-toggle-icon"></span>
+                </a>
+              <%end%>
               <ul class="sidebar-submenu collapse" id="holiday_menu">
                 <li class="sidebar-menu-item" id="view-general">
                   <a class="sidebar-menu-button" href="<%=generals_path%>">
@@ -89,7 +97,7 @@
                     <span class="sidebar-menu-text">Employees</span>
                   </a>
                 </li>
-                <li class="sidebar-menu-item" id="view-approval">
+              <li class="sidebar-menu-item" id="view-approval">
                 <a class="sidebar-menu-button" href="<%=approvals_path%>">
                   <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">add_to_queue</i>
                   <span class="sidebar-menu-text">Approval</span>
@@ -97,7 +105,8 @@
               </li>
               </ul>
             </li>
-          <%end%>
+          <%#end%>
+        <!--session ends--> 
 
           <li class = "sidebar-menu-item" id= "distribution">
             <a class="sidebar-menu-button collapsed" href="<%=distribution_index_path%>" aria-expanded="false">
@@ -126,7 +135,6 @@
                   </li>
               </ul>
             </li>
-            <!--session ends--> 
           <%end%>
 
             <!--Roles List -->

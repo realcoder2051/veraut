@@ -246,3 +246,12 @@ table.fixed {
     border-bottom: 2px solid #efefef;
     line-height: 1.25rem;
 }
+.disable-menu-item{
+  cursor: default;
+  color:#aeb4bb !important;
+  &:hover{
+    color:#aeb4bb !important;
+    text-decoration: none;
+
+  }
+}
