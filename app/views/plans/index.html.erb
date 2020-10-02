@@ -34,26 +34,28 @@
       </tr>
     </thead>
     <% @plans.each do |plan| %>
-      <tbody>
-        <tr class="redirect_to_show cursor-pointer" data-url=<%= plan_path(plan) %>> 
-          <td><%=plan.question1%></td>
-          <td><%=plan.question2%></td>
-          <td><%=plan.question3%></td>
-          <td><%=plan.question4%></td>
-          <td><%=plan.question5%></td>
-          <td><%=plan.question6%></td>
-          <td><%=plan.question7%></td>
-          <td><%=plan.question8%></td>
-          <td><%=plan.question9%></td>
-          <td><%=plan.question10%></td>
-          <td><%=plan.question11%></td>
-          <td><%=plan.question12%></td>
-            <td class="row" style="padding-left:0;padding-right:0">
-            <a href=<%=edit_plan_path(plan)%> ><i class="material-icons icon-20pt modal-edit">edit</i></a>
-            <a data-confirm="Are you sure?" rel="nofollow" data-method="delete" href=<%=plan_path(plan)%>><i class="material-icons">delete</i></a>
-          </td>
-        </tr>
-      </tbody>
+      <%if session[:task_id]%>
+        <tbody>
+          <tr class="redirect_to_show cursor-pointer" data-url=<%= plan_path(plan) %>> 
+            <td><%=plan.question1%></td>
+            <td><%=plan.question2%></td>
+            <td><%=plan.question3%></td>
+            <td><%=plan.question4%></td>
+            <td><%=plan.question5%></td>
+            <td><%=plan.question6%></td>
+            <td><%=plan.question7%></td>
+            <td><%=plan.question8%></td>
+            <td><%=plan.question9%></td>
+            <td><%=plan.question10%></td>
+            <td><%=plan.question11%></td>
+            <td><%=plan.question12%></td>
+              <td class="row" style="padding-left:0;padding-right:0">
+              <a href=<%=edit_plan_path(plan)%> ><i class="material-icons icon-20pt modal-edit">edit</i></a>
+              <a data-confirm="Are you sure?" rel="nofollow" data-method="delete" href=<%=plan_path(plan)%>><i class="material-icons">delete</i></a>
+            </td>
+          </tr>
+        </tbody>
+      <%end%>
     <%end%>
   </table>
 </div>

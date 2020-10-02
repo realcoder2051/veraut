@@ -27,6 +27,18 @@ class TasksController < InheritedResources::Base
     redirect_to generals_path
   end
 
+  def destroy
+    task = Task.find(params[:id])
+    if task.destroy
+      if session[:task_id] == task.id
+        session[:task_id] = nil
+        redirect_to root_path
+      else
+        redirect_to root_path
+      end
+    end
+  end
+
   def index
     id = current_user.task_group.id
     @active_tasks = Task.where("is_submitted=true and task_group_id=?",id).all

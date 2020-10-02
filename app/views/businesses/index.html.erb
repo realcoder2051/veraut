@@ -29,24 +29,26 @@
         <th colspan="1">Actions</th>
       </tr>
     </thead>
-    <tbody>
-      <% @businesses.each do |business| %>
-        <tr class ="redirect_to_show cursor-pointer" data-url="<%= business_path(business) %>">
-          <td><%= business.name %></td>
-          <td><%= business.ein %></td>
-          <td><%= business.date_purchased_or_sold %></td>
-          <td><%= business.address %></td>
-          <td><%= business.phone %></td>
-          <td><%= business.does_company_have_employees %></td>
-          <td><%= business.qualified_plan_sponsored %></td>
-          <td><%= business.entity_type %></td>
-          <td>
-          <a href=<%=edit_business_path(business)%> ><i class="material-icons icon-20pt modal-edit">edit</i></a>
-          <a data-confirm="Are you sure?" rel="nofollow" data-method="delete" href=<%=business_path(business)%>><i class="material-icons">delete</i></a>
-          </td>
-        </tr>
-      <% end %>
-    </tbody>
+    <%if session[:task_id]%>
+      <tbody>
+        <% @businesses.each do |business| %>
+          <tr class ="redirect_to_show cursor-pointer" data-url="<%= business_path(business) %>">
+            <td><%= business.name %></td>
+            <td><%= business.ein %></td>
+            <td><%= business.date_purchased_or_sold %></td>
+            <td><%= business.address %></td>
+            <td><%= business.phone %></td>
+            <td><%= business.does_company_have_employees %></td>
+            <td><%= business.qualified_plan_sponsored %></td>
+            <td><%= business.entity_type %></td>
+            <td>
+            <a href=<%=edit_business_path(business)%> ><i class="material-icons icon-20pt modal-edit">edit</i></a>
+            <a data-confirm="Are you sure?" rel="nofollow" data-method="delete" href=<%=business_path(business)%>><i class="material-icons">delete</i></a>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    <%end%>
   </table>
 </div>
 <br>

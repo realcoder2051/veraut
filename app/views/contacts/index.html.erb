@@ -25,19 +25,20 @@
         <th>Rights</th>
       </tr>
     </thead>
-
-    <tbody>
-      <% @roles_rights.each do |roles_right| %>
-        <%if roles_right.role.user.present?%>
-          <tr>
-            <td><%= roles_right.role.user.username%></td>
-            <td><%= "Benefit Equity Inc" %></td>
-            <td><%= roles_right.role.user.email  %></td>
-            <td><%= roles_right.role.name %></td>
-            <td><%= parse_json_array(roles_right.role_type) %></td>
-          </tr>
-        <%end%>
-      <% end %>
-    </tbody>
+    <%if session[:task_id]%>
+      <tbody>
+        <% @roles_rights.each do |roles_right| %>
+          <%if roles_right.role.user.present?%>
+            <tr>
+              <td><%= roles_right.role.user.username%></td>
+              <td><%= "Benefit Equity Inc" %></td>
+              <td><%= roles_right.role.user.email  %></td>
+              <td><%= roles_right.role.name %></td>
+              <td><%= parse_json_array(roles_right.role_type) %></td>
+            </tr>
+          <%end%>
+        <% end %>
+      </tbody>
+    <%end%>
   </table>
 </div>

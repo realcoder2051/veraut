@@ -27,75 +27,77 @@
                 <span class="sidebar-menu-text">My Active Tasks</span>
               </a>
             </li>
-          <li class = "sidebar-menu-item">
-            <a class="sidebar-menu-button collapsed" data-toggle="collapse" href="#holiday_menu" aria-expanded="false">
-              <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">dvr</i>
-              <span class="sidebar-menu-text">Data collection</span>
-              <span class="ml-auto sidebar-menu-toggle-icon"></span>
-            </a>
-            <ul class="sidebar-submenu collapse" id="holiday_menu">
-              <li class="sidebar-menu-item" id="view-general">
-                <a class="sidebar-menu-button" href="<%=generals_path%>">
-                  <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">account_box</i>
-                  <span class="sidebar-menu-text">General</span>
-                </a>
-              </li>
-              <li class="sidebar-menu-item" id="view-company">
-                <a class="sidebar-menu-button" href="<%=companies_path%>">
-                  <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">add_to_queue</i>
-                  <span class="sidebar-menu-text">Company</span>
-                </a>
-              </li>
-              <li class="sidebar-menu-item" id="view-principal">
-                <a class="sidebar-menu-button" href="<%=principals_path%>">
-                  <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">add_to_queue</i>
-                  <span class="sidebar-menu-text">Principals</span>
-                </a>
-              </li>
-              <li class="sidebar-menu-item" id="view-family">
-                <a class="sidebar-menu-button" href="<%=families_path%>">
-                  <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">add_to_queue</i>
-                  <span class="sidebar-menu-text">Family</span>
-                </a>
-              </li>
-              <li class="sidebar-menu-item" id="view-business">
-                <a class="sidebar-menu-button" href="<%=businesses_path%>">
-                  <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">add_to_queue</i>
-                  <span class="sidebar-menu-text">Business</span>
-                </a>
-              </li>
-              <li class="sidebar-menu-item" id="view-contact">
-                <a class="sidebar-menu-button" href="<%=contacts_path%>">
-                  <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">add_to_queue</i>
-                  <span class="sidebar-menu-text">Contacts</span>
-                </a>
-              </li>
-              <li class="sidebar-menu-item" id="view-plan">
-              <a class="sidebar-menu-button" href="<%=plans_path%>">
-                  <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">add_to_queue</i>
-                  <span class="sidebar-menu-text">Plans</span>
-                </a>
-              </li>
-              <li class="sidebar-menu-item" id="view-fiftyfive">
-                <a class="sidebar-menu-button" href="<%=fifty_5500_path%>">
-                  <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">add_to_queue</i>
-                  <span class="sidebar-menu-text">5500</span>
-                </a>
-              </li>
-              <li class="sidebar-menu-item" id="view-employee">
-                <a class="sidebar-menu-button" href="<%=employees_path%>">
-                  <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">add_to_queue</i>
-                  <span class="sidebar-menu-text">Employees</span>
-                </a>
-              </li>
-              <li class="sidebar-menu-item" id="view-approval">
-              <a class="sidebar-menu-button" href="<%=approvals_path%>">
-                <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">add_to_queue</i>
-                <span class="sidebar-menu-text">Approval</span>
+          <%if session[:task_id]%>
+            <li class = "sidebar-menu-item">
+              <a class="sidebar-menu-button collapsed" data-toggle="collapse" href="#holiday_menu" aria-expanded="false">
+                <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">dvr</i>
+                <span class="sidebar-menu-text">Data collection</span>
+                <span class="ml-auto sidebar-menu-toggle-icon"></span>
               </a>
+              <ul class="sidebar-submenu collapse" id="holiday_menu">
+                <li class="sidebar-menu-item" id="view-general">
+                  <a class="sidebar-menu-button" href="<%=generals_path%>">
+                    <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">account_box</i>
+                    <span class="sidebar-menu-text">General</span>
+                  </a>
+                </li>
+                <li class="sidebar-menu-item" id="view-company">
+                  <a class="sidebar-menu-button" href="<%=companies_path%>">
+                    <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">add_to_queue</i>
+                    <span class="sidebar-menu-text">Company</span>
+                  </a>
+                </li>
+                <li class="sidebar-menu-item" id="view-principal">
+                  <a class="sidebar-menu-button" href="<%=principals_path%>">
+                    <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">add_to_queue</i>
+                    <span class="sidebar-menu-text">Principals</span>
+                  </a>
+                </li>
+                <li class="sidebar-menu-item" id="view-family">
+                  <a class="sidebar-menu-button" href="<%=families_path%>">
+                    <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">add_to_queue</i>
+                    <span class="sidebar-menu-text">Family</span>
+                  </a>
+                </li>
+                <li class="sidebar-menu-item" id="view-business">
+                  <a class="sidebar-menu-button" href="<%=businesses_path%>">
+                    <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">add_to_queue</i>
+                    <span class="sidebar-menu-text">Business</span>
+                  </a>
+                </li>
+                <li class="sidebar-menu-item" id="view-contact">
+                  <a class="sidebar-menu-button" href="<%=contacts_path%>">
+                    <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">add_to_queue</i>
+                    <span class="sidebar-menu-text">Contacts</span>
+                  </a>
+                </li>
+                <li class="sidebar-menu-item" id="view-plan">
+                <a class="sidebar-menu-button" href="<%=plans_path%>">
+                    <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">add_to_queue</i>
+                    <span class="sidebar-menu-text">Plans</span>
+                  </a>
+                </li>
+                <li class="sidebar-menu-item" id="view-fiftyfive">
+                  <a class="sidebar-menu-button" href="<%=fifty_5500_path%>">
+                    <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">add_to_queue</i>
+                    <span class="sidebar-menu-text">5500</span>
+                  </a>
+                </li>
+                <li class="sidebar-menu-item" id="view-employee">
+                  <a class="sidebar-menu-button" href="<%=employees_path%>">
+                    <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">add_to_queue</i>
+                    <span class="sidebar-menu-text">Employees</span>
+                  </a>
+                </li>
+                <li class="sidebar-menu-item" id="view-approval">
+                <a class="sidebar-menu-button" href="<%=approvals_path%>">
+                  <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">add_to_queue</i>
+                  <span class="sidebar-menu-text">Approval</span>
+                </a>
+              </li>
+              </ul>
             </li>
-            </ul>
-          </li>
+          <%end%>
 
           <li class = "sidebar-menu-item" id= "distribution">
             <a class="sidebar-menu-button collapsed" href="<%=distribution_index_path%>" aria-expanded="false">

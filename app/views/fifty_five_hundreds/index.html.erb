@@ -16,34 +16,36 @@
     </div>
   </div>
 
-<table class="table mb-0 thead-border-top-0 mt-1  table-hover">
+  <table class="table mb-0 thead-border-top-0 mt-1  table-hover">
     <thead class="table-info">
-    <tr>
-      <th>Question1</th>
-      <th>Question2</th>
-      <th>Question3</th>
-      <th>Question4</th>
-      <th>Question5</th>
-      <th>Question6</th>
-      <th colspan="1">Actions</th>
-    </tr>
-  </thead>
-    <tbody>
-      <% @fifty_five_hundreds.each do |fifty_five_hundred| %>
-        <tr class ="redirect_to_show cursor-pointer" data-url="<%= fifty_5500_show_path(fifty_five_hundred) %>">
-          <td><%= fifty_five_hundred.question1 %></td>
-          <td><%= fifty_five_hundred.question2 %></td>
-          <td><%= fifty_five_hundred.question3 %></td>
-          <td><%= fifty_five_hundred.question4 %></td>
-          <td><%= fifty_five_hundred.question5 %></td>
-          <td><%= fifty_five_hundred.question6 %></td>
-          <td class="row">
-          <a href=<%=fifty_5500_edit_path(fifty_five_hundred)%> ><i class="material-icons icon-20pt modal-edit">edit</i></a>
-          <a data-confirm="Are you sure?" rel="nofollow" data-method="delete" href=<%=fifty_5500_delete_url(fifty_five_hundred)%>><i class="material-icons">delete</i></a>
-          </td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
-</div>
+      <tr>
+        <th>Question1</th>
+        <th>Question2</th>
+        <th>Question3</th>
+        <th>Question4</th>
+        <th>Question5</th>
+        <th>Question6</th>
+        <th colspan="1">Actions</th>
+      </tr>
+    </thead>
+    <%if session[:task_id]%>
+      <tbody>
+        <% @fifty_five_hundreds.each do |fifty_five_hundred| %>
+          <tr class ="redirect_to_show cursor-pointer" data-url="<%= fifty_5500_show_path(fifty_five_hundred) %>">
+            <td><%= fifty_five_hundred.question1 %></td>
+            <td><%= fifty_five_hundred.question2 %></td>
+            <td><%= fifty_five_hundred.question3 %></td>
+            <td><%= fifty_five_hundred.question4 %></td>
+            <td><%= fifty_five_hundred.question5 %></td>
+            <td><%= fifty_five_hundred.question6 %></td>
+            <td class="row">
+            <a href=<%=fifty_5500_edit_path(fifty_five_hundred)%> ><i class="material-icons icon-20pt modal-edit">edit</i></a>
+            <a data-confirm="Are you sure?" rel="nofollow" data-method="delete" href=<%=fifty_5500_delete_url(fifty_five_hundred)%>><i class="material-icons">delete</i></a>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    <%end%>
+    </table>
+  </div>
 <div class="row"></div>

@@ -27,42 +27,46 @@
             <th colspan="1">Actions</th>
           </tr>
         </thead>
-        <tbody>
-          <%@addresses.each do |address| %>
-           <tr class="redirect_to_show cursor-pointer" data-url=<%= address_path(address) %>>
-              <td><%= address.address_type %></td>
-              <td colspan="3"><%= address.address1+address.address2+","+address.city+","+address.state+","+address.zip+","+address.address_type %></td>
-              <td>
-                <a href=<%=edit_address_path(address)%> ><i class="material-icons">edit</i></a>
-                <a data-confirm="Are you sure?" rel="nofollow" data-method="delete" href=<%=address_path(address)%>><i class="material-icons">delete</i></a>
-              </td>
-            </tr>
-          <% end %>
-        </tbody>
+        <%if session[:task_id]%>
+          <tbody>
+            <%@addresses.each do |address| %>
+            <tr class="redirect_to_show cursor-pointer" data-url=<%= address_path(address) %>>
+                <td><%= address.address_type %></td>
+                <td colspan="3"><%= address.address1+address.address2+","+address.city+","+address.state+","+address.zip+","+address.address_type %></td>
+                <td>
+                  <a href=<%=edit_address_path(address)%> ><i class="material-icons">edit</i></a>
+                  <a data-confirm="Are you sure?" rel="nofollow" data-method="delete" href=<%=address_path(address)%>><i class="material-icons">delete</i></a>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        <%end%>
       </table>
     </div>
-<div class="col-lg-5">
-  <table class="table mb-0 thead-border-top-0 mt-1  table-hover">
-    <thead class="table-info">
-      <tr>
-        <th>Type</th>
-        <th colspan="2">Contact</th>
-        <th colspan="1">Actions</th>
-      </tr>
-    </thead>
-    <tbody>
-      <%@numbers.each do |number| %>
-        <tr class="redirect_to_show cursor-pointer" data-url=<%= contact_number_path(number) %>>
-        <td><%= number.contact_type %></td>
-        <td colspan="2"> <%= number.number %></td>
-        <td>
-          <a href=<%=edit_contact_number_path(number)%> ><i class="material-icons">edit</i></a>
-          <a data-confirm="Are you sure?" rel="nofollow" data-method="delete" href=<%=contact_number_path(number)%>><i class="material-icons">delete</i></a>        </td>
-      </tr>
-      <%end%>
-    </tbody>
-  </table>
+    <div class="col-lg-5">
+      <table class="table mb-0 thead-border-top-0 mt-1  table-hover">
+        <thead class="table-info">
+          <tr>
+            <th>Type</th>
+            <th colspan="2">Contact</th>
+            <th colspan="1">Actions</th>
+          </tr>
+        </thead>
+        <%if session[:task_id]%>
+          <tbody>
+            <%@numbers.each do |number| %>
+              <tr class="redirect_to_show cursor-pointer" data-url=<%= contact_number_path(number) %>>
+              <td><%= number.contact_type %></td>
+              <td colspan="2"> <%= number.number %></td>
+              <td>
+                <a href=<%=edit_contact_number_path(number)%> ><i class="material-icons">edit</i></a>
+                <a data-confirm="Are you sure?" rel="nofollow" data-method="delete" href=<%=contact_number_path(number)%>><i class="material-icons">delete</i></a>        </td>
+            </tr>
+            <%end%>
+          </tbody>
+        <%end%>
+      </table>
+    </div>
+  </div>
 </div>
-</div>
-<br>
-</div>
+
