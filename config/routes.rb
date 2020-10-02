@@ -36,7 +36,9 @@
   resources :buisenesses
   resources :families
   resources :principals
-  resources :companies
+	resources :companies
+		post 'company/create_note', to: 'companies#create_note'
+		post 'company', to: 'companies#create_note'
   resources :generals
   devise_for :users
   get 'users/sign_in',to: 'user/sessions#destroy'

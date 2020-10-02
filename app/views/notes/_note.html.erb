@@ -1,0 +1,10 @@
+<tr class="redirect_to_show cursor-pointer" data-url="<%= note_path(note) %>">
+	<td><%= note.description%></td>
+	<td><%= note.created_at %></td>
+	<td><%= note.created_by %></td>
+	<td>
+		<a href=<%=edit_note_path(note)%>><i class="material-icons icon-20pt modal-edit">edit</i></a>
+		<a data-confirm="Are you sure?" rel="nofollow" data-method="delete" href=<%=note_path(note)%>><i
+				class="material-icons">delete</i></a>
+	</td>
+</tr>
