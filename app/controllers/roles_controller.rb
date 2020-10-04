@@ -1,4 +1,5 @@
 class RolesController < InheritedResources::Base
+  load_and_authorize_resource
 
   def create
     role = Role.new(role_params)
@@ -26,10 +27,10 @@ class RolesController < InheritedResources::Base
 
   def show
     @roles_right = RolesRight.find(params[:id])
+    authorize! :read, @roles_right
   end
 
   def update
-
     role = Role.find(params[:id])
     rights = params[:role][:right_type].drop(1)
     rights = { rights: rights.join(',') }

@@ -20,13 +20,13 @@
               <span class="sidebar-menu-text">Home</span>
             </a>
           </li>
-          <%if can? :manage,Task%>
             <li class = "sidebar-menu-item" id= "active-task">
               <a class="sidebar-menu-button" href="<%=tasks_path%>" aria-expanded="false"  >
                 <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">dvr</i>
                 <span class="sidebar-menu-text">My Active Tasks</span>
               </a>
             </li>
+          
           <%#if session[:task_id]%>
             <li class = "sidebar-menu-item">
               <%if session[:task_id]==nil%>
@@ -107,13 +107,13 @@
             </li>
           <%#end%>
         <!--session ends--> 
-
           <li class = "sidebar-menu-item" id= "distribution">
             <a class="sidebar-menu-button collapsed" href="<%=distribution_index_path%>" aria-expanded="false">
               <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">dvr</i>
               <span class="sidebar-menu-text">Distribution</span>
             </a>
 					</li>
+          <% if can? :manage,@user%>
             <li class = "sidebar-menu-item">
               <a class="sidebar-menu-button" data-toggle="collapse" href="#attendance_menu" aria-expanded="false">
                 <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">dvr</i>
@@ -136,8 +136,10 @@
               </ul>
             </li>
           <%end%>
+          <%#end%>
 
             <!--Roles List -->
+        <%if can? :manage,@role%>
           <li class = "sidebar-menu-item" id="roles-list">
             <a class="sidebar-menu-button" data-toggle="collapse" href="#roles-menu" aria-expanded="false">
               <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">dvr</i>
@@ -171,6 +173,7 @@
               </li>
             </ul>
           </li>
+        <%end%>
           <!--end Roles-->
         </ul>
        <div style="display: none;">
