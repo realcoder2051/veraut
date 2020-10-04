@@ -11,8 +11,7 @@ class Ability
 
     if user.role.name == "Admin"
       can :manage, :all
-    end
-    if user.role.name == "Technician"
+    elsif user.role.name == "Technician"
       can :manage, Task
     else
       can :read, :all
