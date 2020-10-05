@@ -5,12 +5,12 @@ class FiftyFiveHundredsController < InheritedResources::Base
     end
 
   def create
-    fifty_five_hundred = FiftyFiveHundred.new(fifty_five_hundred_params)
-    fifty_five_hundred.update(task_id: session[:task_id])
-    if fifty_five_hundred.save
+    @fifty_five_hundred = FiftyFiveHundred.new(fifty_five_hundred_params)
+    @fifty_five_hundred.update(task_id: session[:task_id])
+    if @fifty_five_hundred.save
         redirect_to fifty_5500_path
     else
-      redirect_to fifty_5500_new_path
+      render :new
     end
   end
 
@@ -19,10 +19,12 @@ class FiftyFiveHundredsController < InheritedResources::Base
   end
 
   def update
-    fifty_five_hundred = FiftyFiveHundred.find(params[:id])
-    if fifty_five_hundred.update_attributes(fifty_five_hundred_params)
+    @fifty_five_hundred = FiftyFiveHundred.find(params[:id])
+    if @fifty_five_hundred.update_attributes(fifty_five_hundred_params)
       redirect_to fifty_5500_path
-    end
+		else
+			render :edit
+		end
   end
 
   def index

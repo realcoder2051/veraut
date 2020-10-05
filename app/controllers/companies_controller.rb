@@ -6,12 +6,12 @@ class CompaniesController < InheritedResources::Base
   end
 
   def create
-    company = Company.new(company_params)
-    company.update(task_id: session[:task_id])
-    if company.save
+    @company = Company.new(company_params)
+    @company.update(task_id: session[:task_id])
+    if @company.save
       redirect_to companies_path
-    else
-      redirect_to new_companies_path
+		else
+      render :new
     end
   end
 
@@ -25,10 +25,13 @@ class CompaniesController < InheritedResources::Base
   end
 
   def update
-    company = Company.find(params[:id])
-    if company.update_attributes(company_params)
-      redirect_to companies_path
-    end
+    @company = Company.find(params[:id])
+    if @company.update_attributes(company_params)
+			redirect_to companies_path
+		else
+      render :edit
+		end
+		
 	end
 
 
@@ -37,7 +40,6 @@ class CompaniesController < InheritedResources::Base
 		@note = Note.new
 		@note[:description] = params[:des]
 		@note[:data_collection_step] = request.original_fullpath[1,7]
-		puts current_user.email
 		@note[:created_by] = current_user.email
 		if @note.save
 			render json: {

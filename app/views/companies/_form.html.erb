@@ -25,7 +25,7 @@
 <div class="row" >
   <div class="col-lg-4 left-move"></div>
   <div class="col-lg-4 left-move">
-    <%= f.select :entity_type,options_for_select([ "BiWeekly", "Monthly","Schedules" ], @company[:entity_type]) %>
+    <%= f.select :entity_type,options_for_select(["BiWeekly", "Monthly","Schedules" ], @company[:entity_type]) ,{ :include_blank => '-- Select One --' }  %>
     <div class="invalid-feedback">Please provide a time.</div>
     <div class="valid-feedback">Looks good!</div>
   </div>
@@ -33,10 +33,13 @@
 <div class="row" >
   <div class="col-lg-4 left-move"></div>
   <div class="col-lg-4 left-move">
-    <%= f.text_field :naic_code %>
+		<%= f.text_field :naic_code %>  
     <div class="invalid-feedback">Please provide a time.</div>
     <div class="valid-feedback">Looks good!</div>
-  </div>
+	</div>
+	<div class="col-lg-4 naic_code"> 
+		<a href="https://www.irs.gov/instructions/i5500ez#idm140115741914432" target="_blank">Click here to search for your NAICS code</a>
+	</div>
 </div>
 <div class="row" >
   <div class="col-lg-4 left-move"></div>
@@ -49,7 +52,7 @@
 <div class="row" >
   <div class="col-lg-4 left-move"></div>
   <div class="col-lg-4 left-move">
-    <%= f.select :payroll_frequency,options_for_select(["LLC", "C Corp","Church"],@company[:payroll_frequency]) %>
+    <%= f.select :payroll_frequency,options_for_select(["LLC", "C Corp","Church"],@company[:payroll_frequency]),{ :include_blank => '-- Select One --' }  %>
     <div class="invalid-feedback">Please provide a time.</div>
     <div class="valid-feedback">Looks good!</div>
   </div>

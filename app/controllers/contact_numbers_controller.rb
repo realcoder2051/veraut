@@ -4,7 +4,10 @@ class ContactNumbersController < InheritedResources::Base
     contact_number = ContactNumber.new(contact_number_params)
     contact_number.update(task_id: session[:task_id])
     if contact_number.save
-      redirect_to generals_path
+			redirect_to generals_path
+		else
+			redirect_to generals_path
+
     end
   end
 
@@ -25,7 +28,7 @@ class ContactNumbersController < InheritedResources::Base
     end
   end
 
-	def edit
+  def edit
     @number = ContactNumber.find(params[:id])
   end
 

@@ -8,9 +8,11 @@ class BusinessesController < InheritedResources::Base
   end
 
   def update
-    business = Business.find(params[:id])
-    if business.update_attributes(business_params)
-      redirect_to businesses_path
+    @business = Business.find(params[:id])
+    if @business.update_attributes(business_params)
+			redirect_to businesses_path
+		else
+			render :edit
     end
   end
 
@@ -19,12 +21,12 @@ class BusinessesController < InheritedResources::Base
   end
 
   def create
-    business = Business.new(business_params)
-    business.update(task_id: session[:task_id])
-    if business.save
+    @business = Business.new(business_params)
+    @business.update(task_id: session[:task_id])
+    if @business.save
       redirect_to businesses_path
     else
-      redirect_to new_businenss_path
+      render :new
     end
   end
 

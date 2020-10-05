@@ -1,51 +1,65 @@
 <div class="container-fluid full-scroll">
- <div class="page__heading cancel-row">
-    <nav aria-label="breadcrumb">
-      <ol class="breadcrumb mb-0">
-        <li class="breadcrumb-item"><i class="material-icons icon-20pt">home</i></li>
-        <li class="breadcrumb-item active" aria-current="page">5500</a></li>
-      </ol>
-    </nav>
-   <div class="row">
-      <div style="display:inline-block" class=" col-lg-4  w-50 p-12 px-md-1 ">
-      <h1 class="ml-3">View 5500</h1> 
-      </div>
-      <div class="col-lg-2 offset-lg-6">
-        <%=link_to 'New 5500',fifty_5500_new_path, class:"btn btn-primary m-1 float-right" %>
-      </div>
-    </div>
-  </div>
+	<div class="page__heading cancel-row">
+		<nav aria-label="breadcrumb">
+			<ol class="breadcrumb mb-0">
+				<li class="breadcrumb-item"><i class="material-icons icon-20pt">home</i></li>
+				<li class="breadcrumb-item active" aria-current="page">5500</a></li>
+			</ol>
+		</nav>
+		<div class="row">
+			<div style="display:inline-block" class=" col-lg-4  w-50 p-12 px-md-1 ">
+				<h1 class="ml-3">View 5500</h1>
+			</div>
+		</div>
+	</div>
 
-  <table class="table mb-0 thead-border-top-0 mt-1  table-hover">
-    <thead class="table-info">
-      <tr>
-        <th>Question1</th>
-        <th>Question2</th>
-        <th>Question3</th>
-        <th>Question4</th>
-        <th>Question5</th>
-        <th>Question6</th>
-        <th colspan="1">Actions</th>
-      </tr>
-    </thead>
-    <%if session[:task_id]%>
-      <tbody>
-        <% @fifty_five_hundreds.each do |fifty_five_hundred| %>
-          <tr class ="redirect_to_show cursor-pointer" data-url="<%= fifty_5500_show_path(fifty_five_hundred) %>">
-            <td><%= fifty_five_hundred.question1 %></td>
-            <td><%= fifty_five_hundred.question2 %></td>
-            <td><%= fifty_five_hundred.question3 %></td>
-            <td><%= fifty_five_hundred.question4 %></td>
-            <td><%= fifty_five_hundred.question5 %></td>
-            <td><%= fifty_five_hundred.question6 %></td>
-            <td class="row">
-            <a href=<%=fifty_5500_edit_path(fifty_five_hundred)%> ><i class="material-icons icon-20pt modal-edit">edit</i></a>
-            <a data-confirm="Are you sure?" rel="nofollow" data-method="delete" href=<%=fifty_5500_delete_url(fifty_five_hundred)%>><i class="material-icons">delete</i></a>
-            </td>
-          </tr>
-        <% end %>
-      </tbody>
-    <%end%>
-    </table>
-  </div>
-<div class="row"></div>
+	<div class="card card-form">
+		<div class="row no-gutters">
+			<div class="col-lg-12 card-form__body">
+				<div class="ml-3  float-right">
+					<%=link_to 'New 5500',fifty_5500_new_path, class:"btn btn-primary m-1 float-right" %>
+				</div>
+				<div class="ml-2 my-1 float-right">
+					<button type="button" class="btn btn-success  px-3" data-toggle="modal"
+						data-target="#new_approval ">Notes
+					</button>
+				</div>
+			</div>
+			<div class="col-lg-12 card-form__body">
+				<table class="table mb-0 thead-border-top-0 mt-1  table-hover">
+					<thead class="table-info">
+						<tr>
+							<th>Question1</th>
+							<th>Question2</th>
+							<th>Question3</th>
+							<th>Question4</th>
+							<th>Question5</th>
+							<th>Question6</th>
+							<th colspan="1">Actions</th>
+						</tr>
+					</thead>
+					<%if session[:task_id]%>
+					<tbody>
+						<% @fifty_five_hundreds.each do |fifty_five_hundred| %>
+						<tr class="redirect_to_show cursor-pointer" data-url="<%= fifty_5500_show_path(fifty_five_hundred) %>">
+							<td><%= fifty_five_hundred.question1 %></td>
+							<td><%= fifty_five_hundred.question2 %></td>
+							<td><%= fifty_five_hundred.question3 %></td>
+							<td><%= fifty_five_hundred.question4 %></td>
+							<td><%= fifty_five_hundred.question5 %></td>
+							<td><%= fifty_five_hundred.question6 %></td>
+							<td class="row">
+								<a href=<%=fifty_5500_edit_path(fifty_five_hundred)%>><i
+										class="material-icons icon-20pt modal-edit">edit</i></a>
+								<a data-confirm="Are you sure?" rel="nofollow" data-method="delete"
+									href=<%=fifty_5500_delete_url(fifty_five_hundred)%>><i class="material-icons">delete</i></a>
+							</td>
+						</tr>
+						<% end %>
+					</tbody>
+					<%end%>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>

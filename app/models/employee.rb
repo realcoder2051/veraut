@@ -1,5 +1,7 @@
 class Employee < ApplicationRecord
-  validates_length_of :ssn, :maximum => 9
+	validates_length_of :ssn, :maximum => 9
+	validates :first_name,:last_name,:ssn,:date_of_birth,:original_date_of_hire, :compensation, :hours, presence: true
+
 
   def self.update_imported_store(file)
       spreadsheet = open_spreadsheet(file)

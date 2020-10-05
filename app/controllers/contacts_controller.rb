@@ -1,10 +1,12 @@
 class ContactsController < InheritedResources::Base
 
   def update
-    contact = Contact.find(params[:id])
-    if contact.update_attributes(contact_params)
+    @contact = Contact.find(params[:id])
+    if @contact.update_attributes(contact_params)
       redirect_to contacts_path
-    end
+		else 
+			redirect_to contacts_path
+		end
   end
 
 	def edit

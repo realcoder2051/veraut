@@ -1,11 +1,14 @@
 class AddressesController < InheritedResources::Base
 
   def create
-    address = Address.new(address_params)
+    @address = Address.new(address_params)
     # address = Address.new(address1: address.address1,address2: address.address2,city: address.address1,state: address.state,zip: address.zip,address_type: params[:address][:address_type])
-    address[:task_id] = session[:task_id]
-    if address.save
-      redirect_to generals_path
+    @address[:task_id] = session[:task_id]
+    if @address.save
+			redirect_to generals_path
+		else
+			address_collection
+			render :new
     end
   end
 
@@ -19,21 +22,16 @@ class AddressesController < InheritedResources::Base
 
   def new
     @address = Address.new
-    @addresses = Address.all.order('created_at').where(task_id: session[:task_id])
-  end
-
-  def create_new_address
-    address = Address.new(address_params)
-    address.update(task_id: session[:task_id])
-    if address.save
-      redirect_to generals_path
-    end
+		address_collection
   end
 
   def update
-    address = Address.find(params[:id])
-    if address.update_attributes(address_params)
-      redirect_to generals_path
+    @address = Address.find(params[:id])
+    if @address.update_attributes(address_params)
+			redirect_to generals_path
+		else
+			address_collection
+			render :edit
     end
   end
 
@@ -53,7 +51,11 @@ class AddressesController < InheritedResources::Base
     render json: { data: address }
   end
 
-  private
+	private
+	
+	def address_collection
+		@addresses = Address.all.order('created_at').where(task_id: session[:task_id])
+	end
 
 	def address_params
 		params.require(:address).permit(:address1, :address2, :city, :state, :zip, :address_type, :general_id)

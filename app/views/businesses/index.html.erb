@@ -1,54 +1,67 @@
 <div class="container-fluid full-scroll">
- <div class="page__heading cancel-row">
-    <nav aria-label="breadcrumb">
-      <ol class="breadcrumb mb-0">
-        <li class="breadcrumb-item"><i class="material-icons icon-20pt">home</i></li>
-        <li class="breadcrumb-item active" aria-current="page">Business</a></li>
-      </ol>
-    </nav>
-      <div class="row">
-      <div style="display:inline-block" class=" col-lg-4  w-50 p-12 px-md-1 ">
-      <h1 class="ml-3">View Business</h1> 
-      </div>
-      <div class="col-lg-2 offset-lg-6">
-        <%=link_to 'New Business',new_business_path, class:"btn btn-primary m-1 float-right" %>
-      </div>
-    </div>
-  </div>
-  <table class="table mb-0 thead-border-top-0 mt-1  table-hover">
-    <thead class="table-info">
-      <tr>
-        <th>Name</th>
-        <th>Ein</th>
-        <th>Date purchased</th>
-        <th>Address</th>
-        <th>Phone</th>
-        <th>Employees?</th>
-        <th>Plan Sponsor</th>
-        <th>Entity type</th>
-        <th colspan="1">Actions</th>
-      </tr>
-    </thead>
-    <%if session[:task_id]%>
-      <tbody>
-        <% @businesses.each do |business| %>
-          <tr class ="redirect_to_show cursor-pointer" data-url="<%= business_path(business) %>">
-            <td><%= business.name %></td>
-            <td><%= business.ein %></td>
-            <td><%= business.date_purchased_or_sold %></td>
-            <td><%= business.address %></td>
-            <td><%= business.phone %></td>
-            <td><%= business.does_company_have_employees %></td>
-            <td><%= business.qualified_plan_sponsored %></td>
-            <td><%= business.entity_type %></td>
-            <td>
-            <a href=<%=edit_business_path(business)%> ><i class="material-icons icon-20pt modal-edit">edit</i></a>
-            <a data-confirm="Are you sure?" rel="nofollow" data-method="delete" href=<%=business_path(business)%>><i class="material-icons">delete</i></a>
-            </td>
-          </tr>
-        <% end %>
-      </tbody>
-    <%end%>
-  </table>
+	<div class="page__heading cancel-row">
+		<nav aria-label="breadcrumb">
+			<ol class="breadcrumb mb-0">
+				<li class="breadcrumb-item"><i class="material-icons icon-20pt">home</i></li>
+				<li class="breadcrumb-item active" aria-current="page">Business</a></li>
+			</ol>
+		</nav>
+		<div class="row">
+			<div style="display:inline-block" class=" col-lg-4  w-50 p-12 px-md-1 ">
+				<h1 class="ml-3">View Business</h1>
+			</div>
+		</div>
+	</div>
+	<div class="card card-form">
+		<div class="row no-gutters">
+			<div class="col-lg-12 card-form__body">
+				<div class="ml-3  float-right">
+					<%=link_to 'New Business',new_business_path, class:"btn btn-primary m-1 float-right" %>
+				</div>
+				<div class="ml-2 my-1 float-right">
+					<button type="button" class="btn btn-success  px-3" data-toggle="modal"
+						data-target="#new_approval ">Notes
+					</button>
+				</div>
+			</div>
+			<div class="col-lg-12 card-form__body">
+				<table class="table mb-0 thead-border-top-0 mt-1  table-hover">
+					<thead class="table-info">
+						<tr>
+							<th>Name</th>
+							<th>Ein</th>
+							<th>Date purchased</th>
+							<th>Address</th>
+							<th>Phone</th>
+							<th>Employees?</th>
+							<th>Plan Sponsor</th>
+							<th>Entity type</th>
+							<th colspan="1">Actions</th>
+						</tr>
+					</thead>
+					<%if session[:task_id]%>
+					<tbody>
+						<% @businesses.each do |business| %>
+						<tr class="redirect_to_show cursor-pointer" data-url="<%= business_path(business) %>">
+							<td><%= business.name %></td>
+							<td><%= business.ein %></td>
+							<td><%= business.date_purchased_or_sold %></td>
+							<td><%= business.address %></td>
+							<td><%= business.phone %></td>
+							<td><%= business.does_company_have_employees %></td>
+							<td><%= business.qualified_plan_sponsored %></td>
+							<td><%= business.entity_type %></td>
+							<td>
+								<a href=<%=edit_business_path(business)%>><i class="material-icons icon-20pt modal-edit">edit</i></a>
+								<a data-confirm="Are you sure?" rel="nofollow" data-method="delete" href=<%=business_path(business)%>><i
+										class="material-icons">delete</i></a>
+							</td>
+						</tr>
+						<% end %>
+					</tbody>
+					<%end%>
+				</table>
+			</div>
+		</div>
+	</div>
 </div>
-<br>

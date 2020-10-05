@@ -108,13 +108,11 @@ $("#number_dropdown").change(function (event) {
 
 });
 
-$("#add_note_popup").click(function (event) {
-	$("#new_approval").hide();
-})
 
 
-$(".delete_href").click(function (event) {	
-	debugger
+
+	
+function delete_note(){
 	var note_id = event.currentTarget.dataset.id
 	event.currentTarget.closest('tr').remove();
 	$.ajax({
@@ -126,8 +124,23 @@ $(".delete_href").click(function (event) {
 
 		}
 	})
-})
+}	
 
+$('#add_note_popup').click(function(e)
+{
+	$('#myModal').modal('hide');
+	$('#add_note').modal('show');	
+});
+
+
+
+$('#cancel_note').click(function(e)
+{
+
+});
+
+$('#myModal').on('hidden.bs.modal', function (e) {
+})
 
 
 $("#save_note").click(function (event) {
@@ -143,17 +156,13 @@ $("#save_note").click(function (event) {
 		success: function (response) {
 			console.log(response);
 			$row = response.html;
-
-			$('table> tbody:last').append($row);
+			$('#myModal table > tbody:last').append($row);
 		}
 	})
-	$("#new_approval").show();
-	$("#add_note").hide();
+	$("#add_note").modal('hide')
+	$('#myModal').modal('show')
 	event.preventDefault();
 	return false;
 })
 
-// $("#save_note").click(function (event) {
-
-// })
 

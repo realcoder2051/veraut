@@ -22,7 +22,7 @@
           <%= bootstrap_form_with(url:employees_path,model:@employee, local:true) do |f| %>
             <% if @employee.errors.any? %>
               <div id="error_explanation">
-                <h2><%= pluralize(@employee.errors.count, "error") %> prohibited this lab value from being saved:</h2>
+                <h2><%= pluralize(@employee.errors.count, "error") %> prohibited this  from being saved:</h2>
 
                 <ul>
                 <% @employee.errors.full_messages.each do |message| %>
