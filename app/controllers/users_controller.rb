@@ -50,7 +50,8 @@ class UsersController < ApplicationController
     if user.update_attributes(resource_params)
 			redirect_to users_path
 		else
-			render :edit
+			redirect_to users_path
+
 		end
 	
 	

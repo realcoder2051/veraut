@@ -20,7 +20,8 @@ class BusinessesController < InheritedResources::Base
     @businesses = Business.all.order('created_at').where(task_id: session[:task_id])
   end
 
-  def create
+	def create
+		
     @business = Business.new(business_params)
     @business.update(task_id: session[:task_id])
     if @business.save
