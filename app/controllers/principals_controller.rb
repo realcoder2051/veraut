@@ -5,20 +5,23 @@ class PrincipalsController < InheritedResources::Base
   end
 
   def update
-    principal = Principal.find(params[:id])
-    if principal.update_attributes(principal_params)
+    @principal = Principal.find(params[:id])
+    if @principal.update_attributes(principal_params)
       redirect_to principals_path
-    end
+		else
+			render :edit
+		end
+		
   end
 
   def create
-    principal = Principal.new(principal_params)
-    principal.update(task_id: session[:task_id])
-    if principal.save
+    @principal = Principal.new(principal_params)
+    @principal.update(task_id: session[:task_id])
+    if @principal.save
       redirect_to principals_path
     else
-      redirect_to new_principal_path
-    end
+      render :new
+		end
   end
 
   def index

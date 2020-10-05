@@ -32,13 +32,13 @@
               <%if session[:task_id]==nil%>
                 <a class="sidebar-menu-button collapsed disable-menu-item" data-toggle="collapse" href="#holiday_menu" aria-expanded="false">
                   <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons disable-menu-item">dvr</i>
-                  <span class="sidebar-menu-text">Data collection</span>
+                  <span class="sidebar-menu-text cursor-pointer"  title="Go to My active tasks to begin your tasks" >Data collection</span>
                   <span class="ml-auto sidebar-menu-toggle-icon disable-menu-item"></span>
                 </a>
               <% elsif session[:task_id]%>
                 <a class="sidebar-menu-button collapsed" data-toggle="collapse" href="#holiday_menu" aria-expanded="false">
                   <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">dvr</i>
-                  <span class="sidebar-menu-text">Data collection</span>
+                  <span class="sidebar-menu-text"> Data collection</span>
                   <span class="ml-auto sidebar-menu-toggle-icon"></span>
                 </a>
               <%end%>

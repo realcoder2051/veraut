@@ -5,9 +5,9 @@
     </div>
     <div class="col-lg-3">
       <%if index<=8%>
-        <%=f.select 'question'+(index+1).to_s,options_for_select(["Yes","No"], @plan["question#{index+1}".to_sym]) %>
+        <%=f.select 'question'+(index+1).to_s,options_for_select(["Yes","No"], @plan["question#{index+1}".to_sym]), { :include_blank => '-- Select One --' } %>
       <%elsif index>=9 && index<=10 %>
-        <%=f.select 'question'+(index+1).to_s,options_for_select(["Yes","No","Decison Not yet made"],@plan["question#{index+1}".to_sym])%>
+        <%=f.select 'question'+(index+1).to_s,options_for_select(["Yes","No","Decison Not yet made"],@plan["question#{index+1}".to_sym]) , { :include_blank => '-- Select One --' } %>
       <%else%>
         <%=f.date_field 'question'+(index+1).to_s%>
       <%end%>

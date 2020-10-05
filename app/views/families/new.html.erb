@@ -17,7 +17,7 @@
             <%= bootstrap_form_with(url:families_path,model:@family, local:true) do |f| %>
               <% if @family.errors.any? %>
                 <div id="error_explanation">
-                  <h2><%= pluralize(@family.errors.count, "error") %> prohibited this user from being saved:</h2>
+                  <h2><%= pluralize(@family.errors.count, "error") %> prohibited this Family member from being saved:</h2>
                   <ul>
                   <% @family.errors.full_messages.each do |message| %>
                     <li><%= message %></li>

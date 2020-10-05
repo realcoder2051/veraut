@@ -5,10 +5,12 @@ class FamiliesController < InheritedResources::Base
   end
 
   def update
-    family = Family.find(params[:id])
-    if family.update_attributes(family_params)
+    @family = Family.find(params[:id])
+    if @family.update_attributes(family_params)
       redirect_to families_path
-    end
+		else
+			render :edit
+		end
   end
 
   def index
@@ -16,12 +18,12 @@ class FamiliesController < InheritedResources::Base
   end
 
   def create
-    family = Family.new(family_params)
-    family.update(task_id: session[:task_id])
-    if family.save
+    @family = Family.new(family_params)
+    @family.update(task_id: session[:task_id])
+    if @family.save
       redirect_to families_path
     else
-      redirect_to new_family_path
+      render :new
     end
   end
 

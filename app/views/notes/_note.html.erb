@@ -3,7 +3,7 @@
 	<td><%= note.created_at %></td>
 	<td><%= note.created_by %></td>
 	<td>
-		<a data-confirm="Are you sure?" rel="nofollow" class="delete_href" data-id=<%=note.id%>><i
+		<a data-confirm="Are you sure?" rel="nofollow" class="delete_href" data-id=<%=note.id%> onclick='delete_note()'><i
 				class="material-icons" class="delete_icon" >delete</i></a>
 	</td>
 </tr>

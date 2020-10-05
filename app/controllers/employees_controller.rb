@@ -10,7 +10,9 @@ class EmployeesController < InheritedResources::Base
     @employee = Employee.find(params[:id])
     if @employee.update_attributes(employee_params)
       redirect_to employees_path
-    end
+		else
+			render :edit
+		end
   end
 
   def save_employee
@@ -34,12 +36,12 @@ class EmployeesController < InheritedResources::Base
   end
 
   def create
-    employee = Employee.new(employee_params)
-    employee.update(task_id: session[:task_id])
-    if employee.save
+    @employee = Employee.new(employee_params)
+    @employee.update(task_id: session[:task_id])
+    if @employee.save
       redirect_to employees_path
     else
-      redirect_to new_employee_path
+      render :new
     end
   end
 

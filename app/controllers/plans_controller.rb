@@ -5,12 +5,12 @@ class PlansController < InheritedResources::Base
   end
 
   def create
-    plan = Plan.new(plan_params)
-    plan.update(task_id: session[:task_id])
-    if plan.save
+    @plan = Plan.new(plan_params)
+    @plan.update(task_id: session[:task_id])
+    if @plan.save
         redirect_to plans_path
     else
-      redirect_to new_plan_path
+      render :new
     end
   end
 
@@ -19,10 +19,12 @@ class PlansController < InheritedResources::Base
   end
 
   def update
-    plan = Plan.find(params[:id])
-    if plan.update_attributes(plan_params)
+    @plan = Plan.find(params[:id])
+    if @plan.update_attributes(plan_params)
       redirect_to plans_path
-    end
+		else
+			render :edit
+		end
   end
   
   def index
