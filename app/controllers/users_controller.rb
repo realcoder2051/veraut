@@ -44,13 +44,14 @@ class UsersController < ApplicationController
       params[:user].delete(:password)
       params[:user].delete(:password_confirmation)
     end
-    user = User.find(params[:id])
+    @resource = User.find(params[:id])
     role = params[:user][:name].to_i
-    user[:role_id] = role
-    if user.update_attributes(resource_params)
-      redirect_to users_path
-    else
-      render :edit
+    @resource[:role_id] = role
+    if @resource.update_attributes(resource_params)
+			redirect_to users_path
+		else
+			@roles = Role.all
+			render :edit
     end
   end
 

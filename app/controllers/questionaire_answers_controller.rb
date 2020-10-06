@@ -31,7 +31,7 @@ class QuestionaireAnswersController < InheritedResources::Base
   end
 
   def edit_5500
-    @questionaire_answer = QuestionaireAnswer.joins(task: :task_group).where('task_groups.user_id=?',current_user.id)
+    @questionaire_answer = QuestionaireAnswer.joins(task: :task_group).where('task_groups.user_id=? AND question_type_id=?',current_user.id,2)
   end
 
   def update_5500
@@ -39,7 +39,7 @@ class QuestionaireAnswersController < InheritedResources::Base
   end
 
   def edit_plan
-    @questionaire_answer = QuestionaireAnswer.joins(task: :task_group).where('task_groups.user_id=?',current_user.id)
+    @questionaire_answer = QuestionaireAnswer.joins(task: :task_group).where('task_groups.user_id=? AND question_type_id=? ',current_user.id,1)
   end
 
   def update_plan

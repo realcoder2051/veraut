@@ -42,7 +42,7 @@
             <td><%=plan.answer%></td>
           <%end%>
            <%#QuestionaireAnswer.joins(task: :task_group).where('task_groups.user_id=?', current_user.id) %>
-          <td><a href=<%=edit_plan_path(@questionaire_answers.joins(task: :task_group).where('task_groups.user_id=?',current_user.id).first.id)%> ><i class="material-icons icon-20pt modal-edit">edit</i></a></td>
+          <td><a href=<%=edit_plan_path(@questionaire_answers.joins(task: :task_group).where('task_groups.user_id=? AND question_type_id = ?',current_user.id,1).first.id)%> ><i class="material-icons icon-20pt modal-edit">edit</i></a></td>
         </tr>
       </tbody>
      <%end%>
