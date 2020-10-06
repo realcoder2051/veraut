@@ -5,7 +5,7 @@ class PlansController < InheritedResources::Base
   end
 
   def create
-    plan = Plan.new(plan_params)
+    @plan = Plan.new(plan_params)
     plan[:task_id] = session[:task_id]
     if plan.save
         redirect_to plans_path

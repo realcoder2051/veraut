@@ -21,9 +21,9 @@ class BusinessesController < InheritedResources::Base
   end
 
   def create
-    business = Business.new(business_params)
-    business[:task_id] = session[:task_id]
-    if business.save
+    @business = Business.new(business_params)
+    @business[:task_id] = session[:task_id]
+    if @business.save
       redirect_to businesses_path
     else
       render :new

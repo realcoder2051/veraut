@@ -6,9 +6,9 @@ class CompaniesController < InheritedResources::Base
   end
 
   def create
-    company = Company.new(company_params)
-		company[:task_id] = session[:task_id]
-    if company.save
+    @company = Company.new(company_params)
+		@company[:task_id] = session[:task_id]
+    if @company.save
       redirect_to companies_path
 		else
       render :new
@@ -31,11 +31,8 @@ class CompaniesController < InheritedResources::Base
 		else
       render :edit
 		end
-		
 	end
 
-
-	
 	def create_note
 		@note = Note.new
 		@note[:description] = params[:des]

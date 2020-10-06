@@ -36,9 +36,9 @@ class EmployeesController < InheritedResources::Base
   end
 
   def create
-    employee = Employee.new(employee_params)
-    employee[:task_id] = session[:task_id]
-    if employee.save
+    @employee = Employee.new(employee_params)
+    @employee[:task_id] = session[:task_id]
+    if @employee.save
       redirect_to employees_path
     else
       render :new
