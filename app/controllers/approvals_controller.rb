@@ -21,7 +21,7 @@ class ApprovalsController < InheritedResources::Base
     if UserMailer.welcome_email(name,title,phone,email).deliver
       task = Task.find(session[:task_id])
       task.update(is_submitted: true)
-      redirect_to approvals_path
+      redirect_to tasks_path
     end
   end
 

@@ -63,10 +63,12 @@
           <% end %>
 
           <form action=<%= bulk_delete_employees_path%> method='get'>
+            <%if session[:task_id]%>
             <%= render 'employee.table', employees: @employees  %>
               <div class="pagination card-body float-right" >
               <%= will_paginate @employees %>
               </div>
+            <%end%>
           </form>
 
 

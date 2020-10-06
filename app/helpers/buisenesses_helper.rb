@@ -1,9 +1,10 @@
 module BuisenessesHelper
-  def does_company_have_employees
+  def company_have_employees
     if @business[:does_company_have_employees] == false
       return "No"
     else
       return "Yes"
     end
   end
+
 end

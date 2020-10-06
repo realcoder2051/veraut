@@ -49,7 +49,7 @@ class EmployeesController < InheritedResources::Base
     file = params[:file]
     file_type = file.present? ? file.path.split('.').last.to_s.downcase : ''
     if file.present? and (file_type == 'csv' or file_type == 'xlsx')
-      Employee.update_imported_store(file)
+      Employee.update_imported_store(file,session[:task_id])
       redirect_to employees_path
     else
       redirect_to employees_path
@@ -63,7 +63,7 @@ class EmployeesController < InheritedResources::Base
      if result.count.positive?
        @q.sorts = 'first_name asc' if @q.sorts.empty?
      end
-    @employees = result.paginate(:page => params[:page], per_page:10).order('status ASC')
+    @employees = result.paginate(:page => params[:page], per_page:10).order('status ASC').where(task_id: session[:task_id])
   end
 
   def employee_params

@@ -3,7 +3,7 @@ class Employee < ApplicationRecord
 	validates :first_name,:last_name,:ssn,:date_of_birth,:original_date_of_hire, :compensation, :hours, presence: true
 
 
-  def self.update_imported_store(file)
+  def self.update_imported_store(file,session)
       spreadsheet = open_spreadsheet(file)
       header = spreadsheet.row(1)
         header = header.to_a
@@ -14,6 +14,7 @@ class Employee < ApplicationRecord
           next
         end 
         @employee = Employee.new(row)
+        @employee[:task_id] = session
         @employee.save
         end
       end

@@ -9,7 +9,7 @@ class BusinessesController < InheritedResources::Base
 
   def update
     @business = Business.find(params[:id])
-    @business[:does_company_have_employees] = company_have_employees
+    @business[:does_company_have_employees] = company_have_employees?
     if @business.update_attributes(business_params)
 			redirect_to businesses_path
 		else
@@ -23,8 +23,8 @@ class BusinessesController < InheritedResources::Base
 
   def create
     @business = Business.new(business_params)
-    @business[:does_company_have_employees] = company_have_employees
     @business[:task_id] = session[:task_id]
+    @business[:does_company_have_employees] = company_have_employees?
     if @business.save
       redirect_to businesses_path
     else
@@ -38,7 +38,7 @@ class BusinessesController < InheritedResources::Base
       params.require(:business).permit(:name, :ein, :date_purchased_or_sold, :address, :city, :state, :zip, :phone, :qualified_plan_sponsored, :entity_type)
     end
 
-    def company_have_employees
+    def company_have_employees?
       have_employees = params[:business][:does_company_have_employees]
       if have_employees == "No"
         return false
