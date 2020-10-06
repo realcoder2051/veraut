@@ -20,7 +20,7 @@ class BusinessesController < InheritedResources::Base
 
   def create
     business = Business.new(business_params)
-    business.update(task_id: session[:task_id])
+    business[:task_id] = session[:task_id]
     if business.save
       redirect_to businesses_path
     else

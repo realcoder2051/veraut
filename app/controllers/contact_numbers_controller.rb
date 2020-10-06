@@ -2,7 +2,7 @@ class ContactNumbersController < InheritedResources::Base
 
   def create
     contact_number = ContactNumber.new(contact_number_params)
-    contact_number.update(task_id: session[:task_id])
+    contact_number[:task_id] = session[:task_id]
     if contact_number.save
       redirect_to generals_path
     end

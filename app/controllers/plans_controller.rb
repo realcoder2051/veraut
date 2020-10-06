@@ -6,7 +6,7 @@ class PlansController < InheritedResources::Base
 
   def create
     plan = Plan.new(plan_params)
-    plan.update(task_id: session[:task_id])
+    plan[:task_id] = session[:task_id]
     if plan.save
         redirect_to plans_path
     else
@@ -15,7 +15,7 @@ class PlansController < InheritedResources::Base
   end
 
   def edit
-		@plan = Plan.find(params[:id])	
+		@plan = Plan.find(params[:id])
   end
 
   def update
@@ -24,7 +24,7 @@ class PlansController < InheritedResources::Base
       redirect_to plans_path
     end
   end
-  
+
   def index
     @plans = Plan.all.order('created_at').where(task_id: session[:task_id])
   end

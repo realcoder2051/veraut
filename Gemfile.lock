@@ -62,6 +62,8 @@ GEM
     activerecord (6.0.3.1)
       activemodel (= 6.0.3.1)
       activesupport (= 6.0.3.1)
+    activerecord-import (1.0.6)
+      activerecord (>= 3.2)
     activestorage (6.0.3.1)
       actionpack (= 6.0.3.1)
       activejob (= 6.0.3.1)
@@ -488,6 +490,7 @@ DEPENDENCIES
   actionmailer
   active_storage_base64
   activeadmin
+  activerecord-import
   acts-as-taggable-on (~> 6.0)
   awesome_print
   aws-sdk-s3

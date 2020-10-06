@@ -1,5 +1,7 @@
   Rails.application.routes.draw do
 
+  resources :questionaire_answers
+  resources :question_types
   resources :task_groups
   resources :tasks
 	resources :notes
@@ -17,7 +19,19 @@
   get 'general/',to: 'generals#find_task'
   get 'close_task',to: 'tasks#close_task'
 	resources :addresses
-		get '/address/get_address/:id', to: 'addresses#get_address'
+  get '/address/get_address/:id', to: 'addresses#get_address'
+  get'plans_new',to: 'questionaire_answers#new'
+  post 'plans_create',to: 'questionaire_answers#create_plan'
+  get 'plans',to: 'questionaire_answers#index_plan'
+  get '5500_new',to: 'questionaire_answers#fifty_five_hundred_new',as: :fifty_five_hundred_new
+  post '5500_create',to: 'questionaire_answers#create_fifty_five_hundred'
+  get 'plans/:id/edit',to: 'questionaire_answers#edit_plan',as: :edit_plan
+  patch 'plans/:id',to: 'questionaire_answers#update_plan',as: :plans_update
+  get '5500/:id/edit',to: 'questionaire_answers#edit_5500',as: :edit_fifty_five_hundred
+  patch '5500/:id',to: 'questionaire_answers#update_5500',as: :fifty_five_hundred_update
+  get '5500',to: 'questionaire_answers#index_fifty_five_hundred',as: :fifty_five_hundred
+
+
 
   resources :employees do
     collection do
@@ -26,14 +40,14 @@
   end
   get 'save_employee', to: 'employees#save_employee'
 
-  resources :fifty_five_hundreds, only: [:update,:create]
-    get '5500', to: 'fifty_five_hundreds#index', as: :fifty_5500
-    get '5500/new', to: 'fifty_five_hundreds#new',as: :fifty_5500_new
-    get '5500/:id/edit',to: 'fifty_five_hundreds#edit',as: :fifty_5500_edit
-    delete '5500/:id',to: 'fifty_five_hundreds#destroy',as: :fifty_5500_delete
-    get '5500/:id',to: 'fifty_five_hundreds#show',as: :fifty_5500_show
+  # resources :fifty_five_hundreds, only: [:update,:create]
+  #   get '5500', to: 'fifty_five_hundreds#index', as: :fifty_5500
+  #   get '5500/new', to: 'fifty_five_hundreds#new',as: :fifty_5500_new
+  #   get '5500/:id/edit',to: 'fifty_five_hundreds#edit',as: :fifty_5500_edit
+  #   delete '5500/:id',to: 'fifty_five_hundreds#destroy',as: :fifty_5500_delete
+  #   get '5500/:id',to: 'fifty_five_hundreds#show',as: :fifty_5500_show
 
-  resources :plans
+  #resources :plans
   resources :contacts
   resources :businesses
   resources :buisenesses

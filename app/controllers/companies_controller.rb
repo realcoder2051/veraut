@@ -7,7 +7,7 @@ class CompaniesController < InheritedResources::Base
 
   def create
     company = Company.new(company_params)
-    company.update(task_id: session[:task_id])
+		company[:task_id] = session[:task_id]
     if company.save
       redirect_to companies_path
     else

@@ -2,11 +2,11 @@ class FiftyFiveHundredsController < InheritedResources::Base
 
   def new
     @fifty_five_hundred = FiftyFiveHundred.new
-    end
+  end
 
   def create
     fifty_five_hundred = FiftyFiveHundred.new(fifty_five_hundred_params)
-    fifty_five_hundred.update(task_id: session[:task_id])
+    fifty_five_hundred[:task_id] = session[:task_id]
     if fifty_five_hundred.save
         redirect_to fifty_5500_path
     else
@@ -14,7 +14,7 @@ class FiftyFiveHundredsController < InheritedResources::Base
     end
   end
 
-  def edit 
+  def edit
     @fifty_five_hundred = FiftyFiveHundred.find(params[:id])
   end
 

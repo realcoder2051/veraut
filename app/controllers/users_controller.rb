@@ -47,6 +47,8 @@ class UsersController < ApplicationController
     user[:role_id] = role
     if user.update_attributes(resource_params)
       redirect_to users_path
+    else
+      render :edit
     end
   end
 
