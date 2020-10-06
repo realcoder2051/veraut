@@ -22,6 +22,12 @@ class BusinessesController < InheritedResources::Base
 
   def create
     business = Business.new(business_params)
+    have_employees = params[:business][:does_company_have_employees]
+    if have_employees == "No"
+      business[:does_company_have_employees] = false
+    else
+      business[:does_company_have_employees] = true
+    end
     business[:task_id] = session[:task_id]
     if business.save
       redirect_to businesses_path
