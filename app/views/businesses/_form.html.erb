@@ -65,7 +65,7 @@
 <div class="row" >
   <div class="col-lg-4 left-move"></div>
   <div class="col-lg-4 left-move">
-    <%=f.select :does_company_have_employees,options_for_select(["Yes","No"], @business[:does_company_have_employees]), { :include_blank => '-- Select One --' } %>
+    <%=f.select :does_company_have_employees,options_for_select(["Yes","No"], does_company_have_employees) %>
     <div class="invalid-feedback">Please provide a time.</div>
     <div class="valid-feedback">Looks good!</div>
   </div>

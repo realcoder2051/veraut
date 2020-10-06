@@ -9,6 +9,7 @@ class BusinessesController < InheritedResources::Base
 
   def update
     @business = Business.find(params[:id])
+    @business[:does_company_have_employees] = company_have_employees
     if @business.update_attributes(business_params)
 			redirect_to businesses_path
 		else
@@ -21,15 +22,10 @@ class BusinessesController < InheritedResources::Base
   end
 
   def create
-    business = Business.new(business_params)
-    have_employees = params[:business][:does_company_have_employees]
-    if have_employees == "No"
-      business[:does_company_have_employees] = false
-    else
-      business[:does_company_have_employees] = true
-    end
-    business[:task_id] = session[:task_id]
-    if business.save
+    @business = Business.new(business_params)
+    @business[:does_company_have_employees] = company_have_employees
+    @business[:task_id] = session[:task_id]
+    if @business.save
       redirect_to businesses_path
     else
       render :new
@@ -39,7 +35,16 @@ class BusinessesController < InheritedResources::Base
   private
 
     def business_params
-      params.require(:business).permit(:name, :ein, :date_purchased_or_sold, :address, :city, :state, :zip, :phone, :does_company_have_employees, :qualified_plan_sponsored, :entity_type)
+      params.require(:business).permit(:name, :ein, :date_purchased_or_sold, :address, :city, :state, :zip, :phone, :qualified_plan_sponsored, :entity_type)
+    end
+
+    def company_have_employees
+      have_employees = params[:business][:does_company_have_employees]
+      if have_employees == "No"
+        return false
+      else
+        return true
+      end
     end
 
 end

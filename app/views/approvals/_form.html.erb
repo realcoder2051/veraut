@@ -1,7 +1,7 @@
 
 
   <div class="field">
-    <%= f.text_field :name %>
+    <%= f.text_field :name, :required => true %>
   </div>
 
   <div class="field">
@@ -12,7 +12,7 @@
     <%= f.text_field :phone %>
   </div>
   <div class="field">
-  <%= f.email_field :email %>
+  <%= f.email_field :email ,:required => true %>
 </div>
 
   <div class="actions">
