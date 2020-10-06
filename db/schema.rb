@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_02_045438) do
+ActiveRecord::Schema.define(version: 2020_10_06_063552) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_stat_statements"
@@ -124,9 +124,7 @@ ActiveRecord::Schema.define(version: 2020_10_02_045438) do
     t.string "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.bigint "task_id"
     t.bigint "user_id"
-    t.index ["task_id"], name: "index_documents_on_task_id"
     t.index ["user_id"], name: "index_documents_on_user_id"
   end
 
@@ -164,19 +162,6 @@ ActiveRecord::Schema.define(version: 2020_10_02_045438) do
     t.index ["task_id"], name: "index_families_on_task_id"
   end
 
-  create_table "fifty_five_hundreds", force: :cascade do |t|
-    t.string "question1"
-    t.string "question2"
-    t.string "question3"
-    t.string "question4"
-    t.string "question5"
-    t.string "question6"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.bigint "task_id"
-    t.index ["task_id"], name: "index_fifty_five_hundreds_on_task_id"
-  end
-
   create_table "generals", force: :cascade do |t|
     t.string "address_type"
     t.string "address"
@@ -192,27 +177,6 @@ ActiveRecord::Schema.define(version: 2020_10_02_045438) do
     t.string "created_by"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.bigint "task_id"
-    t.index ["task_id"], name: "index_notes_on_task_id"
-  end
-
-  create_table "plans", force: :cascade do |t|
-    t.string "question1"
-    t.string "question2"
-    t.string "question3"
-    t.string "question4"
-    t.string "question5"
-    t.string "question6"
-    t.string "question7"
-    t.string "question8"
-    t.string "question9"
-    t.string "question10"
-    t.string "question11"
-    t.date "question12"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.bigint "task_id"
-    t.index ["task_id"], name: "index_plans_on_task_id"
   end
 
   create_table "principals", force: :cascade do |t|
@@ -224,6 +188,23 @@ ActiveRecord::Schema.define(version: 2020_10_02_045438) do
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "task_id"
     t.index ["task_id"], name: "index_principals_on_task_id"
+  end
+
+  create_table "question_types", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "questionaire_answers", force: :cascade do |t|
+    t.string "answer"
+    t.string "question_no"
+    t.bigint "task_id"
+    t.bigint "question_type_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["question_type_id"], name: "index_questionaire_answers_on_question_type_id"
+    t.index ["task_id"], name: "index_questionaire_answers_on_task_id"
   end
 
   create_table "rights", force: :cascade do |t|

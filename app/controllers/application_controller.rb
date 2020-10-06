@@ -1,16 +1,16 @@
 class ApplicationController < ActionController::Base
 
-  protect_from_forgery with: :exception
+  protect_from_forgery with: :null_session
   before_action :authenticate_user!
   layout 'stack/application'
 
   private
   rescue_from CanCan::AccessDenied do |exception|
    # render 'shared/flash'
-    flash[:error] = t 'cancan.access_denied'
+    flash[:error] =  'It seems you do not have permission to view this page'
     respond_to do |format|
       #format.html { redirect_to root_url }
-      format.html { redirect_to root_url,error: "Book not found"}
+      format.html { redirect_to root_url}
     end
   end
 

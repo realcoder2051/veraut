@@ -18,9 +18,9 @@ class FamiliesController < InheritedResources::Base
   end
 
   def create
-    @family = Family.new(family_params)
-    @family.update(task_id: session[:task_id])
-    if @family.save
+    family = Family.new(family_params)
+    family[:task_id] = session[:task_id]
+    if family.save
       redirect_to families_path
     else
       render :new

@@ -15,9 +15,9 @@ class PrincipalsController < InheritedResources::Base
   end
 
   def create
-    @principal = Principal.new(principal_params)
-    @principal.update(task_id: session[:task_id])
-    if @principal.save
+    principal = Principal.new(principal_params)
+    principal[:task_id] = session[:task_id]
+    if principal.save
       redirect_to principals_path
     else
       render :new

@@ -4,18 +4,18 @@ class PlansController < InheritedResources::Base
     @plan = Plan.new
   end
 
-	def create
-    @plan = Plan.new(plan_params)
-    @plan.update(task_id: session[:task_id])
-    if @plan.save
-      redirect_to plans_path
+  def create
+    plan = Plan.new(plan_params)
+    plan[:task_id] = session[:task_id]
+    if plan.save
+        redirect_to plans_path
     else
       render :new
     end
   end
 
   def edit
-		@plan = Plan.find(params[:id])	
+		@plan = Plan.find(params[:id])
   end
 
   def update
@@ -26,7 +26,7 @@ class PlansController < InheritedResources::Base
 			render :edit
 		end
   end
-  
+
   def index
     @plans = Plan.all.order('created_at').where(task_id: session[:task_id])
   end

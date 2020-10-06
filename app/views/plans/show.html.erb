@@ -1,70 +1,70 @@
 <div class="container-fluid page__heading-container" id="show-view">
-<div class="page__heading d-flex align-items-center">
-  <div class="flex">
-    <h1 class="m-0"><%= "Plans" %></h1>
+  <div class="page__heading d-flex align-items-center">
+    <div class="flex">
+      <h1 class="m-0"><%= "Plans" %></h1>
+    </div>
   </div>
-</div>
 </div>
 
 <div class="container-fluid page__container"  > 
-  <div class= "row ">
-  <div class="col-lg-11">
-  <div class="card card-form__body">
-    <div class = "table-responsive">
-      <table class="table mb-0 thead-border-top-0 mt-1  table-hover table-bordered">
-        <tbody>
-          <tr>
-            <td> 1.Were any participant contributions transmitted to the plan later than 7 business days after the payroll date? (ERISA Regulation 2510.3-102) </td>
-            <td> <%=@plan.question1%> </td>
-          </tr>
-          <tr>
-            <td> 2.Were there any former plan participants that returned to work during this plan year?  If yes, please provide their name, original date of hire, date of termination and date of rehire on the census form.</td>
-            <td> <%=@plan.question2%> </td>
-          </tr>
-          <tr>
-            <td> 3.Has the Employer utilized the services of any leased or contract employees? A leased employee is someone who (a) has performed services for the Employer on a substantially full-time basis for a period of at least 12 months; (b) has performed services under the primary direction or control of the Employer; and (c) was paid through a leasing organization which then pays the income directly to the employee? </td>
-            <td> <%=@plan.question3 %> </td>
-          </tr>
-          <tr>
-            <td>4. Will a request for extension of time for filing the company’s income tax return be made for this year?</td>
-            <td> <%=@plan.question4%> </td>
-           </tr>
-          <tr>
-            <td> 5.Does the employer maintain any other qualified retirement plan that is self-administered or administered by another third party administrator? </td>
-            <td> <%=@plan.question5 %>
-          </tr>
-          <tr>
-            <td> 6.Did the employer or any related employer make contributions on behalf of any participant in this plan to any other retirement plan during the year? </td>
-            <td> <%=@plan.question6 %>
-          </tr>
-          <tr>
-            <td>7. Does the Employer maintain a Cafeteria or Section 125 Plan, employer sponsored Health Savings Accounts or a non-qualified deferred compensation plan? </td>
-            <td> <%=@plan.question7%> </td>
-          </tr>
-          <tr>
-            <td>8.Does the company or its owners have ownership in any other entities? If yes, please contact your administrator.</td>
-            <td> <%=@plan.question8%> </td>
-          </tr>
-          <tr>
-            <td>9.Have you acquired or were acquired, bought, or merged with any other entity? </td>
-            <td> <%=@plan.question9 %> </td>
-          </tr>
-          <tr>
-            <td>10. Does the company desire to make an employer contribution or matching contribution in addition to any contributions made during the plan year? </td>
-            <td> <%=@plan.question10%> </td>
-           </tr>
-          <tr>
-            <td> 11.Would you like us to calculate any additional employer contributions for the plan year? </td>
-            <td> <%=@plan.question11 %>
-          </tr>
-          <tr>
-            <td> 12.Please indicate the last pay date (check date) that occurred during the plan year. </td>
-            <td> <%=@plan.question12 %>
-          </tr>
-        </tbody>
-       </table>
+  <div class= "row">
+    <div class="col-lg-11">
+      <div class="card card-form__body">
+        <div class = "table-responsive">
+          <table class="table mb-0 thead-border-top-0 mt-1  table-hover table-bordered">
+            <tbody>
+              <tr>
+                <td> 1.Were any participant contributions transmitted to the plan later than 7 business days after the payroll date? (ERISA Regulation 2510.3-102) </td>
+                <td> <%=@plan.question1%> </td>
+              </tr>
+              <tr>
+                <td> 2.Were there any former plan participants that returned to work during this plan year?  If yes, please provide their name, original date of hire, date of termination and date of rehire on the census form.</td>
+                <td> <%=@plan.question2%> </td>
+              </tr>
+              <tr>
+                <td> 3.Has the Employer utilized the services of any leased or contract employees? A leased employee is someone who (a) has performed services for the Employer on a substantially full-time basis for a period of at least 12 months; (b) has performed services under the primary direction or control of the Employer; and (c) was paid through a leasing organization which then pays the income directly to the employee? </td>
+                <td> <%=@plan.question3 %> </td>
+              </tr>
+              <tr>
+                <td>4. Will a request for extension of time for filing the company’s income tax return be made for this year?</td>
+                <td> <%=@plan.question4%> </td>
+              </tr>
+              <tr>
+                <td> 5.Does the employer maintain any other qualified retirement plan that is self-administered or administered by another third party administrator? </td>
+                <td> <%=@plan.question5 %>
+              </tr>
+              <tr>
+                <td> 6.Did the employer or any related employer make contributions on behalf of any participant in this plan to any other retirement plan during the year? </td>
+                <td> <%=@plan.question6 %>
+              </tr>
+              <tr>
+                <td>7. Does the Employer maintain a Cafeteria or Section 125 Plan, employer sponsored Health Savings Accounts or a non-qualified deferred compensation plan? </td>
+                <td> <%=@plan.question7%> </td>
+              </tr>
+              <tr>
+                <td>8.Does the company or its owners have ownership in any other entities? If yes, please contact your administrator.</td>
+                <td> <%=@plan.question8%> </td>
+              </tr>
+              <tr>
+                <td>9.Have you acquired or were acquired, bought, or merged with any other entity? </td>
+                <td> <%=@plan.question9 %> </td>
+              </tr>
+              <tr>
+                <td>10. Does the company desire to make an employer contribution or matching contribution in addition to any contributions made during the plan year? </td>
+                <td> <%=@plan.question10%> </td>
+              </tr>
+              <tr>
+                <td> 11.Would you like us to calculate any additional employer contributions for the plan year? </td>
+                <td> <%=@plan.question11 %>
+              </tr>
+              <tr>
+                <td> 12.Please indicate the last pay date (check date) that occurred during the plan year. </td>
+                <td> <%=@plan.question12 %>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
-    </div>
-</div>
+  </div>
 </div>

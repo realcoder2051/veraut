@@ -37,18 +37,18 @@
           </div>
           <!-- // END drawer-layout__content -->
           <% if user_signed_in?%>
-						<%= render 'layouts/stack/drawer_left' %>
+            <%= render 'layouts/stack/drawer_left' %>
+              <%#div class="flash-messages">
+                <%#= render partial: 'shared/flash' %>
+            <%#/div%>
           <%end%>
         </div>
 			<%end %>
 
     <!--  <div class="mdk-header-layout__content">-->
-        
         <!-- // END drawer-layout -->
-        </div>
+  </div>
       <!-- // END header-layout__content -->
-
-
     <!-- // END header-layout -->
 
     <%= content_for :footer %>

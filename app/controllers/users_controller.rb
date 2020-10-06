@@ -48,13 +48,10 @@ class UsersController < ApplicationController
     role = params[:user][:name].to_i
     user[:role_id] = role
     if user.update_attributes(resource_params)
-			redirect_to users_path
-		else
-			redirect_to users_path
-
-		end
-	
-	
+      redirect_to users_path
+    else
+      render :edit
+    end
   end
 
   def destroy

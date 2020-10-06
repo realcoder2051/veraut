@@ -28,17 +28,17 @@ class EmployeesController < InheritedResources::Base
 
   def index
     ransack_search = params[:q]
-    @first_name = ransack_search[:first_name_cont] if ransack_search.present?    
+    @first_name = ransack_search[:first_name_cont] if ransack_search.present?
     respond_to do |format|
-      format.xlsx 
+      format.xlsx
       format.html { render :index }
     end
   end
 
   def create
-    @employee = Employee.new(employee_params)
-    @employee.update(task_id: session[:task_id])
-    if @employee.save
+    employee = Employee.new(employee_params)
+    employee[:task_id] = session[:task_id]
+    if employee.save
       redirect_to employees_path
     else
       render :new

@@ -15,7 +15,7 @@ class ContactsController < InheritedResources::Base
 
   def create
     contact = Contact.new(contact_params)
-    contact.update(task_id: session[:task_id])
+    contact[:task_id] = session[:task_id]
     if contact.save
       redirect_to contacts_path
     else
