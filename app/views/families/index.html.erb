@@ -35,20 +35,20 @@
 						</tr>
 					</thead>
 					<%if session[:task_id]%>
-					<tbody>
-						<% @families.each do |family| %>
-						<tr class="redirect_to_show cursor-pointer" data-url=<%= family_path(family) %>>
-							<td><%= family.name %></td>
-							<td><%= family.relationship %></td>
-							<td><%= family.related_to %></td>
-							<td>
-								<a href=<%=edit_family_path(family)%>><i class="material-icons icon-20pt modal-edit">edit</i></a>
-								<a data-confirm="Are you sure?" rel="nofollow" data-method="delete" href=<%=family_path(family)%>><i
-										class="material-icons">delete</i></a>
-							</td>
-						</tr>
-						<% end %>
-					</tbody>
+						<tbody>
+							<% @families.each do |family| %>
+							<tr class="redirect_to_show cursor-pointer" data-url=<%= family_path(family) %>>
+								<td><%= family.name %></td>
+								<td><%= family.relationship %></td>
+								<td><%= find_related_to(family.related_to)%></td>
+								<td>
+									<a href=<%=edit_family_path(family)%>><i class="material-icons icon-20pt modal-edit">edit</i></a>
+									<a data-confirm="Are you sure?" rel="nofollow" data-method="delete" href=<%=family_path(family)%>><i
+											class="material-icons">delete</i></a>
+								</td>
+							</tr>
+							<% end %>
+						</tbody>
 					<%end%>
 				</table>
 			</div>

@@ -73,7 +73,7 @@
 <div class="row" >
   <div class="col-lg-4 left-move"></div>
   <div class="col-lg-4 left-move">
-    <%=f.select :qualified_plan_sponsored,options_for_select(["Sponsored1","Sponsored2"], @business[:qualified_plan_sponsored]), { :include_blank => '-- Select One --' } %>
+    <%=f.select :qualified_plan_sponsored,options_for_select(["Yes","No"], @business[:qualified_plan_sponsored]), { :include_blank => '-- Select One --' } %>
     <div class="invalid-feedback">Please provide a time.</div>
     <div class="valid-feedback">Looks good!</div>
   </div>
@@ -81,7 +81,7 @@
 <div class="row" >
   <div class="col-lg-4 left-move"></div>
   <div class="col-lg-4 left-move">
-    <%=f.select :entity_type,options_for_select(["Entity1","Entity2"], @business[:entity_type]), { :include_blank => '-- Select One --' } %>
+    <%=f.select :entity_type,options_for_select(["C Corp","Church","Corporation","Government","Limited Liability Company","Limited Liability Corporation","Limited Partnership","LLC","LLC - Taxed as Corporation "," LLC- Taxed as Partnership","LLC- Taxed as Sole Proprietorship","LLP","Non-Profit Organization","Partnership","Professional Service Partnership","Real Estate Investment Trust","S Corp","Sole Prop","Sub-S","Tax Exempt","Tribal Government","Unknown"], @business[:entity_type]), { :include_blank => '-- Select One --' } %>
     <div class="invalid-feedback">Please provide a time.</div>
     <div class="valid-feedback">Looks good!</div>
   </div>

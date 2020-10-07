@@ -17,7 +17,7 @@
 <div class="row" >
   <div class="col-lg-4 left-move"></div>
   <div class="col-lg-4 left-move">
-    <%= f.text_field :related_to,:value => current_user.username %>
+    <%= f.select :related_to,options_for_select(@principals.collect{ |u| [u.name,u.id] },@family[:related_to]),{ :include_blank => '-- Select One --' }   %>
     <div class="invalid-feedback">Please provide a time.</div>
     <div class="valid-feedback">Looks good!</div>
   </div>

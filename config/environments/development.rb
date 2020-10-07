@@ -78,5 +78,4 @@ Rails.application.configure do
  }
   config.action_mailer.default_url_options = { :host => "http://3.23.210.212:3000"}
 
-
 end
