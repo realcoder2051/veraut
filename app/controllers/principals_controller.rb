@@ -27,6 +27,15 @@ class PrincipalsController < InheritedResources::Base
     @principals = Principal.all.order('created_at').where(task_id: session[:task_id])
   end
 
+  def destroy
+    principal = Principal.find(params[:id])
+    if principal.destroy
+      family = Family.where(related_to: principal.id)
+      family.update(related_to: nil)
+      redirect_to principals_path
+    end
+  end
+
   private
 
     def principal_params

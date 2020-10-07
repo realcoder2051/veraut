@@ -33,9 +33,9 @@ class TasksController < InheritedResources::Base
     if task.destroy
       if session[:task_id] == task.id
         session[:task_id] = nil
-        redirect_to root_path
+        redirect_to tasks_path
       else
-        redirect_to root_path
+        redirect_to tasks_path
       end
     end
   end

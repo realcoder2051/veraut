@@ -256,10 +256,21 @@ table.fixed {
   }
 }
 
+
 .naic_code {
 	margin-top: 2.0rem !important;
 }
 
 .card-no-flex {
 	display: block !important;
+}
+.date-class{
+  width: 100%;
+  margin: 0;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  border: 1px solid #DBDFE4;
+  border-radius: 0.25rem;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
 }

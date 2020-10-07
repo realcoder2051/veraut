@@ -31,8 +31,6 @@
   patch '5500/:id',to: 'questionaire_answers#update_5500',as: :fifty_five_hundred_update
   get '5500',to: 'questionaire_answers#index_fifty_five_hundred',as: :fifty_five_hundred
 
-
-
   resources :employees do
     collection do
       get 'bulk_delete', to:  'employees#bulk_delete'

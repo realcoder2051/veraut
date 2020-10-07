@@ -2,9 +2,16 @@ class FamiliesController < InheritedResources::Base
 
   def edit
     @family = Family.find(params[:id])
+    @principals = Principal.all.where(task_id: session[:task_id])
+  end
+
+  def new
+    @family = Family.new
+    @principals = Principal.all.where(task_id: session[:task_id])
   end
 
   def update
+    @principals = Principal.all.where(task_id: session[:task_id])
     @family = Family.find(params[:id])
     if @family.update_attributes(family_params)
       redirect_to families_path
@@ -18,6 +25,7 @@ class FamiliesController < InheritedResources::Base
   end
 
   def create
+    @principals = Principal.all.where(task_id: session[:task_id])
     @family = Family.new(family_params)
     @family[:task_id] = session[:task_id]
     if @family.save

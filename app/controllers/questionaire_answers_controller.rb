@@ -5,17 +5,6 @@ class QuestionaireAnswersController < InheritedResources::Base
   end
 
   def create
-    # questionaire_answer = QuestionaireAnswer.new(questionaire_answer_params)
-    # questionaire_answer[:task_id] = session[:task_id]
-    # if request.fullpath == "/plans"
-    #   questionaire_answer[:question_type_id] = 1
-    # else
-    #   questionaire_answer[:question_type_id] = 2
-    # end
-
-    # if questionaire_answer.save
-    #   redirect_to plans_path
-    # end
   end
 
   def fifty_five_hundred_new
@@ -99,7 +88,7 @@ class QuestionaireAnswersController < InheritedResources::Base
         questionaire_answers << questionaire_answer
       end
       QuestionaireAnswer.import questionaire_answers, on_duplicate_key_update: [:answer]
-    redirect_to fifty_five_hundred_path
+      redirect_to fifty_five_hundred_path
     end
 
 end

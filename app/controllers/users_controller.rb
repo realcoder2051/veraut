@@ -8,7 +8,6 @@ class UsersController < ApplicationController
   def index
     ransack_search = params[:q]
     @username = ransack_search[:username_cont] if ransack_search.present?
-    #@users = resource_scope
   end
 
   def show
