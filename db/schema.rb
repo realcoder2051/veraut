@@ -122,9 +122,9 @@ ActiveRecord::Schema.define(version: 2020_10_06_063552) do
     t.string "name"
     t.string "document_type"
     t.string "description"
+    t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.bigint "user_id"
     t.index ["user_id"], name: "index_documents_on_user_id"
   end
 
@@ -280,4 +280,5 @@ ActiveRecord::Schema.define(version: 2020_10_06_063552) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "approvals", "users"
+  add_foreign_key "documents", "users"
 end

@@ -79,7 +79,7 @@ class QuestionaireAnswersController < InheritedResources::Base
         questionaire_answer[:answer] = answer
         questionaire_answer[:task_id] = session[:task_id]
         questionaire_answer[:question_type_id] = 1
-        questionaire_answer[:question_no] = index+1
+				questionaire_answer[:question_no] = index+1
         questionaire_answers << questionaire_answer
       end
       QuestionaireAnswer.import questionaire_answers, on_duplicate_key_update: [:answer]
@@ -94,7 +94,7 @@ class QuestionaireAnswersController < InheritedResources::Base
         questionaire_answer = QuestionaireAnswer.find_or_initialize_by(id: id[index].to_i.positive? ? id[index].to_i : nil )
         questionaire_answer[:answer] = answer
         questionaire_answer[:task_id] = session[:task_id]
-        questionaire_answer[:question_type_id] = 2
+				questionaire_answer[:question_type_id] = 2
         questionaire_answer[:question_no] = index+1
         questionaire_answers << questionaire_answer
       end

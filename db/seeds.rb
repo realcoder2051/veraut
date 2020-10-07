@@ -1,2 +1,5 @@
 QuestionType.create(name: "5500")
 QuestionType.create(name: "Plans")
+Role.create(name: "Admin")
+User.create(username: "haris",email: "hariszahid944@gmail.com",password: "123456",role_id: 1)
+TaskGroup.create(user_id: User.last.id)
