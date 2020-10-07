@@ -4,20 +4,21 @@ class Employee < ApplicationRecord
 
 
   def self.update_imported_store(file,session)
-      spreadsheet = open_spreadsheet(file)
-      header = spreadsheet.row(1)
-        header = header.to_a
-        (2..spreadsheet.last_row).each do |i|
-        row = Hash[[header, spreadsheet.row(i)].transpose]
-        if Employee.exists?(ssn: row['ssn'])
-          Employee.where("ssn =?", row['ssn']).update(row)
-          next
-        end 
+    spreadsheet = open_spreadsheet(file)
+    header = spreadsheet.row(1)
+    header = header.to_a
+    (2..spreadsheet.last_row).each do |i|
+      row = Hash[[header, spreadsheet.row(i)].transpose]
+
+      if Employee.exists?(ssn: row['ssn'], task_id: session)
+        Employee.where(ssn: row['ssn'], task_id: session).update(row)
+      else
         @employee = Employee.new(row)
-        @employee[:task_id] = session
+        @employee.task_id = session
         @employee.save
-        end
       end
+    end
+  end
 
       def self.open_spreadsheet(file)
       case File.extname(file.original_filename)
@@ -35,3 +36,4 @@ enum status: {
 
 
 end
+ 
