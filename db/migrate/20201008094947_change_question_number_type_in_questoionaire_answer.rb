@@ -1,11 +1,7 @@
 class ChangeQuestionNumberTypeInQuestoionaireAnswer < ActiveRecord::Migration[6.0]
 
   def up
-    add_column :questionaire_answers,:question_no,:integer
-  end
-
-  def down
-    remove_column :questionaire_answers,:question_no,:string
+    change_column :questionaire_answers,:question_no,'integer USING CAST(question_no AS integer)'
   end
 
 end
