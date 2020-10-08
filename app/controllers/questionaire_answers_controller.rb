@@ -52,16 +52,18 @@ class QuestionaireAnswersController < InheritedResources::Base
 
   def index_plan
     id = session[:task_id]
-    @questionaire_answers = QuestionaireAnswer.order('created_at').where(task_id: id, question_type_id: 1).all
+		@questionaire_answers = QuestionaireAnswer.order('created_at').where(task_id: id, question_type_id: 1).all
+		@notes = Note.all
   end
 
   def index_fifty_five_hundred
     id = session[:task_id]
-    @questionaire_answers = QuestionaireAnswer.order('created_at').where(task_id: id, question_type_id: 2).all
+		@questionaire_answers = QuestionaireAnswer.order('created_at').where(task_id: id, question_type_id: 2).all
+		@notes = Note.all
   end
 
   def index
-    @questionaire_answers = QuestionaireAnswer.all.order('created_at').where(task_id: session[:task_id])
+		@questionaire_answers = QuestionaireAnswer.all.order('created_at').where(task_id: session[:task_id])
   end
 
   private

@@ -16,7 +16,7 @@
 					<%=link_to "Add Address",new_address_path,class: "btn btn-primary " %>
 				</div>
 				<div class="ml-2 my-1 float-right">
-					<button type="button" class="btn btn-success  px-3" data-toggle="modal" data-target="#new_approval ">Notes
+					<button type="button" class="btn btn-success  px-3" data-toggle="modal" data-target="#myModal ">Notes
 					</button>
 				</div>
 				<table class="table mb-0 thead-border-top-0 mt-1  table-hover">
@@ -55,7 +55,7 @@
 					<%=link_to "Add Contact",new_contact_number_path,class: "btn btn-primary" %>
 				</div>
 				<div class="ml-2 my-1 float-right">
-					<button type="button" class="btn btn-success  px-3" data-toggle="modal" data-target="#new_approval ">Notes
+					<button type="button" class="btn btn-success  px-3" data-toggle="modal" data-target="#myModal ">Notes
 					</button>
 				</div>
 				<table class="table mb-0 thead-border-top-0 mt-1  table-hover">
@@ -85,3 +85,5 @@
 		</div>
 	</div>
 </div>
+
+<%= render '/shared/notes_popup', { data_collection_step: "general"} %>

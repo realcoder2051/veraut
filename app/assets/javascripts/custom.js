@@ -136,6 +136,8 @@ $('#add_note_popup').click(function(e)
 
 $('#cancel_note').click(function(e)
 {
+	$('#add_note').modal('hide');
+	event.preventDefault();
 
 });
 
@@ -145,18 +147,20 @@ $('#myModal').on('hidden.bs.modal', function (e) {
 
 $("#save_note").click(function (event) {
 	var des = $("#add_note #description").val();
+	var step = $("#add_note #data_collection_step").val();
 	$.ajax({
-		url: `/company/create_note`,
-		data: { 'des': des },
+		url: `/note/create_note`,
+		data: { 'des': des, 'step': step },
 		type: "POST",
 		headers: {
 			'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
 		},
 		dataType: "json",
 		success: function (response) {
-			console.log(response);
 			$row = response.html;
 			$('#myModal table > tbody:last').append($row);
+
+			
 		}
 	})
 	$("#add_note").modal('hide')

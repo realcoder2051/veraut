@@ -39,6 +39,18 @@ class NotesController < InheritedResources::Base
 		note.destroy
 	end
 
+	def create_note
+		@note = Note.new
+		@note[:description] = params[:des]
+		@note[:data_collection_step] = params[:step]		
+		@note[:created_by] = current_user.email
+		if @note.save
+			render json: {
+					html: render_to_string(partial: '/notes/note.html.erb', locals: { note: @note })
+			}
+		end
+	end
+
 
 private
 def find_params
@@ -51,7 +63,7 @@ def fetch_note
     if result.count.positive?
       @q.sorts = 'data_collection_step asc' if @q.sorts.empty?
     end
-  @notes = result.paginate(:page => params[:page], per_page:10)
+  @notes = result.paginate(:page => params[:page], per_page:2)
 end
 
 def note_params

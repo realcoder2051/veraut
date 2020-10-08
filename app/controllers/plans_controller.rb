@@ -28,7 +28,8 @@ class PlansController < InheritedResources::Base
   end
 
   def index
-    @plans = Plan.all.order('created_at').where(task_id: session[:task_id])
+		@plans = Plan.all.order('created_at').where(task_id: session[:task_id])
+		@notes = Note.all
   end
 
   private

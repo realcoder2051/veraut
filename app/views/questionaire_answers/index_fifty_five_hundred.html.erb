@@ -1,43 +1,60 @@
 <div class="container-fluid full-scroll">
- <div class="page__heading cancel-row">
-    <nav aria-label="breadcrumb">
-      <ol class="breadcrumb mb-0">
-        <li class="breadcrumb-item"><i class="material-icons icon-20pt">home</i></li>
-        <li class="breadcrumb-item active" aria-current="page">5500</a></li>
-      </ol>
-    </nav>
-    <div class="row">
-      <div style="display:inline-block" class=" col-lg-4  w-50 p-12 px-md-1 ">
-      <h1 class="ml-3">View 5500</h1>
-      </div>
-      <%if !is_question_exist?%>
-        <div class="col-lg-2 offset-lg-6">
-          <%=link_to 'Add New 5500',fifty_five_hundred_new_path, class:"btn btn-primary m-1 float-right" %>
-        </div>
-      <%end%>
-    </div>
-  </div>
-  <table class="table mb-0 thead-border-top-0 mt-1  table-hover">
-    <thead class="table-info">
-      <tr>
-        <th scope="col">Question1</th>
-        <th scope="col">Question2</th>
-        <th scope="col">Question3</th>
-        <th scope="col">Question4</th>
-        <th scope="col">Question5</th>
-        <th scope="col">Question6</th>
-        <th scope="col">Actions</th>
-      </tr>
-    </thead>
-      <tbody>
-        <%if is_question_exist?%>
-          <tr>
-            <%@questionaire_answers.each do |plan|%>
-              <td><%=plan.answer%></td>
-            <%end%>
-            <td><a href=<%=edit_fifty_five_hundred_path(@questionaire_answers.joins(task: :task_group).where('task_groups.user_id = ? AND question_type_id = ?',current_user.id, 2).first.id)%> ><i class="material-icons icon-20pt modal-edit">edit</i></a></td>
-          </tr>
-        <%end%>
-      </tbody>
-  </table>
+	<div class="page__heading cancel-row">
+		<nav aria-label="breadcrumb">
+			<ol class="breadcrumb mb-0">
+				<li class="breadcrumb-item"><i class="material-icons icon-20pt">home</i></li>
+				<li class="breadcrumb-item active" aria-current="page">5500</a></li>
+			</ol>
+		</nav>
+		<div class="row">
+			<div style="display:inline-block" class=" col-lg-4  w-50 p-12 px-md-1 ">
+				<h1 class="ml-3">View 5500</h1>
+			</div>
+		</div>
+	</div>
+	<div class="card card-form">
+		<div class="row no-gutters">
+			<div class="col-lg-12 card-form__body">
+				<div class="ml-3  float-right">
+					<%if !is_question_exist?%>
+					<div class="ml-3  float-right">
+						<%=link_to 'Add New 5500',fifty_five_hundred_new_path, class:"btn btn-primary m-1 float-right" %>
+					</div>
+					<%end%>
+					<div class="ml-2 my-1 float-right">
+						<button type="button" class="btn btn-success  px-3" data-toggle="modal" data-target="#myModal">Notes
+						</button>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-12 card-form__body">
+				<table class="table mb-0 thead-border-top-0 mt-1  table-hover">
+					<thead class="table-info">
+						<tr>
+							<th scope="col">Question1</th>
+							<th scope="col">Question2</th>
+							<th scope="col">Question3</th>
+							<th scope="col">Question4</th>
+							<th scope="col">Question5</th>
+							<th scope="col">Question6</th>
+							<th scope="col">Actions</th>
+						</tr>
+					</thead>
+					<tbody>
+						<%if is_question_exist?%>
+						<tr>
+							<%@questionaire_answers.each do |plan|%>
+							<td><%=plan.answer%></td>
+							<%end%>
+							<td><a
+									href=<%=edit_fifty_five_hundred_path(@questionaire_answers.joins(task: :task_group).where('task_groups.user_id = ? AND question_type_id = ?',current_user.id, 2).first.id)%>><i
+										class="material-icons icon-20pt modal-edit">edit</i></a></td>
+						</tr>
+						<%end%>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
 </div>
+<%= render '/shared/notes_popup', { data_collection_step: "fifty_five_hundred"} %>

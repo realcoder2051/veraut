@@ -1,4 +1,5 @@
 
+
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
 aria-hidden="true">
 <div class="modal-dialog" style="width:3 5%," position="" role="document">
@@ -21,13 +22,8 @@ aria-hidden="true">
 				</button>
 			</div>
 			<div>
-				<%=render '/notes/note.table' %>
+				<%=render '/notes/note.table', { data_collection: data_collection_step } %>
 			</div>
-			<%= bootstrap_form_tag(url:'#')do |f| %>
-			<div class="show_form" hidden>
-				<%=render '/notes/form', f: f %>
-			</div>
-			<% end %>
 		</div>
 	</div>
 </div>
@@ -50,7 +46,7 @@ aria-hidden="true">
 		</div>
 		<div class="modal-body">
 			<!-- notes form -->
-			<%= render 'note_form' %>
+			<%= render '/shared/note_form' , { data_collection: data_collection_step } %>
 			<!-- notes form -->
 		</div>
 	</div>

@@ -1,8 +1,17 @@
+
 <%= bootstrap_form_tag(url:'company')do |f| %>
 <div class="form-row">
 	<div class="col-lg-3 left-move"></div>
 	<div class="col-lg-4 left-move">
 		<%= f.text_area :description %>
+		<div class="invalid-feedback">Please provide a time.</div>
+		<div class="valid-feedback">Looks good!</div>
+	</div>
+</div>
+<div class="form-row d-none ">
+	<div class="col-lg-3 left-move"></div>
+	<div class="col-lg-4 left-move">
+		<%= f.text_field :data_collection_step , value: data_collection  %>
 		<div class="invalid-feedback">Please provide a time.</div>
 		<div class="valid-feedback">Looks good!</div>
 	</div>
@@ -15,8 +24,7 @@
 		</div>
 		<div class="col-lg-1 right-move"></div>
 		<div class="right-move my-2">
-			<!-- <button class="btn btn-danger" , id="cancel_note"> cancel </button> -->
-			<%= link_to 'Cancel', companies_path, class: "btn btn-secondary "  %>
+			<button class="btn btn-danger" , id="cancel_note"> cancel </button>
 		</div>
 	</div>
 </div>

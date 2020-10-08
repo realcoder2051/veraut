@@ -18,7 +18,8 @@ class BusinessesController < InheritedResources::Base
   end
 
   def index
-    @businesses = Business.all.order('created_at').where(task_id: session[:task_id])
+		@businesses = Business.all.order('created_at').where(task_id: session[:task_id])
+		@notes = Note.all
   end
 
   def create

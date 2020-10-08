@@ -24,7 +24,8 @@ class PrincipalsController < InheritedResources::Base
   end
 
   def index
-    @principals = Principal.all.order('created_at').where(task_id: session[:task_id])
+		@principals = Principal.all.order('created_at').where(task_id: session[:task_id])
+		@notes = Note.all
   end
 
   private

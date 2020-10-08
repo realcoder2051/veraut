@@ -40,7 +40,8 @@ class ContactNumbersController < InheritedResources::Base
   end
 
   def index
-    @numbers = ContactNumber.all.order('created_at').where(task_id: session[:task_id])
+		@numbers = ContactNumber.all.order('created_at').where(task_id: session[:task_id])
+		@notes = Note.all
   end
 
   def destroy

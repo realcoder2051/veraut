@@ -14,7 +14,8 @@ class FamiliesController < InheritedResources::Base
   end
 
   def index
-    @families = Family.all.order('created_at').where(task_id: session[:task_id])
+		@families = Family.all.order('created_at').where(task_id: session[:task_id])
+		@notes = Note.all
   end
 
   def create

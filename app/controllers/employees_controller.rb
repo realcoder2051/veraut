@@ -26,7 +26,8 @@ class EmployeesController < InheritedResources::Base
     redirect_to employees_path
   end
 
-  def index
+	def index
+		@notes = Note.all
     ransack_search = params[:q]
     @first_name = ransack_search[:first_name_cont] if ransack_search.present?
     respond_to do |format|

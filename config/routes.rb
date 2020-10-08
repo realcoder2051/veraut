@@ -6,6 +6,7 @@
   resources :tasks
 	resources :notes
 		get 'note/delete_note/:id', to: 'notes#delete_note'
+		post 'note/create_note', to: 'notes#create_note'
   resources :documents
 	resources :approvals
   resources :roles
