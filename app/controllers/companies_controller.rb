@@ -33,23 +33,7 @@ class CompaniesController < InheritedResources::Base
 		end
 	end
 
-	# def create_note
-	# 	@note = Note.new
-	# 	@note[:description] = params[:des]
-	# 	@note[:data_collection_step] = request.original_fullpath[1,7]
-	# 	@note[:created_by] = current_user.email
-	# 	if @note.save
-	# 		render json: {
-	# 				html: render_to_string(partial: '/notes/note.html.erb', locals: { note: @note })
-	# 		}
-	# 	end
-	# end
 
-	# def delete_note
-	# 	note = Note.find(params[:id])
-	# 	note.destroy
-	# 	redirect_to companies_path
-	# end
 
 	private
 

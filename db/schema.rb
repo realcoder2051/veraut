@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_06_063552) do
+ActiveRecord::Schema.define(version: 2020_10_08_094913) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_stat_statements"
@@ -162,6 +162,18 @@ ActiveRecord::Schema.define(version: 2020_10_06_063552) do
     t.index ["task_id"], name: "index_families_on_task_id"
   end
 
+  create_table "feduciary_documents", force: :cascade do |t|
+    t.string "plan"
+    t.string "feduciary_document_type"
+    t.string "description"
+    t.date "effective_date"
+    t.date "period_end"
+    t.bigint "task_group_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["task_group_id"], name: "index_feduciary_documents_on_task_group_id"
+  end
+
   create_table "generals", force: :cascade do |t|
     t.string "address_type"
     t.string "address"
@@ -281,4 +293,5 @@ ActiveRecord::Schema.define(version: 2020_10_06_063552) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "approvals", "users"
   add_foreign_key "documents", "users"
+  add_foreign_key "feduciary_documents", "task_groups"
 end

@@ -1,5 +1,6 @@
   Rails.application.routes.draw do
 
+  resources :feduciary_documents
   resources :questionaire_answers
   resources :question_types
   resources :task_groups

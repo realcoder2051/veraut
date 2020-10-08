@@ -1,64 +1,59 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-  <head>
-    <title>Benefit Equity, Inc</title>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <%= csrf_meta_tags %>
 
-    <%= stylesheet_link_tag    'application', media: 'all' %>
-    <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
-		<script src='https://kit.fontawesome.com/a076d05399.js'></script>
-		<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
-		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-		<link rel="stylesheet" href="bs-stepper.min.css">
+<head>
+	<title>Benefit Equity, Inc</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<%= csrf_meta_tags %>
 
-		
-  </head>
+	<%= stylesheet_link_tag    'application', media: 'all' %>
+	<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+	<script src='https://kit.fontawesome.com/a076d05399.js'></script>
+	<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link rel="stylesheet" href="bs-stepper.min.css">
 
-  <body class="<%= @body_class || 'layout-default' %>">
-    <!-- Header Layout -->
-    <% if !user_signed_in?%>
-        <%= yield %>
-    <% else%>
-    <div class="mdk-header-layout js-mdk-header-layout">
-      <!-- Header -->
-       <%if user_signed_in?%>
-        <div id="header" class="mdk-header js-mdk-header m-0" data-fixed>
-          <div class="mdk-header__content">
+
+</head>
+
+<body class="<%= @body_class || 'layout-default' %>">
+	<!-- Header Layout -->
+	<% if !user_signed_in?%>
+		<%= yield %>
+	<% else%>
+		<div class="mdk-header-layout js-mdk-header-layout">
+			<!-- Header -->
+				<div id="header" class="mdk-header js-mdk-header m-0" data-fixed>
+					<div class="mdk-header__content">
 						<%= render 'layouts/stack/navbar'%>
-          </div>
-        </div>
-      <%end%>
-      <!-- // END Header -->
-<div class="mdk-header-layout__content" style="display:none"></div>
-      <!-- Header Layout Content -->
-      <div class="mdk-drawer-layout js-mdk-drawer-layout" data-push data-responsive-width="992px">
-          <div class="mdk-drawer-layout__content page">
-            <%# CONTENT  %>
-            <%= yield %>
-          </div>
-          <!-- // END drawer-layout__content -->
-          <% if user_signed_in?%>
-            <%= render 'layouts/stack/drawer_left' %>
-              <%#div class="flash-messages">
-                <%#= render partial: 'shared/flash' %>
-            <%#/div%>
-          <%end%>
-        </div>
-			<%end %>
+					</div>
+				</div>
+			<!-- // END Header -->
+			<div class="mdk-header-layout__content" style="display:none"></div>
+			<!-- Header Layout Content -->
+			<div class="mdk-drawer-layout js-mdk-drawer-layout" data-push data-responsive-width="992px">
+				<div class="mdk-drawer-layout__content page">
+					<%# CONTENT  %>
+					<%= yield %>
+				</div>
+				<!-- // END drawer-layout__content -->
+					<%= render 'layouts/stack/drawer_left' %>
+					<%= render '/shared/notes_popup', { data_collection_step: controller_name.singularize } %>
 
-    <!--  <div class="mdk-header-layout__content">-->
-        <!-- // END drawer-layout -->
-  </div>
-      <!-- // END header-layout__content -->
-    <!-- // END header-layout -->
 
-    <%= content_for :footer %>
-    <%= javascript_include_tag 'core-scripts', 'data-turbolinks-track' => 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track' => 'reload' %>
-    <%= content_for :footer_scripts %>
-    
-  </body>
+			</div>
+		</div>
+	<%end %>
+	<!-- // END header-layout__content -->
+	<!-- // END header-layout -->
+
+	<%= content_for :footer %>
+	<%= javascript_include_tag 'core-scripts', 'data-turbolinks-track' => 'reload' %>
+	<%= javascript_include_tag 'application', 'data-turbolinks-track' => 'reload' %>
+	<%= content_for :footer_scripts %>
+
+</body>
+
 </html>

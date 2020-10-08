@@ -19,3 +19,9 @@ $('.modal-edit').click(function(event) {
       error: function(data) {}
     })
   });
+
+
+	$('#render_notes').click(function(event){
+		$('#company_note').html("<%= escape_javascript(render :partial => '/shared/notes_popup') %>");
+	});
+	

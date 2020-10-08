@@ -3,6 +3,7 @@ var hash = {
 	"/users": "view-user",
 	"/users/show ": "view-user",
 	"/users/:id/edit": "view-user",
+	"/feduciary_documents": "document",
 	"/contact_numbers/:id": "view-general",
 	"/contact_numbers/new": "view-general",
 	"/addresses/:id": "view-general",
@@ -33,8 +34,6 @@ var hash = {
 	"/rights": "view-rights",
 	"/rights/new": "add-right",
 	"/approvals": "view-approval",
-	"/documents/new": "view-approval",
-	"/documents": "view-approval",
 	"/notes/new": "view-approval",
 	"/notes": "view-approval",
 
@@ -168,5 +167,30 @@ $("#save_note").click(function (event) {
 	event.preventDefault();
 	return false;
 })
+
+$("#save_note").click(function (event) {
+	var des = $("#add_note #description").val();
+	var step = $("#add_note #data_collection_step").val();
+	$.ajax({
+		url: `/note/edit_note`,
+		data: { 'des': des, 'step': step },
+		type: "POST",
+		headers: {
+			'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+		},
+		dataType: "json",
+		success: function (response) {
+			$row = response.html;
+			$('#myModal table > tbody:last').append($row);
+
+			
+		}
+	})
+	$("#add_note").modal('hide')
+	$('#myModal').modal('show')
+	event.preventDefault();
+	return false;
+})
+// $('#company_note').html("<%= escape_javascript(render :partial => '/shared/notes_popup') %>");
 
 

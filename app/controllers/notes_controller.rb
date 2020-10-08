@@ -51,6 +51,13 @@ class NotesController < InheritedResources::Base
 		end
 	end
 
+	def edit_note
+		if @note.update_attributes(params[:des])
+			render json: {
+					html: render_to_string(partial: '/notes/note.html.erb', locals: { note: @note })
+			}
+		end
+	end
 
 private
 def find_params
