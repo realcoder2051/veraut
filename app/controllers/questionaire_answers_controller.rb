@@ -12,27 +12,39 @@ class QuestionaireAnswersController < InheritedResources::Base
   end
 
   def create_plan
-    choose_plan
+    answers = params[:questionaire_answer][:answer]
+    questionaire_answers = choose_plan(answers)
+    QuestionaireAnswer.import questionaire_answers
+    redirect_to plans_path
   end
 
   def create_fifty_five_hundred
-    fifty_five_hundred_plan
+    answers = params[:questionaire_answer][:answer]
+    questionaire_answers = fifty_five_hundred_plan(answers)
+    QuestionaireAnswer.import questionaire_answers
+    redirect_to fifty_five_hundred_path
   end
 
   def edit_5500
-    @questionaire_answer = QuestionaireAnswer.joins(task: :task_group).where('task_groups.user_id=? AND question_type_id=?',current_user.id,2)
+    @questionaire_answer = QuestionaireAnswer.where('task_id=? AND question_type_id=? ',session[:task_id],2)
   end
 
   def update_5500
-    fifty_five_hundred_plan
+    answers = params[:questionaire_answer][:answer]
+    questionaire_answers = fifty_five_hundred_plan(answers)
+    QuestionaireAnswer.import questionaire_answers, on_duplicate_key_update: [:answer]
+    redirect_to fifty_five_hundred_path
   end
 
   def edit_plan
-    @questionaire_answer = QuestionaireAnswer.joins(task: :task_group).where('task_groups.user_id=? AND question_type_id=? ',current_user.id,1)
+    @questionaire_answer = QuestionaireAnswer.where('task_id=? AND question_type_id=? ',session[:task_id],1).order(:id)
   end
 
   def update_plan
-    choose_plan
+    answers = params[:questionaire_answer][:answer]
+    questionaire_answers = choose_plan(answers)
+    QuestionaireAnswer.import questionaire_answers, on_duplicate_key_update: [:answer]
+    redirect_to plans_path
   end
 
   def show
@@ -41,16 +53,12 @@ class QuestionaireAnswersController < InheritedResources::Base
 
   def index_plan
     id = session[:task_id]
-    @questionaire_answers = QuestionaireAnswer.order('created_at').where(task_id: id, question_type_id: 1).all
+    @questionaire_answers = QuestionaireAnswer.where("task_id=? AND question_type_id=?" ,id , 1).order(:id)
   end
 
   def index_fifty_five_hundred
-    id = session[:task_id]
-    @questionaire_answers = QuestionaireAnswer.order('created_at').where(task_id: id, question_type_id: 2).all
-  end
-
-  def index
-    @questionaire_answers = QuestionaireAnswer.all.order('created_at').where(task_id: session[:task_id])
+    task_id = session[:task_id]
+    @questionaire_answers = QuestionaireAnswer.where("task_id=? AND question_type_id=?" ,task_id , 2).order(:id)
   end
 
   private
@@ -59,23 +67,22 @@ class QuestionaireAnswersController < InheritedResources::Base
       params.require(:questionaire_answer).permit(:answer,:question_no)
     end
 
-    def choose_plan
-      answers = params[:questionaire_answer][:answer]
+    def choose_plan(answers)
+     #answers = params[:questionaire_answer][:answer]
       questionaire_answers = []
-      id = params[:questionaire_answer][:id]
+      answer_id = params[:questionaire_answer][:id]
       answers.each_with_index do |answer,index|
-        questionaire_answer = QuestionaireAnswer.find_or_initialize_by(id: id[index].to_i.positive? ? id[index].to_i : nil )
+        questionaire_answer = QuestionaireAnswer.find_or_initialize_by(id: answer_id[index].to_i.positive? ? answer_id[index].to_i : nil )
         questionaire_answer[:answer] = answer
         questionaire_answer[:task_id] = session[:task_id]
         questionaire_answer[:question_type_id] = 1
 				questionaire_answer[:question_no] = index+1
         questionaire_answers << questionaire_answer
       end
-      QuestionaireAnswer.import questionaire_answers, on_duplicate_key_update: [:answer]
-      redirect_to plans_path
+      return questionaire_answers
     end
 
-    def fifty_five_hundred_plan
+    def fifty_five_hundred_plan(answers)
       answers = params[:questionaire_answer][:answer]
       questionaire_answers = []
       id = params[:questionaire_answer][:id]
@@ -87,8 +94,7 @@ class QuestionaireAnswersController < InheritedResources::Base
         questionaire_answer[:question_no] = index+1
         questionaire_answers << questionaire_answer
       end
-      QuestionaireAnswer.import questionaire_answers, on_duplicate_key_update: [:answer]
-      redirect_to fifty_five_hundred_path
+      return questionaire_answers
     end
 
 end

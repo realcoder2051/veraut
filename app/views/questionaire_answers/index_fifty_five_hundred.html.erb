@@ -35,7 +35,7 @@
             <%@questionaire_answers.each do |plan|%>
               <td><%=plan.answer%></td>
             <%end%>
-            <td><a href=<%=edit_fifty_five_hundred_path(@questionaire_answers.joins(task: :task_group).where('task_groups.user_id = ? AND question_type_id = ?',current_user.id, 2).first.id)%> ><i class="material-icons icon-20pt modal-edit">edit</i></a></td>
+            <td><a href=<%=edit_fifty_five_hundred_path(fifty_five_hundred_edit)%> ><i class="material-icons icon-20pt modal-edit">edit</i></a></td>
           </tr>
         <%end%>
       </tbody>
