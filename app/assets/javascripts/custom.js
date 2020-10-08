@@ -24,6 +24,7 @@ var hash = {
 	"/plans/new": "view-plan",
 	"/5500": "view-fiftyfive",
 	"/5500/new": "view-fiftyfive",
+	"/5500/:id/edit" : "view-fiftyfive",
 	"/employees": "view-employee",
 	"/employees/new": "view-employee",
 	"/distribution": "distribution",
