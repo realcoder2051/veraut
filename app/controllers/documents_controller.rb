@@ -12,7 +12,7 @@ class DocumentsController < InheritedResources::Base
     
   end
 
-  def create  
+	def create  
     @document = Document.new(document_params)
     @document[:user_id] = current_user.id
     if @document.save

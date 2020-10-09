@@ -14,8 +14,7 @@
         <br>
       <%else%>
         <input type=hidden name='questionaire_answer[id][]' value= <%=get_id(index)%> />
-        <%=date_field_tag 'questionaire_answer[answer][]',get_value(index), as: :date_picker, class: "date-class"%>
-        <br>
+				<%=date_field_tag 'questionaire_answer[answer][]',get_value(index), :required => true , as: :date_picker, class: "date-class"%>
       <%end%>
       <div class="invalid-feedback">Please provide a time.</div>
       <div class="valid-feedback">Looks good!</div>

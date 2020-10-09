@@ -25,7 +25,9 @@ class ContactsController < InheritedResources::Base
 
   def index
     @contacts = Contact.all.order('created_at').where(task_id: session[:task_id])
-    @roles_rights = RolesRight.all
+		@roles_rights = RolesRight.all
+		@notes = Note.all
+
   end
 
   private

@@ -28,7 +28,8 @@ class FiftyFiveHundredsController < InheritedResources::Base
   end
 
   def index
-    @fifty_five_hundreds = FiftyFiveHundred.all.order('created_at').where(task_id: session[:task_id])
+		@fifty_five_hundreds = FiftyFiveHundred.all.order('created_at').where(task_id: session[:task_id])
+		@notes = Note.all
   end
 
   def destroy

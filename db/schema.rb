@@ -50,6 +50,7 @@ ActiveRecord::Schema.define(version: 2020_10_08_094947) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "task_id"
+    t.boolean "approval_status", default: false
     t.index ["general_id"], name: "index_addresses_on_general_id"
     t.index ["task_id"], name: "index_addresses_on_task_id"
   end
@@ -78,6 +79,7 @@ ActiveRecord::Schema.define(version: 2020_10_08_094947) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "task_id"
+    t.boolean "approval_status", default: false
     t.index ["task_id"], name: "index_businesses_on_task_id"
   end
 
@@ -92,6 +94,7 @@ ActiveRecord::Schema.define(version: 2020_10_08_094947) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "task_id"
+    t.boolean "approval_status", default: false
     t.index ["task_id"], name: "index_companies_on_task_id"
   end
 
@@ -102,6 +105,7 @@ ActiveRecord::Schema.define(version: 2020_10_08_094947) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "task_id"
+    t.boolean "approval_status", default: false
     t.index ["general_id"], name: "index_contact_numbers_on_general_id"
     t.index ["task_id"], name: "index_contact_numbers_on_task_id"
   end
@@ -115,6 +119,7 @@ ActiveRecord::Schema.define(version: 2020_10_08_094947) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "task_id"
+    t.boolean "approval_status", default: false
     t.index ["task_id"], name: "index_contacts_on_task_id"
   end
 
@@ -149,6 +154,7 @@ ActiveRecord::Schema.define(version: 2020_10_08_094947) do
     t.boolean "is_new", default: true
     t.integer "status", default: 0
     t.bigint "task_id"
+    t.boolean "approval_status", default: false
     t.index ["task_id"], name: "index_employees_on_task_id"
   end
 
@@ -159,7 +165,20 @@ ActiveRecord::Schema.define(version: 2020_10_08_094947) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "task_id"
+    t.boolean "approval_status", default: false
     t.index ["task_id"], name: "index_families_on_task_id"
+  end
+
+  create_table "feduciary_documents", force: :cascade do |t|
+    t.string "plan"
+    t.string "feduciary_document_type"
+    t.string "description"
+    t.date "effective_date"
+    t.date "period_end"
+    t.bigint "task_group_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["task_group_id"], name: "index_feduciary_documents_on_task_group_id"
   end
 
   create_table "generals", force: :cascade do |t|
@@ -187,6 +206,7 @@ ActiveRecord::Schema.define(version: 2020_10_08_094947) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "task_id"
+    t.boolean "approval_status", default: false
     t.index ["task_id"], name: "index_principals_on_task_id"
   end
 
@@ -203,6 +223,7 @@ ActiveRecord::Schema.define(version: 2020_10_08_094947) do
     t.bigint "question_type_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "approval_status", default: false
     t.index ["question_type_id"], name: "index_questionaire_answers_on_question_type_id"
     t.index ["task_id"], name: "index_questionaire_answers_on_task_id"
   end
@@ -281,4 +302,5 @@ ActiveRecord::Schema.define(version: 2020_10_08_094947) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "approvals", "users"
   add_foreign_key "documents", "users"
+  add_foreign_key "feduciary_documents", "task_groups"
 end

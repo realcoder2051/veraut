@@ -36,7 +36,8 @@ class AddressesController < InheritedResources::Base
   end
 
   def index
-    @address = Address.all.order('created_at')
+		@address = Address.all.order('created_at')
+		@notes = Note.all
   end
 
   def destroy

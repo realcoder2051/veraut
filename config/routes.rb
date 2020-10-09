@@ -1,11 +1,16 @@
   Rails.application.routes.draw do
 
+  resources :feduciary_documents
   resources :questionaire_answers
   resources :question_types
   resources :task_groups
   resources :tasks
 	resources :notes
 		get 'note/delete_note/:id', to: 'notes#delete_note'
+		post 'note/create_note', to: 'notes#create_note'
+		post 'note/update_note/:id', to: 'notes#update_note'
+		get 'notes/get_note/:id', to: 'notes#get_note'
+
   resources :documents
 	resources :approvals
   resources :roles
