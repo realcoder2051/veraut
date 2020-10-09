@@ -26,7 +26,7 @@ class UsersController < ApplicationController
 
 	def create
     @roles = Role.all
-    role_id = params[:user][:name].to_i
+    role_id = params[:user][:role_type].to_i
     @resource[:role_id] = role_id
     if @resource.save
       task_group = TaskGroup.create(user_id: @resource.id)
@@ -44,7 +44,7 @@ class UsersController < ApplicationController
       params[:user].delete(:password_confirmation)
     end
     @resource = User.find(params[:id])
-    role = params[:user][:name].to_i
+    role = params[:user][:role_type].to_i
     @resource[:role_id] = role
     if @resource.update_attributes(resource_params)
 			redirect_to users_path
