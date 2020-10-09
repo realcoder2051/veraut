@@ -12,6 +12,15 @@
 			</div>
 		</div>
 	</div>
+	<div class="container-fluid page__container">
+		<div>
+			<h3> Step 4 : Family Relationships : </h3>
+		</div>
+		<div class="mt-4 mb-2">
+			<span> Please complete all the information below for family of all the principals that are employed at your
+				firm.When you have completed your changes,click the Save button to continue</span>
+		</div>
+	</div>
 	<div class="card card-form">
 		<div class="row no-gutters">
 			<div class="col-lg-12 card-form__body">
@@ -19,8 +28,7 @@
 					<%=link_to 'Add Family',new_family_path, class:"btn btn-primary m-1 float-right" %>
 				</div>
 				<div class="ml-2 my-1 float-right">
-					<button type="button" class="btn btn-success  px-3" data-toggle="modal"
-						data-target="#myModal ">Notes
+					<button type="button" class="btn btn-success  px-3" data-toggle="modal" data-target="#myModal ">Notes
 					</button>
 				</div>
 			</div>
@@ -35,24 +43,23 @@
 						</tr>
 					</thead>
 					<%if session[:task_id]%>
-						<tbody>
-							<% @families.each do |family| %>
-							<tr class="redirect_to_show cursor-pointer" data-url=<%= family_path(family) %>>
-								<td><%= family.name %></td>
-								<td><%= family.relationship %></td>
-								<td><%= find_related_to(family.related_to)%></td>
-								<td>
-									<a href=<%=edit_family_path(family)%>><i class="material-icons icon-20pt modal-edit">edit</i></a>
-									<a data-confirm="Are you sure?" rel="nofollow" data-method="delete" href=<%=family_path(family)%>><i
-											class="material-icons">delete</i></a>
-								</td>
-							</tr>
-							<% end %>
-						</tbody>
+					<tbody>
+						<% @families.each do |family| %>
+						<tr class="redirect_to_show cursor-pointer" data-url=<%= family_path(family) %>>
+							<td><%= family.name %></td>
+							<td><%= family.relationship %></td>
+							<td><%= find_related_to(family.related_to)%></td>
+							<td>
+								<a href=<%=edit_family_path(family)%>><i class="material-icons icon-20pt modal-edit">edit</i></a>
+								<a data-confirm="Are you sure?" rel="nofollow" data-method="delete" href=<%=family_path(family)%>><i
+										class="material-icons">delete</i></a>
+							</td>
+						</tr>
+						<% end %>
+					</tbody>
 					<%end%>
 				</table>
 			</div>
 		</div>
 	</div>
 </div>
-

@@ -12,6 +12,15 @@
 			</div>
 		</div>
 	</div>
+	<div class="container-fluid page__container">
+		<div>
+			<h3> Step 7 : Annual Employer Questionnaire : </h3>
+		</div>
+		<div class="mt-4 mb-2">
+			<span> Please provide answers to the list of questions below.Click the Save button to save your answers and
+				continue to next step</span>
+		</div>
+	</div>
 	<div class="card card-form">
 		<div class="row no-gutters">
 			<div class="col-lg-12 card-form__body">
@@ -50,8 +59,9 @@
 						<tr>
 							<%@questionaire_answers.each do |plan|%>
 							<td><%=plan.answer%></td>
-							<%end%>						
-								<td><a href=<%=edit_plan_path(plan_edit)%> ><i class="material-icons icon-20pt modal-edit">edit</i></a></td>
+							<%end%>
+							<td><a href=<%=edit_plan_path(plan_edit)%>><i class="material-icons icon-20pt modal-edit">edit</i></a>
+							</td>
 
 						</tr>
 					</tbody>
@@ -61,4 +71,3 @@
 		</div>
 	</div>
 </div>
-

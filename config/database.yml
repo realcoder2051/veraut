@@ -1,15 +1,17 @@
 default: &default
-  adapter: postgresql
-  encoding: unicode
-  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  host: localhost
-  username: 'postgres'
-  password: 'myPassword'
-  port: 5432
+adapter: postgresql
+encoding: unicode
+pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+host: localhost
+username: 'postgres'
+password: 'postgres'
+port: 5432
 
 development:
-  <<: *default
-  database: bei_clientportal_dev_4
+<<: *default
+database: bei_clientportal_dev
+
+
 
 # test:
 #   <<: *default
