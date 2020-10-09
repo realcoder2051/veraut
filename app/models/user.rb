@@ -19,7 +19,7 @@ class User < ApplicationRecord
 
   scope :ordered, -> { order(name: :asc) }
 
-  attr_accessor :name
+  attr_accessor :role_type
   #accepts_nested_attributes_for :task_group
 
   def before_add_method(role)

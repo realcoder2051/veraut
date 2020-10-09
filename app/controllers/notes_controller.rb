@@ -1,6 +1,6 @@
 class NotesController < InheritedResources::Base
   before_action :fetch_note, only: %i[index]
-  before_action :find_params, only: %i[update destroy show update_note]
+  before_action :find_params, only: %i[update destroy show update_note edit]
 
 
 
@@ -14,7 +14,7 @@ class NotesController < InheritedResources::Base
 	end
 	
 	def edit 
-		render json: Note.find(params[:id]),:layout => false
+		
 	end
 
   def create  
