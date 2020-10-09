@@ -46,6 +46,10 @@ $(document).ready((function () {
 		sidebar(window.location.pathname);
 	}
 
+
+
+
+
 }));
 
 function sidebar(url) {
@@ -108,7 +112,11 @@ $("#number_dropdown").change(function (event) {
 });
 
 
+// function edit_note(){	
+// 	$('#update_note').modal('show');
 
+	
+// }	
 
 	
 function delete_note(){
@@ -133,23 +141,13 @@ $('#add_note_popup').click(function(e)
 
 
 
-$('#cancel_note').click(function(e)
-{
-	$('#add_note').modal('hide');
-	event.preventDefault();
-
-});
-
-$('#myModal').on('hidden.bs.modal', function (e) {
-})
-
 
 $("#save_note").click(function (event) {
 	var des = $("#add_note #description").val();
 	var step = $("#add_note #data_collection_step").val();
 	$.ajax({
 		url: `/note/create_note`,
-		data: { 'des': des, 'step': step },
+		data: Parameters= { "note": {"description": des, "data_collection_step": step }},
 		type: "POST",
 		headers: {
 			'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
@@ -157,40 +155,47 @@ $("#save_note").click(function (event) {
 		dataType: "json",
 		success: function (response) {
 			$row = response.html;
-			$('#myModal table > tbody:last').append($row);
-
-			
+			$('#myModal table > tbody:last').append($row);		
 		}
 	})
 	$("#add_note").modal('hide')
 	$('#myModal').modal('show')
 	event.preventDefault();
 	return false;
-})
+});
 
-$("#save_note").click(function (event) {
-	var des = $("#add_note #description").val();
-	var step = $("#add_note #data_collection_step").val();
+
+$("#update_note_button").click(update_note);
+
+
+function update_note() 
+{
+	var des = $("#update_note #description").val();
+	var step = $("#update_note #data_collection_step").val();
+	var note_id = $("#update_note #id").val();
 	$.ajax({
-		url: `/note/edit_note`,
-		data: { 'des': des, 'step': step },
+		url: `/note/update_note/${note_id}`,
+		data:  Parameters= { "note": {"description": des, "data_collection_step": step }},
 		type: "POST",
 		headers: {
 			'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
 		},
 		dataType: "json",
 		success: function (response) {
-			$row = response.html;
-			$('#myModal table > tbody:last').append($row);
-
+			console.log(response)
+			$row = $(response.html);
+			$(`#note_${note_id}`).html($row.html());
 			
+
 		}
 	})
-	$("#add_note").modal('hide')
+	$("#update_note").modal('hide')
 	$('#myModal').modal('show')
 	event.preventDefault();
 	return false;
-})
-// $('#company_note').html("<%= escape_javascript(render :partial => '/shared/notes_popup') %>");
+}
+
+	
+
 
 

@@ -4,8 +4,6 @@
 		<div class="modal-dialog" style="width:3 5%," position="" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
-					<div class="page__heading">
-					</div>
 					<h5 class="modal-title" id="exampleModalLabel">Note</h5>
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 						<span aria-hidden="true">&times;</span>
@@ -38,8 +36,6 @@
 		<div class="modal-dialog" style="width:35%," position="" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
-					<div class="page__heading">
-					</div>
 					<h5 class="modal-title" id="exampleModalLabel">Note</h5>
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 						<span aria-hidden="true">&times;</span>
@@ -53,3 +49,24 @@
 			</div>
 		</div>
 	</div>
+
+	<!-- Edit Note -->
+
+	<div class="modal fade " id="update_note" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+	aria-hidden="true">
+	<div class="modal-dialog" style="width:35%," position="" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">Notes</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<!-- notes form -->
+				<%= render '/shared/note_edit_form' , { data_collection: data_collection_step } %>
+				<!-- notes form -->
+			</div>
+		</div>
+	</div>
+</div>

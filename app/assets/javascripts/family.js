@@ -3,7 +3,6 @@ $('.modal-edit').click(function(event) {
   Rails.ajax({
     url: $(this).children().attr('href'),
     type: "get",
-    fda,
     data: "",
     success: function(data) {
       $('#edit_family #name').val(data.name)

@@ -1,6 +1,6 @@
 class NotesController < InheritedResources::Base
   before_action :fetch_note, only: %i[index]
-  before_action :find_params, only: %i[update destroy show]
+  before_action :find_params, only: %i[update destroy show update_note]
 
 
 
@@ -11,7 +11,11 @@ class NotesController < InheritedResources::Base
 
   def show
 
-  end
+	end
+	
+	def edit 
+		render json: Note.find(params[:id]),:layout => false
+	end
 
   def create  
 		@note = Note.new(note_params)
@@ -40,10 +44,8 @@ class NotesController < InheritedResources::Base
 	end
 
 	def create_note
-		@note = Note.new
-		@note[:description] = params[:des]
-		@note[:data_collection_step] = params[:step]		
-		@note[:created_by] = current_user.email
+		@note = Note.new(note_params)
+		@note.created_by = current_user.email
 		if @note.save
 			render json: {
 					html: render_to_string(partial: '/notes/note.html.erb', locals: { note: @note })
@@ -51,8 +53,13 @@ class NotesController < InheritedResources::Base
 		end
 	end
 
-	def edit_note
-		if @note.update_attributes(params[:des])
+	def get_note
+		note = Note.find_by(id: params[:id])
+		render json: { data: note }
+	end
+
+	def update_note
+		if @note.update_attributes(note_params)
 			render json: {
 					html: render_to_string(partial: '/notes/note.html.erb', locals: { note: @note })
 			}
