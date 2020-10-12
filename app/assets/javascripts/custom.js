@@ -80,6 +80,7 @@ $(".redirect_to_show").click(function (e) {
 })
 
 
+
 function address(id, value) {
 	$.ajax({
 		url: `/address/get_address/${value}`,

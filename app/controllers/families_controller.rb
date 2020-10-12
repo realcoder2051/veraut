@@ -22,7 +22,7 @@ class FamiliesController < InheritedResources::Base
   end
 
   def index
-		@families = Family.all.order('created_at').where(task_id: session[:task_id])
+		@families = Family.all.order('created_at').where(user_id: current_user.id)
 		@notes = Note.all
   end
 
@@ -30,6 +30,7 @@ class FamiliesController < InheritedResources::Base
     @principals = Principal.all.where(task_id: session[:task_id])
     @family = Family.new(family_params)
 		@family[:task_id] = session[:task_id]
+		@family[:user_id] = current_user.id
     if @family.save
       redirect_to families_path
     else

@@ -55,7 +55,7 @@
 								<th colspan="1">Actions</th>
 							</tr>
 						</thead>
-						<% if session[:task_id]%>
+						<% if current_user%>
 						<tbody>
 							<% @companies.each do |company| %>
 							<tr class="redirect_to_show cursor-pointer" data-url="<%= company_path(company) %>">

@@ -1,6 +1,7 @@
 class User < ApplicationRecord
 
-  resourcify
+	resourcify
+	has_many :companies
   has_many_attached :documents
   has_many :documents, dependent: :destroy
   belongs_to :role,optional:true

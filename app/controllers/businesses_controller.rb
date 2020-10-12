@@ -19,13 +19,14 @@ class BusinessesController < InheritedResources::Base
   end
 
   def index
-		@businesses = Business.all.order('created_at').where(task_id: session[:task_id])
+		@businesses = Business.all.order('created_at').where(user_id: current_user.id)
 		@notes = Note.all
   end
 
   def create
     @business = Business.new(business_params)
-    @business[:task_id] = session[:task_id]
+		@business[:task_id] = session[:task_id]
+		@business[:user_id] = current_user.id
 		@business[:does_company_have_employees] = company_have_employees?
     if @business.save
       redirect_to businesses_path

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_08_094947) do
+ActiveRecord::Schema.define(version: 2020_10_12_101143) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_stat_statements"
@@ -50,9 +50,10 @@ ActiveRecord::Schema.define(version: 2020_10_08_094947) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "task_id"
-    t.boolean "approval_status", default: false
+    t.bigint "user_id"
     t.index ["general_id"], name: "index_addresses_on_general_id"
     t.index ["task_id"], name: "index_addresses_on_task_id"
+    t.index ["user_id"], name: "index_addresses_on_user_id"
   end
 
   create_table "approvals", force: :cascade do |t|
@@ -79,8 +80,9 @@ ActiveRecord::Schema.define(version: 2020_10_08_094947) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "task_id"
-    t.boolean "approval_status", default: false
+    t.bigint "user_id"
     t.index ["task_id"], name: "index_businesses_on_task_id"
+    t.index ["user_id"], name: "index_businesses_on_user_id"
   end
 
   create_table "companies", force: :cascade do |t|
@@ -94,8 +96,9 @@ ActiveRecord::Schema.define(version: 2020_10_08_094947) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "task_id"
-    t.boolean "approval_status", default: false
+    t.bigint "user_id"
     t.index ["task_id"], name: "index_companies_on_task_id"
+    t.index ["user_id"], name: "index_companies_on_user_id"
   end
 
   create_table "contact_numbers", force: :cascade do |t|
@@ -105,9 +108,10 @@ ActiveRecord::Schema.define(version: 2020_10_08_094947) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "task_id"
-    t.boolean "approval_status", default: false
+    t.bigint "user_id"
     t.index ["general_id"], name: "index_contact_numbers_on_general_id"
     t.index ["task_id"], name: "index_contact_numbers_on_task_id"
+    t.index ["user_id"], name: "index_contact_numbers_on_user_id"
   end
 
   create_table "contacts", force: :cascade do |t|
@@ -119,7 +123,6 @@ ActiveRecord::Schema.define(version: 2020_10_08_094947) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "task_id"
-    t.boolean "approval_status", default: false
     t.index ["task_id"], name: "index_contacts_on_task_id"
   end
 
@@ -154,7 +157,6 @@ ActiveRecord::Schema.define(version: 2020_10_08_094947) do
     t.boolean "is_new", default: true
     t.integer "status", default: 0
     t.bigint "task_id"
-    t.boolean "approval_status", default: false
     t.index ["task_id"], name: "index_employees_on_task_id"
   end
 
@@ -165,8 +167,9 @@ ActiveRecord::Schema.define(version: 2020_10_08_094947) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "task_id"
-    t.boolean "approval_status", default: false
+    t.bigint "user_id"
     t.index ["task_id"], name: "index_families_on_task_id"
+    t.index ["user_id"], name: "index_families_on_user_id"
   end
 
   create_table "feduciary_documents", force: :cascade do |t|
@@ -206,8 +209,9 @@ ActiveRecord::Schema.define(version: 2020_10_08_094947) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "task_id"
-    t.boolean "approval_status", default: false
+    t.bigint "user_id"
     t.index ["task_id"], name: "index_principals_on_task_id"
+    t.index ["user_id"], name: "index_principals_on_user_id"
   end
 
   create_table "question_types", force: :cascade do |t|
@@ -223,7 +227,6 @@ ActiveRecord::Schema.define(version: 2020_10_08_094947) do
     t.bigint "question_type_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.boolean "approval_status", default: false
     t.index ["question_type_id"], name: "index_questionaire_answers_on_question_type_id"
     t.index ["task_id"], name: "index_questionaire_answers_on_task_id"
   end

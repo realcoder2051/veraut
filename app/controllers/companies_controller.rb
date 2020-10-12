@@ -9,6 +9,7 @@ class CompaniesController < InheritedResources::Base
   def create
     @company = Company.new(company_params)
 		@company[:task_id] = session[:task_id]
+		@company[:user_id] = current_user.id
 		if @company.save	
       redirect_to companies_path
 		else
@@ -17,7 +18,7 @@ class CompaniesController < InheritedResources::Base
   end
 
   def index
-		@companies = Company.all.order('created_at').where(task_id: session[:task_id])
+		@companies = Company.all.order('created_at').where(user_id: current_user.id)
 		@notes = Note.all
   end
 

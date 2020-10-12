@@ -3,6 +3,8 @@ class ContactNumbersController < InheritedResources::Base
   def create
     contact_number = ContactNumber.new(contact_number_params)
 		contact_number[:task_id] = session[:task_id]
+		contact_number[:user_id] = current_user.id
+
     if contact_number.save
 			redirect_to generals_path
 		else
@@ -12,7 +14,7 @@ class ContactNumbersController < InheritedResources::Base
   end
 
   def new
-    @numbers = ContactNumber.all.where(task_id: session[:task_id])
+    @numbers = ContactNumber.all.where(user_id: current_user.id)
     @number = ContactNumber.new
   end
 
@@ -40,7 +42,7 @@ class ContactNumbersController < InheritedResources::Base
   end
 
   def index
-		@numbers = ContactNumber.all.order('created_at').where(task_id: session[:task_id])
+		@numbers = ContactNumber.all.order('created_at').where(user_id: current_user.id)
 		@notes = Note.all
   end
 

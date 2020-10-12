@@ -4,6 +4,8 @@ class AddressesController < InheritedResources::Base
     @address = Address.new(address_params)
     # address = Address.new(address1: address.address1,address2: address.address2,city: address.address1,state: address.state,zip: address.zip,address_type: params[:address][:address_type])
 		@address[:task_id] = session[:task_id]
+		@address[:user_id] = current_user.id
+
     if @address.save
 			redirect_to generals_path
 		else
@@ -36,7 +38,7 @@ class AddressesController < InheritedResources::Base
   end
 
   def index
-		@address = Address.all.order('created_at')
+		@address = Address.all.order('created_at').where(user_id: current_user.id)
 		@notes = Note.all
   end
 
@@ -55,7 +57,7 @@ class AddressesController < InheritedResources::Base
 	private
 	
 	def address_collection
-		@addresses = Address.all.order('created_at').where(task_id: session[:task_id])
+		@addresses = Address.all.order('created_at').where(user_id: current_user.id)
 	end
 
 	def address_params
