@@ -1,5 +1,6 @@
 class EmployeesController < InheritedResources::Base
   before_action :fetch_employee, only: %i[index]
+	before_action :stepper, only: %i[index]
 
 
   def edit

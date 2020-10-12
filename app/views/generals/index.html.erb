@@ -1,14 +1,28 @@
-<div class="container-fluid full-scroll">
-	<div class="page__heading cancel-row">
-		<nav aria-label="breadcrumb">
-			<ol class="breadcrumb mb-0">
-				<li class="breadcrumb-item"><i class="material-icons icon-20pt">home</i></li>
-				<li class="breadcrumb-item active" aria-current="page">General</a></li>
-			</ol>
-		</nav>
-		<h1>General Information</h1>
-
+<div class="employee_index_scroll">
+	<div class="container-fluid page__heading-container">
+		<div class="page__heading d-flex align-items-center">
+			<div class="flex">
+				<div class="row">
+					<div class="col-lg-2">
+						<nav aria-label="breadcrumb">
+							<ol class="breadcrumb mb-0">
+								<li class="breadcrumb-item"><i class="material-icons icon-20pt">home</i></li>
+								<li class="breadcrumb-item active" aria-current="page">General</a></li>
+							</ol>
+							<h1 class="m-0" <%= count()%>>General</h1>
+						</nav>
+					</div>
+					<!-- Stepper partial -->
+					<div class="container">
+						<div>
+							<%= render '/shared/stepper' %>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
+
 	<div class="container-fluid page__container">
 		<div>
 			<h3> Step 1 : Company Address and Phone Numbers : </h3>
@@ -17,77 +31,77 @@
 			<span> Please review the address and phone numbers below.Please add any new information or update existing
 				information as necessary.When you have completed your changes,click the Save button to continue</span>
 		</div>
-	</div>
-	<div class="row no-gutters">
-		<div class="col-lg-6">
-			<div class="card card-no-flex card-form card-form__body ">
-				<div class="ml-3 my-1 float-right">
-					<%=link_to "Add Address",new_address_path,class: "btn btn-primary " %>
-				</div>
-				<div class="ml-2 my-1 float-right">
-					<button type="button" class="btn btn-success  px-3" data-toggle="modal" data-target="#myModal ">Notes
-					</button>
-				</div>
-				<table class="table mb-0 thead-border-top-0 mt-1  table-hover">
-					<thead class="table-info">
-						<tr>
-							<th>Type</th>
-							<th colspan="3">Address</th>
-							<th colspan="1">Actions</th>
-						</tr>
-					</thead>
-					<%if session[:task_id]%>
-					<tbody>
-						<%@addresses.each do |address| %>
-						<tr class="redirect_to_show cursor-pointer" data-url=<%= address_path(address) %>>
-							<td><%= address.address_type %></td>
-							<td colspan="3">
-								<%= address.address1+address.address2+","+address.city+","+address.state+","+address.zip+","+address.address_type %>
-							</td>
-							<td>
-								<a href=<%=edit_address_path(address)%>><i class="material-icons">edit</i></a>
-								<a data-confirm="Are you sure?" rel="nofollow" data-method="delete" href=<%=address_path(address)%>><i
-										class="material-icons">delete</i></a>
-							</td>
-						</tr>
-						<% end %>
-					</tbody>
-					<%end%>
-				</table>
-			</div>
-		</div>
-		<div class="col-lg-5 offset-lg-1">
-			<div class="card card-no-flex card-form	 card-form__body">
-				<div class="ml-3 my-1 float-right">
-					<%=link_to "Add Contact",new_contact_number_path,class: "btn btn-primary" %>
-				</div>
-				<div class="ml-2 my-1 float-right">
-					<button type="button" class="btn btn-success  px-3" data-toggle="modal" data-target="#myModal ">Notes
-					</button>
-				</div>
-				<table class="table mb-0 thead-border-top-0 mt-1  table-hover">
-					<thead class="table-info">
-						<tr>
-							<th>Type</th>
-							<th colspan="2">Contact</th>
-							<th colspan="1">Actions</th>
-						</tr>
-					</thead>
-					<%if session[:task_id]%>
-					<tbody>
-						<%@numbers.each do |number| %>
-						<tr class="redirect_to_show cursor-pointer" data-url=<%= contact_number_path(number) %>>
-							<td><%= number.contact_type %></td>
-							<td colspan="2"> <%= number.number %></td>
-							<td>
-								<a href=<%=edit_contact_number_path(number)%>><i class="material-icons">edit</i></a>
-								<a data-confirm="Are you sure?" rel="nofollow" data-method="delete"
-									href=<%=contact_number_path(number)%>><i class="material-icons">delete</i></a> </td>
-						</tr>
+		<div class="row no-gutters">
+			<div class="col-lg-6">
+				<div class="card card-no-flex card-form card-form__body ">
+					<div class="ml-3 my-1 float-right">
+						<%=link_to "Add Address",new_address_path,class: "btn btn-primary " %>
+					</div>
+					<div class="ml-2 my-1 float-right">
+						<button type="button" class="btn btn-success  px-3" data-toggle="modal" data-target="#myModal ">Notes
+						</button>
+					</div>
+					<table class="table mb-0 thead-border-top-0 mt-1  table-hover">
+						<thead class="table-info">
+							<tr>
+								<th>Type</th>
+								<th colspan="3">Address</th>
+								<th colspan="1">Actions</th>
+							</tr>
+						</thead>
+						<%if session[:task_id]%>
+						<tbody>
+							<%@addresses.each do |address| %>
+							<tr class="redirect_to_show cursor-pointer" data-url=<%= address_path(address) %>>
+								<td><%= address.address_type %></td>
+								<td colspan="3">
+									<%= address.address1+address.address2+","+address.city+","+address.state+","+address.zip+","+address.address_type %>
+								</td>
+								<td>
+									<a href=<%=edit_address_path(address)%>><i class="material-icons">edit</i></a>
+									<a data-confirm="Are you sure?" rel="nofollow" data-method="delete" href=<%=address_path(address)%>><i
+											class="material-icons">delete</i></a>
+								</td>
+							</tr>
+							<% end %>
+						</tbody>
 						<%end%>
-					</tbody>
-					<%end%>
-				</table>
+					</table>
+				</div>
+			</div>
+			<div class="col-lg-5 offset-lg-1">
+				<div class="card card-no-flex card-form	 card-form__body">
+					<div class="ml-3 my-1 float-right">
+						<%=link_to "Add Contact",new_contact_number_path,class: "btn btn-primary" %>
+					</div>
+					<div class="ml-2 my-1 float-right">
+						<button type="button" class="btn btn-success  px-3" data-toggle="modal" data-target="#myModal ">Notes
+						</button>
+					</div>
+					<table class="table mb-0 thead-border-top-0 mt-1  table-hover">
+						<thead class="table-info">
+							<tr>
+								<th>Type</th>
+								<th colspan="2">Contact</th>
+								<th colspan="1">Actions</th>
+							</tr>
+						</thead>
+						<%if session[:task_id]%>
+						<tbody>
+							<%@numbers.each do |number| %>
+							<tr class="redirect_to_show cursor-pointer" data-url=<%= contact_number_path(number) %>>
+								<td><%= number.contact_type %></td>
+								<td colspan="2"> <%= number.number %></td>
+								<td>
+									<a href=<%=edit_contact_number_path(number)%>><i class="material-icons">edit</i></a>
+									<a data-confirm="Are you sure?" rel="nofollow" data-method="delete"
+										href=<%=contact_number_path(number)%>><i class="material-icons">delete</i></a> </td>
+							</tr>
+							<%end%>
+						</tbody>
+						<%end%>
+					</table>
+				</div>
 			</div>
 		</div>
 	</div>

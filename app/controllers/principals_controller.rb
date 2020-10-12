@@ -1,4 +1,5 @@
 class PrincipalsController < InheritedResources::Base
+	before_action :stepper, only: %i[index]
 
   def edit
     @principal = Principal.find(params[:id])

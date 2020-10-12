@@ -1,4 +1,5 @@
 class FamiliesController < InheritedResources::Base
+	before_action :stepper, only: %i[index]
 
   def edit
     @family = Family.find(params[:id])

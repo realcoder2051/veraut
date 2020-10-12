@@ -17,6 +17,30 @@ module ApplicationHelper
       when :error then 'alert alert-danger'
       when :alert then 'alert alert-warning'
     end
-  end
+	end
+	
+	def count 
+		@count = 0
+	end
+
+	def wizard_step_status(steps)
+		steps = steps.kind_of?(Array) ? steps : [steps]
+		
+		step_completed = false			
+		steps.each do |step|	 
+			step_completed = step.present?			
+		end
+		@count += 1 if step_completed == false  
+		step_completed ?  'complete' : 'disabled'
+	end
+	
+	def step_incomplete(incomplete)
+		@step_incomplete ||= incomplete if incomplete.present?
+		@step_incomplete
+	end
+	
+	def btn_status
+		@count == 0 ? 'active' : 'disabled'
+	end
 
 end

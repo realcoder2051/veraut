@@ -1,5 +1,6 @@
 class GeneralsController < InheritedResources::Base
-
+	before_action :stepper, only: %i[index]
+	
   def update
     general = General.find(params[:id])
     if general.update_attributes(general_params)

@@ -1,4 +1,5 @@
 class CompaniesController < InheritedResources::Base
+	before_action :stepper, only: %i[index]
 
 
   def new

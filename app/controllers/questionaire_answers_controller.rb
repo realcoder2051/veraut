@@ -1,4 +1,5 @@
 class QuestionaireAnswersController < InheritedResources::Base
+	before_action :stepper, only: %i[index_plan index_fifty_five_hundred]
 
   def new
     @questionaire_answer = QuestionaireAnswer.new

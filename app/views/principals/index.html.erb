@@ -1,14 +1,24 @@
-<div class="container-fluid full-scroll">
-	<div class="page__heading cancel-row">
-		<nav aria-label="breadcrumb">
-			<ol class="breadcrumb mb-0">
-				<li class="breadcrumb-item"><i class="material-icons icon-20pt">home</i></li>
-				<li class="breadcrumb-item active" aria-current="page">Principal</a></li>
-			</ol>
-		</nav>
-		<div class="row">
-			<div style="display:inline-block" class=" col-lg-4  w-50 p-12 px-md-1 ">
-				<h1 class="ml-3">View Principals</h1>
+<div class="employee_index_scroll">
+	<div class="container-fluid page__heading-container">
+		<div class="page__heading d-flex align-items-center">
+			<div class="flex">
+				<div class="row">
+					<div class="col-lg-2">
+						<nav aria-label="breadcrumb">
+							<ol class="breadcrumb mb-0">
+								<li class="breadcrumb-item"><i class="material-icons icon-20pt">home</i></li>
+								<li class="breadcrumb-item active" aria-current="page">Principal</a></li>
+							</ol>
+							<h1 class="m-0" <%= count()%>>Principals</h1>
+						</nav>
+					</div>
+					<!-- Stepper partial -->
+					<div class="container">
+						<div>
+							<%= render '/shared/stepper' %>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -17,61 +27,62 @@
 			<h3> Step 3 : Principals </h3>
 		</div>
 		<div class="mt-4 mb-2">
-			<span > Please complete the list of owners and/or officer in your firm.If you are a non-profit organization ,please make one entry using your Company Name,no title and 100% for ownership. The ownership percentage total will need to be 100% or higher.When you have completed your changes,click the save button to continue</span>
+			<span> Please complete the list of owners and/or officer in your firm.If you are a non-profit organization ,please
+				make one entry using your Company Name,no title and 100% for ownership. The ownership percentage total will need
+				to be 100% or higher.When you have completed your changes,click the save button to continue</span>
 		</div>
-	</div>
-	<div class="card card-form">
-		<div class="row no-gutters">
-			<div class="col-lg-12 card-form__body">
-				<div class="ml-3  float-right">
-					<%=link_to 'Add Principal',new_principal_path, class:"btn btn-primary m-1 float-right" %>
+		<div class="card card-form">
+			<div class="row no-gutters">
+				<div class="col-lg-12 card-form__body">
+					<div class="ml-3  float-right">
+						<%=link_to 'Add Principal',new_principal_path, class:"btn btn-primary m-1 float-right" %>
+					</div>
+					<div class="ml-2 my-1 float-right">
+						<button type="button" class="btn btn-success  px-3" data-toggle="modal" data-target="#myModal">Notes
+						</button>
+					</div>
 				</div>
-				<div class="ml-2 my-1 float-right">
-					<button type="button" class="btn btn-success  px-3" data-toggle="modal"
-						data-target="#myModal">Notes
-					</button>
-				</div>
-			</div>
 
-			<%if calculate_total_ownership<99.99 %>
+				<%if calculate_total_ownership<99.99 %>
 				<div class="container-fluid page__container col-lg-12" style="background: yellow;padding-top:0px;">
 					<div class="row" style="color:red;">
-					<div class="col-lg-4"></div>
+						<div class="col-lg-4"></div>
 						<span>Total Ownership must be equal to or greater than 100 % </span>
 					</div>
 				</div>
-			<%end%>
-			<div class="col-lg-12 card-form__body">
-				<table class="table mb-0 thead-border-top-0 mt-1  table-hover">
-					<thead class="table-info">
-						<tr>
-							<th>Name</th>
-							<th>Title</th>
-							<th>Officer</th>
-							<th>Ownership</th>
-							<th colspan="1">Actions</th>
-						</tr>
-					</thead>
-					<%if session[:task_id]%>
-					<tbody>
-						<% @principals.each do |principal| %>
-						<tr class="redirect_to_show cursor-pointer" data-url="<%= principal_path(principal) %>">
-							<td><%= principal.name %></td>
-							<td><%= principal.title %></td>
-							<td><%= principal.officer %></td>
-							<td><%= principal.ownership %></td>
-							<td>
-								<a href=<%=edit_principal_path(principal)%>><i class="material-icons icon-20pt modal-edit">edit</i></a>
-								<a data-confirm="Are you sure?" rel="nofollow" data-method="delete"
-									href=<%=principal_path(principal)%>><i class="material-icons">delete</i></a>
-							</td>
-						</tr>
-						<% end %>
-					</tbody>
-					<%end%>
-				</table>
+				<%end%>
+				<div class="col-lg-12 card-form__body">
+					<table class="table mb-0 thead-border-top-0 mt-1  table-hover">
+						<thead class="table-info">
+							<tr>
+								<th>Name</th>
+								<th>Title</th>
+								<th>Officer</th>
+								<th>Ownership</th>
+								<th colspan="1">Actions</th>
+							</tr>
+						</thead>
+						<%if session[:task_id]%>
+						<tbody>
+							<% @principals.each do |principal| %>
+							<tr class="redirect_to_show cursor-pointer" data-url="<%= principal_path(principal) %>">
+								<td><%= principal.name %></td>
+								<td><%= principal.title %></td>
+								<td><%= principal.officer %></td>
+								<td><%= principal.ownership %></td>
+								<td>
+									<a href=<%=edit_principal_path(principal)%>><i
+											class="material-icons icon-20pt modal-edit">edit</i></a>
+									<a data-confirm="Are you sure?" rel="nofollow" data-method="delete"
+										href=<%=principal_path(principal)%>><i class="material-icons">delete</i></a>
+								</td>
+							</tr>
+							<% end %>
+						</tbody>
+						<%end%>
+					</table>
+				</div>
 			</div>
 		</div>
 	</div>
 </div>
-

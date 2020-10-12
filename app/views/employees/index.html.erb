@@ -1,17 +1,27 @@
-<div class = "employee_index_scroll"> 
-  <div class="container-fluid page__heading-container">
-    <div class="page__heading d-flex align-items-center">
-      <div class="flex">
-        <nav aria-label="breadcrumb">
-          <ol class="breadcrumb mb-0">
-            <li class="breadcrumb-item"><a href=<%='#'%>><i class="material-icons icon-20pt">home</i></a></li>
-            <li class="breadcrumb-item active" aria-current="page"><a href=<%='#'%>>employee</a></li>
-          </ol>
-        </nav>
-        <h1 class="m-0">Employees</h1>
-      </div>
-    </div>
-  </div>
+<div class="employee_index_scroll">
+	<div class="container-fluid page__heading-container">
+		<div class="page__heading d-flex align-items-center">
+			<div class="flex">
+				<div class="row">
+					<div class="col-lg-2">
+						<nav aria-label="breadcrumb">
+							<ol class="breadcrumb mb-0">
+								<li class="breadcrumb-item"><a href=<%='#'%>><i class="material-icons icon-20pt">home</i></a></li>
+								<li class="breadcrumb-item active" aria-current="page"><a href=<%='#'%>>employee</a></li>
+							</ol>
+							<h1 class="m-0" <%= count()%>>Employees</h1>
+						</nav>
+					</div>
+					<!-- Stepper partial -->
+					<div class="container">
+						<div>
+							<%= render '/shared/stepper' %>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 
   <div class="container-fluid page__container"  > 
     <div>
@@ -73,8 +83,6 @@
               </div>
             <%end%>
           </form>
-
-
         </div>
       </div>
     </div>

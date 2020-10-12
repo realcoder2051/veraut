@@ -1,15 +1,24 @@
-<div class="container-fluid full-scroll">
-	<div class="page__heading cancel-row">
-		<nav aria-label="breadcrumb">
-			<ol class="breadcrumb mb-0">
-				<li class="breadcrumb-item"><i class="material-icons icon-20pt">home</i></li>
-				<li class="breadcrumb-item active" aria-current="page">Companies</a></li>
-			</ol>
-		</nav>
-		<div class="row">
-			<div class=" col-lg-9">
-				<h1 class="ml-3">View Company</h1>
-				<% company = company %>
+<div class="employee_index_scroll">
+	<div class="container-fluid page__heading-container">
+		<div class="page__heading d-flex align-items-center">
+			<div class="flex">
+				<div class="row">
+					<div class="col-lg-2">
+						<nav aria-label="breadcrumb">
+							<ol class="breadcrumb mb-0">
+								<li class="breadcrumb-item"><a href=<%=root_path%>><i class="material-icons icon-20pt">home</i></a></li>
+								<li class="breadcrumb-item active" aria-current="page"><a href=<%='#'%>>Company</a></li>
+							</ol>
+							<h1 class="m-0" <%= count()%>>Company</h1>
+						</nav>
+					</div>
+					<!-- Stepper partial -->
+					<div class="container">
+						<div>
+							<%= render '/shared/stepper' %>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -21,53 +30,53 @@
 			<span> Please review the Employer Data below and complete or update existing information as necessary.When you
 				have completed your changes,click the Save button to continue</span>
 		</div>
-	</div>
-	<div class="card card-form">
-		<div class="row no-gutters">
-			<div class="col-lg-12 card-form__body">
-				<div class="ml-3 my-1 float-right">
-					<%=link_to 'Add Company',new_company_path, class:"btn btn-primary px-3 " %>
+		<div class="card card-form">
+			<div class="row no-gutters">
+				<div class="col-lg-12 card-form__body">
+					<div class="ml-3 my-1 float-right">
+						<%=link_to 'Add Company',new_company_path, class:"btn btn-primary px-3 " %>
+					</div>
+					<div class="ml-2 my-1 float-right">
+						<button type="button" class="btn btn-success  px-3" data-toggle="modal" data-target="#myModal ">Notes
+						</button>
+					</div>
 				</div>
-				<div class="ml-2 my-1 float-right">
-					<button type="button" class="btn btn-success  px-3" data-toggle="modal" data-target="#myModal ">Notes
-					</button>
+				<div class="col-lg-12 card-form__body">
+					<table class="table mb-0 thead-border-top-0 mt-1  table-hover">
+						<thead class="table-info">
+							<tr>
+								<th>Company name</th>
+								<th>Ein</th>
+								<th>Fiscal year end</th>
+								<th>Entity type</th>
+								<th>Naic code</th>
+								<th>Payroll provider</th>
+								<th>Payroll frequency</th>
+								<th colspan="1">Actions</th>
+							</tr>
+						</thead>
+						<% if session[:task_id]%>
+						<tbody>
+							<% @companies.each do |company| %>
+							<tr class="redirect_to_show cursor-pointer" data-url="<%= company_path(company) %>">
+								<td><%= company.company_name %></td>
+								<td><%= company.ein %></td>
+								<td><%= company.fiscal_year_end %></td>
+								<td><%= company.entity_type %></td>
+								<td><%= company.naic_code %></td>
+								<td><%= company.payroll_provider %></td>
+								<td><%= company.payroll_frequency %></td>
+								<td>
+									<a href=<%=edit_company_path(company)%>><i class="material-icons icon-20pt modal-edit">edit</i></a>
+									<a data-confirm="Are you sure?" rel="nofollow" data-method="delete" href=<%=company_path(company)%>><i
+											class="material-icons">delete</i></a>
+								</td>
+							</tr>
+							<% end %>
+						</tbody>
+						<%end%>
+					</table>
 				</div>
-			</div>
-			<div class="col-lg-12 card-form__body">
-				<table class="table mb-0 thead-border-top-0 mt-1  table-hover">
-					<thead class="table-info">
-						<tr>
-							<th>Company name</th>
-							<th>Ein</th>
-							<th>Fiscal year end</th>
-							<th>Entity type</th>
-							<th>Naic code</th>
-							<th>Payroll provider</th>
-							<th>Payroll frequency</th>
-							<th colspan="1">Actions</th>
-						</tr>
-					</thead>
-					<% if session[:task_id]%>
-					<tbody>
-						<% @companies.each do |company| %>
-						<tr class="redirect_to_show cursor-pointer" data-url="<%= company_path(company) %>">
-							<td><%= company.company_name %></td>
-							<td><%= company.ein %></td>
-							<td><%= company.fiscal_year_end %></td>
-							<td><%= company.entity_type %></td>
-							<td><%= company.naic_code %></td>
-							<td><%= company.payroll_provider %></td>
-							<td><%= company.payroll_frequency %></td>
-							<td>
-								<a href=<%=edit_company_path(company)%>><i class="material-icons icon-20pt modal-edit">edit</i></a>
-								<a data-confirm="Are you sure?" rel="nofollow" data-method="delete" href=<%=company_path(company)%>><i
-										class="material-icons">delete</i></a>
-							</td>
-						</tr>
-						<% end %>
-					</tbody>
-					<%end%>
-				</table>
 			</div>
 		</div>
 	</div>

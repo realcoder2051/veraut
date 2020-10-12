@@ -1,0 +1,75 @@
+<div class="row bs-wizard" style="border-bottom:0;">
+	<div class="col-md-1 bs-wizard-step <%= wizard_step_status([@address, @contact_number])  %>">
+		<div class="text-center bs-wizard-stepnum">General</div>
+		<div class="progress">
+			<div class="progress-bar"></div>
+		</div>
+		<a href="#" class="bs-wizard-dot"></a>
+	</div>
+	<div class="col-md-1 bs-wizard-step <%= wizard_step_status(@company) %>">
+		<!-- complete -->
+		<div class="text-ce nter bs-wizard-stepnum">Company</div>
+		<div class="progress">
+			<div class="progress-bar"></div>
+		</div>
+		<a href="#" class="bs-wizard-dot"></a>
+	</div>
+	<div class="col-md-1 bs-wizard-step <%=  wizard_step_status(@principal) %>">
+		<!-- complete -->
+		<div class="text-center bs-wizard-stepnum">Principals</div>
+		<div class="progress">
+			<div class="progress-bar"></div>
+		</div>
+		<a href="#" class="bs-wizard-dot"></a>
+	</div>
+
+	<div class="col-md-1 bs-wizard-step <%=  wizard_step_status(@family) %>">
+		<!-- complete -->
+		<div class="text-center bs-wizard-stepnum">Family</div>
+		<div class="progress">
+			<div class="progress-bar"></div>
+		</div>
+		<a href="#" class="bs-wizard-dot"></a>
+	</div>
+	<div class="col-md-1 bs-wizard-step <%= wizard_step_status(@business) %>">
+		<!-- complete -->
+		<div class="text-center bs-wizard-stepnum">Business</div>
+		<div class="progress">
+			<div class="progress-bar"></div>
+		</div>
+		<a href="#" class="bs-wizard-dot"></a>
+	</div>
+
+	<div class="col-md-1 bs-wizard-step <%= wizard_step_status(@contact) %>">
+		<!-- complete -->
+		<div class="text-center bs-wizard-stepnum">Contacts</div>
+		<div class="progress">
+			<div class="progress-bar"></div>
+		</div>
+		<a href="#" class="bs-wizard-dot"></a>
+	</div>
+
+	<div class="col-md-1 bs-wizard-step <%= wizard_step_status(@plan) %>">
+		<!-- complete -->
+		<div class="text-center bs-wizard-stepnum">Plans</div>
+		<div class="progress">
+			<div class="progress-bar"></div>
+		</div>
+		<a href="#" class="bs-wizard-dot"></a>
+	</div>
+	<div class="col-md-1 bs-wizard-step <%= wizard_step_status(@fifty_five_hundred) %>">
+		<div class="text-center bs-wizard-stepnum">5500</div>
+		<div class="progress">
+			<div class="progress-bar"></div>
+		</div>
+		<a href="#" class="bs-wizard-dot"></a>
+	</div>
+	<div class="col-md-1 bs-wizard-step <%= wizard_step_status(@employee)  %>">
+		<!-- complete -->
+		<div class="text-center bs-wizard-stepnum">Employee</div>
+		<div class="progress">
+			<div class="progress-bar"></div>
+		</div>
+		<a href="#" class="bs-wizard-dot"></a>
+	</div>
+</div>
