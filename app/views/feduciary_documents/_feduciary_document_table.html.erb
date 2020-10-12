@@ -4,180 +4,28 @@
 <div class="mr-3 float-right btn-size">
 	<%= link_to 'Document', new_feduciary_document_path,id: 'add_feduciary_doument', class:"btn btn-primary px-6" %>
 </div>
-<div class="table-responsive border-bottom" data-toggle="lists" data-lists-values='["js-lists-values-employee-name"]' >
-  <table class="table mb-0 thead-border-top-0 mt-1">
-	<thead>
-	  <tr class="table-info">
-		<th>Name</th>
-		<th>File Type</th>
-		<th>Description</th>
-		<th>Posted</th>
-		<th>Effective</th>
-		<th>Period End</th>
-		<th colspan="2">Actions</th>
-	  </tr>
-	</thead>
-	<% count = 0 %>
-	<tbody class="list" id="blah" >
-	  <% @feduciary_documents.each do |feduciary_document| %>
-		<% if (current_user.id == current_user.id && feduciary_document.plan == "Administrative forms") %>
-		  <% count += 1 %>
-		  <tr class ="redirect_to_show cursor-pointer" data-url="<%= feduciary_document_path(feduciary_document) %>" >
-			<td><%= feduciary_document.feduciary_doc.filename%></td>
-			<td><%= feduciary_document.feduciary_document_type %></td>
-			<td><%= feduciary_document.description %></td>  
-			<td><%= feduciary_document.created_at %></td>
-			<td><%= feduciary_document.effective_date %></td>
-			<td><%= feduciary_document.period_end %></td>
-			<td>
-			
-			<a href="<%= rails_blob_path(feduciary_document.feduciary_doc.blob) %>" disposition="attachment" target="_blank"> <i class="material-icons icon-20pt modal-get_app">get_app</i> </a>
-
-		</td>
-		  </tr>
-	   <% end %>
-	  <% end %>
-	  <% if count == 0 %>
-		<tr> 
-		  <td> no results found </td>
-		</tr>
-	  <%end%>
-	</tbody>
-  </table>
-</div>
+ <div>
+	 <%= render 'feduciary_document_table_data',{ document_plan: "Administrative forms" } %>
+ </div>
 
 <div class="mt-1 float-left ">
 	<h4 > Compilance Reports</h4>
 </div>
-<div class="table-responsive border-bottom" data-toggle="lists" data-lists-values='["js-lists-values-employee-name"]' >
-  <table class="table mb-0 thead-border-top-0 mt-1">
-	<thead>
-	  <tr class="table-info">
-		<th>Name</th>
-		<th>File Type</th>
-		<th>Description</th>
-		<th>Posted</th>
-		<th>Effective</th>
-		<th>Period End</th>
-		<th colspan="2">Actions</th>
-	  </tr>
-	</thead>
-	<% count = 0 %>
-	<tbody class="list" id="blah" >
-	  <% @feduciary_documents.each do |feduciary_document| %>
-		<% if (current_user.id == current_user.id && feduciary_document.plan == "Compilance Reports") %>
-		  <% count += 1 %>
-		  <tr class ="redirect_to_show cursor-pointer" data-url="<%= feduciary_document_path(feduciary_document) %>" >
-			<td><%= feduciary_document.feduciary_doc.filename%></td>
-			<td><%= feduciary_document.feduciary_document_type %></td>
-			<td><%= feduciary_document.description %></td>  
-			<td><%= feduciary_document.created_at %></td>
-			<td><%= feduciary_document.effective_date %></td>
-			<td><%= feduciary_document.period_end %></td>
-			<td>
-		
-			<a href="<%= rails_blob_path(feduciary_document.feduciary_doc.blob) %>" disposition="attachment" target="_blank"> <i class="material-icons icon-20pt modal-get_app">get_app</i> </a>
-
-		</td>
-		  </tr>
-	   <% end %>
-	  <% end %>
-	  <% if count == 0 %>
-		<tr> 
-		  <td> no results found </td>
-		</tr>
-	  <%end%>
-	</tbody>
-  </table>
+<div>
+	<%= render 'feduciary_document_table_data',{ document_plan: "Compilance Reports" } %>
 </div>
+
 
 <div class="mt-1 float-left ">
 	<h4 >Legal Plan Documents</h4>
 </div>
-<div class="table-responsive border-bottom" data-toggle="lists" data-lists-values='["js-lists-values-employee-name"]' >
-  <table class="table mb-0 thead-border-top-0 mt-1">
-	<thead>
-	  <tr class="table-info">
-		<th>Name</th>
-		<th>File Type</th>
-		<th>Description</th>
-		<th>Posted</th>
-		<th>Effective</th>
-		<th>Period End</th>
-		<th colspan="2">Actions</th>
-	  </tr>
-	</thead>
-	<% count = 0 %>
-	<tbody class="list" id="blah" >
-	  <% @feduciary_documents.each do |feduciary_document| %>
-		<% if (current_user.id == current_user.id && feduciary_document.plan == "Legal Plan Documents") %>
-		  <% count += 1 %>
-		  <tr class ="redirect_to_show cursor-pointer" data-url="<%= feduciary_document_path(feduciary_document) %>" >
-			<td><%= feduciary_document.feduciary_doc.filename%></td>
-			<td><%= feduciary_document.feduciary_document_type %></td>
-			<td><%= feduciary_document.description %></td>  
-			<td><%= feduciary_document.created_at %></td>
-			<td><%= feduciary_document.effective_date %></td>
-			<td><%= feduciary_document.period_end %></td>
-			<td>
-			
-			<a href="<%= rails_blob_path(feduciary_document.feduciary_doc.blob) %>" disposition="attachment" target="_blank"> <i class="material-icons icon-20pt modal-get_app">get_app</i> </a>
-
-		</td>
-		  </tr>
-	   <% end %>
-	  <% end %>
-	  <% if count == 0 %>
-		<tr> 
-		  <td> no results found </td>
-		</tr>
-	  <%end%>
-	</tbody>
-  </table>
+<div>
+	<%= render 'feduciary_document_table_data',{ document_plan: "Legal Plan Documents" } %>
 </div>
 
 <div class="mt-1 float-left ">
 	<h4 > Feduciary Documents </h4>
 </div>
-<div class="table-responsive border-bottom" data-toggle="lists" data-lists-values='["js-lists-values-employee-name"]' >
-  <table class="table mb-0 thead-border-top-0 mt-1">
-	<thead>
-	  <tr class="table-info">
-		<th>Name</th>
-		<th>File Type</th>
-		<th>Description</th>
-		<th>Posted</th>
-		<th>Effective</th>
-		<th>Period End</th>
-		<th colspan="2">Actions</th>
-	  </tr>
-	</thead>
-	<% count = 0 %>
-	<tbody class="list" id="blah" >
-	  <% @feduciary_documents.each do |feduciary_document| %>
-		<% if (current_user.id == current_user.id && feduciary_document.plan == "Feduciary Documents") %>
-		  <% count += 1 %>
-		  <tr class ="redirect_to_show cursor-pointer" data-url="<%= feduciary_document_path(feduciary_document) %>" >
-			<td><%= feduciary_document.feduciary_doc.filename%></td>
-			<td><%= feduciary_document.feduciary_document_type %></td>
-			<td><%= feduciary_document.description %></td>  
-			<td><%= feduciary_document.created_at %></td>
-			<td><%= feduciary_document.effective_date %></td>
-			<td><%= feduciary_document.period_end %></td>
-			<td>
-			<a href="<%= rails_blob_path(feduciary_document.feduciary_doc.blob) %>" disposition="attachment" target="_blank"> <i class="material-icons icon-20pt modal-get_app">get_app</i> </a>
-			<a href=<%=edit_feduciary_document_path(feduciary_document)%> ><i class="material-icons icon-20pt modal-edit">edit</i></a>
-			<a data-confirm="Are you sure?" rel="nofollow"  data-method="delete" href=<%=feduciary_document_path(feduciary_document)%> %><i class="material-icons">delete</i></a>
-
-		</td>
-		  </tr>
-	   <% end %>
-	  <% end %>
-	  <% if count == 0 %>
-		<tr> 
-		  <td> no results found </td>
-		</tr>
-	  <%end%>
-	</tbody>
-  </table>
+<div>
+	<%= render 'feduciary_document_table_data',{ document_plan: "Feduciary Documents" } %>
 </div>

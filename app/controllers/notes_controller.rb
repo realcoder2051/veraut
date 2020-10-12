@@ -20,10 +20,11 @@ class NotesController < InheritedResources::Base
   def create  
 		@note = Note.new(note_params)
 		@note[:created_by] = current_user.email
+		@note[:task_id] = session[:task_id]
     if @note.save
       redirect_to approvals_path
     else
-      redirect_to new_document_path
+      redirect_to approvals_path
     end
   end
 
@@ -46,6 +47,7 @@ class NotesController < InheritedResources::Base
 	def create_note
 		@note = Note.new(note_params)
 		@note.created_by = current_user.email
+		@note[:task_id] = session[:task_id]
 		if @note.save
 			render json: {
 					html: render_to_string(partial: '/notes/note.html.erb', locals: { note: @note })

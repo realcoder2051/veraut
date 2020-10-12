@@ -8,9 +8,12 @@
 
 # Delete data collection
 
-Address.delete_all
-ContactNumber.delete_all
-Company.delete_all
-Family.delete_all
-Principal.delete_all
-Business.delete_all
+# Address.delete_all
+# ContactNumber.delete_all
+# Company.delete_all
+# Family.delete_all
+# Principal.delete_all
+# Business.delete_all
+
+
+Note.delete_all

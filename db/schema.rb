@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_12_101143) do
+ActiveRecord::Schema.define(version: 2020_10_12_121806) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_stat_statements"
@@ -199,6 +199,8 @@ ActiveRecord::Schema.define(version: 2020_10_12_101143) do
     t.string "created_by"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "task_id"
+    t.index ["task_id"], name: "index_notes_on_task_id"
   end
 
   create_table "principals", force: :cascade do |t|

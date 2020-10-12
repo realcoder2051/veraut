@@ -18,7 +18,7 @@
 		<% count = 0 %>
 		<tbody class="list" id="blah">
 			<% @notes.each do |note| %>
-			<% if (note.created_by == current_user.email) %>
+			<% if (note.created_by == current_user.email && note.task_id == session[:task_id]) %>
 			<% count += 1 %>
 			<%= render 'notes/approval_note', note: note %>
 			<% end %>
