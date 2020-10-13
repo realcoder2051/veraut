@@ -73,6 +73,9 @@
   resources :distribution
   resources :data_collection
   root to: 'home#index'
+  get 'dashboard/:number',to: 'home#internal_dashboard'
+  get 'dashboar',to: 'home#dashboar'
+  #get 'dashboard',to: 'dashboard#internal_dashboard'
 
   post 'import_file' => 'employees#import_store'
 

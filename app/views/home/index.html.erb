@@ -1,47 +1,16 @@
 <% content_for :jumbotron do %>
-<div class="jumbotron">
-	<div class="container">
-		h1.display-3
-		p= link_to '#', class: 'btn btn-primary' do
-	</div>
-</div>
+  <div class="jumbotron">
+    <div class="container">
+      h1.display-3
+      p= link_to '#', class: 'btn btn-primary' do
+    </div>
+  </div>
 <% end %>
 <div class="container">
-	<div class="row">
-		<div class="col-lg-4 left-move"></div>
-		<div class="col-lg-4 left-move" id="mt-n2">
-			<h1 class="m-2"> <%="Welcome," +current_user.username+"!" %></h1>
-		</div>
-	</div>
+  <div class="row">
+    <div class="col-lg-4 left-move"></div>
+    <div class="col-lg-4 left-move" id="mt-n1">
+      <h1 class="m-0"> <%="Welcome," +current_user.username+"!" %></h1>
+    </div>
+  </div>
 </div>
-<div class="card">
-	<h4 class="ml-3"> Dashboard</h4>
-
-	<div class="card-body">
-		<div id="table" class="table-editable">
-			<table class="table table-bordered table-responsive-md table-striped" style="word-break: break-all;">
-				<thead>
-					<tr class="d-flex flex-wrap">
-						<th class="text-center col"></th>
-						<th class="text-center col"></th>
-						<th class="text-center col"></th>
-						<th class="text-center col"></th>
-						<th class="text-center col"></th>
-					</tr>
-				</thead>
-				<tbody>
-					<% 5.times.each do %>
-					<tr class="d-flex flex-wrap">
-						<td class="pt-3-half col" contenteditable="true"></td>
-						<td class="pt-3-half col" contenteditable="true"></td>
-						<td class="pt-3-half col" contenteditable="true"></td>
-						<td class="pt-3-half col" contenteditable="true"></td>
-						<td class="pt-3-half col" contenteditable="true"></td>
-					</tr>
-					<%end%>
-				</tbody>
-			</table>
-		</div>
-	</div>
-</div>
-<!-- Editable table -->
