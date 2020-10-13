@@ -115,14 +115,13 @@ ActiveRecord::Schema.define(version: 2020_10_12_130317) do
   end
 
   create_table "contacts", force: :cascade do |t|
-    t.string "name"
     t.string "company_name"
     t.string "email"
-    t.string "roles"
-    t.string "rights"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "task_id"
+    t.integer "user_id"
+    t.integer "role_id"
     t.index ["task_id"], name: "index_contacts_on_task_id"
   end
 
@@ -130,9 +129,9 @@ ActiveRecord::Schema.define(version: 2020_10_12_130317) do
     t.string "name"
     t.string "document_type"
     t.string "description"
-    t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "user_id"
     t.index ["user_id"], name: "index_documents_on_user_id"
   end
 
@@ -224,11 +223,11 @@ ActiveRecord::Schema.define(version: 2020_10_12_130317) do
 
   create_table "questionaire_answers", force: :cascade do |t|
     t.string "answer"
-    t.integer "question_no"
     t.bigint "task_id"
     t.bigint "question_type_id"
     t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "updated_at"
+    t.integer "question_no"
     t.index ["question_type_id"], name: "index_questionaire_answers_on_question_type_id"
     t.index ["task_id"], name: "index_questionaire_answers_on_task_id"
   end
@@ -306,6 +305,5 @@ ActiveRecord::Schema.define(version: 2020_10_12_130317) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "approvals", "users"
-  add_foreign_key "documents", "users"
   add_foreign_key "feduciary_documents", "task_groups"
 end
