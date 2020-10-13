@@ -27,7 +27,10 @@
 			<!-- Header -->
 				<div id="header" class="mdk-header js-mdk-header m-0" data-fixed>
 					<div class="mdk-header__content">
+					<% if action_name == 'internal_dashboard'%>
+					<%else%>
 						<%= render 'layouts/stack/navbar'%>
+					<%end%>
 					</div>
 				</div>
 			<!-- // END Header -->
@@ -39,9 +42,12 @@
 					<%= yield %>
 				</div>
 				<!-- // END drawer-layout__content -->
+				<% if action_name == 'internal_dashboard'%>
+
+				<%else%>
 					<%= render 'layouts/stack/drawer_left' %>
 					<%= render '/shared/notes_popup', { data_collection_step: controller_name.singularize } %>
-
+				<%end%>
 
 			</div>
 		</div>
