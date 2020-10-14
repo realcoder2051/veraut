@@ -1,4 +1,4 @@
-class CreateChangeRequestMappings < ActiveRecord::Migration[6.0]
+class ChangeRequestMappings < ActiveRecord::Migration[6.0]
   def change
     create_table :change_request_mappings do |t|
       t.integer :user_id
