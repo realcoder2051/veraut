@@ -56,6 +56,7 @@
 					<%if session[:task_id]%>
 						<tbody>
 							<% @users.each do |user|%>
+								<% if user.present?%>
 								<tr>
 									<td><%=user.username%></td>
 									<td><%="Benefit Equity, Inc"%></td>
@@ -70,6 +71,7 @@
 										<%end%>
 									</td>
 								</tr>
+							<%end%>
 							<%end%>
 						</tbody>
 					<%end%>
