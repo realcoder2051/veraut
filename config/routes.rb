@@ -4,6 +4,9 @@
   resources :contact_change_requests
   resources :feduciary_documents
 	resources :questionaire_answers
+	get 'save_fifty_five_hundred', to: 'questionaire_answers#is_completed_fifty_five_hundred'
+	get 'save_plan', to: 'questionaire_answers#is_completed_plan'
+
 	get'plans_new',to: 'questionaire_answers#new'
   post 'plans_create',to: 'questionaire_answers#create_plan'
   get 'plans',to: 'questionaire_answers#index_plan'
@@ -86,6 +89,9 @@
   resources :distribution
   resources :data_collection
   root to: 'home#index'
+  get 'dashboard/:number',to: 'home#internal_dashboard'
+  get 'dashboar',to: 'home#dashboar'
+  #get 'dashboard',to: 'dashboard#internal_dashboard'
 
   post 'import_file' => 'employees#import_store'
 

@@ -1,9 +1,16 @@
 wb = xlsx_package.workbook
 
+styles = xlsx_package.workbook.styles
+header_style = styles.add_style ({:alignment => {:horizontal => :center, :vertical => :center, :wrap_text => true}, :border => { :style => :thin, :color => "000000" }})
+
+
 wb.add_worksheet(name: "Employees") do |sheet|
   # this is the head row of your spreadsheet
-  sheet.add_row %w(first_name last_name FullName ssn gender date_of_birth original_date_of_hire date_of_termination date_of_retire compensation hours pre_tax_salary_deferal roth_salary_deferal employee_match company_division union_employee)
+  sheet.add_row ["First	 Name", "Last Name", "Full Name" , "SSN" , "Gender" , "Date of Birth" , "Original Date of Hire", "Date of Termination" , "Date of Rehire", "Compensation" , "Hours" , "Pre-Tax Salary Deferral", "Routh Salary Deferral", "Employer Match" , "Company Division", "Union Employee"] 
+
   
+
+
   # each user is a row on your spreadsheet
   @employees.each do |employee|
     sheet.add_row [employee.first_name, employee.last_name, employee.first_name + "," + employee.last_name ,employee.ssn, employee.gender, employee.date_of_birth, employee.original_date_of_hire, employee.date_of_termination,employee.date_of_retire, employee.compensation, employee.hours, employee.pre_tax_salary_deferal, employee.roth_salary_deferal, employee.employee_match, employee.company_division, employee.union_employee]

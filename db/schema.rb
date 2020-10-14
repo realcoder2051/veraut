@@ -11,6 +11,7 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema.define(version: 2020_10_14_073945) do
+ActiveRecord::Schema.define(version: 2020_10_14_114839) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_stat_statements"
@@ -257,9 +258,19 @@ ActiveRecord::Schema.define(version: 2020_10_14_073945) do
     t.bigint "task_id"
     t.bigint "question_type_id"
     t.datetime "created_at", precision: 6, null: false
+<<<<<<< HEAD
     t.datetime "updated_at"
     t.integer "question_no"
+=======
+<<<<<<< HEAD
+    t.datetime "updated_at"
+    t.integer "question_no"
+=======
+    t.datetime "updated_at", precision: 6, null: false
+>>>>>>> 6c8f09353bb79a73800051783a9a6fc001f5bfe0
     t.bigint "user_id"
+    t.boolean "is_completed", default: false
+>>>>>>> BEI-30
     t.index ["question_type_id"], name: "index_questionaire_answers_on_question_type_id"
     t.index ["task_id"], name: "index_questionaire_answers_on_task_id"
     t.index ["user_id"], name: "index_questionaire_answers_on_user_id"
