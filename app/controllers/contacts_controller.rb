@@ -36,6 +36,19 @@ class ContactsController < InheritedResources::Base
       redirect_to new_contact_path
     end
 	end
+	
+	def save_contact
+		@contact = Contact.new
+		technician_role = Role.where(name: "Technician").first
+		technician_user = User.find_by(role_id: technician_role.id)
+		@contact.company_name = "Benefit Equity,Inc"
+		@contact.email = technician_user.email
+		@contact.task_id = session[:task_id]
+		@contact.user_id = technician_user.id
+		@contact.role_id = technician_role.id
+		@contact.is_completed = true
+		@contact.save
+	end
 
 	def destroy
 		@contact_change_requests = ContactChangeRequest.find(params[:id])
@@ -60,9 +73,10 @@ class ContactsController < InheritedResources::Base
 	end
 
 	def is_completed
-		contact = Contact.where("is_completed=? AND user_id=? AND task_id=?", false , current_user.id , session[:task_id])
-		contact.update(is_completed: true)
-		redirect_to plans_path
+		save_contact
+		#contact = Contact.where("is_completed=? AND user_id=? AND task_id=?", false , current_user.id , session[:task_id])
+		#contact.update(is_completed: true)
+		redirect_to plans_new_path
 	end
 
 	private
