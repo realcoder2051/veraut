@@ -110,16 +110,27 @@ $("#number_dropdown").change(function (event) {
 	var a = $("#number_dropdown option:selected").text();
 	$("#contact_number_number").val(a)
 
+});
+
+$(".fiscal_month").change(function (event) {
+	var m = $(".fiscal_month").val();
+	var d = $(".fiscal_date").val();
+	var date = new Date().getFullYear()+'-'+ m+ '-' +d 
+	$("#company_fiscal_year_end").val(date)
 
 });
 
+$(".fiscal_date").change(function (event) {
+	var m = $(".fiscal_month").val();
+	var d = $(".fiscal_date").val();
+	var date = new Date().getFullYear()+'-'+ m+ '-' +d 
+	$("#company_fiscal_year_end").val(date)
 
-// function edit_note(){	
-// 	$('#update_note').modal('show');
+});
 
-	
-// }	
-
+$('.date_picker').focusout(function(){
+  $('.ui-datepicker-calendar').css("display","none");
+});
 	
 function delete_note(){
 	var note_id = event.currentTarget.dataset.id
@@ -199,5 +210,19 @@ function update_note()
 
 	
 
+
+$().ready(function() {
+	// validate the form when it is submitted
+	 $("#new_questionaire_answer").validate();
+
+});
+
+
+
+$().ready(function() {
+	// validate the form when it is submitted
+	 $("#edit_questionaire_answer").validate();
+
+});
 
 

@@ -290,7 +290,39 @@ color: white;
 	border-color: #aeb4bb;
 }
 
+.fiscal_date{
+	width: auto !important;
+	display: initial !important;
+}
 
+.fiscal_month{
+	width: auto !important;
+	display: initial !important;
+}
+
+.card-form__body label:not([class]), .text-label-large, .text-label {
+	font-family: "Source Sans Pro", sans-serif;
+	font-size: 0.9375rem;
+	font-weight: 400;
+	line-height: 1.5;
+	color: #112b4a;
+	text-align: left;
+	text-transform: initial;
+	letter-spacing: initial;
+	
+}
+
+
+.required:after {
+	color: #e32;
+	content: ' *';
+	display:inline;
+}
+
+
+// .error {
+// 	color: red;
+// }
 // ========================================================
 
 

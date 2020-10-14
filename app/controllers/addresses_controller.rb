@@ -1,4 +1,6 @@
 class AddressesController < InheritedResources::Base
+	before_action :fetch_address, only: %i[index]
+
 
   def create
     @address = Address.new(address_params)
@@ -12,14 +14,26 @@ class AddressesController < InheritedResources::Base
 			address_collection
 			render :new
     end
-  end
+	end
+	
+	def create_new_address
+		@address = Address.new(address_params)
+		@address[:task_id] = session[:task_id]
+		@address[:user_id] = current_user.id
+    if @address.save
+			redirect_to generals_path
+		else
+			address_collection
+			render :add_new_address
+    end
+	end
 
   def edit
     @address = Address.find(params[:id])
   end
 
   def add_new_address
-    @address = Address.new
+		@address = Address.new
   end
 
   def new
@@ -52,13 +66,17 @@ class AddressesController < InheritedResources::Base
 	def get_address
 		address = Address.find_by(id: params[:id])
     render json: { data: address }
-  end
+	end
+	
+
 
 	private
 	
 	def address_collection
 		@addresses = Address.all.order('created_at').where(user_id: current_user.id)
 	end
+
+
 
 	def address_params
 		params.require(:address).permit(:address1, :address2, :city, :state, :zip, :address_type, :general_id)

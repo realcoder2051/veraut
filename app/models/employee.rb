@@ -4,12 +4,14 @@ class Employee < ApplicationRecord
 
 
   def self.update_imported_store(file,session)
-    spreadsheet = open_spreadsheet(file)
-    header = spreadsheet.row(1)
+		spreadsheet = open_spreadsheet(file)
+		file_header = spreadsheet.row(1)
+		header = ["first_name", "last_name", "ssn", "gender", "date_of_birth", "original_date_of_hire", "date_of_termination", "date_of_retire", "compensation", "hours", "pre_tax_salary_deferal", "roth_salary_deferal", "employee_match", "company_division", "union_employee"]
+		header.insert(2,"full name")	if (file_header[2] == "Full Name")
     header = header.to_a
-    (2..spreadsheet.last_row).each do |i|
-      row = Hash[[header, spreadsheet.row(i)].transpose]
-
+		(2..spreadsheet.last_row).each do |i|	
+			row = Hash[[header, spreadsheet.row(i)].transpose]
+			row.delete("full name")
       if Employee.exists?(ssn: row['ssn'], task_id: session)
         Employee.where(ssn: row['ssn'], task_id: session).update(row)
       else

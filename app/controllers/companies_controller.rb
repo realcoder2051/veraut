@@ -3,18 +3,22 @@ class CompaniesController < InheritedResources::Base
 
 
   def new
-    @company = Company.new
+		@company = Company.new
+		if Company.exists?(task_id: session[:task_id], user_id: current_user.id)
+			@company = Company.find_by(task_id: session[:task_id])	
+			render :edit
+	 end
   end
 
   def create
-    @company = Company.new(company_params)
+		@company = Company.new(company_params)
 		@company[:task_id] = session[:task_id]
 		@company[:user_id] = current_user.id
 		if @company.save	
-      redirect_to companies_path
+			redirect_to new_company_path
 		else
-      render :new
-    end
+			render :new
+		end
   end
 
   def index
@@ -29,12 +33,18 @@ class CompaniesController < InheritedResources::Base
   def update
     @company = Company.find(params[:id])
     if @company.update_attributes(company_params)
-			redirect_to companies_path
+			redirect_to principals_path
 		else
       render :edit
 		end
 	end
 
+	def is_completed
+		company = Company.where("is_completed=? AND user_id=? AND task_id=?", false , current_user.id , session[:task_id])
+		company.update(is_completed: true)
+		redirect_to principals_path
+	end
+	
 
 
 	private

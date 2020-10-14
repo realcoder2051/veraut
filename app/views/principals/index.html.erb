@@ -24,22 +24,26 @@
 	</div>
 	<div class="container-fluid page__container">
 		<div>
-			<h3> Step 3 : Principals </h3>
+			<h3> Step 3 : Principals 
+				<div class="ml-3 my-1 float-right">
+					<%=link_to "Save",save_principal_path,class: "btn btn-success " %>
+				</div> 
+				<div class="ml-3 my-1 float-right">
+					<button type="button" class="btn btn-success  px-3" data-toggle="modal" data-target="#myModal ">Notes </button>			
+				</div>
+				
+			</h3>
 		</div>
 		<div class="mt-4 mb-2">
-			<span> Please complete the list of owners and/or officer in your firm.If you are a non-profit organization ,please
-				make one entry using your Company Name,no title and 100% for ownership. The ownership percentage total will need
-				to be 100% or higher.When you have completed your changes,click the save button to continue</span>
+			<span style="font-style: italic;"> Please complete the list of owners and/or officer in your firm.If you are a non-profit organization , Please
+				make one entry using your Company Name, no title and 100% for ownership. The ownership percentage total will need
+				to be 100% or higher. When you have completed your changes, click the save button to continue.</span>
 		</div>
 		<div class="card card-form">
 			<div class="row no-gutters">
 				<div class="col-lg-12 card-form__body">
 					<div class="ml-3  float-right">
 						<%=link_to 'Add Principal',new_principal_path, class:"btn btn-primary m-1 float-right" %>
-					</div>
-					<div class="ml-2 my-1 float-right">
-						<button type="button" class="btn btn-success  px-3" data-toggle="modal" data-target="#myModal">Notes
-						</button>
 					</div>
 				</div>
 
@@ -55,10 +59,10 @@
 					<table class="table mb-0 thead-border-top-0 mt-1  table-hover">
 						<thead class="table-info">
 							<tr>
-								<th>Name</th>
-								<th>Title</th>
-								<th>Officer</th>
-								<th>Ownership</th>
+								<th><%= sort_link(@q, :name) %></th>
+								<th><%= sort_link(@q, :title) %></th>
+								<th><%= sort_link(@q, :officer) %></th>
+								<th><%= sort_link(@q, :ownership) %></th>
 								<th colspan="1">Actions</th>
 							</tr>
 						</thead>
@@ -68,7 +72,7 @@
 							<tr class="redirect_to_show cursor-pointer" data-url="<%= principal_path(principal) %>">
 								<td><%= principal.name %></td>
 								<td><%= principal.title %></td>
-								<td><%= principal.officer %></td>
+								<td><%= principal_officer(principal.officer) %></td>
 								<td><%= principal.ownership %></td>
 								<td>
 									<a href=<%=edit_principal_path(principal)%>><i

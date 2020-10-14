@@ -73,3 +73,15 @@ en:
           password:
             blank: "Please Specify a Password"
             too_short: "Password must be at least %{count} characters long"
+      employee:
+        attributes:
+          ssn:
+            blank: "SSN cant be blank"
+    
+  activerecord:
+    errors:
+      models:
+        employee:
+          attributes:
+            ssn:
+            blank: "SSN cant be blank"

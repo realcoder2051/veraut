@@ -1,72 +1,89 @@
-<div class="row" >
-  <div class="col-lg-4 left-move"></div>
-  <div class="col-lg-4 left-move">
-    <%= f.text_field :company_name  %>
-    <div class="invalid-feedback">Please provide a time.</div>
-    <div class="valid-feedback">Looks good!</div>
-  </div>
+<div class="row">
+	<div class="col-lg-4 left-move"></div>
+	<div class="col-lg-4 left-move">
+		<%= f.text_field :company_name  %>
+		<div class="invalid-feedback">Please provide a time.</div>
+		<div class="valid-feedback">Looks good!</div>
+	</div>
 </div>
-<div class="row" >
-  <div class="col-lg-4 left-move"></div>
-  <div class="col-lg-4 left-move">
-    <%= f.number_field :ein %>
-    <div class="invalid-feedback">Please provide a time.</div>
-    <div class="valid-feedback">Looks good!</div>
-  </div>
+<div class="row">
+	<div class="col-lg-4 left-move"></div>
+	<div class="col-lg-4 left-move"> 
+		<%= f.number_field :ein , {:maxlength => 9} %>
+		<div class="invalid-feedback">Please provide a time.</div>
+		<div class="valid-feedback">Looks good!</div>
+	</div>
 </div>
-<div class="row" >
-  <div class="col-lg-4 left-move"></div>
-  <div class="col-lg-4 left-move">
-    <%= f.date_field :fiscal_year_end %>
-    <div class="invalid-feedback">Please provide a time.</div>
-    <div class="valid-feedback">Looks good!</div>
-  </div>
+<div class="row">
+	<div class="col-lg-4 left-move"></div>
+	<div class="col-lg-4 left-move">
+		<label> Fiscal Year End</label>
+		<div class="row">
+			<div class="col-lg-10">
+				<input type="number" class="form-control  fiscal_month" min="1" max="12"  placeholder="month"  > /
+				<input type="number" class="form-control  fiscal_date" min="1" max="31"  placeholder="date">
+			</div>
+		</div>
+		<div class="invalid-feedback">Please provide a time.</div>
+		<div class="valid-feedback">Looks good!</div>
+	</div>
 </div>
-<div class="row" >
-  <div class="col-lg-4 left-move"></div>
-  <div class="col-lg-4 left-move">
-    <%= f.select :entity_type,options_for_select(["C Corp","Church","Corporation","Government","Limited Liability Company","Limited Liability Corporation","Limited Partnership","LLC","LLC - Taxed as Corporation "," LLC- Taxed as Partnership","LLC- Taxed as Sole Proprietorship","LLP","Non-Profit Organization","Partnership","Professional Service Partnership","Real Estate Investment Trust","S Corp","Sole Prop","Sub-S","Tax Exempt","Tribal Government","Unknown" ], @company[:entity_type]) ,{ :include_blank => '-- Select One --' }  %>
-    <div class="invalid-feedback">Please provide a time.</div>
-    <div class="valid-feedback">Looks good!</div>
-  </div>
+
+<div class="row d-none">
+	<div class="col-lg-4 left-move"></div>
+	<div class="col-lg-4 left-move">
+		<div class="row">
+			<div class="col-lg-5 	">
+				<%= f.text_field("fiscal_year_end") %>
+			</div>
+		</div>
+		<div class="invalid-feedback">Please provide a time.</div>
+		<div class="valid-feedback">Looks good!</div>
+	</div>
 </div>
-<div class="row" >
-  <div class="col-lg-4 left-move"></div>
-  <div class="col-lg-4 left-move">
+<div class="row mt-3">
+	<div class="col-lg-4 left-move"></div>
+	<div class="col-lg-4 left-move">
+		<%= f.select :entity_type,options_for_select(["C Corp","Church","Corporation","Government","Limited Liability Company","Limited Liability Corporation","Limited Partnership","LLC","LLC - Taxed as Corporation "," LLC- Taxed as Partnership","LLC- Taxed as Sole Proprietorship","LLP","Non-Profit Organization","Partnership","Professional Service Partnership","Real Estate Investment Trust","S Corp","Sole Prop","Sub-S","Tax Exempt","Tribal Government","Unknown" ], @company[:entity_type]) ,{ :include_blank => '-- Select One --' }  %>
+		<div class="invalid-feedback">Please provide a time.</div>
+		<div class="valid-feedback">Looks good!</div>
+	</div>
+</div>
+<div class="row">
+	<div class="col-lg-4 left-move"></div>
+	<div class="col-lg-4 left-move">
 		<%= f.text_field :naic_code %>
-    <div class="invalid-feedback">Please provide a time.</div>
-    <div class="valid-feedback">Looks good!</div>
+		<div class="invalid-feedback">Please provide a time.</div>
+		<div class="valid-feedback">Looks good!</div>
 	</div>
 	<div class="col-lg-4 naic_code">
-		<a href="https://www.irs.gov/instructions/i5500ez#idm140115741914432" target="_blank">Click here to search for your NAICS code</a>
+		<a href="https://www.irs.gov/instructions/i5500ez#idm140115741914432" target="_blank">Click here to search for your
+			NAICS code</a>
 	</div>
 </div>
-<div class="row" >
-  <div class="col-lg-4 left-move"></div>
-  <div class="col-lg-4 left-move">
-    <%= f.text_field :payroll_provider%>
-    <div class="invalid-feedback">Please provide a time.</div>
-    <div class="valid-feedback">Looks good!</div>
-  </div>
+<div class="row">
+	<div class="col-lg-4 left-move"></div>
+	<div class="col-lg-4 left-move">
+		<%= f.text_field :payroll_provider%>
+		<div class="invalid-feedback">Please provide a time.</div>
+		<div class="valid-feedback">Looks good!</div>
+	</div>
 </div>
-<div class="row" >
-  <div class="col-lg-4 left-move"></div>
-  <div class="col-lg-4 left-move">
-    <%= f.select :payroll_frequency,options_for_select(["BiWeekly", "Monthly","Multiple Schedules","Semimonthly","Unknown","Weekly"],@company[:payroll_frequency]),{ :include_blank => '-- Select One --' }  %>
-    <div class="invalid-feedback">Please provide a time.</div>
-    <div class="valid-feedback">Looks good!</div>
-  </div>
+<div class="row">
+	<div class="col-lg-4 left-move"></div>
+	<div class="col-lg-4 left-move">
+		<%= f.select :payroll_frequency,options_for_select(["BiWeekly", "Monthly","Multiple Schedules","Semimonthly","Unknown","Weekly"],@company[:payroll_frequency]),{ :include_blank => '-- Select One --' }  %>
+		<div class="invalid-feedback">Please provide a time.</div>
+		<div class="valid-feedback">Looks good!</div>
+	</div>
 </div>
 <div class="actions col-lg-12">
-  <div class="row">
-    <div class="col-lg-5 left-move"></div>
-    <div class="left-move">
-      <%= f.submit value: "Save", class: "btn btn-primary"%>
-    </div>
-    <div class="col-lg-1 right-move"></div>
-    <div class="right-move">
-      <%= link_to 'Cancel', root_path, class: "btn btn-secondary " %>
-    </div>
-  </div>
+	<div class="row">
+		<div class="col-lg-5  left-move"></div>
+		<div class="left-move">
+			<%= f.submit value: "Save", class: "btn btn-success"%>
+		</div>
+
+	</div>
 </div>
 <br>

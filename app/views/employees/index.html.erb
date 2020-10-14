@@ -28,7 +28,7 @@
       <h3> Step 9 : Employee Census </h3> 
     </div>
     <div class="mt-4 mb-2">
-      <span > Please enter or import your employee census data using the tools below . When you are satisfied that all of the data is correct, click the save button to continue. If you do not have any employee that report W-2 wages. click the delete all employees button and then click the save button for more information on approving this step. </span>
+      <span style="font-style: italic;" > Please enter or import your employee census data using the tools below . When you are satisfied that all of the data is correct, click the save button to continue. If you do not have any employee that report W-2 wages, click the delete all employees button and then click the save button for more information on approving this step. </span>
     </div>
 
     <div class="card card-form">
@@ -59,9 +59,9 @@
         </div>
         <div class="col-lg-12 card-form__body">
           <%= search_form_for @q, url: '#', class: "", method: "get" do |f| %>
-            <div class="float-left px-3">
+            <div class="float-left px-3 col-lg-3">
               <div class="search-form search-form--light ">
-                <%= f.search_field :first_name_cont, value: @first_name, placeholder: "Search by firstName", title: "first_name" ,:class=>"form-control search" %>
+                <%= f.search_field :last_name_or_first_name_cont, value: @first_name, placeholder: "Search for First or Last Name", title: "first_name" ,:class=>"form-control search" %>
                 <button class="btn" type="button" role="button"><i class="material-icons">search</i></button>
               </div>
             </div>
@@ -69,6 +69,9 @@
 
             <div class="float-left">
               <input class="form-control btn btn-primary px-3" name="search_submit" type="submit" value="Search"></input>
+						</div>
+						<div class="float-left ml-2">
+              <%= link_to 'Clear', employees_path, class:"btn btn-primary px-3" %>
             </div>
             <div class="mr-3 float-right btn-size">
               <%= link_to 'Add Employee', new_employee_path,id: 'add_employee', class:"btn btn-primary px-5" %>

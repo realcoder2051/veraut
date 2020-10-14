@@ -24,11 +24,17 @@
 	</div>
 	<div class="container-fluid page__container">
 		<div>
-			<h3> Step 4 : Family Relationships : </h3>
+			<h3> Step 4 : Family Relationships :
+				<div class="ml-3 my-1 float-right">
+					<%=link_to "Save",save_family_path,class: "btn btn-success " %>
+				</div> 
+				<div class="ml-3 my-1 float-right">
+					<button type="button" class="btn btn-success  px-3" data-toggle="modal" data-target="#myModal ">Notes </button>			
+				</div> </h3>
 		</div>
 		<div class="mt-4 mb-2">
-			<span> Please complete all the information below for family of all the principals that are employed at your
-				firm.When you have completed your changes,click the Save button to continue</span>
+			<span style="font-style: italic;"> Please complete all the information below for family of all the principals that are employed at your
+				firm. When you have completed your changes, click the Save button to continue.</span>
 		</div>
 
 		<div class="card card-form">
@@ -37,18 +43,14 @@
 					<div class="ml-3  float-right">
 						<%=link_to 'Add Family',new_family_path, class:"btn btn-primary m-1 float-right" %>
 					</div>
-					<div class="ml-2 my-1 float-right">
-						<button type="button" class="btn btn-success  px-3" data-toggle="modal" data-target="#myModal ">Notes
-						</button>
-					</div>
 				</div>
 				<div class="col-lg-12 card-form__body">
 					<table class="table mb-0 thead-border-top-0 mt-1  table-hover">
 						<thead class="table-info">
 							<tr>
-								<th>Name</th>
-								<th>Relationship</th>
-								<th>Related to</th>
+								<th><%= sort_link(@q, :name) %></th>
+								<th><%= sort_link(@q, :relationship) %></th>
+								<th><%= sort_link(@q, :related_to) %></th>
 								<th colspan="1">Actions</th>
 							</tr>
 						</thead>

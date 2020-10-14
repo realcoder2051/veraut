@@ -1,29 +1,35 @@
 class QuestionaireAnswersController < InheritedResources::Base
 	before_action :stepper, only: %i[index_plan index_fifty_five_hundred]
 
-  def new
-    @questionaire_answer = QuestionaireAnswer.new
+	def new
+		@questionaire_answer = QuestionaireAnswer.new
+		if QuestionaireAnswer.exists?(task_id: session[:task_id], user_id: current_user.id, question_type_id: 1)
+			@questionaire_answer = QuestionaireAnswer.find_by(task_id: session[:task_id])	
+			redirect_to edit_plan_path(@questionaire_answer)
+	 end
   end
 
   def create
   end
 
-  def fifty_five_hundred_new
-    @questionaire_answer = QuestionaireAnswer.new
+	def fifty_five_hundred_new
+		@questionaire_answer = QuestionaireAnswer.new
+		if QuestionaireAnswer.exists?(task_id: session[:task_id], user_id: current_user.id, question_type_id: 2)
+			@questionaire_answer = QuestionaireAnswer.find_by(task_id: session[:task_id])	
+			redirect_to edit_fifty_five_hundred_path(@questionaire_answer)
+	 end
   end
 
   def create_plan
-    answers = params[:questionaire_answer][:answer]
-    questionaire_answers = choose_plan(answers)
-    QuestionaireAnswer.import questionaire_answers
-    redirect_to plans_path
+    questionaire_answers = choose_plan
+		QuestionaireAnswer.import questionaire_answers
+		is_completed_plan
   end
 
   def create_fifty_five_hundred
-    answers = params[:questionaire_answer][:answer]
-    questionaire_answers = fifty_five_hundred_plan(answers)
-    QuestionaireAnswer.import questionaire_answers
-    redirect_to fifty_five_hundred_path
+    questionaire_answers = fifty_five_hundred_plan
+		QuestionaireAnswer.import questionaire_answers
+		is_completed_fifty_five_hundred
   end
 
   def edit_5500
@@ -31,10 +37,9 @@ class QuestionaireAnswersController < InheritedResources::Base
   end
 
   def update_5500
-    answers = params[:questionaire_answer][:answer]
-    questionaire_answers = fifty_five_hundred_plan(answers)
+    questionaire_answers = fifty_five_hundred_plan
     QuestionaireAnswer.import questionaire_answers, on_duplicate_key_update: [:answer]
-    redirect_to fifty_five_hundred_path
+    redirect_to employees_path
   end
 
   def edit_plan
@@ -42,10 +47,9 @@ class QuestionaireAnswersController < InheritedResources::Base
   end
 
   def update_plan
-    answers = params[:questionaire_answer][:answer]
-    questionaire_answers = choose_plan(answers)
+    questionaire_answers = choose_plan
     QuestionaireAnswer.import questionaire_answers, on_duplicate_key_update: [:answer]
-    redirect_to plans_path
+    redirect_to fifty_five_hundred_new_path
   end
 
   def show
@@ -68,7 +72,20 @@ class QuestionaireAnswersController < InheritedResources::Base
     id = session[:task_id]
 		@questionaire_answers = QuestionaireAnswer.order('created_at').where(task_id: id, question_type_id: 2).all
 		@notes = Note.all
-  end
+	end
+	
+	def is_completed_fifty_five_hundred
+		question_answer = QuestionaireAnswer.where("is_completed=? AND user_id=? AND task_id=? AND question_type_id=?", false , current_user.id , session[:task_id], 2)
+		question_answer.update(is_completed: true)
+    redirect_to fifty_five_hundred_new_path
+	end
+
+	def is_completed_plan
+		question_answer = QuestionaireAnswer.where("is_completed=? AND user_id=? AND task_id=? AND question_type_id=?", false , current_user.id , session[:task_id], 1)
+		question_answer.update(is_completed: true)
+    redirect_to plans_new_path
+	end
+
 
  
 
@@ -78,14 +95,16 @@ class QuestionaireAnswersController < InheritedResources::Base
       params.require(:questionaire_answer).permit(:answer,:question_no)
     end
 
-    def choose_plan(answers)
-     #answers = params[:questionaire_answer][:answer]
+    def choose_plan
+     answers = params[:questionaire_answer][:answer][0].permit!.to_h
       questionaire_answers = []
       answer_id = params[:questionaire_answer][:id]
-      answers.each_with_index do |answer,index|
+			answers.each do |indx,val|
+				index = indx.to_i
         questionaire_answer = QuestionaireAnswer.find_or_initialize_by(id: answer_id[index].to_i.positive? ? answer_id[index].to_i : nil )
-        questionaire_answer[:answer] = answer
-        questionaire_answer[:task_id] = session[:task_id]
+        questionaire_answer[:answer] = val
+				questionaire_answer[:task_id] = session[:task_id]
+				questionaire_answer[:user_id] = current_user.id
         questionaire_answer[:question_type_id] = 1
 				questionaire_answer[:question_no] = index+1
         questionaire_answers << questionaire_answer
@@ -93,14 +112,16 @@ class QuestionaireAnswersController < InheritedResources::Base
       return questionaire_answers
     end
 
-    def fifty_five_hundred_plan(answers)
-      answers = params[:questionaire_answer][:answer]
+    def fifty_five_hundred_plan
+      answers = params[:questionaire_answer][:answer][0].permit!.to_h
       questionaire_answers = []
       id = params[:questionaire_answer][:id]
-      answers.each_with_index do |answer,index|
+			answers.each do |indx, val|
+				index = indx.to_i
         questionaire_answer = QuestionaireAnswer.find_or_initialize_by(id: id[index].to_i.positive? ? id[index].to_i : nil )
-        questionaire_answer[:answer] = answer
-        questionaire_answer[:task_id] = session[:task_id]
+        questionaire_answer[:answer] = val
+				questionaire_answer[:task_id] = session[:task_id]
+				questionaire_answer[:user_id] = current_user.id
 				questionaire_answer[:question_type_id] = 2
         questionaire_answer[:question_no] = index+1
         questionaire_answers << questionaire_answer
