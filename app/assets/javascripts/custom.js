@@ -20,6 +20,7 @@ var hash = {
 	"/businesses": "view-business",
 	"/businesses/new": "view-business",
 	"/contacts": "view-contact",
+	"/view_requests": "view-contact",
 	"/contacts/new": "view-contact",
 	"/plans": "view-plan",
 	"/plans/new": "view-plan",

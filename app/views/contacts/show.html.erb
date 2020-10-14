@@ -1,12 +1,12 @@
 <div class="container-fluid page__heading-container" id="show-view">
 <div class="page__heading d-flex align-items-center">
   <div class="flex">
-    <h1 class="m-0"><%= @contact.name %></h1>
+    <h1 class="m-0"><%= find_created_by_user(@contact_change_request)%></h1>
   </div>
 </div>
 </div>
 
-<div class="container-fluid page__container"  > 
+<div class="container-fluid page__container"  >
   <div class= "row ">
     <div class="col-lg-5">
       <div class="card card-form__body">
@@ -14,20 +14,12 @@
           <table class="table mb-0 thead-border-top-0 mt-1  table-hover table-bordered">
             <tbody>
               <tr>
-                <td> Company Name </td>
-                <td> <%=@contact.company_name%> </td>
+                <td>Date </td>
+                <td> <%=@contact_change_request.date%> </td>
               </tr>
               <tr>
-                <td> Email </td>
-                <td> <%=@contact.email%> </td>
-              </tr>
-               <tr>
-                <td> Roles </td>
-                <td> <%=@contact.roles%> </td>
-              </tr>
-              <tr>
-                <td> Rights </td>
-                <td> <%=@contact.rights%> </td>
+                <td>Change request </td>
+                <td> <%=@contact_change_request.change_request%> </td>
               </tr>
             </tbody>
           </table>

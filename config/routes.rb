@@ -1,5 +1,7 @@
   Rails.application.routes.draw do
 
+  resources :change_request_mappings
+  resources :contact_change_requests
   resources :feduciary_documents
 	resources :questionaire_answers
 	get'plans_new',to: 'questionaire_answers#new'
@@ -56,7 +58,8 @@
 
   #resources :plans
 	resources :contacts
-	get 'save_contact', to: 'contacts#is_completed'
+  get 'save_contact', to: 'contacts#is_completed'
+  get 'view_requests',to: 'contacts#contact_change_request_index'
 	resources :businesses
 	get 'save_business', to: 'businesses#is_completed'
 	resources :families

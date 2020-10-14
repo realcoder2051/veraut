@@ -19,7 +19,7 @@
 					<%=link_to "Save",save_contact_path,class: "btn btn-success " %>
 				</div> 
 				<div class="ml-3 my-1 float-right">
-					<button type="button" class="btn btn-success  px-3" data-toggle="modal" data-target="#myModal ">Notes </button>			
+					<button type="button" class="btn btn-success  px-3" data-toggle="modal" data-target="#myModal ">Notes </button>
 				</div> </h3>
 		</div>
 		<div class="mt-4 mb-2">
@@ -31,11 +31,6 @@
 	<div class="card card-form">
 		<div class="row no-gutters">
 			<div class="col-lg-12 card-form__body">
-				<div class="ml-3  float-right">
-					<%=link_to 'Add Contact',new_contact_path, class:"btn btn-secondary 	 m-1 float-right" %>
-				</div>
-			</div>
-			<div class="col-lg-12 card-form__body">
 				<table class="table mb-0 thead-border-top-0 mt-1  table-hover">
 					<thead class="table-info">
 						<tr>
@@ -44,22 +39,28 @@
 							<th><%= sort_link(@q, :email) %></th>
 							<th><%= sort_link(@q, :roles) %></th>
 							<th><%= sort_link(@q, :rights) %></th>
+							<th>Actions</th>
 						</tr>
 					</thead>
 					<%if session[:task_id]%>
-					<tbody>
-						<% @roles_rights.each do |roles_right| %>
-						<%if roles_right.role.user.present?%>
-						<tr>
-							<td><%= roles_right.role.user.username%></td>
-							<td><%= "Benefit Equity Inc" %></td>
-							<td><%= roles_right.role.user.email  %></td>
-							<td><%= roles_right.role.name %></td>
-							<td><%= parse_json_array(roles_right.role_type) %></td>
-						</tr>
-						<%end%>
-						<% end %>
-					</tbody>
+						<tbody>
+							<% @users.each do |user|%>
+								<tr>
+									<td><%=user.username%></td>
+									<td><%="Benefit Equity, Inc"%></td>
+									<td><%=user.email%></td>
+									<td><%=user.role.name%></td>
+									<td><%=find_rights(user.role)%></td>
+									<td>
+										<% if is_already_requested(user)%>
+											<%=link_to "View["+total_view_requests.to_s+"]",view_requests_path,class: "btn btn-primary"%>
+										<%else%>
+											<%=link_to "Add[0]",new_contact_path(user_id: user),class: "btn btn-primary"%>
+										<%end%>
+									</td>
+								</tr>
+							<%end%>
+						</tbody>
 					<%end%>
 				</table>
 			</div>

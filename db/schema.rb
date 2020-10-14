@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_13_162537) do
+ActiveRecord::Schema.define(version: 2020_10_14_073945) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_stat_statements"
@@ -91,6 +91,17 @@ ActiveRecord::Schema.define(version: 2020_10_13_162537) do
     t.index ["user_id"], name: "index_businesses_on_user_id"
   end
 
+  create_table "change_request_mappings", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "task_id"
+    t.boolean "is_requested", default: false
+    t.integer "role_change_id"
+    t.bigint "contact_change_request_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["contact_change_request_id"], name: "index_change_request_mappings_on_contact_change_request_id"
+  end
+
   create_table "companies", force: :cascade do |t|
     t.string "company_name"
     t.string "ein"
@@ -108,6 +119,14 @@ ActiveRecord::Schema.define(version: 2020_10_13_162537) do
     t.index ["user_id"], name: "index_companies_on_user_id"
   end
 
+  create_table "contact_change_requests", force: :cascade do |t|
+    t.date "date"
+    t.integer "created_by"
+    t.string "change_request"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "contact_numbers", force: :cascade do |t|
     t.string "number"
     t.string "contact_type"
@@ -123,14 +142,13 @@ ActiveRecord::Schema.define(version: 2020_10_13_162537) do
   end
 
   create_table "contacts", force: :cascade do |t|
-    t.string "name"
     t.string "company_name"
     t.string "email"
-    t.string "roles"
-    t.string "rights"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "task_id"
+    t.integer "user_id"
+    t.integer "role_id"
     t.boolean "is_completed", default: false
     t.index ["task_id"], name: "index_contacts_on_task_id"
   end
@@ -139,9 +157,9 @@ ActiveRecord::Schema.define(version: 2020_10_13_162537) do
     t.string "name"
     t.string "document_type"
     t.string "description"
-    t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "user_id"
     t.index ["user_id"], name: "index_documents_on_user_id"
   end
 
@@ -236,11 +254,11 @@ ActiveRecord::Schema.define(version: 2020_10_13_162537) do
 
   create_table "questionaire_answers", force: :cascade do |t|
     t.string "answer"
-    t.integer "question_no"
     t.bigint "task_id"
     t.bigint "question_type_id"
     t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "updated_at"
+    t.integer "question_no"
     t.bigint "user_id"
     t.index ["question_type_id"], name: "index_questionaire_answers_on_question_type_id"
     t.index ["task_id"], name: "index_questionaire_answers_on_task_id"
@@ -320,6 +338,5 @@ ActiveRecord::Schema.define(version: 2020_10_13_162537) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "approvals", "users"
-  add_foreign_key "documents", "users"
   add_foreign_key "feduciary_documents", "task_groups"
 end

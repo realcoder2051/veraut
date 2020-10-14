@@ -1,11 +1,12 @@
 <div class="row" >
   <div class="col-lg-4 left-move"></div>
   <div class="col-lg-4 left-move">
-    <%=f.text_field :change_request_view %>
+    <%=f.text_field :change_request,required: :true %>
     <div class="invalid-feedback">Please provide a time.</div>
     <div class="valid-feedback">Looks good!</div>
   </div>
 </div>
+<input type=hidden name='user_id' value= <%=params[:user_id]%> />
 
 <div class="actions col-lg-12">
   <div class="row">
@@ -15,7 +16,7 @@
     </div>
     <div class="col-lg-1 right-move"></div>
     <div class="right-move">
-      <%= link_to 'Cancel', root_path, class: "btn btn-secondary " %>
+      <%= link_to 'Cancel', contacts_path, class: "btn btn-secondary " %>
     </div>
   </div>
 </div>
