@@ -114,17 +114,23 @@ $("#number_dropdown").change(function (event) {
 
 $(".fiscal_month").change(function (event) {
 	var m = $(".fiscal_month").val();
-	var d = $(".fiscal_day").val();
-	$("#company_fiscal_year_end_2i").val(a)
+	var d = $(".fiscal_date").val();
+	var date = new Date().getFullYear()+'-'+ m+ '-' +d 
+	$("#company_fiscal_year_end").val(date)
+
 });
 
+$(".fiscal_date").change(function (event) {
+	var m = $(".fiscal_month").val();
+	var d = $(".fiscal_date").val();
+	var date = new Date().getFullYear()+'-'+ m+ '-' +d 
+	$("#company_fiscal_year_end").val(date)
 
-// function edit_note(){	
-// 	$('#update_note').modal('show');
+});
 
-	
-// }	
-
+$('.date_picker').focusout(function(){
+  $('.ui-datepicker-calendar').css("display","none");
+});
 	
 function delete_note(){
 	var note_id = event.currentTarget.dataset.id
@@ -205,20 +211,18 @@ function update_note()
 	
 
 
-define(["jquery", "jquery.validate"], function( $ ) {
-	$("form").validate();
+$().ready(function() {
+	// validate the form when it is submitted
+	 $("#new_questionaire_answer").validate();
+
+});
+
+
+
+$().ready(function() {
+	// validate the form when it is submitted
+	 $("#edit_questionaire_answer").validate();
+
 });
 
 
-$(".check_field").click(function(event){
-
-	var a = $(".question_field2").val();
-	alert(a)
-
-	if (a != "" && $(".question_four3").val() == "" )
-	{
-		alert ("please enter value")
-		
-	}
-
-});

@@ -9,7 +9,7 @@
 <div class="row" >
   <div class="col-lg-4 left-move"></div>
   <div class="col-lg-4 left-move">
-    <%=f.select :title,options_for_select([ "Buisness","Local Buisness","Education"], @principal[:title]) , { :include_blank => '-- Select One --' }  %>
+    <%=f.select :title,options_for_select([ "Managing Partner", "Note Title", "Other Title", "Partner", "President" , "Secretary" , "Treasurer" , "Vice-President"], @principal[:title]) , { :include_blank => '-- Select One --' }  %>
     <div class="invalid-feedback">Please provide a time.</div>
     <div class="valid-feedback">Looks good!</div>
   </div>
