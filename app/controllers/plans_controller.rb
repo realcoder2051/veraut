@@ -1,4 +1,4 @@
-class PlansController < InheritedResources::Base
+class PlanController < InheritedResources::Base
 
   def new
     @plan = Plan.new

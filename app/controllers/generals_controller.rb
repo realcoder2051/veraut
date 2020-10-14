@@ -1,5 +1,7 @@
 class GeneralsController < InheritedResources::Base
 	before_action :stepper, only: %i[index]
+	before_action :fetch_address, only: %i[index]
+
 	
   def update
     general = General.find(params[:id])
@@ -18,10 +20,11 @@ class GeneralsController < InheritedResources::Base
   end
 
   def index
-    #find_task(task)
-			@addresses = Address.all.order('created_at').where(user_id: current_user.id)
-			@notes = Note.all
-      @numbers = ContactNumber.all.order('created_at').where(user_id: current_user.id)
+		#find_task(task)
+		ransack_search = params[:q]
+		@address_type = ransack_search[:first_name_cont] if ransack_search.present?
+		@notes = Note.all
+		@numbers = ContactNumber.all.order('created_at').where(user_id: current_user.id)
   end
 
   def find_task
@@ -31,9 +34,29 @@ class GeneralsController < InheritedResources::Base
     if task.update(flag: true)
       redirect_to generals_path
     end
+	end
+
+	def is_completed
+		address = Address.where("is_completed=? AND user_id=? AND task_id=?", false , current_user.id , session[:task_id])
+		contact_number = ContactNumber.where("is_completed=? AND user_id=? AND task_id=?", false , current_user.id , session[:task_id])
+		address.update(is_completed: true)
+		contact_number.update(is_completed: true)
+		redirect_to generals_path
+	end
+	
+
+
+
+	private
+	def fetch_address
+    @q = Address.ransack(params[:q])
+    result = @q.result
+     if result.count.positive?
+       @q.sorts = 'address_type asc' if @q.sorts.empty?
+     end
+    @addresses = result.paginate(:page => params[:page], per_page:10).order('address_type ASC').where(user_id: current_user.id)
   end
 
-  private
 
     def general_params
       params.permit(:address_type, :address, :contact_type, :number)

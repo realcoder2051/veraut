@@ -1,29 +1,37 @@
 class QuestionaireAnswersController < InheritedResources::Base
 	before_action :stepper, only: %i[index_plan index_fifty_five_hundred]
 
-  def new
-    @questionaire_answer = QuestionaireAnswer.new
+	def new
+		@questionaire_answer = QuestionaireAnswer.new
+		if QuestionaireAnswer.exists?(task_id: session[:task_id], user_id: current_user.id)
+			@questionaire_answer = QuestionaireAnswer.find_by(task_id: session[:task_id])	
+			redirect_to edit_plan_path(@questionaire_answer)
+	 end
   end
 
   def create
   end
 
   def fifty_five_hundred_new
-    @questionaire_answer = QuestionaireAnswer.new
+		@questionaire_answer = QuestionaireAnswer.new
+		if QuestionaireAnswer.exists?(task_id: session[:task_id], user_id: current_user.id)
+			@questionaire_answer = QuestionaireAnswer.find_by(task_id: session[:task_id])	
+			redirect_to edit_fifty_five_hundred_path(@questionaire_answer)
+	 end
   end
 
   def create_plan
-    answers = params[:questionaire_answer][:answer]
+		answers = params[:questionaire_answer][:answer]
     questionaire_answers = choose_plan(answers)
     QuestionaireAnswer.import questionaire_answers
-    redirect_to plans_path
+    redirect_to plans_new_path
   end
 
   def create_fifty_five_hundred
-    answers = params[:questionaire_answer][:answer]
+		answers = params[:questionaire_answer][:answer]
     questionaire_answers = fifty_five_hundred_plan(answers)
-    QuestionaireAnswer.import questionaire_answers
-    redirect_to fifty_five_hundred_path
+    # QuestionaireAnswer.import questionaire_answers
+    redirect_to fifty_five_hundred_new_path
   end
 
   def edit_5500
@@ -34,7 +42,7 @@ class QuestionaireAnswersController < InheritedResources::Base
     answers = params[:questionaire_answer][:answer]
     questionaire_answers = fifty_five_hundred_plan(answers)
     QuestionaireAnswer.import questionaire_answers, on_duplicate_key_update: [:answer]
-    redirect_to fifty_five_hundred_path
+    redirect_to employees_path
   end
 
   def edit_plan
@@ -45,7 +53,7 @@ class QuestionaireAnswersController < InheritedResources::Base
     answers = params[:questionaire_answer][:answer]
     questionaire_answers = choose_plan(answers)
     QuestionaireAnswer.import questionaire_answers, on_duplicate_key_update: [:answer]
-    redirect_to plans_path
+    redirect_to fifty_five_hundred_new_path
   end
 
   def show
@@ -85,7 +93,8 @@ class QuestionaireAnswersController < InheritedResources::Base
       answers.each_with_index do |answer,index|
         questionaire_answer = QuestionaireAnswer.find_or_initialize_by(id: answer_id[index].to_i.positive? ? answer_id[index].to_i : nil )
         questionaire_answer[:answer] = answer
-        questionaire_answer[:task_id] = session[:task_id]
+				questionaire_answer[:task_id] = session[:task_id]
+				questionaire_answer[:user_id] = current_user.id
         questionaire_answer[:question_type_id] = 1
 				questionaire_answer[:question_no] = index+1
         questionaire_answers << questionaire_answer
@@ -100,7 +109,8 @@ class QuestionaireAnswersController < InheritedResources::Base
       answers.each_with_index do |answer,index|
         questionaire_answer = QuestionaireAnswer.find_or_initialize_by(id: id[index].to_i.positive? ? id[index].to_i : nil )
         questionaire_answer[:answer] = answer
-        questionaire_answer[:task_id] = session[:task_id]
+				questionaire_answer[:task_id] = session[:task_id]
+				questionaire_answer[:user_id] = current_user.id
 				questionaire_answer[:question_type_id] = 2
         questionaire_answer[:question_no] = index+1
         questionaire_answers << questionaire_answer

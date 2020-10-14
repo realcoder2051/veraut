@@ -10,4 +10,6 @@
 //= require cocoon
 //= require jquery-ui/widgets/autocomplete
 //= require autocomplete-rails
+//= require jquery.validate
 //= require_tree
+

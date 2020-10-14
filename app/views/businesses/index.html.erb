@@ -9,7 +9,7 @@
 								<li class="breadcrumb-item"><i class="material-icons icon-20pt">home</i></li>
 								<li class="breadcrumb-item active" aria-current="page">Business</a></li>
 							</ol>
-							<h1 class="m-0" <%= count()%>>Business</h1>
+							<h1 class="m-0" <%= count()%>>Businesses</h1>
 						</nav>
 					</div>
 					<!-- Stepper partial -->
@@ -24,7 +24,14 @@
 	</div>
 	<div class="container-fluid page__container">
 		<div>
-			<h3> Step 5 : Other Business Owned : </h3>
+			<h3> Step 5 : Other Businesses Owned : 
+				<div class="ml-3 my-1 float-right">
+					<%=link_to "Save",save_business_path,class: "btn btn-success " %>
+				</div> 
+				<div class="ml-3 my-1 float-right">
+					<button type="button" class="btn btn-success  px-3" data-toggle="modal" data-target="#myModal ">Notes </button>			
+				</div>
+			</h3>
 		</div>
 		<div class="mt-4 mb-2">
 			<span> Please enter the complete list of other businesses that are owned as well as owners of other business.When
@@ -36,23 +43,20 @@
 					<div class="ml-3  float-right">
 						<%=link_to 'Add Business',new_business_path, class:"btn btn-primary m-1 float-right" %>
 					</div>
-					<div class="ml-2 my-1 float-right">
-						<button type="button" class="btn btn-success  px-3" data-toggle="modal" data-target="#myModal ">Notes
-						</button>
-					</div>
+
 				</div>
 				<div class="col-lg-12 card-form__body">
 					<table class="table mb-0 thead-border-top-0 mt-1  table-hover">
 						<thead class="table-info">
 							<tr>
-								<th>Name</th>
-								<th>Ein</th>
-								<th>Date purchased</th>
-								<th>Address</th>
-								<th>Phone</th>
-								<th>Employees?</th>
-								<th>Plan Sponsor</th>
-								<th>Entity type</th>
+								<th><%= sort_link(@q, :name) %></th>
+								<th><%= sort_link(@q, :ein) %></th>
+								<th><%= sort_link(@q, :date_purchased_or_sold, 'Date Purchased') %></th>
+								<th><%= sort_link(@q, :address) %></th>
+								<th><%= sort_link(@q, :phone) %></th>
+								<th><%= sort_link(@q, :employees) %></th>
+								<th><%= sort_link(@q, :qualified_plan_sponsored, 'Plan Sponser') %></th>
+								<th><%= sort_link(@q, :entity_type) %></th>
 								<th colspan="1">Actions</th>
 							</tr>
 						</thead>
@@ -65,7 +69,7 @@
 								<td><%= business.date_purchased_or_sold %></td>
 								<td><%= business.address %></td>
 								<td><%= business.phone %></td>
-								<td><%= business.does_company_have_employees ? 'Yes' : 'No' %></td>
+								<td><%= business.does_company_have_employees%></td>
 								<td><%= business.qualified_plan_sponsored %></td>
 								<td><%= business.entity_type %></td>
 								<td>

@@ -1,7 +1,7 @@
 <div class="row" >
   <div class="col-lg-4 left-move"></div>
   <div class="col-lg-4 left-move">
-    <%=f.text_field :name%>
+    <%=f.text_field :name , {:label=> 'Name'}  %>
     <div class="invalid-feedback">Please provide a time.</div>
     <div class="valid-feedback">Looks good!</div>
   </div>
@@ -9,7 +9,7 @@
 <div class="row" >
   <div class="col-lg-4 left-move"></div>
   <div class="col-lg-4 left-move">
-    <%=f.number_field :ein%>
+    <%=f.number_field :ein , {:label=> 'EIN'} %>
     <div class="invalid-feedback">Please provide a time.</div>
     <div class="valid-feedback">Looks good!</div>
   </div>
@@ -17,7 +17,7 @@
 <div class="row" >
   <div class="col-lg-4 left-move"></div>
   <div class="col-lg-4 left-move">
-  <%=f.date_field :date_purchased_or_sold %>
+  <%=f.date_field :date_purchased_or_sold, {:label=> 'Date Purchased'}  %>
   <div class="invalid-feedback">Please provide a time.</div>
     <div class="valid-feedback">Looks good!</div>
   </div>
@@ -25,7 +25,7 @@
 <div class="row" >
   <div class="col-lg-4 left-move"></div>
   <div class="col-lg-4 left-move">
-    <%=f.text_field :address%>
+    <%=f.text_field :address , {:label=> 'Address'} %>
     <div class="invalid-feedback">Please provide a time.</div>
     <div class="valid-feedback">Looks good!</div>
   </div>
@@ -33,7 +33,7 @@
 <div class="row" >
   <div class="col-lg-4 left-move"></div>
   <div class="col-lg-4 left-move">
-    <%=f.text_field :city%>
+    <%=f.text_field :city ,  {:label=> 'City'} %>
     <div class="invalid-feedback">Please provide a time.</div>
     <div class="valid-feedback">Looks good!</div>
   </div>
@@ -41,7 +41,7 @@
 <div class="row" >
   <div class="col-lg-4 left-move"></div>
     <div class="col-lg-4 left-move">
-      <%=f.select :state,options_for_select(['Alabama','Alaska','American Samoa','Arizona','Arkansas','California','Colorado','Connecticut','Delaware','District of Columbia','Federated States of Micronesia','Florida','Georgia','Guam','Hawaii','Idaho','Illinois','Indiana','Iowa','Kansas','Kentucky','Louisiana','Maine','Marshall Islands','Maryland','Massachusetts','Michigan','Minnesota','Mississippi','Missouri','Montana','Nebraska','Nevada','New Hampshire','New Jersey','New Mexico','New York','North Carolina','North Dakota','Northern Mariana Islands','Ohio','Oklahoma','Oregon','Palau','Pennsylvania','Puerto Rico','Rhode Island','South Carolina','South Dakota','Tennessee','Texas','Utah','Vermont','Virgin Island','Virginia','Washington','West Virginia','Wisconsin','Wyoming'], @business[:state])%>
+      <%=f.select :state,options_for_select(['Alabama','Alaska','American Samoa','Arizona','Arkansas','California','Colorado','Connecticut','Delaware','District of Columbia','Federated States of Micronesia','Florida','Georgia','Guam','Hawaii','Idaho','Illinois','Indiana','Iowa','Kansas','Kentucky','Louisiana','Maine','Marshall Islands','Maryland','Massachusetts','Michigan','Minnesota','Mississippi','Missouri','Montana','Nebraska','Nevada','New Hampshire','New Jersey','New Mexico','New York','North Carolina','North Dakota','Northern Mariana Islands','Ohio','Oklahoma','Oregon','Palau','Pennsylvania','Puerto Rico','Rhode Island','South Carolina','South Dakota','Tennessee','Texas','Utah','Vermont','Virgin Island','Virginia','Washington','West Virginia','Wisconsin','Wyoming'], @business[:state]) ,{ :include_blank => '-- Select One --' },  {:label=> 'State'} %>
       <div class="invalid-feedback">Please provide a time.</div>
       <div class="valid-feedback">Looks good!</div>
     </div>
@@ -49,7 +49,7 @@
 <div class="row" >
   <div class="col-lg-4 left-move"></div>
   <div class="col-lg-4 left-move">
-    <%=f.text_field :zip%>
+    <%=f.text_field :zip ,  {:label=> 'Zip'} %>
     <div class="invalid-feedback">Please provide a time.</div>
     <div class="valid-feedback">Looks good!</div>
   </div>
@@ -57,7 +57,7 @@
 <div class="row" >
   <div class="col-lg-4 left-move"></div>
   <div class="col-lg-4 left-move">
-    <%=f.text_field :phone%>
+    <%=f.text_field :phone ,  {:label=> 'Phone'} %>
     <div class="invalid-feedback">Please provide a time.</div>
     <div class="valid-feedback">Looks good!</div>
   </div>
@@ -65,7 +65,7 @@
 <div class="row" >
   <div class="col-lg-4 left-move"></div>
   <div class="col-lg-4 left-move">
-    <%=f.select :does_company_have_employees,options_for_select(["Yes","No"],company_have_employees)%>
+    <%=f.select :does_company_have_employees,options_for_select(["Yes","No"], @business[:does_company_have_employees]), { :include_blank => '-- Select One --' }%>
     <div class="invalid-feedback">Please provide a time.</div>
     <div class="valid-feedback">Looks good!</div>
   </div>
@@ -81,7 +81,7 @@
 <div class="row" >
   <div class="col-lg-4 left-move"></div>
   <div class="col-lg-4 left-move">
-    <%=f.select :entity_type,options_for_select(["C Corp","Church","Corporation","Government","Limited Liability Company","Limited Liability Corporation","Limited Partnership","LLC","LLC - Taxed as Corporation "," LLC- Taxed as Partnership","LLC- Taxed as Sole Proprietorship","LLP","Non-Profit Organization","Partnership","Professional Service Partnership","Real Estate Investment Trust","S Corp","Sole Prop","Sub-S","Tax Exempt","Tribal Government","Unknown"], @business[:entity_type]), { :include_blank => '-- Select One --' } %>
+    <%=f.select :entity_type,options_for_select(["C Corp","Church","Corporation","Government","Limited Liability Company","Limited Liability Corporation","Limited Partnership","LLC","LLC - Taxed as Corporation "," LLC- Taxed as Partnership","LLC- Taxed as Sole Proprietorship","LLP","Non-Profit Organization","Partnership","Professional Service Partnership","Real Estate Investment Trust","S Corp","Sole Prop","Sub-S","Tax Exempt","Tribal Government","Unknown"], @business[:entity_type]), { :include_blank => '-- Select One --' },  {:label=> 'Entity type'}  %>
     <div class="invalid-feedback">Please provide a time.</div>
     <div class="valid-feedback">Looks good!</div>
   </div>

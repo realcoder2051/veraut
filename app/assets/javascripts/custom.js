@@ -110,7 +110,12 @@ $("#number_dropdown").change(function (event) {
 	var a = $("#number_dropdown option:selected").text();
 	$("#contact_number_number").val(a)
 
+});
 
+$(".fiscal_month").change(function (event) {
+	var m = $(".fiscal_month").val();
+	var d = $(".fiscal_day").val();
+	$("#company_fiscal_year_end_2i").val(a)
 });
 
 
@@ -200,4 +205,20 @@ function update_note()
 	
 
 
+define(["jquery", "jquery.validate"], function( $ ) {
+	$("form").validate();
+});
 
+
+$(".check_field").click(function(event){
+
+	var a = $(".question_field2").val();
+	alert(a)
+
+	if (a != "" && $(".question_four3").val() == "" )
+	{
+		alert ("please enter value")
+		
+	}
+
+});

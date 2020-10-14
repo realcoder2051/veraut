@@ -6,11 +6,11 @@
     <div class="col-lg-3">
       <%if index<=8%>
       <input type=hidden name='questionaire_answer[id][]' value= <%=get_id(index)%> />
-      <%=select_tag 'questionaire_answer[answer][]',options_for_select(["Yes","No"],get_value(index) )%>
+      <%=select_tag 'questionaire_answer[answer][]',options_for_select(["Yes","No"],get_value(index)), prompt: 'Select One' , :required => true%>
       <br>
       <%elsif index>=9 && index<=10 %>
         <input type=hidden name='questionaire_answer[id][]' value= <%=get_id(index)%> />
-        <%=select_tag 'questionaire_answer[answer][]',options_for_select(["Yes","No","Decison Not yet made"],get_value(index))%>
+        <%=select_tag 'questionaire_answer[answer][]',options_for_select(["Yes","No","Decison Not yet made"],get_value(index)) , prompt: 'Select One', :required => true%>
         <br>
       <%else%>
         <input type=hidden name='questionaire_answer[id][]' value= <%=get_id(index)%> />

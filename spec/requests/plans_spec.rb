@@ -12,7 +12,7 @@
 # of tools you can use to make these specs even more expressive, but we're
 # sticking to rails and rspec-rails APIs to keep things simple and stable.
 
-RSpec.describe "/plans", type: :request do
+RSpec.describe "/plan", type: :request do
   # Plan. As you add validations to Plan, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
@@ -26,7 +26,7 @@ RSpec.describe "/plans", type: :request do
   describe "GET /index" do
     it "renders a successful response" do
       Plan.create! valid_attributes
-      get plans_url
+      get plan_url
       expect(response).to be_successful
     end
   end
@@ -58,12 +58,12 @@ RSpec.describe "/plans", type: :request do
     context "with valid parameters" do
       it "creates a new Plan" do
         expect {
-          post plans_url, params: { plan: valid_attributes }
+          post plan_url, params: { plan: valid_attributes }
         }.to change(Plan, :count).by(1)
       end
 
       it "redirects to the created plan" do
-        post plans_url, params: { plan: valid_attributes }
+        post plan_url, params: { plan: valid_attributes }
         expect(response).to redirect_to(plan_url(Plan.last))
       end
     end
@@ -71,12 +71,12 @@ RSpec.describe "/plans", type: :request do
     context "with invalid parameters" do
       it "does not create a new Plan" do
         expect {
-          post plans_url, params: { plan: invalid_attributes }
+          post plan_url, params: { plan: invalid_attributes }
         }.to change(Plan, :count).by(0)
       end
 
       it "renders a successful response (i.e. to display the 'new' template)" do
-        post plans_url, params: { plan: invalid_attributes }
+        post plan_url, params: { plan: invalid_attributes }
         expect(response).to be_successful
       end
     end
@@ -120,10 +120,10 @@ RSpec.describe "/plans", type: :request do
       }.to change(Plan, :count).by(-1)
     end
 
-    it "redirects to the plans list" do
+    it "redirects to the plan list" do
       plan = Plan.create! valid_attributes
       delete plan_url(plan)
-      expect(response).to redirect_to(plans_url)
+      expect(response).to redirect_to(plan_url)
     end
   end
 end
