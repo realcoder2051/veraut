@@ -9,7 +9,7 @@
 <div class="row">
 	<div class="col-lg-4 left-move"></div>
 	<div class="col-lg-4 left-move"> 
-		<%= f.number_field :ein , {:maxlength => 9} %>
+		<%= f.text_field :ein , {:maxlength => 9 } %>
 		<div class="invalid-feedback">Please provide a time.</div>
 		<div class="valid-feedback">Looks good!</div>
 	</div>
@@ -17,7 +17,7 @@
 <div class="row">
 	<div class="col-lg-4 left-move"></div>
 	<div class="col-lg-4 left-move">
-		<label class="required"> Fiscal Year End </label>
+		<label class="required"> Fiscal Year End  </label>
 		<div class="row">
 			<div class="col-lg-10">
 				<input type="number" class="form-control  fiscal_month" min="1" max="12"  placeholder="month"  > /
@@ -29,7 +29,7 @@
 	</div>
 </div>
 
-<div class="row d-none">
+<div class="row">
 	<div class="col-lg-4 left-move"></div>
 	<div class="col-lg-4 left-move">
 		<div class="row">

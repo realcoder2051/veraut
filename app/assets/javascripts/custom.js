@@ -129,6 +129,12 @@ $(".fiscal_date").change(function (event) {
 
 });
 
+$().ready(function(event){
+	var a = $("#company_fiscal_year_end").val();
+	var substring = a.substring(5)
+	
+});
+
 $('.date_picker').focusout(function(){
   $('.ui-datepicker-calendar').css("display","none");
 });

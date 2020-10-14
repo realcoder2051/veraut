@@ -11,7 +11,6 @@ class BusinessesController < InheritedResources::Base
 
   def update
     @business = Business.find(params[:id])
-    @business[:does_company_have_employees] = company_have_employees?
     if @business.update_attributes(business_params)
 			redirect_to businesses_path
 		else

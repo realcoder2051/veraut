@@ -8,7 +8,7 @@ class ContactNumbersController < InheritedResources::Base
     if contact_number.save
 			redirect_to generals_path
 		else
-			render generals_path
+			redirect_to contact_number_add_path
 
     end
   end
