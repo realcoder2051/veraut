@@ -44,7 +44,11 @@ class ContactsController < InheritedResources::Base
 		@contact.company_name = "Benefit Equity,Inc"
 		@contact.email = technician_user.email
 		@contact.task_id = session[:task_id]
-		@contact.user_id = technician_user.id
+		if technician_user.present?
+			@contact.user_id = technician_user.id
+		else
+			@contact.user_id =0
+		end
 		@contact.role_id = technician_role.id
 		@contact.is_completed = true
 		@contact.save
