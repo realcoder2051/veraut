@@ -1,17 +1,28 @@
-<div class="container-fluid full-scroll">
-	<div class="page__heading cancel-row">
-		<nav aria-label="breadcrumb">
-			<ol class="breadcrumb mb-0">
-				<li class="breadcrumb-item"><i class="material-icons icon-20pt">home</i></li>
-				<li class="breadcrumb-item active" aria-current="page">Contact</a></li>
-			</ol>
-		</nav>
-		<div class="row">
-			<div style="display:inline-block" class=" col-lg-4  w-50 p-12 px-md-1 ">
-				<h1 class="ml-3">View Contact</h1>
+<div class="employee_index_scroll">
+	<div class="container-fluid page__heading-container">
+		<div class="page__heading d-flex align-items-center">
+			<div class="flex">
+				<div class="row">
+					<div class="col-lg-2">
+						<nav aria-label="breadcrumb">
+							<ol class="breadcrumb mb-0">
+								<li class="breadcrumb-item"><i class="material-icons icon-20pt">home</i></li>
+								<li class="breadcrumb-item active" aria-current="page">Contact</a></li>
+							</ol>
+							<h1 class="m-0" <%= count()%>>Contact</h1>
+						</nav>
+					</div>
+					<!-- Stepper partial -->
+					<div class="container">
+						<div>
+							<%= render '/shared/stepper' %>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
+
 	<div class="container-fluid page__container">
 		<div>
 			<h3> Step 6 : Contacts :
