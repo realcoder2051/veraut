@@ -35,47 +35,46 @@
 		</div>
 		<div class="mt-4 mb-2">
 			<span style="font-style: italic;"> Please verify the list of contacts that are associated with your plan. To notify us of change that need to
-				be made, click the Add button in the upper right corner of the grid to notify your change.When you have
-				completed your change request. Once you have reviewed the list, click the Save button.</span>
+				be made, click the Add button in the upper right corner of the grid to notify your change. When you have completed your change request. Once you have reviewed the list, click the Save button.</span>
 		</div>
-	</div>
-	<div class="card card-form">
-		<div class="row no-gutters">
-			<div class="col-lg-12 card-form__body">
-				<table class="table mb-0 thead-border-top-0 mt-1  table-hover">
-					<thead class="table-info">
-						<tr>
-							<th><%= sort_link(@q, :name) %></th>
-							<th><%= sort_link(@q, :company_name) %></th>
-							<th><%= sort_link(@q, :email) %></th>
-							<th><%= sort_link(@q, :roles) %></th>
-							<th><%= sort_link(@q, :rights) %></th>
-							<th>Actions</th>
-						</tr>
-					</thead>
-					<%if session[:task_id]%>
-						<tbody>
-							<% @users.each do |user|%>
-								<% if user.present?%>
-								<tr>
-									<td><%=user.username%></td>
-									<td><%="Benefit Equity, Inc"%></td>
-									<td><%=user.email%></td>
-									<td><%=user.role.name%></td>
-									<td><%=find_rights(user.role)%></td>
-									<td>
-										<% if is_already_requested(user)%>
-											<%=link_to "View["+total_view_requests.to_s+"]",view_requests_path,class: "btn btn-primary"%>
-										<%else%>
-											<%=link_to "Add[0]",new_contact_path(user_id: user),class: "btn btn-primary"%>
-										<%end%>
-									</td>
-								</tr>
-							<%end%>
-							<%end%>
-						</tbody>
-					<%end%>
-				</table>
+		<div class="card card-form">
+			<div class="row no-gutters">
+				<div class="col-lg-12 card-form__body">
+					<table class="table mb-0 thead-border-top-0 mt-1  table-hover">
+						<thead class="table-info">
+							<tr>
+								<th><%= sort_link(@q, :name) %></th>
+								<th><%= sort_link(@q, :company_name) %></th>
+								<th><%= sort_link(@q, :email) %></th>
+								<th><%= sort_link(@q, :roles) %></th>
+								<th><%= sort_link(@q, :rights) %></th>
+								<th>Actions</th>
+							</tr>
+						</thead>
+						<%if session[:task_id]%>
+							<tbody>
+								<% @users.each do |user|%>
+									<% if user.present?%>
+									<tr>
+										<td><%=user.username%></td>
+										<td><%="Benefit Equity, Inc"%></td>
+										<td><%=user.email%></td>
+										<td><%=user.role.name%></td>
+										<td><%=find_rights(user.role)%></td>
+										<td>
+											<% if is_already_requested(user)%>
+												<%=link_to "View["+total_view_requests.to_s+"]",view_requests_path,class: "btn btn-primary"%>
+											<%else%>
+												<%=link_to "Add[0]",new_contact_path(user_id: user),class: "btn btn-primary"%>
+											<%end%>
+										</td>
+									</tr>
+								<%end%>
+								<%end%>
+							</tbody>
+						<%end%>
+					</table>
+				</div>
 			</div>
 		</div>
 	</div>
