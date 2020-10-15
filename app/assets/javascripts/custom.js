@@ -124,6 +124,7 @@ $(".fiscal_date").change(function (event) {
 	$("#company_fiscal_year_end").val(date)
 
 });
+<<<<<<< HEAD
 
 $().ready(function(event){
 	var a = $("#company_fiscal_year_end").val();
@@ -148,9 +149,33 @@ function delete_note(){
 		}
 	})
 }
+=======
+	
+function delete_note(){
+	var del = confirm("Are you sure")
+	if (del == true)
+	{
+		var note_id = event.currentTarget.dataset.id
+		event.currentTarget.closest('tr').remove();
+		$.ajax({
+			url: `/note/delete_note/${note_id}`,
+			type: "GET",
+			dataType: "json",
+			success: function (response) {
+				console.log("success")
+
+			}
+		})
+	}
+	else {
+		return false;
+	}
+}	
+>>>>>>> BEI-34
 
 $('#add_note_popup').click(function(e)
 {
+	$('#description').val('');
 	$('#myModal').modal('hide');
 	$('#add_note').modal('show');
 });
@@ -169,6 +194,13 @@ $("#save_note").click(function (event) {
 		success: function (response) {
 			$row = response.html;
 			$('#myModal table > tbody:last').append($row);
+<<<<<<< HEAD
+=======
+			if ($(".result_found").length){
+				$(".result_found").hide();
+			}
+		
+>>>>>>> BEI-34
 		}
 	})
 	$("#add_note").modal('hide')
@@ -215,5 +247,8 @@ $().ready(function() {
 $().ready(function() {
 	// validate the form when it is submitted
 	 $("#edit_questionaire_answer").validate();
-
 });
+
+// $(document).ready(function(){
+// 	$('.datepicker').datepicker();
+// });

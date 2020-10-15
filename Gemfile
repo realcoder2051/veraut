@@ -53,6 +53,8 @@ gem 'axlsx_rails'
 gem 'nprogress-rails'
 # pagination
 gem 'will_paginate-bootstrap', '~> 1.0'
+gem 'bootstrap-datepicker-rails'
+
 
 
 

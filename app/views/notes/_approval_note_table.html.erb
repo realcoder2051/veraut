@@ -10,24 +10,16 @@
 		<thead>
 			<tr class="table-info">
 				<th>Note</th>
+				<th>Step</th>   
 				<th>Date</th>
 				<th>Created_by</th>
 				<th colspan="1">Actions</th>
 			</tr>
 		</thead>
-		<% count = 0 %>
 		<tbody class="list" id="blah">
 			<% @notes.each do |note| %>
-			<% if (note.created_by == current_user.email && note.task_id == session[:task_id]) %>
-			<% count += 1 %>
-			<%= render 'notes/approval_note', note: note %>
+				<%= render 'notes/approval_note', note: note %>
 			<% end %>
-			<% end %>
-			<% if count == 0 %>
-			<tr>
-				<td> no results found </td>
-			</tr>
-			<%end%>
 		</tbody>
 	</table>
 </div>

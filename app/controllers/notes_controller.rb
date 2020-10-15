@@ -6,12 +6,12 @@ class NotesController < InheritedResources::Base
 
   def index 
     ransack_search = params[:q]
-    @description = ransack_search[:description_cont] if ransack_search.present?   
   end
 
   def show
 
 	end
+	
 	
 	def edit 
 		
@@ -55,7 +55,7 @@ class NotesController < InheritedResources::Base
 		end
 	end
 
-	def get_note
+	def get_note	
 		note = Note.find_by(id: params[:id])
 		render json: { data: note }
 	end
@@ -77,7 +77,7 @@ def fetch_note
   @q = Note.ransack(params[:q])
   result = @q.result
     if result.count.positive?
-      @q.sorts = 'data_collection_step asc' if @q.sorts.empty?
+      @q.sorts = 'created_at' if @q.sorts.empty?
     end
   @notes = result.paginate(:page => params[:page], per_page:2)
 end

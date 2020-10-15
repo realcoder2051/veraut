@@ -45,10 +45,15 @@
 				</div>
 				<!-- // END drawer-layout__content -->
 				<% if action_name == 'internal_dashboard'%>
-
 				<%else%>
 					<%= render 'layouts/stack/drawer_left' %>
-					<%= render '/shared/notes_popup', { data_collection_step: controller_name.singularize } %>
+					<% if (request.original_fullpath == "/plans_new") %>
+						<%= render '/shared/notes_popup', { data_collection_step: "plan" } %>
+					<% elsif (request.original_fullpath == "/5500_new") %>
+						<%= render '/shared/notes_popup', { data_collection_step: "5500" } %>
+					<% else %>
+						<%= render '/shared/notes_popup', { data_collection_step: controller_name.singularize } %>
+					<% end %>
 				<%end%>
 
 			</div>

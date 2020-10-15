@@ -4,7 +4,7 @@
 	<td><%= note.created_by %></td>
 	<td>
 		<a><i class="material-icons icon-20pt modal-note-edit" data-id=<%=note.id%> onclick='get_note()'>edit</i></a>
-		<a data-confirm="Are you sure?" rel="nofollow" class="delete_href" data-id=<%=note.id%> onclick='delete_note()'><i
+		<a  rel="nofollow" class="delete_href" data-id=<%=note.id%> onclick='delete_note()'><i
 				class="material-icons" class="delete_icon" >delete</i></a>
 	</td>
 </tr>

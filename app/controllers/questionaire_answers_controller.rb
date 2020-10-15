@@ -2,6 +2,7 @@ class QuestionaireAnswersController < InheritedResources::Base
 	before_action :stepper, only: %i[index_plan index_fifty_five_hundred]
 
 	def new
+		@notes = Note.all
 		@questionaire_answer = QuestionaireAnswer.new
 		if QuestionaireAnswer.exists?(task_id: session[:task_id], user_id: current_user.id, question_type_id: 1)
 			@questionaire_answer = QuestionaireAnswer.find_by(task_id: session[:task_id])	
@@ -13,6 +14,7 @@ class QuestionaireAnswersController < InheritedResources::Base
   end
 
 	def fifty_five_hundred_new
+		@notes = Note.all
 		@questionaire_answer = QuestionaireAnswer.new
 		if QuestionaireAnswer.exists?(task_id: session[:task_id], user_id: current_user.id, question_type_id: 2)
 			@questionaire_answer = QuestionaireAnswer.find_by(task_id: session[:task_id])	
@@ -71,7 +73,6 @@ class QuestionaireAnswersController < InheritedResources::Base
   def index_fifty_five_hundred
     id = session[:task_id]
 		@questionaire_answers = QuestionaireAnswer.order('created_at').where(task_id: id, question_type_id: 2).all
-		@notes = Note.all
 	end
 	
 	def is_completed_fifty_five_hundred
