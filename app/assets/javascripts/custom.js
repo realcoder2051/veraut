@@ -128,33 +128,31 @@ $(".fiscal_date").change(function (event) {
 	$("#company_fiscal_year_end").val(date)
 
 });
-
-$().ready(function(event){
-	var a = $("#company_fiscal_year_end").val();
-	var substring = a.substring(5)
-	
-});
-
-$('.date_picker').focusout(function(){
-  $('.ui-datepicker-calendar').css("display","none");
-});
 	
 function delete_note(){
-	var note_id = event.currentTarget.dataset.id
-	event.currentTarget.closest('tr').remove();
-	$.ajax({
-		url: `/note/delete_note/${note_id}`,
-		type: "GET",
-		dataType: "json",
-		success: function (response) {
-			console.log("success")
+	var del = confirm("Are you sure")
+	if (del == true)
+	{
+		var note_id = event.currentTarget.dataset.id
+		event.currentTarget.closest('tr').remove();
+		$.ajax({
+			url: `/note/delete_note/${note_id}`,
+			type: "GET",
+			dataType: "json",
+			success: function (response) {
+				console.log("success")
 
-		}
-	})
+			}
+		})
+	}
+	else {
+		return false;
+	}
 }	
 
 $('#add_note_popup').click(function(e)
 {
+	$('#description').val('');
 	$('#myModal').modal('hide');
 	$('#add_note').modal('show');	
 });
@@ -175,7 +173,11 @@ $("#save_note").click(function (event) {
 		dataType: "json",
 		success: function (response) {
 			$row = response.html;
-			$('#myModal table > tbody:last').append($row);		
+			$('#myModal table > tbody:last').append($row);
+			if ($(".result_found").length){
+				$(".result_found").hide();
+			}
+		
 		}
 	})
 	$("#add_note").modal('hide')
@@ -224,12 +226,8 @@ $().ready(function() {
 
 });
 
-
-
-$().ready(function() {
-	// validate the form when it is submitted
-	 $("#edit_questionaire_answer").validate();
-
+$(document).ready(function(){
+	$('.datepicker').datepicker();
 });
 
 

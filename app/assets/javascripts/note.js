@@ -1,7 +1,6 @@
 $(".modal-note-edit").click(get_note);
 
 function get_note() {
-
 	var note_id = event.currentTarget.dataset.id
   console.log(event);
   Rails.ajax({

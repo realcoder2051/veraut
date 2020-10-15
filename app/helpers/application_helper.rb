@@ -43,4 +43,9 @@ module ApplicationHelper
 		@count == 0 ? 'active' : 'disabled'
 	end
 
+	# Notes count Function
+	def no_of_notes(collection_step)
+		notes = Note.where("data_collection_step =? AND task_id =?" , collection_step , session[:task_id]).count
+	end
+	
 end

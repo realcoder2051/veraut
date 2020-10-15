@@ -4,6 +4,7 @@ class CompaniesController < InheritedResources::Base
 
   def new
 		@company = Company.new
+		@notes = Note.all
 		if Company.exists?(task_id: session[:task_id], user_id: current_user.id)
 			@company = Company.find_by(task_id: session[:task_id])	
 			render :edit
@@ -23,7 +24,6 @@ class CompaniesController < InheritedResources::Base
 
   def index
 		@companies = Company.all.order('created_at').where(user_id: current_user.id)
-		@notes = Note.all
   end
 
   def edit

@@ -29,12 +29,12 @@ class ApprovalsController < InheritedResources::Base
   private
 
   def fetch_note
-    @q = Note.ransack(params[:q])
+    @q =  Note.where("created_by=? AND task_id=?" , current_user.email, session[:task_id]).ransack(params[:q])
     result = @q.result
       if result.count.positive?
-        @q.sorts = 'data_collection_step asc' if @q.sorts.empty?
+        @q.sorts = 'created_at' if @q.sorts.empty?
       end
-    @notes = result.paginate(:page => params[:page], per_page:10)
+    @notes = result.paginate(:page => params[:page], per_page:3).order('created_at desc')
   end
 
   def fetch_document
