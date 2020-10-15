@@ -13,7 +13,6 @@
         <%=select_tag "questionaire_answer[answer][][#{index}]",options_for_select(["Yes","No","Decison Not yet made"],get_value(index)) , prompt: 'Select One', :required => true%>
         <br>
 			<%else%>
-			
         <input type=hidden name='questionaire_answer[id][]' value= <%=get_id(index)%> />
 				<%=date_field_tag "questionaire_answer[answer][][#{index}]",get_value(index), :required => true , as: :date_picker, class: "date-class"%>
       <%end%>

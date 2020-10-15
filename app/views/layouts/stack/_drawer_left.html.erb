@@ -54,12 +54,16 @@
                     <span class="sidebar-menu-text">General</span>
                   </a>
                 </li>
-                <li class="sidebar-menu-item" id="view-company">
-                  <a class="sidebar-menu-button" href="<%=new_company_path%>">
-                    <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">add_to_queue</i>
-                    <span class="sidebar-menu-text">Company</span>
-                  </a>
-                </li>
+                  <li class="sidebar-menu-item" id="view-company">
+                  <%if company_already_exist?%>
+                    <a class="sidebar-menu-button" href="<%=edit_company_path(get_company)%>">
+                  <%else%>
+                    <a class="sidebar-menu-button" href="<%=new_company_path%>">
+                  <%end%>
+                      <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">add_to_queue</i>
+                      <span class="sidebar-menu-text">Company</span>
+                    </a>
+                  </li>
                 <li class="sidebar-menu-item" id="view-principal">
                   <a class="sidebar-menu-button" href="<%=principals_path%>">
                     <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">add_to_queue</i>

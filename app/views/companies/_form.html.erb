@@ -20,15 +20,14 @@
 		<label class="required"> Fiscal Year End  </label>
 		<div class="row">
 			<div class="col-lg-10">
-				<input type="number" class="form-control  fiscal_month" min="1" max="12" value=company[fiscal_year_end]  placeholder="month"  > /
-				<input type="number" class="form-control  fiscal_date" min="1" max="31"  placeholder="date">
+				<input type="number" class="form-control  fiscal_month" min="1" max="12" placeholder="month" value=<%=get_month%> > /
+				<input type="number" class="form-control  fiscal_date" min="1" max="31" placeholder="day" value=<%=get_date%>>
 			</div>
 		</div>
 		<div class="invalid-feedback">Please provide a time.</div>
 		<div class="valid-feedback">Looks good!</div>
 	</div>
 </div>
-
 <div class="row d-none">
 	<div class="col-lg-4 left-move"></div>
 	<div class="col-lg-4 left-move">

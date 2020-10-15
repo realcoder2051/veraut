@@ -19,8 +19,3 @@ $('.modal-edit').click(function(event) {
       error: function(data) {}
     })
 	});
-	
-
-
-
-	

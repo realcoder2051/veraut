@@ -5,7 +5,7 @@ class CompaniesController < InheritedResources::Base
   def new
 		@company = Company.new
 		if Company.exists?(task_id: session[:task_id], user_id: current_user.id)
-			@company = Company.find_by(task_id: session[:task_id])	
+			@company = Company.find_by(task_id: session[:task_id])
 			render :edit
 	 end
   end
@@ -14,8 +14,8 @@ class CompaniesController < InheritedResources::Base
 		@company = Company.new(company_params)
 		@company[:task_id] = session[:task_id]
 		@company[:user_id] = current_user.id
-		if @company.save	
-			redirect_to new_company_path
+		if @company.save
+			redirect_to edit_company_path(Company.last.id)
 		else
 			render :new
 		end
@@ -44,8 +44,6 @@ class CompaniesController < InheritedResources::Base
 		company.update(is_completed: true)
 		redirect_to principals_path
 	end
-	
-
 
 	private
 

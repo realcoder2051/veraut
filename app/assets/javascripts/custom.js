@@ -23,9 +23,9 @@ var hash = {
 	"/view_requests": "view-contact",
 	"/contacts/new": "view-contact",
 	"/plans": "view-plan",
-	"/plans/new": "view-plan",
+	"/plans_new": "view-plan",
 	"/5500": "view-fiftyfive",
-	"/5500/new": "view-fiftyfive",
+	"/5500_new": "view-fiftyfive",
 	"/5500/:id/edit" : "view-fiftyfive",
 	"/employees": "view-employee",
 	"/employees/new": "view-employee",
@@ -47,10 +47,6 @@ $(document).ready((function () {
 	if (document.getElementById("home")) {
 		sidebar(window.location.pathname);
 	}
-
-
-
-
 
 }));
 
@@ -116,7 +112,7 @@ $("#number_dropdown").change(function (event) {
 $(".fiscal_month").change(function (event) {
 	var m = $(".fiscal_month").val();
 	var d = $(".fiscal_date").val();
-	var date = new Date().getFullYear()+'-'+ m+ '-' +d 
+	var date = new Date().getFullYear()+'-'+ m+ '-' +d
 	$("#company_fiscal_year_end").val(date)
 
 });
@@ -124,7 +120,7 @@ $(".fiscal_month").change(function (event) {
 $(".fiscal_date").change(function (event) {
 	var m = $(".fiscal_month").val();
 	var d = $(".fiscal_date").val();
-	var date = new Date().getFullYear()+'-'+ m+ '-' +d 
+	var date = new Date().getFullYear()+'-'+ m+ '-' +d
 	$("#company_fiscal_year_end").val(date)
 
 });
@@ -132,13 +128,13 @@ $(".fiscal_date").change(function (event) {
 $().ready(function(event){
 	var a = $("#company_fiscal_year_end").val();
 	var substring = a.substring(5)
-	
+
 });
 
 $('.date_picker').focusout(function(){
   $('.ui-datepicker-calendar').css("display","none");
 });
-	
+
 function delete_note(){
 	var note_id = event.currentTarget.dataset.id
 	event.currentTarget.closest('tr').remove();
@@ -151,16 +147,13 @@ function delete_note(){
 
 		}
 	})
-}	
+}
 
 $('#add_note_popup').click(function(e)
 {
 	$('#myModal').modal('hide');
-	$('#add_note').modal('show');	
+	$('#add_note').modal('show');
 });
-
-
-
 
 $("#save_note").click(function (event) {
 	var des = $("#add_note #description").val();
@@ -175,7 +168,7 @@ $("#save_note").click(function (event) {
 		dataType: "json",
 		success: function (response) {
 			$row = response.html;
-			$('#myModal table > tbody:last').append($row);		
+			$('#myModal table > tbody:last').append($row);
 		}
 	})
 	$("#add_note").modal('hide')
@@ -205,8 +198,6 @@ function update_note()
 			console.log(response)
 			$row = $(response.html);
 			$(`#note_${note_id}`).html($row.html());
-			
-
 		}
 	})
 	$("#update_note").modal('hide')
@@ -215,21 +206,14 @@ function update_note()
 	return false;
 }
 
-	
-
-
 $().ready(function() {
 	// validate the form when it is submitted
 	 $("#new_questionaire_answer").validate();
 
 });
 
-
-
 $().ready(function() {
 	// validate the form when it is submitted
 	 $("#edit_questionaire_answer").validate();
 
 });
-
-

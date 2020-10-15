@@ -12,4 +12,3 @@
 //= require autocomplete-rails
 //= require jquery.validate
 //= require_tree
-
