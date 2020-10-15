@@ -34,7 +34,8 @@ class QuestionaireAnswersController < InheritedResources::Base
 		is_completed_fifty_five_hundred
   end
 
-  def edit_5500
+	def edit_5500
+		@notes = Note.all
     @questionaire_answer = QuestionaireAnswer.where('task_id=? AND question_type_id=? ',session[:task_id],2)
   end
 
@@ -44,7 +45,8 @@ class QuestionaireAnswersController < InheritedResources::Base
     redirect_to employees_path
   end
 
-  def edit_plan
+	def edit_plan
+		@notes = Note.all
     @questionaire_answer = QuestionaireAnswer.where('task_id=? AND question_type_id=? ',session[:task_id],1).order(:id)
   end
 
