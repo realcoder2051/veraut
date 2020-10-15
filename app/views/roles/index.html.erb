@@ -8,7 +8,7 @@
     </nav>
     <div class="row">
       <div style="display:inline-block" class=" col-lg-4  w-50 p-12 px-md-1 ">
-      <h1 class="ml-3">View Role</h1> 
+      <h1 class="ml-3">View Role</h1>
       </div>
       <div class="col-lg-2 offset-lg-6">
         <%=link_to 'Add New Role',new_role_path, class:"btn btn-primary m-1 float-right" %>
@@ -26,13 +26,12 @@
     </thead>
     <tbody>
       <% @roles_rights.each do |role_right| %>
-        <tr class="redirect_to_show cursor-pointer" data-url=<%= role_path(role_right) %>>
+        <tr class="redirect_to_show cursor-pointer" data-url=<%= role_path(role_right.role_id) %>>
           <td><%= role_right_available(role_right) %></td>
           <td><%= parse_json_array(role_right.role_type)%>
           <td>
-          <a href=<%=edit_role_path(role_right)%> ><i class="material-icons">edit</i></a>
-          <a data-confirm="Are you sure?" rel="nofollow" data-method="delete" href=<%=role_path(role_right)%>><i class="material-icons">delete</i></a>
-        </tr>
+            <a href=<%=edit_role_path(role_right.role_id)%> ><i class="material-icons">edit</i></a>
+            <a data-confirm="Are you sure?" rel="nofollow" data-method="delete" href=<%=role_path(role_right.role_id)%>><i class="material-icons">delete</i></a>        </tr>
       <% end %>
     </tbody>
   </table>

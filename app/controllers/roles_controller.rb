@@ -20,13 +20,14 @@ class RolesController < InheritedResources::Base
   end
 
   def edit
-    @roles_right = RolesRight.find(params[:id])
-    @role = Role.find(@roles_right.role.id)
+    @role = Role.find(params[:id])
+    @roles_right = RolesRight.find_by(role_id: @role.id)
     @rights = Right.all
   end
 
   def show
-    @roles_right = RolesRight.find(params[:id])
+    role = Role.find(params[:id])
+    @roles_right = RolesRight.find_by(role_id: role.id)
     authorize! :read, @roles_right
   end
 
@@ -47,7 +48,8 @@ class RolesController < InheritedResources::Base
   end
 
   def destroy
-    role_right = RolesRight.find(params[:id])
+    role = Role.find(params[:id])
+    role_right = RolesRight.find_by(role_id: role.id)
     if role_right.role.destroy
       if role_right.destroy
         redirect_to roles_path

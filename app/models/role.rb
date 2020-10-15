@@ -10,7 +10,7 @@ class Role < ApplicationRecord
   validates :resource_type,
             :inclusion => { :in => Rolify.resource_types },
             :allow_nil => true
-  has_one :user
+  has_many :users
 
   scopify
 end
