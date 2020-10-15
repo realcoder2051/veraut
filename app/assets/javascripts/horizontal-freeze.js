@@ -676,7 +676,7 @@
 
 $("#scrolling_table").CongelarFilaColumna({ Columnas: 5 });
 $("#pruebatabla").CongelarFilaColumna({ Columnas: 5 });
-$('.btn-collapse').click(function (event) {
+function hideColumns(event) {
   debugger;
 
   $(this).parent().data('colspan', $(this).parent().attr('colspan'))
@@ -685,23 +685,73 @@ $('.btn-collapse').click(function (event) {
 
   var previousHeaders = $(this).parent('th').prevAll();
   for (var previousHeader of previousHeaders) {
-    colSkip += parseInt($(previousHeader).attr('colSpan'));
+    colSkip += parseInt($(previousHeader).data('colspan'));
   }
-  colSkip++;
+  //colSkip++;
 
   var headerArray = $(this).parents('thead').children('tr:last').children('th');
 
-  var $rows = $('#scrolling_table').find('tr').toArray();
-  $rows.shift();
-  for (var i = (colSkip + parseInt($(this).parent().data('colspan'))); i > colSkip; i--) {
-    $(headerArray[i-1]).addClass('d-none');
-    for (var row of $rows) {
-       $(row).find('td:nth-child('+i+'),th:nth-child('+i+')').addClass("d-none");
-    }
+  for (var i = (colSkip + parseInt($(this).parent().data('colspan'))-1); i > colSkip; i--) {
+    $(headerArray[i]).addClass('d-none');
+    $("#scrollable_table  tbody").children('tr').children('td:nth-child('+i+')').addClass('d-none')
   }
 
   $(this).val('+').addClass('p-0')
+  $(this).toggleClass('btn-collapse');
+  $(this).off('click',hideColumns);
+  $(this).toggleClass('btn-expand');
+  $(this).on('click',showColumns);
   // event.currentTarget.parentElement.colSpan = 1;
   // event.currentTarget.parentElement.dataset.colspan = 3;
 
-});
+}
+
+function showColumns(event) {
+  debugger;
+
+  $(this).parent().attr('colspan', $(this).parent().data('colspan'));
+  var colSkip = 0;
+
+  var previousHeaders = $(this).parent('th').prevAll();
+  for (var previousHeader of previousHeaders) {
+    colSkip += parseInt($(previousHeader).data('colspan'));
+  }
+  //colSkip++;
+
+  var headerArray = $(this).parents('thead').children('tr:last').children('th');
+
+  for (var i = (colSkip + parseInt($(this).parent().data('colspan'))-1); i > colSkip; i--) {
+    $(headerArray[i]).removeClass('d-none');
+    $("#scrollable_table  tbody").children('tr').children('td:nth-child('+i+')').removeClass('d-none')
+  }
+
+  $(this).toggleClass('btn-expand');
+  $(this).off('click',showColumns);
+  $(this).val('-').removeClass('p-0')
+  $(this).toggleClass('btn-collapse');
+  $(this).on('click',hideColumns);
+  // event.currentTarget.parentElement.colSpan = 1;
+  // event.currentTarget.parentElement.dataset.colspan = 3;
+
+}
+
+$('.btn-collapse').click(hideColumns);
+
+/**
+ * scroll handle
+ * @param {event} e -- scroll event
+ */
+function scrollHandle(e) {
+  var scrollTop = this.scrollTop;
+  var target;
+  this.querySelector('thead').style.transform = 'translateY(' + this.scrollTop + 'px)';
+  if ($(this).attr('id') == 'scrollable_table')
+    target = $("#frozen_table")[0];
+  else
+    target = $("#scrollable_table")[0];
+  target.scrollTop = this.scrollTop;
+  //debugger;
+}
+
+$("#scrollable_table").on('scroll', scrollHandle);
+$("#frozen_table").on('scroll', scrollHandle);

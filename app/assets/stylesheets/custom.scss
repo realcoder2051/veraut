@@ -530,10 +530,31 @@ td, th {
 	text-align: left;
 }
 
-.excel_cell div{
-	width: 30px;
-	height: 20px;
+.excel_cell div {
+  width: 30px;
+  height: 20px;
 }
-.fht-table-wrapper{
+.fht-table-wrapper {
   box-sizing: content-box;
+}
+.secondary-header {
+  height: 8em;
+}
+#frozenTable {
+  height: calc(100vh - 2em) !important;
+  width: calc(100vw - 2em) !important;
+}
+#scrollable_table,
+#frozen_table {
+  display: block;
+  height: calc(100vh - 3em);
+  overflow-y: auto;
+  border-collapse: separate !important;
+}
+#frozen_table {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }
