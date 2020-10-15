@@ -4,12 +4,10 @@ class ContactNumbersController < InheritedResources::Base
     contact_number = ContactNumber.new(contact_number_params)
 		contact_number[:task_id] = session[:task_id]
 		contact_number[:user_id] = current_user.id
-
     if contact_number.save
 			redirect_to generals_path
 		else
 			redirect_to contact_number_add_path
-
     end
   end
 
@@ -55,7 +53,6 @@ class ContactNumbersController < InheritedResources::Base
       redirect_to generals_path
     end
 	end
-
 
   private
 
