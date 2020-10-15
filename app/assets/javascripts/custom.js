@@ -124,7 +124,6 @@ $(".fiscal_date").change(function (event) {
 	$("#company_fiscal_year_end").val(date)
 
 });
-<<<<<<< HEAD
 
 $().ready(function(event){
 	var a = $("#company_fiscal_year_end").val();
@@ -132,9 +131,6 @@ $().ready(function(event){
 
 });
 
-$('.date_picker').focusout(function(){
-  $('.ui-datepicker-calendar').css("display","none");
-});
 
 function delete_note(){
 	var note_id = event.currentTarget.dataset.id
@@ -149,7 +145,6 @@ function delete_note(){
 		}
 	})
 }
-=======
 	
 function delete_note(){
 	var del = confirm("Are you sure")
@@ -171,7 +166,6 @@ function delete_note(){
 		return false;
 	}
 }	
->>>>>>> BEI-34
 
 $('#add_note_popup').click(function(e)
 {
@@ -194,13 +188,10 @@ $("#save_note").click(function (event) {
 		success: function (response) {
 			$row = response.html;
 			$('#myModal table > tbody:last').append($row);
-<<<<<<< HEAD
-=======
 			if ($(".result_found").length){
 				$(".result_found").hide();
 			}
 		
->>>>>>> BEI-34
 		}
 	})
 	$("#add_note").modal('hide')
