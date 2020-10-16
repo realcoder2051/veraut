@@ -40,7 +40,11 @@ module ApplicationHelper
 	end
 	
 	def btn_status
-		@count == 0 ? 'active' : 'disabled'
+		@count == 0 ? 'btn-approval-active' : 'btn-approval-disabled'
+	end
+	
+	def approval_check
+		@count == 0 ? 'new_approval' : 'approval_warning'
 	end
 
 	# Notes count Function

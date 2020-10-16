@@ -47,9 +47,9 @@
 				<% if action_name == 'internal_dashboard'%>
 				<%else%>
 					<%= render 'layouts/stack/drawer_left' %>
-					<% if (request.original_fullpath == "/plans_new") %>
+					<% if (request.original_fullpath == "/plans_new" || request.original_fullpath[1,5]	== "plans") %>
 						<%= render '/shared/notes_popup', { data_collection_step: "plan" } %>
-					<% elsif (request.original_fullpath == "/5500_new") %>
+					<% elsif (request.original_fullpath == "/5500_new"  || request.original_fullpath[1,4]	== "5500") %>
 						<%= render '/shared/notes_popup', { data_collection_step: "5500" } %>
 					<% else %>
 						<%= render '/shared/notes_popup', { data_collection_step: controller_name.singularize } %>

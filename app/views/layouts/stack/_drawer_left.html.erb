@@ -1,12 +1,19 @@
 <div class="mdk-drawer js-mdk-drawer " id="default-drawer" data-align="start">
   <div class="mdk-drawer__content">
     <div class="sidebar sidebar-light sidebar-left simplebar" data-simplebar>
+			<div class="btn btn-forcol float-right d-none d-lg-block" role="button">
+				<i class="fa fa-angle-double-left"></i>
+				</div>
+				<div class="btn btn-forcol2 float-right d-none d-lg-block" role="button">
+					<i class="fa fa-angle-double-right"></i>
+					</div>
+
       <div class="d-flex align-items-center sidebar-p-a border-bottom">
         <a href="#" class="flex d-flex align-items-center text-body text-underline-0">
           <span class="avatar mr-3">
           <!--  <img src="/assets/stack/avatar/logo.png" alt="avatar" class="avatar-img rounded-circle">-->
           </span>
-          <span class="flex d-flex flex-column">
+          <span id="bei" class="flex d-flex flex-column">
             <strong><%="BEI"%></strong>
            <!-- <small class="text-muted text-uppercase">Admin</small>-->
           </span>
@@ -16,19 +23,19 @@
         <ul class = "sidebar-menu">
           <li class = "sidebar-menu-item " id= "home">
             <a class="sidebar-menu-button" href="<%=root_path%>" aria-expanded="false"  >
-              <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">dvr</i>
+              <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">home</i>
               <span class="sidebar-menu-text">Home</span>
             </a>
           </li>
             <li class = "sidebar-menu-item" id= "active-task">
               <a class="sidebar-menu-button" href="<%=tasks_path%>" aria-expanded="false"  >
-                <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">dvr</i>
+                <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">spellcheck</i>
                 <span class="sidebar-menu-text">My Active Tasks</span>
               </a>
 						</li>
 						<li class = "sidebar-menu-item" id= "document">
               <a class="sidebar-menu-button" href="<%=feduciary_documents_path%>" aria-expanded="false"  >
-                <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">dvr</i>
+                <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">assignment</i>
                 <span class="sidebar-menu-text">Documents</span>
               </a>
             </li>
@@ -42,7 +49,7 @@
                 </a>
               <% elsif session[:task_id]%>
                 <a class="sidebar-menu-button collapsed" data-toggle="collapse" href="#holiday_menu" aria-expanded="false">
-                  <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">dvr</i>
+                  <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">library_books</i>
                   <span class="sidebar-menu-text"> Data collection</span>
                   <span class="ml-auto sidebar-menu-toggle-icon"></span>
                 </a>
@@ -50,7 +57,7 @@
               <ul class="sidebar-submenu collapse" id="holiday_menu">
                 <li class="sidebar-menu-item" id="view-general">
                   <a class="sidebar-menu-button" href="<%=generals_path%>">
-                    <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">account_box</i>
+                    <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">bookmark</i>
                     <span class="sidebar-menu-text">General</span>
                   </a>
                 </li>
@@ -60,7 +67,7 @@
                   <%else%>
                     <a class="sidebar-menu-button" href="<%=new_company_path%>">
                   <%end%>
-                      <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">add_to_queue</i>
+                      <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">domain</i>
                       <span class="sidebar-menu-text">Company</span>
                     </a>
                   </li>
@@ -72,25 +79,25 @@
                 </li>
                 <li class="sidebar-menu-item" id="view-family">
                   <a class="sidebar-menu-button" href="<%=families_path%>">
-                    <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">add_to_queue</i>
+                    <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">people</i>
                     <span class="sidebar-menu-text">Family</span>
                   </a>
                 </li>
                 <li class="sidebar-menu-item" id="view-business">
                   <a class="sidebar-menu-button" href="<%=businesses_path%>">
-                    <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">add_to_queue</i>
+                    <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">business</i>
                     <span class="sidebar-menu-text">Businesses</span>
                   </a>
                 </li>
                 <li class="sidebar-menu-item" id="view-contact">
                   <a class="sidebar-menu-button" href="<%=contacts_path%>">
-                    <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">add_to_queue</i>
+                    <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">contact_page</i>
                     <span class="sidebar-menu-text">Contacts</span>
                   </a>
                 </li>
                 <li class="sidebar-menu-item" id="view-plan">
                 <a class="sidebar-menu-button" href="<%=plans_new_path%>">
-                    <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">add_to_queue</i>
+                    <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">next_plan</i>
                     <span class="sidebar-menu-text">Plan</span>
                   </a>
                 </li>
@@ -102,13 +109,13 @@
                 </li>
                 <li class="sidebar-menu-item" id="view-employee">
                   <a class="sidebar-menu-button" href="<%=employees_path%>">
-                    <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">add_to_queue</i>
+                    <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">people</i>
                     <span class="sidebar-menu-text">Employees</span>
                   </a>
                 </li>
               <li class="sidebar-menu-item" id="view-approval">
                 <a class="sidebar-menu-button" href="<%=approvals_path%>">
-                  <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">add_to_queue</i>
+                  <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">check_box</i>
                   <span class="sidebar-menu-text">Approval</span>
                 </a>
               </li>
@@ -118,14 +125,14 @@
         <!--session ends--> 
           <li class = "sidebar-menu-item" id= "distribution">
             <a class="sidebar-menu-button collapsed" href="<%=distribution_index_path%>" aria-expanded="false">
-              <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">dvr</i>
+              <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">horizontal_distribute</i>
               <span class="sidebar-menu-text">Distribution</span>
             </a>
 					</li>
           <% if can? :manage,@user%>
             <li class = "sidebar-menu-item">
               <a class="sidebar-menu-button" data-toggle="collapse" href="#attendance_menu" aria-expanded="false">
-                <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">dvr</i>
+                <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">people</i>
                 <span class="sidebar-menu-text"> Users</span>
                 <span class="ml-auto sidebar-menu-toggle-icon" id="show-user"></span>
               </a>
@@ -138,7 +145,7 @@
                 </li>
                   <li class="sidebar-menu-item active-item" id="new-user">
                     <a class="sidebar-menu-button"  href="<%=new_user_path%>">
-                      <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">account_box</i>
+                      <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">local_hospital</i>
                       <span class="sidebar-menu-text">Add New User</span>
                     </a>
                   </li>
@@ -151,14 +158,14 @@
         <%if can? :manage,@role%>
           <li class = "sidebar-menu-item" id="roles-list">
             <a class="sidebar-menu-button" data-toggle="collapse" href="#roles-menu" aria-expanded="false">
-              <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">dvr</i>
+              <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">fact_check</i>
               <span class="sidebar-menu-text">Roles and Permissions</span>
               <span class="ml-auto sidebar-menu-toggle-icon"></span>
             </a>
             <ul class="sidebar-submenu collapse show" id="roles-menu" style="">
               <li class="sidebar-menu-item" id="view-roles">
                 <a class="sidebar-menu-button active-item" href="<%=roles_path %>">
-                  <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">account_box</i>
+                  <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">preview</i>
                   <span class="sidebar-menu-text">View All Roles</span>
                 </a>
               </li>
@@ -170,7 +177,7 @@
               </li>
                <li class="sidebar-menu-item" id="view-rights">
                 <a class="sidebar-menu-button active-item" href="<%=rights_path %>">
-                  <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">account_box</i>
+                  <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">preview</i>
                   <span class="sidebar-menu-text">View All Rights</span>
                 </a>
               </li>

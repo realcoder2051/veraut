@@ -284,10 +284,15 @@ color: white;
 
 }
 
-.btn-success:disabled {
-	color: #fff;
-	background-color: #aeb4bb;
-	border-color: #aeb4bb;
+
+
+.btn-approval-active:after{
+	content: 'Sign and Submit';
+	font-weight: 800 !important;
+}
+
+.btn-approval-disabled:after {
+  content: 'Sign and Approve';
 }
 
 .fiscal_date{
@@ -557,4 +562,29 @@ td, th {
   &::-webkit-scrollbar {
     display: none;
   }
+}
+
+.btn-forcol {
+	margin-top: 5px;
+	margin-bottom: 10px;
+	color: #969EA7;
+	line-height: 35px;
+	font-size: 25px;
+	padding: 0 11px;
+	text-align: center;
+	transition: 0.3s ease;
+	cursor: pointer;
+}
+
+.btn-forcol2 {
+	visibility: hidden;
+	margin-top: 5px;
+	margin-bottom: 10px;
+	color: #969EA7;
+	line-height: 35px;
+	font-size: 25px;
+	padding: 0 11px;
+	text-align: center;
+	transition: 0.3s ease;
+	cursor: pointer;
 }

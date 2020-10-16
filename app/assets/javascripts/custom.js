@@ -240,6 +240,5 @@ $().ready(function() {
 	 $("#edit_questionaire_answer").validate();
 });
 
-// $(document).ready(function(){
-// 	$('.datepicker').datepicker();
-// });
+// Approval page button
+

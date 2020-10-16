@@ -1,5 +1,5 @@
 class QuestionaireAnswersController < InheritedResources::Base
-	before_action :stepper, only: %i[index_plan index_fifty_five_hundred]
+	before_action :stepper, only: %i[fifty_five_hundred_new new edit_plan edit_5500 create_plan create_fifty_five_hundred]
 
 	def new
 		@notes = Note.all
