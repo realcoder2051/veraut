@@ -4,7 +4,7 @@ function get_note() {
 	var note_id = event.currentTarget.dataset.id
   console.log(event);
   Rails.ajax({
-    url: `notes/get_note/${note_id}`,
+    url: `/notes/get_note/${note_id}`,
     type: "get",
 		data: "",
     success: function(data) {

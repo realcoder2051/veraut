@@ -26,10 +26,8 @@
  	<div class="container-fluid page__container">
  		<div>
  			<div class="mr-3 float-right btn-size">
- 				<th><button type="button" class="px-6 btn btn-success" <%= btn_status() %> data-toggle="modal"
- 						data-target="#new_approval ">Sign
- 						and
- 						Submit</button></th>
+ 				<th><button type="button" class=" btn btn-success <%= btn_status %>" id="btn-approval"  data-toggle="modal"
+ 						data-target="#<%= approval_check %> "> <span> </span></button></th>
  			</div>
  			<h3> PLEASE READ CAREFULLY BEFORE SUBMITTING YOUR CENSUS COLLECTION </h3>
  		</div>
@@ -77,3 +75,21 @@
 			</div>
 		</div>
  </div>
+
+
+ <div class="modal fade" id="approval_warning" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+ aria-hidden="true">
+ <div class="modal-dialog" style="width:35%" position="" role="document">
+	 <div class="modal-content">
+		 <div class="modal-header">
+			 <h5 class="modal-title" id="exampleModalLabel" >Please Complete All steps</h5>
+			 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				 <span aria-hidden="true">&times;</span>
+			 </button>
+		 </div>
+		 <div class="modal-body">
+			<p> All steps need to be approved before you can Sign and Submit your data. If you do not have rights to Edit or Approve steps in the process, a user with rights will need to approve those steps first.</p>
+		</div>
+	 </div>
+ </div>
+</div>

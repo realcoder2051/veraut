@@ -1,8 +1,8 @@
 class CompaniesController < InheritedResources::Base
-	before_action :stepper, only: %i[index]
+	before_action :stepper, only: %i[new edit ]
 
 
-  def new
+	def new
 		@company = Company.new
 		@notes = Note.all
 		if Company.exists?(task_id: session[:task_id], user_id: current_user.id)
@@ -26,11 +26,12 @@ class CompaniesController < InheritedResources::Base
 		@companies = Company.all.order('created_at').where(user_id: current_user.id)
   end
 
-  def edit
+	def edit
+		@notes = Note.all
     @company = Company.find(params[:id])
   end
 
-  def update
+	def update
     @company = Company.find(params[:id])
     if @company.update_attributes(company_params)
 			redirect_to principals_path

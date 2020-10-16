@@ -1,5 +1,5 @@
 class ContactsController < InheritedResources::Base
-
+	before_action :stepper, only: %i[index]
 	before_action :fetch_contact, only: %i[index]
 	before_action :fetch_change_request, only: %i[contact_change_request_index]
 
