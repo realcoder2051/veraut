@@ -3,7 +3,7 @@
     <div class="col-lg-9" >
       <%=f.label 'question' + (index+1).to_s, plan,class: "text-transform: none" %>
     </div>
-    <div class="col-lg-3">
+    <div class="col-lg-3 error_div">
       <%if index<=8%>
       <input type=hidden name='questionaire_answer[id][]' value= <%=get_id(index)%> />
       <%=select_tag "questionaire_answer[answer][][#{index}]",options_for_select(["Yes","No"],get_value(index)), prompt: 'Select One' , :required => true%>
