@@ -60,7 +60,7 @@ function sidebar(url) {
 	if (url != "/") {
 		document.getElementById("home").classList.remove("active")
 		var item = document.getElementById(hash[url]);
-		var li = $(item).parent().parent().addClass("open");
+		var li = $(item).parent().parent().toggleClass("open");
 		item.classList.add("active")
 	}
 	else {

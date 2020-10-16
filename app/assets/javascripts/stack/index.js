@@ -94,18 +94,19 @@ $('.sidebar .collapse').on('hidden.bs.collapse', function (e) {
 $('.btn-forcol').on('click', function() {
 	$('.mdk-drawer[data-persistent]').css("width", 100);
 	$('.sidebar').css("width", 100);
-	$('.sidebar-menu-text').css("visibility", "hidden" );
-	$('#bei').css("visibility", "hidden" );
-	$('.sidebar-menu-toggle-icon').css("visibility", "hidden" );
+	$('.sidebar-menu-text').css({display: "none"} );
+	$('.sidebar-menu-icon ').css({margin: '10px'});
+	$('.sidebar-menu-toggle-icon').css({display: "none"} );
+	$('#flex').removeClass('d-flex');
 	$('.btn-forcol2').css({visibility: "visible", transition: '0s' });
 	$('.btn-forcol').css({visibility: "hidden", transition: '0s' });
 });
 
 	$('.btn-forcol2').on('click', function() {
-		$('.sidebar-menu-text').css("visibility", "visible" );
-	$('.sidebar-menu-toggle-icon').css("visibility", "visible" );
+		$('.sidebar-menu-text').css("display", "block" );
+	$('.sidebar-menu-toggle-icon').css("display", "block" );
 		$('.mdk-drawer[data-persistent]').css("width", 300);
-		$('#bei').css("visibility", "visible" );
+		$('#flex').addClass('d-flex');
 		$('.sidebar').css("width", 300);
 		$('.btn-forcol2').css({visibility: "hidden", transition: '0s' });
 		$('.btn-forcol').css({visibility: "visible", transition: '0s' });
