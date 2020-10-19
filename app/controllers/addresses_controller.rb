@@ -35,13 +35,13 @@ class AddressesController < InheritedResources::Base
 
   def new
 		@address = Address.new
-		@addresses = Address.joins(:address_mapping).where('active = ?','true')
+		@addresses = Address.where('active = ?','true')
 		@address_types = AddressType.all
-		#address_collection
   end
 
   def update
 		@previous_address = Address.find(params[:id])
+		@previous_address.update(active: false)
 		@previous_address.address_mapping.update(active: false)
 		save_address
 		if @address.save
@@ -53,14 +53,15 @@ class AddressesController < InheritedResources::Base
     end
   end
 
-  def index
-		@address = Address.all.order('created_at').where(user_id: current_user.id)
-		#@address_mappings = AddressMapping.order('created_at').where(active: true)
-		@notes = Note.all
-  end
+  # def index
+	# 	@address = Address.all.order('created_at').where(user_id: current_user.id)
+	# 	#@address_mappings = AddressMapping.order('created_at').where(active: true)
+	# 	@notes = Note.all
+  # end
 
   def destroy
 		address = Address.find(params[:id])
+		address.update(active: false)
     if address.address_mapping.update(active: false)
       redirect_to generals_path
     end
@@ -97,7 +98,7 @@ class AddressesController < InheritedResources::Base
 	end
 
 	def address_params
-		params.require(:address).permit(:address1, :address2, :city, :state, :zip, :general_id)
+		params.require(:address).permit(:address1, :address2, :city, :state, :zip, :general_id,:active)
 	end
 
 	def address_mapping_params

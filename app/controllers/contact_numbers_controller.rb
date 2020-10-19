@@ -1,10 +1,8 @@
 class ContactNumbersController < InheritedResources::Base
 
   def create
-    contact_number = ContactNumber.new(contact_number_params)
-		contact_number[:task_id] = session[:task_id]
-		contact_number[:user_id] = current_user.id
-    if contact_number.save
+    contact_number = ContactNumber.find(params[:number_dropdown])
+    if contact_number.update(contact_number_params)
 			redirect_to generals_path
 		else
 			redirect_to contact_number_add_path

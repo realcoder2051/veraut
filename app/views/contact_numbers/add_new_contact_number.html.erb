@@ -12,7 +12,7 @@
   <div class="card card-">
     <div class="row no-gutters">
       <div class="col-lg-12 card-form__body card-body">
-        <%= bootstrap_form_for(@number, local:true) do |f| %>
+        <%= bootstrap_form_for(@number, :url => { :action => "create_new_contact_number" }) do |f| %>
           <% if @number.errors.any? %>
             <div id="error_explanation">
               <h2><%= pluralize(@number.errors.count, "error") %> prohibited this user from being saved:</h2>
