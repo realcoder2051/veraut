@@ -121,7 +121,7 @@ $('[data-toggle="tab"]').on('hide.bs.tab', function (e) {
 })
 
 document.addEventListener("turbolinks:load", function () {
-  checkCookie();
+  //checkCookie();
   domFactory.handler.upgradeAll();
 
   // Connect button(s) to drawer(s)
@@ -150,30 +150,30 @@ document.addEventListener("turbolinks:load", function () {
     $(this).closest('li').toggleClass('open');
   });
 
-  function checkCookie() {
-    var username = getCookie("sidebar_status");
+  // function checkCookie() {
+  //   var username = getCookie("sidebar_status");
 
-    if (username == "collapsed") {
-      $('.mdk-drawer[data-persistent]').css("width", 100);
-    $('.sidebar').css("width", 100);
-    $('.sidebar-menu-text').css({
-      display: 'none'
-    });
-    $('.sidebar-menu-toggle-icon').css({
-      display: 'none'
-    });
-    $('.sidebar-menu-icon1').css('margin-top', 10);
-    $('.sidebar-menu-toggle-icon').css({
-      display: 'none'
-    });
-    $('.sidebar-heading').css({
-      display: 'none'
-    });
-    $('.btn-forcol2').attr('style', 'display: block !important');
-    $('.btn-forcol').attr('style', 'display: none !important');
-    setCookie("sidebar_status", "collapsed", 365);
-    } 
-  }
+  //   if (username == "collapsed") {
+  //     $('.mdk-drawer[data-persistent]').css("width", 100);
+  //   $('.sidebar').css("width", 100);
+  //   $('.sidebar-menu-text').css({
+  //     display: 'none'
+  //   });
+  //   $('.sidebar-menu-toggle-icon').css({
+  //     display: 'none'
+  //   });
+  //   $('.sidebar-menu-icon1').css('margin-top', 10);
+  //   $('.sidebar-menu-toggle-icon').css({
+  //     display: 'none'
+  //   });
+  //   $('.sidebar-heading').css({
+  //     display: 'none'
+  //   });
+  //   $('.btn-forcol2').attr('style', 'display: block !important');
+  //   $('.btn-forcol').attr('style', 'display: none !important');
+  //   setCookie("sidebar_status", "collapsed", 365);
+  //   } 
+  // }
 
   // DRAG AND DROP
   $('[data-toggle="dragula"]').each(function () {
@@ -431,25 +431,25 @@ document.addEventListener("turbolinks:load", function () {
 
 });
 
-function setCookie(cname, cvalue, exdays) {
-  var d = new Date();
-  d.setTime(d.getTime() + (exdays  *24  *60  *60  *1000));
-  var expires = "expires=" + d.toUTCString();
-  document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
-}
+// function setCookie(cname, cvalue, exdays) {
+//   var d = new Date();
+//   d.setTime(d.getTime() + (exdays  *24  *60  *60  *1000));
+//   var expires = "expires=" + d.toUTCString();
+//   document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+// }
 
-function getCookie(cname) {
-  var name = cname + "=";
-  var decodedCookie = decodeURIComponent(document.cookie);
-  var ca = decodedCookie.split(';');
-  for (var i = 0; i < ca.length; i++) {
-    var c = ca[i];
-    while (c.charAt(0) == ' ') {
-      c = c.substring(1);
-    }
-    if (c.indexOf(name) == 0) {
-      return c.substring(name.length, c.length);
-    }
-  }
-  return "";
-}
+// function getCookie(cname) {
+//   var name = cname + "=";
+//   var decodedCookie = decodeURIComponent(document.cookie);
+//   var ca = decodedCookie.split(';');
+//   for (var i = 0; i < ca.length; i++) {
+//     var c = ca[i];
+//     while (c.charAt(0) == ' ') {
+//       c = c.substring(1);
+//     }
+//     if (c.indexOf(name) == 0) {
+//       return c.substring(name.length, c.length);
+//     }
+//   }
+//   return "";
+// }
