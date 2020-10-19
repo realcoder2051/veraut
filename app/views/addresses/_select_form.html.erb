@@ -2,7 +2,7 @@
 	<div class="row">
 		<div class="col-lg-4 left-move"></div>
 		<div class="col-lg-4 left-move">
-			<%= f.select :address1, options_for_select(@addresses.collect { |u| [u.address1,u.id] }), { class: "form-control search", prompt: "Select Existing Address", :label=> 'Address'}, onchange: "address(this.id,this.value)"  %> 
+			<%= f.select :address1, options_for_select(select_existing_address), { class: "form-control search", prompt: "Select Existing Address", :label=> 'Address'}, onchange: "address(this.id,this.value)"  %> 
 			<!-- <%= select_tag "address_dropdown",options_from_collection_for_select(@addresses, "id","address1" ),{:onChange => 'address(this.address1); return false;', prompt: "Select Existing address", class: "selectItem"}  %> -->
 			<div class="invalid-feedback">Please provide a time.</div>
 			<div class="valid-feedback">Looks good!</div>
@@ -38,7 +38,6 @@
 		<div class="valid-feedback">Looks good!</div>
 	</div>
 </div>
-
 <div class="row d-none">
 	<div class="col-lg-4 left-move"></div>
 	<div class="col-lg-4 left-move">
@@ -47,7 +46,6 @@
 		<div class="valid-feedback">Looks good!</div>
 	</div>
 </div>
-
 <div class="row d-none">
 	<div class="col-lg-4 left-move"></div>
 	<div class="col-lg-4 left-move">
@@ -59,7 +57,8 @@
 <div class="row">
 	<div class="col-lg-4 left-move"></div>
 	<div class="col-lg-4 left-move">
-		<%=f.select :address_type,options_for_select(["Biling Address","Mailing Address","Business Address","Home Address", "Legal Address","Old Address", "Overnight Address" , "Physical Address" ], @address[:address_type]) , { :include_blank => '-- Select One --' }%>
+	<%= f.label :Address_Type%>
+		<%=select_tag "Address_Type" ,options_from_collection_for_select(@address_types,:id,:task_name) %>
 		<div class="invalid-feedback">Please provide a time.</div>
 		<div class="valid-feedback">Looks good!</div>
 	</div>
@@ -77,4 +76,3 @@
 		</div>
 	</div>
 </div>
-

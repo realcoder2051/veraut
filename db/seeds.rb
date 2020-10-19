@@ -17,3 +17,11 @@
 
 
 Note.delete_all
+AddressType.create(task_name: "Biling Address")
+AddressType.create(task_name: "Mailing Address")
+AddressType.create(task_name: "Business Address")
+AddressType.create(task_name: "Home Address")
+AddressType.create(task_name: "Legal Address")
+AddressType.create(task_name: "Old Address")
+AddressType.create(task_name: "Overnight Address")
+AddressType.create(task_name: "Physical Address")

@@ -22,7 +22,7 @@ class GeneralsController < InheritedResources::Base
   def index
 		#find_task(task)
 		ransack_search = params[:q]
-		@address_type = ransack_search[:first_name_cont] if ransack_search.present?
+		# @address_type = ransack_search[:first_name_cont] if ransack_search.present?
 		@notes = Note.all
 		@numbers = ContactNumber.all.order('created_at').where(user_id: current_user.id)
   end
@@ -43,23 +43,21 @@ class GeneralsController < InheritedResources::Base
 		contact_number.update(is_completed: true)
 		redirect_to generals_path
 	end
-	
-
-
 
 	private
 	def fetch_address
-    @q = Address.ransack(params[:q])
+    @q = AddressMapping.ransack(params[:q])
     result = @q.result
-     if result.count.positive?
-       @q.sorts = 'address_type asc' if @q.sorts.empty?
-     end
-    @addresses = result.paginate(:page => params[:page], per_page:10).order('address_type ASC').where(user_id: current_user.id)
+    # if result.count.positive?
+      #@q.sorts = 'address_type asc' if @q.sorts.empty?
+     #end
+    # @addresses = result.paginate(:page => params[:page], per_page:10).order('address_type ASC').where(user_id: current_user.id)
+    @address_mappings = result.paginate(:page => params[:page], per_page:10).where(active: true)
   end
 
 
     def general_params
-      params.permit(:address_type, :address, :contact_type, :number)
+      params.permit( :address, :contact_type, :number)
     end
 
 end

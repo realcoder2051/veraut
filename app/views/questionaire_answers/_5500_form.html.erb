@@ -3,7 +3,7 @@
     <div class="col-lg-9" >
       <%=f.label 'question'+(index+1).to_s,fifty_five,class: "text-transform: none" %>
     </div>
-    <div class="col-lg-3">
+    <div class="col-lg-3 error_div">
       <input type=hidden name='questionaire_answer[id][]' value= <%=get_id(index)%> />
 			<%if index==3%>
 				<%=number_field_tag "questionaire_answer[answer][][#{index}]" ,get_value(index), id: "question_answer_#{index}" ,class: :"date-class question_four#{index} required", prompt: 'Select One' , :required => false%>

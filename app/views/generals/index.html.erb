@@ -38,7 +38,7 @@
 		<div class="mt-4 mb-2">
 			<span style="font-style: italic;"> Please review the address and phone numbers below. Please add any new information or update existing
 				information as necessary. When you have completed your changes, click the Save button to continue.</span>
-				
+
 		</div>
 		<div class="row no-gutters">
 			<div class="col-lg-6">
@@ -56,15 +56,15 @@
 						</thead>
 						<%if current_user%>
 						<tbody>
-							<%@addresses.each do |address| %>
-							<tr class="redirect_to_show cursor-pointer" data-url=<%= address_path(address) %>>
-								<td><%= address.address_type %></td>
+							<% @address_mappings.each do |address_mapping| %>
+							<tr class="redirect_to_show cursor-pointer" data-url=<%=view_address(address_mapping) %>>
+								<td><%=find_address_type(address_mapping.address_type_id)%></td>
 								<td colspan="3">
-									<%= address.address1+", "+address.address2+", "+ address.city+", "+ address.state+", "+ address.zip%>
+									<%= find_address(address_mapping.address_id)%>
 								</td>
 								<td>
-									<a href=<%=edit_address_path(address)%>><i class="material-icons">edit</i></a>
-									<a data-confirm="Are you sure?" rel="nofollow" data-method="delete" href=<%=address_path(address)%>><i
+									<a href=<%=edit_address(address_mapping)%>><i class="material-icons">edit</i></a>
+									<a data-confirm="Are you sure?" rel="nofollow" data-method="delete" href=<%=delete_address(address_mapping)%>><i
 											class="material-icons">delete</i></a>
 								</td>
 							</tr>
