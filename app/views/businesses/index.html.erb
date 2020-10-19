@@ -50,11 +50,11 @@
 						<thead class="table-info">
 							<tr>
 								<th><%= sort_link(@q, :name) %></th>
-								<th><%= sort_link(@q, :ein) %></th>
+								<th><%= sort_link(@q, :ein, 'EIN') %></th>
 								<th><%= sort_link(@q, :date_purchased_or_sold, 'Date Purchased') %></th>
 								<th><%= sort_link(@q, :address) %></th>
 								<th><%= sort_link(@q, :phone) %></th>
-								<th><%= sort_link(@q, :employees) %></th>
+								<th><%= sort_link(@q, :employees, 'Employees?') %></th>
 								<th><%= sort_link(@q, :qualified_plan_sponsored, 'Plan Sponser') %></th>
 								<th><%= sort_link(@q, :entity_type) %></th>
 								<th colspan="1">Actions</th>

@@ -1,7 +1,7 @@
 <div class="form-row" >
   <div class="col-lg-3 left-move"></div>
   <div class="col-lg-4 left-move">
-    <%=f.text_field :first_name%>
+    <%=f.text_field :first_name , {:label=> 'First Name'}%>
     <div class="invalid-feedback">Please provide a time.</div>
     <div class="valid-feedback">Looks good!</div>
   </div>
@@ -9,7 +9,7 @@
 <div class="row" >
   <div class="col-lg-3 left-move"></div>
   <div class="col-lg-4 left-move">
-    <%=f.text_field :last_name%>
+    <%=f.text_field :last_name , {:label=> 'Last Name'}%>
     <div class="invalid-feedback">Please provide a time.</div>
     <div class="valid-feedback">Looks good!</div>
   </div>
@@ -50,7 +50,7 @@
 <div class="row" >
   <div class="col-lg-3 left-move"></div>
   <div class="col-lg-4 left-move">
-    <%=f.date_field :original_date_of_hire%>
+    <%=f.date_field :original_date_of_hire , {:label=> 'Original Date Of Hire'}%>
     <div class="invalid-feedback">Please provide a time.</div>
     <div class="valid-feedback">Looks good!</div>
   </div>
@@ -58,7 +58,7 @@
 <div class="row" >
   <div class="col-lg-3 left-move"></div>
   <div class="col-lg-4 left-move">
-    <%=f.date_field :date_of_termination%>
+    <%=f.date_field :date_of_termination , {:label=> 'Date Of Termination'}%>
     <div class="invalid-feedback">Please provide a time.</div>
     <div class="valid-feedback">Looks good!</div>
   </div>
@@ -90,7 +90,7 @@
 <div class="row" >
   <div class="col-lg-3 left-move"></div>
   <div class="col-lg-4 left-move">
-    <%=f.text_field :pre_tax_salary_deferal, :value=> '$'%>
+    <%=f.text_field :pre_tax_salary_deferal, {:label=> 'Pre-Tax Salary Deferral', :value=> '$'} %>
     <div class="invalid-feedback">Please provide a time.</div>
     <div class="valid-feedback">Looks good!</div>
   </div>
@@ -98,7 +98,7 @@
 <div class="row" >
   <div class="col-lg-3 left-move"></div>
   <div class="col-lg-4 left-move">
-    <%=f.text_field :roth_salary_deferal, :value=> '$'%>
+    <%=f.text_field :roth_salary_deferal,  {:label=> 'Roth Salary Deferral', :value=> '$'}%>
     <div class="invalid-feedback">Please provide a time.</div>
     <div class="valid-feedback">Looks good!</div>
   </div>
@@ -106,7 +106,7 @@
 <div class="row" >
   <div class="col-lg-3 left-move"></div>
   <div class="col-lg-4 left-move">
-    <%=f.text_field :employee_match, :value=> '$'%>
+    <%=f.text_field :employee_match, {:label=> 'Employer Match', :value=> '$'}%>
     <div class="invalid-feedback">Please provide a time.</div>
     <div class="valid-feedback">Looks good!</div>
   </div>
@@ -114,7 +114,7 @@
 <div class="row" >
   <div class="col-lg-3 left-move"></div>
   <div class="col-lg-4 left-move">
-    <%=f.text_field :company_divison%>
+    <%=f.text_field :company_divison,  {:label=> 'Company Division'}%>
     <div class="invalid-feedback">Please provide a time.</div>
     <div class="valid-feedback">Looks good!</div>
   </div>
@@ -122,7 +122,7 @@
 <div class="row" >
   <div class="col-lg-3 left-move"></div>
   <div class="col-lg-4 left-move">
-    <%=f.check_box :union_employee%>
+    <%=f.check_box :union_employee,  {:label=> 'Union Employee'} %>
     <div class="invalid-feedback">Please provide a time.</div>
     <div class="valid-feedback">Looks good!</div>
   </div>

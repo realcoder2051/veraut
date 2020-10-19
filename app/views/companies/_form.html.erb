@@ -9,7 +9,7 @@
 <div class="row">
 	<div class="col-lg-4 left-move"></div>
 	<div class="col-lg-4 left-move"> 
-		<%= f.text_field :ein , {:maxlength => 9 } %>
+		<%= f.text_field :ein , {:maxlength => 9, :label => 'EIN' } %>
 		<div class="invalid-feedback">Please provide a time.</div>
 		<div class="valid-feedback">Looks good!</div>
 	</div>
@@ -51,19 +51,19 @@
 <div class="row">
 	<div class="col-lg-4 left-move"></div>
 	<div class="col-lg-4 left-move">
-		<%= f.text_field :naic_code %>
+		<%= f.text_field :naic_code , {:label => 'NAIC Code' } %>
 		<div class="invalid-feedback">Please provide a time.</div>
 		<div class="valid-feedback">Looks good!</div>
 	</div>
 	<div class="col-lg-4 naic_code">
 		<a href="https://www.irs.gov/instructions/i5500ez#idm140115741914432" target="_blank">Click here to search for your
-			NAICS code</a>
+			NAICS code.</a>
 	</div>
 </div>
 <div class="row">
 	<div class="col-lg-4 left-move"></div>
 	<div class="col-lg-4 left-move">
-		<%= f.text_field :payroll_provider%>
+		<%= f.text_field :payroll_provider, {:label => 'Payroll Provider' }%>
 		<div class="invalid-feedback">Please provide a time.</div>
 		<div class="valid-feedback">Looks good!</div>
 	</div>
@@ -71,7 +71,7 @@
 <div class="row">
 	<div class="col-lg-4 left-move"></div>
 	<div class="col-lg-4 left-move">
-		<%= f.select :payroll_frequency,options_for_select(["BiWeekly", "Monthly","Multiple Schedules","Semimonthly","Unknown","Weekly"],@company[:payroll_frequency]),{ :include_blank => '-- Select One --' }  %>
+		<%= f.select :payroll_frequency, options_for_select(["BiWeekly", "Monthly","Multiple Schedules","Semimonthly","Unknown","Weekly"],@company[:payroll_frequency]),{ :include_blank => '-- Select One --', :label => 'Payroll Frequency' }  %>
 		<div class="invalid-feedback">Please provide a time.</div>
 		<div class="valid-feedback">Looks good!</div>
 	</div>

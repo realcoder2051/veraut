@@ -25,3 +25,8 @@ AddressType.create(task_name: "Legal Address")
 AddressType.create(task_name: "Old Address")
 AddressType.create(task_name: "Overnight Address")
 AddressType.create(task_name: "Physical Address")
+Address.all.update(active: false)
+
+
+
+
