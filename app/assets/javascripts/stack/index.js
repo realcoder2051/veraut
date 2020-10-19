@@ -91,45 +91,26 @@ $('.sidebar .collapse').on('hidden.bs.collapse', function (e) {
   $(this).closest('li').toggleClass('open');
 });
 
-$('.btn-forcol').on('click', function () {
-  $('.mdk-drawer[data-persistent]').css("width", 100);
-  $('.sidebar').css("width", 100);
-  $('.sidebar-menu-text').css({
-    display: 'none'
-  });
-  $('.sidebar-menu-toggle-icon').css({
-    display: 'none'
-  });
-  $('.sidebar-menu-icon').css('margin-top', 10);
-  $('.sidebar-menu-toggle-icon').css({
-    display: 'none'
-  });
-  $('.sidebar-heading').css({
-    display: 'none'
-  });
+$('.btn-forcol').on('click', function() {
+	$('.mdk-drawer[data-persistent]').css("width", 100);
+	$('.sidebar').css("width", 100);
+	$('.sidebar-menu-text').css({display: "none"} );
+	$('.sidebar-menu-icon ').css({margin: '10px'});
+	$('.sidebar-menu-toggle-icon').css({display: "none"} );
+  $('#flex').removeClass('d-flex');
   $('.btn-forcol2').attr('style', 'display: block !important');
-  $('.btn-forcol').attr('style', 'display: none !important');
-  setCookie("sidebar_status", "collapsed", 365);
-  
+    $('.btn-forcol').attr('style', 'display: none !important');
 });
 
-$('.btn-forcol2').on('click', function() {
-  $('.sidebar-menu-text').css({
-    display: 'block'
-  });
-  $('.sidebar-menu-toggle-icon').css({
-    display: 'block'
-  });
-  $('.mdk-drawer[data-persistent]').css("width", 300);
-  $('.sidebar').css("width", 300);
-  $('.sidebar-heading').css({
-    display: 'block'
-  });
-  $('.btn-forcol2').attr('style', 'display: none !important');
-  $('.btn-forcol').attr('style', 'display: block !important');
-  setCookie("sidebar_status", "expanded", 365);
-  
-});
+	$('.btn-forcol2').on('click', function() {
+		$('.sidebar-menu-text').css("display", "block" );
+	$('.sidebar-menu-toggle-icon').css("display", "block" );
+		$('.mdk-drawer[data-persistent]').css("width", 300);
+		$('#flex').addClass('d-flex');
+		$('.sidebar').css("width", 300);
+		$('.btn-forcol2').attr('style', 'display: none !important');
+    $('.btn-forcol').attr('style', 'display: block !important');
+	});
 
 // ENABLE TOOLTIPS
 $('[data-toggle="tooltip"]').tooltip()
