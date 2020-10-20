@@ -53,23 +53,32 @@ $(document).ready((function () {
 
 }));
 
-function sidebar(url) {
-	if (url.match(/\d/g) != null && url != "/5500" && url != "/5500/new") {
-		search_index = url.search(/\d/g)
-		str = url.substring(0, search_index - 1)
-		url = str;
-	}
 
-	if (url != "/") {
-		document.getElementById("home").classList.remove("active")
-		var item = document.getElementById(hash[url]);
+
+function sidebar(url){
+  if(url.substring(0,5) == '/user')
+  {
+    return;
+  }
+  if (url.match(/\d/g)!= null)
+  {
+    search_index = url.search(/\d/g)
+    str = url.substring(0,search_index-1)
+    url = str;
+  }
+  if(url != "/welcome" && url != "/")
+  {
+		if(document.getElementById("dashboard_icon"))
+    	document.getElementById("dashboard_icon").classList.remove("active");
+    var item = document.getElementById(hash[url]);
 		var li = $(item).parent().parent().toggleClass("open");
-		item.classList.add("active")
-	}
-	else {
-		document.getElementById("home").classList.add("active")
-
-	}
+		if(item)
+    	item.classList.add("active")
+  }
+  else
+  {
+    document.getElementById("dashboard_icon").classList.add("active");
+  }
 }
 
 $(".redirect_to_show").click(function (e) {
@@ -128,26 +137,7 @@ $(".fiscal_date").change(function (event) {
 
 });
 
-$().ready(function(event){
-	var a = $("#company_fiscal_year_end").val();
-	var substring = a.substring(5)
 
-});
-
-
-function delete_note(){
-	var note_id = event.currentTarget.dataset.id
-	event.currentTarget.closest('tr').remove();
-	$.ajax({
-		url: `/note/delete_note/${note_id}`,
-		type: "GET",
-		dataType: "json",
-		success: function (response) {
-			console.log("success")
-
-		}
-	})
-}
 	
 function delete_note(){
 	var del = confirm("Are you sure")
@@ -160,8 +150,8 @@ function delete_note(){
 			type: "GET",
 			dataType: "json",
 			success: function (response) {
-				console.log("success")
-
+				console.log(response)
+				$(".notes_count").text("Notes [" +response.note_count + "]") 
 			}
 		})
 	}
@@ -189,6 +179,9 @@ $("#save_note").click(function (event) {
 		},
 		dataType: "json",
 		success: function (response) {
+			
+			console.log(response);
+			$(".notes_count").text("Notes [" +response.note_count + "]") 
 			$row = response.html;
 			$('#myModal table > tbody:last').append($row);
 			if ($(".result_found").length){
@@ -243,5 +236,13 @@ $().ready(function() {
 	 $("#edit_questionaire_answer").validate();
 });
 
-// Approval page button
+$(".question_field2").change(function(e){
+	var value = $( ".question_field2 option:selected" ).text();
+	if (value == 'Yes')
+		$(".question_four3").addClass("required");
+	else 	
+		$(".question_four3").removeClass("required");
+
+});
+
 

@@ -52,7 +52,7 @@
           <%= link_to 'Delete',bulk_delete_employees_path	 ,id: 'delete', class:"btn btn-danger px-3" %>
 					</div>
 					<div class="mr-2 my-3 float-right">
-						<button type="button" class="btn btn-success  px-3" data-toggle="modal" data-target="#myModal">Notes  <%= [no_of_notes(controller_name.singularize)] %> </button>
+						<button type="button" class="btn btn-success  px-3 notes_count" data-toggle="modal" data-target="#myModal">Notes  <%= [no_of_notes(controller_name.singularize)] %> </button>
 					</div>
         <% end %>
 

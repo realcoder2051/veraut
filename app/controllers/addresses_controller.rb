@@ -74,6 +74,7 @@ class AddressesController < InheritedResources::Base
 
 	def save_address
 		@address = Address.new(address_params)
+		@address[:active] = true
 		@address[:task_id] = session[:task_id]
 		@address[:user_id] = current_user.id
 	end
