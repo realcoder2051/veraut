@@ -4,7 +4,7 @@
 		<div class="progress">
 			<div class="progress-bar"></div>
 		</div>
-		<a href="#" class="bs-wizard-dot"></a>
+		<a href="#" class="bs-wizard-dot mr-2"></a>
 	</div>
 
 
@@ -53,14 +53,18 @@
 
 	<div class="col-md-1 bs-wizard-step <%= wizard_step_status(@plan_stepper) %>">
 		<!-- complete -->
-		<%= link_to "Plan", plans_new_path,  class: "text-center  bs-wizard-stepnum"  %>				
+		<div class="ml-2">
+			<%= link_to "Plan", plans_new_path,  class: "text-center  bs-wizard-stepnum"  %>
+	</div>				
 		<div class="progress">
 			<div class="progress-bar"></div>
 		</div>
 		<a href="#" class="bs-wizard-dot"></a>
 	</div>
 	<div class="col-md-1 bs-wizard-step <%= wizard_step_status(@fifty_five_hundred_stepper) %>">
-		<%= link_to "5500", fifty_five_hundred_new_path,  class: "text-center  bs-wizard-stepnum"  %>				
+		<div class="ml-2">
+		<%= link_to "5500", fifty_five_hundred_new_path,  class: "text-center  bs-wizard-stepnum"  %>			
+		</div>	
 		<div class="progress">
 			<div class="progress-bar"></div>
 		</div>

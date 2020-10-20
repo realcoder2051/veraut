@@ -18,6 +18,7 @@ class CompaniesController < InheritedResources::Base
 		if @company.save
 			redirect_to edit_company_path(Company.last.id)
 		else
+			stepper
 			render :new
 		end
   end
@@ -36,6 +37,7 @@ class CompaniesController < InheritedResources::Base
     if @company.update_attributes(company_params)
 			redirect_to principals_path
 		else
+			stepper
       render :edit
 		end
 	end
