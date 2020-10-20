@@ -102,10 +102,8 @@ function address(id, value) {
 			$("#address_address_type").val(address_type)
 		}
 	})
-
-
-
 }
+
 $("#number_dropdown").change(function (event) {
 	var a = $("#number_dropdown option:selected").text();
 	$("#contact_number_number").val(a)
@@ -245,3 +243,12 @@ $().ready(function() {
 
 // Approval page button
 
+
+$("#approval-submit").click(function (e) {
+	$('#new_approval').modal('hide')
+	$('#welcome_message').modal('show')
+})
+
+$("#welcome_message_close").click(function (e) {
+	window.location.href = 'tasks';
+})

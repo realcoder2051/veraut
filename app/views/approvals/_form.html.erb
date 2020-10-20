@@ -1,6 +1,4 @@
-
-
-  <div class="field">
+ <div class="field">
     <%= f.text_field :name, :required => true %>
   </div>
 
@@ -16,5 +14,5 @@
 </div>
 
   <div class="mt-2" >
-    <input type="submit" name="commit" class="btn btn-success" value ="Save">
+   <%= f.submit :Send,class: "btn btn-success",id: "approval-submit" %>
   </div>
