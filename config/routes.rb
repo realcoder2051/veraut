@@ -32,7 +32,7 @@
   resources :roles
   resources :rights
   resources :contact_numbers
-  post 'approval',to: 'approvals#send_email'
+  post 'approval',to: 'approvals#send_email'  
   get 'contact_number/add',to: 'contact_numbers#add_new_contact_number'
   post 'contact_number/create',to: 'contact_numbers#create_new_contact_number'
   get 'address/add',to: 'addresses#add_new_address'
