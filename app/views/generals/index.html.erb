@@ -22,7 +22,6 @@
 			</div>
 		</div>
 	</div>
-
 	<div class="container-fluid page__container">
 		<div>
 			<h3> Step 1 : Company Address and Phone Numbers :
@@ -52,22 +51,22 @@
 						<thead class="table-info">
 							<tr>
 								<th><%= sort_link(@q, :address_type_id, 'Type') %></th>
-								<th colspan="3"><%= sort_link(@q, 'address',:Address) %></th>
-								<th colspan="1"><%= sort_link(@q, :Actions) %></th>
+								<th colspan="3"><%= sort_link(@q, :address_address1, 'Address') %></th>
+								<th colspan="1">Actions </th>
 							</tr>
 						</thead>
 						<%if current_user%>
 						<tbody>
 							<% @address_mappings.each do |address_mapping| %>
-							<tr class="redirect_to_show cursor-pointer" data-url=<%=view_address(address_mapping) %>>
+							<tr class="redirect_to_show cursor-pointer" data-url=<%=address_path(address_mapping) %>>
 								<td><%=find_address_type(address_mapping.address_type_id)%></td>
 								<td colspan="3">
 									<%= find_address(address_mapping.address_id)%>
 								</td>
 								<td>
-									<a href=<%=edit_address(address_mapping)%>><i class="material-icons">edit</i></a>
+									<a href=<%=edit_address_path(id: address_mapping.address_id,address_mapping: address_mapping)%>><i class="material-icons">edit</i></a>
 									<a data-confirm="Are you sure?" rel="nofollow" data-method="delete"
-										href=<%=delete_address(address_mapping)%>><i class="material-icons">delete</i></a>
+										href=<%=address_path(address_mapping.address_id,address_mapping: address_mapping)%>><i class="material-icons">delete</i></a>
 								</td>
 							</tr>
 							<% end %>
@@ -80,7 +79,7 @@
 			<div class="col-lg-5 offset-lg-1">
 				<div class="card card-no-flex card-form card-form__body">
 					<div class="ml-3 my-1 float-right">
-						<%=link_to "Add Contact",new_contact_number_path,class: "btn btn-primary" %>
+						<%=link_to "Add Contact",contact_number_add_path,class: "btn btn-primary" %>
 					</div>
 					<table class="table mb-0 thead-border-top-0 mt-1 table-hover">
 						<thead class="table-info">
@@ -93,14 +92,14 @@
 						<%if current_user%>
 						<tbody>
 							<%@numbers.each do |number| %>
-							<tr class="redirect_to_show cursor-pointer" data-url=<%= contact_number_path(number) %>>
-								<td><%= number.contact_type %></td>
-								<td colspan="2"> <%= number.number %></td>
-								<td>
-									<a href=<%=edit_contact_number_path(number)%>><i class="material-icons">edit</i></a>
-									<a data-confirm="Are you sure?" rel="nofollow" data-method="delete"
-										href=<%=contact_number_path(number)%>><i class="material-icons">delete</i></a> </td>
-							</tr>
+								<tr class="redirect_to_show cursor-pointer" data-url=<%= contact_number_path(number) %>>
+									<td><%= number.contact_type %></td>
+									<td colspan="2"> <%= number.number %></td>
+									<td>
+										<a href=<%=edit_contact_number_path(number)%>><i class="material-icons">edit</i></a>
+										<a data-confirm="Are you sure?" rel="nofollow" data-method="delete"
+											href=<%=contact_number_path(number)%>><i class="material-icons">delete</i></a> </td>
+								</tr>
 							<%end%>
 						</tbody>
 						<%end%>

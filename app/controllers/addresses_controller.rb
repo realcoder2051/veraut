@@ -1,15 +1,18 @@
 class AddressesController < InheritedResources::Base
 	before_action :fetch_address, only: %i[index]
 
-  def create
-		save_address
-		if @address.save
-			save_address_mapping
-			redirect_to generals_path
+	def create
+		if params[:address][:id].present?
+			@address = Address.find(params[:address][:id])
+			if @address.present?
+				save_address_mapping
+				redirect_to generals_path
+			end
 		else
 			address_collection
+			@address = Address.new
 			render :new
-    end
+		end
 	end
 
 	def create_new_address
@@ -26,6 +29,7 @@ class AddressesController < InheritedResources::Base
   def edit
 		@address = Address.find(params[:id])
 		@address_types = AddressType.all
+		@address_mapping = AddressMapping.find(params[:address_mapping])
   end
 
   def add_new_address
@@ -33,36 +37,44 @@ class AddressesController < InheritedResources::Base
 		@address_types = AddressType.all
   end
 
-  def new
+	def new
 		@address = Address.new
-		@addresses = Address.where('active = ?','true')
-		@address_types = AddressType.all
+		address_collection
   end
 
-  def update
-		@previous_address = Address.find(params[:id])
-		@previous_address.update(active: false)
-		@previous_address.address_mapping.update(active: false)
+	def update
+		@old_address = Address.find(params[:id])
 		save_address
 		if @address.save
-			save_address_mapping
+			 @old_address.update(active: false)
+			 @old_address.address_mappings.update(active: false)
+			 @old_address.address_mapping_ids.each do |p|
+				address_mapping = AddressMapping.find(p)
+				new_address_mapping =  AddressMapping.new
+				new_address_mapping.address_id = @address.id
+				if address_mapping.id == params[:old_address_mapping].to_i
+					new_address_mapping.address_type_id =  params[:Address_Type]
+				else
+					new_address_mapping.address_type_id = address_mapping.address_type_id
+				end
+					new_address_mapping.active = true
+				new_address_mapping.save
+			end
 			redirect_to generals_path
 		else
+			adfs
 			address_collection
 			render :edit
     end
   end
 
-  # def index
-	# 	@address = Address.all.order('created_at').where(user_id: current_user.id)
-	# 	#@address_mappings = AddressMapping.order('created_at').where(active: true)
-	# 	@notes = Note.all
-  # end
-
-  def destroy
+	def destroy
 		address = Address.find(params[:id])
-		address.update(active: false)
-    if address.address_mapping.update(active: false)
+		if address.address_mappings.where(active: true).count <= 1
+			address.update(active: false)
+		end
+		address_mapping = AddressMapping.find(params[:address_mapping])
+    if address_mapping.update(active: false)
       redirect_to generals_path
     end
 	end
@@ -88,13 +100,15 @@ class AddressesController < InheritedResources::Base
 	end
 
 	def show
-		@address = Address.find(params[:id])
+		address_mapping = AddressMapping.find(params[:id])
+		@address_type = AddressType.find(address_mapping.address_type_id)
+		@address = Address.find(address_mapping.address_id)
 	end
 
 	private
 
 	def address_collection
-		@addresses = Address.all.order('created_at').where(user_id: current_user.id)
+		@addresses = Address.where("user_id = ? and active = ?" ,current_user.id,true)
 		@address_types = AddressType.all
 	end
 

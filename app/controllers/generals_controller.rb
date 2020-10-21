@@ -45,19 +45,18 @@ class GeneralsController < InheritedResources::Base
 		contact_number.update(is_completed: true)
 		redirect_to generals_path
 	end
-	
+
 	private
 		def fetch_address
-		@q = AddressMapping.ransack(params[:q])
-		result = @q.result
+		@q = AddressMapping.where(active: true).ransack(params[:q])
+		@address_mappings = @q.result
 		# if result.count.positive?
 		#@q.sorts = 'address_type asc' if @q.sorts.empty?
 		#end
 		# @addresses = result.paginate(:page => params[:page], per_page:10).order('address_type ASC').where(user_id: current_user.id)
-		@address_mappings = result.paginate(:page => params[:page], per_page:10).order('address_type_id ASC').where(active: true)
+		# @address_mappings = result.paginate(:page => params[:page], per_page:10).order('address_type_id ASC')
 	end
-	
-	
+
 	def general_params
 		params.permit( :address, :contact_type, :number)
 	end

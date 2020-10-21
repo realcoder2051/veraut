@@ -20,7 +20,7 @@
 							<h2><%= pluralize(@address.errors.count, "error") %> prohibited this user from being saved:</h2>
 							<ul>
 								<% @address.errors.full_messages.each do |message| %>
-								<li><%= message %></li>
+								<li><%=message %></li>
 								<% end %>
 							</ul>
 						</div>

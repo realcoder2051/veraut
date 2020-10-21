@@ -108,6 +108,7 @@ function address(id, value) {
 		type: "GET",
 		dataType: "json",
 		success: function (response) {
+			var address_id=response.data.id
 			var add1 = response.data.address1
 			var add2 = response.data.address2
 			var city = response.data.city
@@ -115,6 +116,7 @@ function address(id, value) {
 			var zip = response.data.zip
 			var address_type = response.data.address_type
 
+			$("#address_id").val(address_id)
 			$("#first_address").val(add1)
 			$("#second_address").val(add2)
 			$("#address_city").val(city)
