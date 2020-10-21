@@ -24,7 +24,8 @@ class ContactNumbersController < InheritedResources::Base
 		contact_number[:user_id] = current_user.id
     if contact_number.save
 			redirect_to generals_path
-		else
+    else
+      @number = ContactNumber.new
 			render :add_new_contact_number
     end
   end

@@ -2,7 +2,7 @@
 	<div class="row">
 		<div class="col-lg-4 left-move"></div>
 		<div class="col-lg-4 left-move">
-			<%= f.select :address1, options_for_select(select_existing_address), { class: "form-control search", prompt: "Select Existing Address", :label=> 'Address'}, onchange: "address(this.id,this.value)"  %> 
+			<%= f.select :address1, options_for_select(select_existing_address), { class: "form-control search", prompt: "Select Existing Address", :label=> 'Address'},required: true , onchange: "address(this.id,this.value)"  %>
 			<!-- <%= select_tag "address_dropdown",options_from_collection_for_select(@addresses, "id","address1" ),{:onChange => 'address(this.address1); return false;', prompt: "Select Existing address", class: "selectItem"}  %> -->
 			<div class="invalid-feedback">Please provide a time.</div>
 			<div class="valid-feedback">Looks good!</div>
@@ -13,6 +13,14 @@
 	</div>
 <%end%>
 
+<div class="row d-none">
+	<div class="col-lg-4 left-move"></div>
+	<div class="col-lg-4 left-move">
+		<%=f.number_field :id , { :id => 'address_id',:label=> 'id' }  %>
+		<div class="invalid-feedback">Please provide a time.</div>
+		<div class="valid-feedback">Looks good!</div>
+	</div>
+</div>
 <div class="row d-none">
 	<div class="col-lg-4 left-move"></div>
 	<div class="col-lg-4 left-move">
