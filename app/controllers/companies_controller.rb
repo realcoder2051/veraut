@@ -15,8 +15,9 @@ class CompaniesController < InheritedResources::Base
 		@company = Company.new(company_params)
 		@company[:task_id] = session[:task_id]
 		@company[:user_id] = current_user.id
+		@company.is_completed = true
 		if @company.save
-			redirect_to edit_company_path(Company.last.id)
+			redirect_to principals_path
 		else
 			stepper
 			render :new
@@ -42,11 +43,7 @@ class CompaniesController < InheritedResources::Base
 		end
 	end
 
-	def is_completed
-		company = Company.where("is_completed=? AND user_id=? AND task_id=?", false , current_user.id , session[:task_id])
-		company.update(is_completed: true)
-		redirect_to principals_path
-	end
+
 
 	private
 

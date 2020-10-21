@@ -23,14 +23,16 @@ class EmployeesController < InheritedResources::Base
 
   def bulk_delete
     puts "delete"
-    data = Employee.where("status=?", 0).destroy_all if Employee.exists?
+    data = Employee.where("task_id=?", session[:task_id]).destroy_all if Employee.exists?
     redirect_to employees_path
-  end
+	end
+	
+
 
 	def index
 		@notes = Note.all
     ransack_search = params[:q]
-    @first_name = ransack_search[:first_name_cont] if ransack_search.present?
+    @first_name = ransack_search[:last_name_or_first_name_cont] if ransack_search.present?
     respond_to do |format|
       format.xlsx
       format.html { render :index }
@@ -42,7 +44,8 @@ class EmployeesController < InheritedResources::Base
 		@employee[:task_id] = session[:task_id]
     if @employee.save
       redirect_to employees_path
-    else
+		else
+			flash.now[:alert] = "Wrong file format"
       render :new
     end
   end
@@ -51,8 +54,13 @@ class EmployeesController < InheritedResources::Base
     file = params[:file]
     file_type = file.present? ? file.path.split('.').last.to_s.downcase : ''
     if file.present? and (file_type == 'csv' or file_type == 'xlsx')
-      Employee.update_imported_store(file,session[:task_id])
-      redirect_to employees_path
+			if (Employee.update_imported_store(file,session[:task_id]))
+			flash[:notice] = "File Uploaded Successfully"
+			redirect_to employees_path
+			else
+				flash[:alert] = "Wrong file format"
+				redirect_to employees_path
+			end
     else
       redirect_to employees_path
     end

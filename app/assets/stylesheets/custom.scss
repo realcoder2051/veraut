@@ -296,15 +296,41 @@ color: white;
 }
 
 .fiscal_date{
-	width: auto !important;
+	width: 75px !important;
 	display: initial !important;
 }
 
 .fiscal_month{
-	width: auto !important;
+	width: 75px !important;
 	display: initial !important;
 }
 
+#question_answer_3{
+	padding-left: 18px !important;
+}
+
+.btn-success {
+  color: #fff;
+  background-color: #499E24;
+  border-color: #499E24;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 1px 1px rgba(0, 0, 0, 0.075);
+}
+
+.btn-primary {
+	color: #fff;
+  background-color: #2576D4;
+  border-color: #2576D4;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 1px 1px rgba(0, 0, 0, 0.075);
+
+}
+
+.btn-danger {
+	color: #fff;
+  background-color: #bf2d3b;
+  border-color: #bf2d3b;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 1px 1px rgba(0, 0, 0, 0.075)
+
+}
 .card-form__body label:not([class]), .text-label-large, .text-label {
 	font-family: "Source Sans Pro", sans-serif;
 	font-size: 0.9375rem;

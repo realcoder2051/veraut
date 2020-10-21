@@ -6,8 +6,11 @@ var hash = {
 	"/feduciary_documents": "document",
 	"/contact_numbers/:id": "view-general",
 	"/contact_numbers/new": "view-general",
+	"/contact_numbers": "view-general",
 	"/addresses/new": "view-general",
+	"/addresses": "view-general",
 	"/addresses/:id/edit": "view-general",
+	"/address/add": "view-general",
 	"/generals": "view-general",
 	"/contact_number/add": "view-general",
 	"/contact_numbers/:id/edit": "view-general",
@@ -27,9 +30,7 @@ var hash = {
 	"/contacts/new": "view-contact",
 	"/plans": "view-plan",
 	"/plans_new": "view-plan",
-	"/5500": "view-fiftyfive",
-	"/5500_new": "view-fiftyfive",
-	"/5500/:id/edit" : "view-fiftyfive",
+	"/5500": "view-5500",
 	"/employees": "view-employee",
 	"/employees/new": "view-employee",
 	"/distribution": "distribution",
@@ -41,6 +42,10 @@ var hash = {
 	"/approvals": "view-approval",
 	"/notes/new": "view-approval",
 	"/notes": "view-approval",
+	"/documents/new": "view-approval",
+	"/tasks": "active-task",
+	"/": "home",
+	"/feduciary_documents": "view-document"
 
 
 
@@ -56,17 +61,24 @@ $(document).ready((function () {
 
 
 function sidebar(url){
-  if(url.substring(0,5) == '/user')
-  {
-    return;
-  }
-  if (url.match(/\d/g)!= null)
+	console.log(url)
+	debugger;
+  // if(url.substring(0,5) == '/user')
+  // {
+  //   return;
+	// }
+	
+	if (url.match(/5500/g))
+	{
+		url = url.substring(0,5)
+	}
+	else if (url.match(/\d/g)!= null)
   {
     search_index = url.search(/\d/g)
-    str = url.substring(0,search_index-1)
-    url = str;
+    url = url.substring(0,search_index-1)
   }
-  if(url != "/welcome" && url != "/")
+
+  if(url != "/welcome")
   {
 		if(document.getElementById("dashboard_icon"))
     	document.getElementById("dashboard_icon").classList.remove("active");
@@ -133,6 +145,10 @@ $(".fiscal_date").change(function (event) {
 	var date = new Date().getFullYear()+'-'+ m+ '-' +d
 	$("#company_fiscal_year_end").val(date)
 
+});
+
+$(".submit-company").click(function(){        
+	$("#company_form").submit(); 
 });
 
 

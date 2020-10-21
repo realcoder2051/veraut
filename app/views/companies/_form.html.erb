@@ -17,11 +17,11 @@
 <div class="row">
 	<div class="col-lg-4 left-move"></div>
 	<div class="col-lg-4 left-move">
-		<label class="required"> Fiscal Year End  </label>
+		<label class="required"> Fiscal Year End(month/day)  </label>
 		<div class="row">
 			<div class="col-lg-10">
-				<input type="number" class="form-control  fiscal_month" min="1" max="12" placeholder="month" value=<%=get_month%> > /
-				<input type="number" class="form-control  fiscal_date" min="1" max="31" placeholder="day" value=<%=get_date%>>
+				<input type="number" class="form-control  fiscal_month" min="1" max="12" placeholder="mm" value=<%=get_month%> > /
+				<input type="number" class="form-control  fiscal_date" min="1" max="31" placeholder="dd" value=<%=get_date%>>
 			</div>
 		</div>
 		<div class="invalid-feedback">Please provide a time.</div>
@@ -79,9 +79,9 @@
 <div class="actions col-lg-12">
 	<div class="row">
 		<div class="col-lg-5  left-move"></div>
-		<div class="mt-2">
+		<!-- <div class="mt-2 submit-company d-none">
 			<%= f.submit value: "Save", class: "btn btn-primary"%>
-		</div>
+		</div> -->
 
 	</div>
 </div>

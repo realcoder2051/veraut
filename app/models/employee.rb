@@ -3,23 +3,34 @@ class Employee < ApplicationRecord
 	validates :first_name,:last_name,:ssn,:date_of_birth,:original_date_of_hire, :compensation, :hours, presence: true
 
 
-  def self.update_imported_store(file,session)
+	def self.update_imported_store(file,session)	
+		h1 = ["FIRSTNAME","LASTNAME","SSN","GENDER","DATEOFBIRTH","ORIGINALDATEOFHIRE","DATEOFTERMINATION","DATEOFREHIRE","COMPENSATION","HOURS","PRE-TAXSALARYDEFERRAL","ROUTHSALARYDEFERRAL","EMPLOYERMATCH","COMPANYDIVISION","UNIONEMPLOYEE"]
+		h2 = ["FIRSTNAME","LASTNAME","FULLNAME","SSN","GENDER","DATEOFBIRTH","ORIGINALDATEOFHIRE","DATEOFTERMINATION","DATEOFREHIRE","COMPENSATION","HOURS","PRE-TAXSALARYDEFERRAL","ROUTHSALARYDEFERRAL","EMPLOYERMATCH","COMPANYDIVISION","UNIONEMPLOYEE"]
 		spreadsheet = open_spreadsheet(file)
 		file_header = spreadsheet.row(1)
 		header = ["first_name", "last_name", "ssn", "gender", "date_of_birth", "original_date_of_hire", "date_of_termination", "date_of_retire", "compensation", "hours", "pre_tax_salary_deferal", "roth_salary_deferal", "employee_match", "company_division", "union_employee"]
 		header.insert(2,"full name")	if (file_header[2] == "Full Name")
-    header = header.to_a
-		(2..spreadsheet.last_row).each do |i|	
-			row = Hash[[header, spreadsheet.row(i)].transpose]
-			row.delete("full name")
-      if Employee.exists?(ssn: row['ssn'], task_id: session)
-        Employee.where(ssn: row['ssn'], task_id: session).update(row)
-      else
-        @employee = Employee.new(row)
-        @employee.task_id = session
-        @employee.save
-      end
-    end
+		header = header.to_a
+		file_header = file_header.map(&:upcase)
+		file_header.each do |s|
+			s.gsub!(' ', '')
+		end
+		if	(file_header == h1 || file_header == h2 )
+			(2..spreadsheet.last_row).each do |i|	
+				row = Hash[[header, spreadsheet.row(i)].transpose]
+				row.delete("full name")
+				if Employee.exists?(ssn: row['ssn'], task_id: session)
+					Employee.where(ssn: row['ssn'], task_id: session).update(row)
+				else
+					@employee = Employee.new(row)
+					@employee.task_id = session
+					@employee.save
+				end
+			end
+			return true
+		else 
+			return false
+		end
   end
 
     def self.open_spreadsheet(file)

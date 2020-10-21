@@ -10,9 +10,9 @@
 
 # Address.delete_all
 # ContactNumber.delete_all
-# Company.delete_all
+ Company.destroy_all
 # Family.delete_all
-# Principal.delete_all
+ Principal.destroy_all
 # Business.delete_all
 
 
