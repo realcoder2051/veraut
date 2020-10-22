@@ -6,7 +6,13 @@ class QuestionaireAnswersController < InheritedResources::Base
 		@questionaire_answer = QuestionaireAnswer.new
 		if QuestionaireAnswer.exists?(task_id: session[:task_id], user_id: current_user.id, question_type_id: 1)
 			@questionaire_answer = QuestionaireAnswer.find_by(task_id: session[:task_id])	
-			redirect_to edit_plan_path(@questionaire_answer)
+			if QuestionaireAnswer.where("task_id=? AND answer=? AND question_type_id=?", session[:task_id] , "", 1).present?
+				flash[:alert] = "Fill all fields to complete"
+				redirect_to edit_plan_path(@questionaire_answer)
+			else
+				flash[:notice] = "Successfully completed"
+				redirect_to edit_plan_path(@questionaire_answer)
+			end
 	 end
   end
 
@@ -53,8 +59,14 @@ class QuestionaireAnswersController < InheritedResources::Base
   def update_plan
     questionaire_answers = choose_plan
     QuestionaireAnswer.import questionaire_answers, on_duplicate_key_update: [:answer]
-    redirect_to fifty_five_hundred_new_path
-  end
+		if QuestionaireAnswer.where("task_id=? AND answer=? AND question_type_id=?", session[:task_id] , "", 1).present?
+			flash[:alert] = "Fill all fields to complete"
+			redirect_to edit_plan_path
+		else
+			flash[:notice] = "Successfully completed"
+			redirect_to edit_plan_path
+		end  
+	end
 
   def show
     @questionaire_answer = QuestionaireAnswer.find(params[:id])
