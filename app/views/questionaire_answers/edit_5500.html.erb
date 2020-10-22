@@ -34,19 +34,17 @@
 		<div class="card card-form">
 			<div class="row no-gutters">
 				<div class="col-lg-12 card-form__body">
-					<div class="ml-3  float-right">
-
-						<div class="mr-2 my-1 float-right">
-							<button type="button" class="btn btn-success  px-3 notes_count" data-toggle="modal" data-target="#myModal">Notes <%=  [no_of_notes("5500")]
-									%>
-							</button>
-						</div>
+					<div class="ml-3 my-1 mr-1 float-right">
+						<button type="button" class="btn btn-success  px-3 submit-5500" > Save</button>			
+					</div>
+					<div class="mr-2 my-1 float-right">
+						<button type="button" class="btn btn-success  px-3 notes_count" data-toggle="modal" data-target="#myModal">Notes <%=  [no_of_notes("5500")]	%>	</button>
 					</div>
 				</div>
 			</div>
 			<div class="row no-gutters">
 				<div class="col-lg-12 card-form__body card-body" style="padding-left: 0.5em;padding-right: 0.5em;  ">
-					<%= bootstrap_form_for(@questionaire_answer.first,:url => { :action => "update_5500" },  html: {id: "new_questionaire_answer"})do |f| %>
+					<%= bootstrap_form_for(@questionaire_answer.first,:url => { :action => "update_5500" },  html: {id: "5500_form"})do |f| %>
 					<%=render '5500_form', f: f %>
 					<% end %>
 				</div>

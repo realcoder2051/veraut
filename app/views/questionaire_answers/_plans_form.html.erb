@@ -1,27 +1,25 @@
 <%plans.each_with_index do |plan, index|%>
-  <div class="row" >
+  <div class="row mt-3" >
     <div class="col-lg-9" >
       <%=f.label 'question' + (index+1).to_s, plan,class: "text-transform: none" %>
     </div>
     <div class="col-lg-3 error_div">
       <%if index<=8%>
       <input type=hidden name='questionaire_answer[id][]' value= <%=get_id(index)%> />
-      <%=select_tag "questionaire_answer[answer][][#{index}]",options_for_select(["Yes","No"],get_value(index)), prompt: 'Select One' , :required => true%>
-      <br>
+      <span style="position: absolute; color: red;"> * </span><%=select_tag "questionaire_answer[answer][][#{index}]",options_for_select(["Yes","No"],get_value(index)), prompt: 'Select One', style: "margin-left: 10px; width: 95%" %>
       <%elsif index>=9 && index<=10 %>
         <input type=hidden name='questionaire_answer[id][]' value= <%=get_id(index)%> />
-        <%=select_tag "questionaire_answer[answer][][#{index}]",options_for_select(["Yes","No","Decison Not yet made"],get_value(index)) , prompt: 'Select One', :required => true%>
-        <br>
+        <span style="position: absolute; color: red;"> * </span><%=select_tag "questionaire_answer[answer][][#{index}]",options_for_select(["Yes","No","Decison Not yet made"],get_value(index)) , prompt: 'Select One' , style: "margin-left: 10px; width: 95%"%>   
 			<%else%>
         <input type=hidden name='questionaire_answer[id][]' value= <%=get_id(index)%> />
-				<%=date_field_tag "questionaire_answer[answer][][#{index}]",get_value(index), :required => true , as: :date_picker, class: "date-class"%>
+				<span style="position: absolute; color: red;"> * </span><%=date_field_tag "questionaire_answer[answer][][#{index}]",get_value(index) , class: :date_picker, class: "date-class pl-3" , style: "margin-left: 10px; width: 95%; color: #495057"%>
       <%end%>
       <div class="invalid-feedback">Please provide a time.</div>
       <div class="valid-feedback">Looks good!</div>
     </div>
   </div>
 <%end%>
-<div class="actions col-lg-12">
+<!-- <div class="actions col-lg-12">
   <div class="row">
     <div class="col-lg-5 left-move"></div>
     <div class="left-move">
@@ -31,5 +29,5 @@
   </div>
 </div>
 <div class="row"></div>
-<div class="row"></div>
+<div class="row"></div> -->
 <br>

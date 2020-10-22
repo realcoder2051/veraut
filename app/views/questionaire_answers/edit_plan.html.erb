@@ -8,9 +8,9 @@
 							<ol class="breadcrumb mb-0">
 								<li class="breadcrumb-item"><i class="material-icons icon-20pt">home</i></li>
 								<li class="breadcrumb-item active" aria-current="page">Plan</a></li>
-								<li class="breadcrumb-item active" aria-current="page">Edit Plan</li>
+								<li class="breadcrumb-item active" aria-current="page">Plan</li>
 							</ol>
-							<h1 class="m-0" <%= count()%>>Edit Plan</h1>
+							<h1 class="m-0" <%= count()%>>Plan</h1>
 						</nav>
 					</div>
 					<!-- Stepper partial -->
@@ -35,7 +35,11 @@
 		<div class="card card-form">
 			<div class="row no-gutters">
 				<div class="col-lg-12 card-form__body">
+					<div class="ml-3 my-1 mr-1 float-right">
+						<button type="button" class="btn btn-success  px-3 submit-plan" > Save</button>			
+					</div>
 					<div class="mr-2 my-1 float-right">
+			
 						<button type="button" class="btn btn-success  px-3 ml-3 notes_count" data-toggle="modal" data-target="#myModal">Notes
 							<%= [no_of_notes("plan")] %>
 						</button>
@@ -44,7 +48,7 @@
 			</div>
 			<div class="row no-gutters">
 				<div class="col-lg-12 card-form__body card-body" style="padding-left: 0.5em;padding-right: 0.5em;  ">
-					<%= bootstrap_form_for(@questionaire_answer.first,:url => { :action => "update_plan" },   html: {id: "new_questionaire_answer"})do |f| %>
+					<%= bootstrap_form_for(@questionaire_answer.first,:url => { :action => "update_plan" },   html: {id: "plan_form"})do |f| %>
 					<%=render 'plans_form', f: f %>
 					<% end %>
 				</div>

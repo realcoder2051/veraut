@@ -62,7 +62,6 @@ $(document).ready((function () {
 
 function sidebar(url){
 	console.log(url)
-	debugger;
   // if(url.substring(0,5) == '/user')
   // {
   //   return;
@@ -150,6 +149,19 @@ $(".fiscal_date").change(function (event) {
 $(".submit-company").click(function(){        
 	$("#company_form").submit(); 
 });
+
+$(".submit-plan").click(function(){        
+	$("#plan_form").submit(); 
+});
+
+
+$(".submit-5500").click(function(){        
+	$("#5500_form").submit(); 
+});
+
+
+$(".alert").delay(4000).slideUp(200);
+
 
 
 	
@@ -251,6 +263,7 @@ $().ready(function() {
 });
 
 $(".question_field2").change(function(e){
+	alert("as")
 	var value = $( ".question_field2 option:selected" ).text();
 	if (value == 'Yes')
 		$(".question_four3").addClass("required");
