@@ -28,4 +28,8 @@ module GeneralsHelper
     @addresses.collect { |u| [u.address1 ,u.id] }
   end
 
+  def store_data(address_mapping)
+    session[:address_mapping] = address_mapping
+  end
+
 end

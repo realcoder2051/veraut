@@ -10,9 +10,9 @@
 
 # Address.delete_all
 # ContactNumber.delete_all
- Company.destroy_all
+ #Company.destroy_all
 # Family.delete_all
- Principal.destroy_all
+ #Principal.destroy_all
 # Business.delete_all
 
 
@@ -25,8 +25,9 @@
 # AddressType.create(task_name: "Old Address")
 # AddressType.create(task_name: "Overnight Address")
 # AddressType.create(task_name: "Physical Address")
-Address.all.update(active: false)
-
+#Address.all.update(active: false)
+Address.delete_all
+AddressMapping.delete_all
 
 
 

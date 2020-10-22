@@ -48,7 +48,7 @@ class GeneralsController < InheritedResources::Base
 
 	private
 		def fetch_address
-		@q = AddressMapping.where(active: true).ransack(params[:q])
+		@q = AddressMapping.where("active=? and user_id =? ",true, current_user.id).ransack(params[:q])
 		@address_mappings = @q.result
 		# if result.count.positive?
 		#@q.sorts = 'address_type asc' if @q.sorts.empty?
