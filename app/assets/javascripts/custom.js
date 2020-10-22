@@ -158,7 +158,11 @@ $(".submit-plan").click(function(){
 
 
 $(".submit-5500").click(function(){        
-	$("#5500_form").submit(); 
+	$(".new_questionaire_answer").submit(); 
+});
+
+$(".submit-edit-5500").click(function(){        
+	$(".edit_questionaire_answer").submit(); 
 });
 
 
@@ -253,22 +257,16 @@ function update_note()
 	return false;
 }
 
-$().ready(function() {
-	// validate the form when it is submitted
-	 $("#new_questionaire_answer").validate();
 
-});
-
-$().ready(function() {
-	// validate the form when it is submitted
-	 $("#edit_questionaire_answer").validate();
-});
 
 $(".question_field2").change(function(e){
-	alert("as")
 	var value = $( ".question_field2 option:selected" ).text();
-	if (value == 'Yes')
+	if (value == 'Yes'){
 		$(".question_four3").addClass("required");
+		$(".new_questionaire_answer").validate();
+		$(".edit_questionaire_answer").validate();
+
+	}
 	else 	
 		$(".question_four3").removeClass("required");
 
