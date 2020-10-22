@@ -64,7 +64,7 @@
 									<%= find_address(address_mapping.address_id)%>
 								</td>
 								<td>
-									<a href=<%=edit_address_path(id: address_mapping.address_id,address_mapping: address_mapping)%>><i class="material-icons">edit</i></a>
+									<a href=<%=address_edit_path(id: address_mapping.address_id,address_mapping: address_mapping)%>><i class="material-icons">edit</i></a>
 									<a data-confirm="Are you sure?" rel="nofollow" data-method="delete"
 										href=<%=address_path(address_mapping.address_id,address_mapping: address_mapping)%>><i class="material-icons">delete</i></a>
 								</td>

@@ -57,14 +57,16 @@ class AddressesController < InheritedResources::Base
 				else
 					new_address_mapping.address_type_id = address_mapping.address_type_id
 				end
-					new_address_mapping.active = true
+				new_address_mapping.user_id = current_user.id
+				new_address_mapping.task_id = session[:task_id]
+				new_address_mapping.active = true
 				new_address_mapping.save
 			end
 			redirect_to generals_path
 		else
-			adfs
+			session[:error] = @address.errors.to_a
 			address_collection
-			render :edit
+			redirect_to params[:edit_url]
     end
   end
 
@@ -96,6 +98,8 @@ class AddressesController < InheritedResources::Base
 		address_mapping.address_type_id  = params[:Address_Type]
 		address_mapping.address_id = @address.id
 		address_mapping.active = true
+		address_mapping.user_id = current_user.id
+		address_mapping.task_id = session[:task_id]
 		address_mapping.save
 	end
 

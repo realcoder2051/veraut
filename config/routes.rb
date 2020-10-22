@@ -40,7 +40,8 @@
   get 'general/',to: 'generals#find_task'
   get 'close_task',to: 'tasks#close_task'
 	resources :addresses
-	
+  get '/addresses/:id/:address_mapping', to: 'addresses#edit', as: :address_edit
+
 	get '/address/get_address/:id', to: 'addresses#get_address'
 	get 'address/add',to: 'addresses#add_new_address'
   post 'address/create',to: 'addresses#create_new_address'

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_19_064407) do
+ActiveRecord::Schema.define(version: 2020_10_22_070045) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_stat_statements"
@@ -43,6 +43,8 @@ ActiveRecord::Schema.define(version: 2020_10_19_064407) do
     t.bigint "address_id"
     t.bigint "address_type_id"
     t.boolean "active"
+    t.integer "user_id"
+    t.integer "task_id"
     t.index ["address_id"], name: "index_address_mappings_on_address_id"
     t.index ["address_type_id"], name: "index_address_mappings_on_address_type_id"
   end
@@ -63,7 +65,7 @@ ActiveRecord::Schema.define(version: 2020_10_19_064407) do
     t.bigint "task_id"
     t.bigint "user_id"
     t.boolean "is_completed", default: false
-    t.boolean "active", default: false
+    t.boolean "active", default: true
     t.index ["general_id"], name: "index_addresses_on_general_id"
     t.index ["task_id"], name: "index_addresses_on_task_id"
     t.index ["user_id"], name: "index_addresses_on_user_id"
@@ -155,9 +157,9 @@ ActiveRecord::Schema.define(version: 2020_10_19_064407) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "task_id"
-    t.boolean "is_completed", default: false
     t.integer "user_id"
     t.integer "role_id"
+    t.boolean "is_completed", default: false
     t.index ["task_id"], name: "index_contacts_on_task_id"
   end
 
@@ -165,9 +167,9 @@ ActiveRecord::Schema.define(version: 2020_10_19_064407) do
     t.string "name"
     t.string "document_type"
     t.string "description"
-    t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "user_id"
     t.index ["user_id"], name: "index_documents_on_user_id"
   end
 
@@ -262,11 +264,11 @@ ActiveRecord::Schema.define(version: 2020_10_19_064407) do
 
   create_table "questionaire_answers", force: :cascade do |t|
     t.string "answer"
-    t.integer "question_no"
     t.bigint "task_id"
     t.bigint "question_type_id"
     t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "updated_at"
+    t.integer "question_no"
     t.bigint "user_id"
     t.boolean "is_completed", default: false
     t.index ["question_type_id"], name: "index_questionaire_answers_on_question_type_id"
@@ -347,6 +349,5 @@ ActiveRecord::Schema.define(version: 2020_10_19_064407) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "approvals", "users"
-  add_foreign_key "documents", "users"
   add_foreign_key "feduciary_documents", "task_groups"
 end
