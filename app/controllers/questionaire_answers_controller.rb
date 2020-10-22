@@ -26,9 +26,15 @@ class QuestionaireAnswersController < InheritedResources::Base
 		@questionaire_answer = QuestionaireAnswer.new
 		if QuestionaireAnswer.exists?(task_id: session[:task_id], user_id: current_user.id, question_type_id: 2)
 			@questionaire_answer = QuestionaireAnswer.find_by(task_id: session[:task_id])	
+			question = QuestionaireAnswer.where("task_id=? AND question_type_id=?", session[:task_id] , 2)
 			if QuestionaireAnswer.where("task_id=? AND answer=? AND question_type_id=?", session[:task_id] , "", 2).present?
-				flash[:alert]= "Your choices have been saved, however the step can not be completed because there are additional required fields."
-				redirect_to edit_fifty_five_hundred_path(@questionaire_answer)
+				if question.third.answer == "No" && question.fourth.answer == ""
+					flash[:notice] = "Successfully completed"
+					redirect_to edit_fifty_five_hundred_path(@questionaire_answer)
+				else	
+					flash[:alert]= "Your choices have been saved, however the step can not be completed because there are additional required fields."
+					redirect_to edit_fifty_five_hundred_path(@questionaire_answer)
+				end
 			else
 				flash[:notice] = "Successfully completed"
 				redirect_to edit_fifty_five_hundred_path(@questionaire_answer)
@@ -56,10 +62,16 @@ class QuestionaireAnswersController < InheritedResources::Base
 
   def update_5500
     questionaire_answers = fifty_five_hundred_plan
-    QuestionaireAnswer.import questionaire_answers, on_duplicate_key_update: [:answer]
+		QuestionaireAnswer.import questionaire_answers, on_duplicate_key_update: [:answer]
+		question = QuestionaireAnswer.where("task_id=? AND question_type_id=?", session[:task_id] , 2)
 		if QuestionaireAnswer.where("task_id=? AND answer=? AND question_type_id=?", session[:task_id] , "", 2).present?
-			flash[:alert]= "Your choices have been saved, however the step can not be completed because there are additional required fields."
-			redirect_to edit_fifty_five_hundred_path
+			if question.third.answer == "No" && question.fourth.answer == ""
+				flash[:notice] = "Successfully completed"
+				redirect_to edit_fifty_five_hundred_path
+			else	
+				flash[:alert]= "Your choices have been saved, however the step can not be completed because there are additional required fields."
+				redirect_to edit_fifty_five_hundred_path
+			end
 		else
 			flash[:notice] = "Successfully completed"
 			redirect_to edit_fifty_five_hundred_path
