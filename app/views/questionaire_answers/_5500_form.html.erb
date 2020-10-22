@@ -6,9 +6,11 @@
     <div class="col-lg-3 error_div">
       <input type=hidden name='questionaire_answer[id][]' value= <%=get_id(index)%> />
 			<%if index==3%>
-			<span style="position: absolute; color: red;"> * </span>	<%=number_field_tag "questionaire_answer[answer][][#{index}]" ,get_value(index), id: "question_answer_#{index}" ,class: :"date-class question_four#{index} ", prompt: 'Select One', :required => true,  style: "margin-left: 10px; width: 95%"%>
+			<span style="position: absolute; color: red;"> * </span>	
+			<%=number_field_tag "questionaire_answer[answer][][#{index}]" ,get_value(index), id: "question_answer_#{index}" ,class: :"date-class question_four#{index} ", prompt: 'Select One', style: "margin-left: 10px; width: 95%"%>
 			<%else%>
-			<span style="position: absolute; color: red;"> * </span>	<%=select_tag "questionaire_answer[answer][][#{index}]",options_for_select(["Yes","No"], get_value(index) ), id: "question_answer_#{index}",class: :"question_field#{index} ",  prompt: 'Select One',   style: "margin-left: 10px; width: 95%" %>
+			<span style="position: absolute; color: red;"> * </span>	
+			<%=select_tag "questionaire_answer[answer][][#{index}]",options_for_select(["Yes","No"], get_value(index) ), id: "question_answer_#{index}",class: :"question_field#{index} ",  prompt: 'Select One',   style: "margin-left: 10px; width: 95%" %>
 			<%end%>
 				<br>
       <div class="invalid-feedback">Please provide a time.</div>
@@ -16,5 +18,8 @@
     </div>
   </div>
 <%end%>
+
+
+
 
 
