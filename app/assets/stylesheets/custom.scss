@@ -624,3 +624,7 @@ td, th {
 	transition: 0.3s ease;
 	cursor: pointer;
 }
+
+.sidebar-light .active > .sidebar-menu-button .sidebar-menu-icon {
+  color: #308AF3 !important;
+}

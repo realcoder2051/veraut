@@ -42,7 +42,7 @@
 <div class="row" >
   <div class="col-lg-3 left-move" ></div>
   <div class="col-lg-4 left-move">
-    <%=f.date_field :date_of_birth , {:class=> 'date_picker'} %>
+      <%=f.date_field :date_of_birth , {:label=> 'Date of Birth'}%>
     <div class="invalid-feedback">Please provide a time.</div>
     <div class="valid-feedback">Looks good!</div>
   </div>
@@ -135,7 +135,7 @@
     </div>
     <div class="col-lg-1 right-move"></div>
     <div class="right-move my-2">
-      <%= link_to 'Cancel', root_path, class: "btn btn-secondary " %>
+      <%= link_to 'Cancel', employees_path, class: "btn btn-secondary " %>
     </div>
   </div>
 </div>

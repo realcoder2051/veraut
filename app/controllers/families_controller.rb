@@ -1,21 +1,24 @@
 class FamiliesController < InheritedResources::Base
 	before_action :stepper, only: %i[index]
-	before_action :fetch_family, only: %i[index]
+  before_action :fetch_family, only: %i[index]
+  before_action :find_family,only: [:edit,:update,:destroy]
 
+
+  def find_family
+    @family = Family.find(params[:id])
+  end
 
   def edit
-    @family = Family.find(params[:id])
-    @principals = Principal.all.where(task_id: session[:task_id])
+    @principals = Principal.where("task_id = ? and active = ?", session[:task_id],false)
   end
 
   def new
     @family = Family.new
-    @principals = Principal.all.where(task_id: session[:task_id])
+    @principals = Principal.where("task_id = ? and active = ?", session[:task_id],false)
   end
 
   def update
-    @principals = Principal.all.where(task_id: session[:task_id])
-    @family = Family.find(params[:id])
+    @principals = Principal.where("task_id = ? and active = ?", session[:task_id],false)
     if @family.update_attributes(family_params)
       redirect_to families_path
 		else
@@ -29,7 +32,7 @@ class FamiliesController < InheritedResources::Base
   end
 
   def create
-    @principals = Principal.all.where(task_id: session[:task_id])
+    @principals = Principal.where("task_id = ? and active = ?", session[:task_id],false)
     @family = Family.new(family_params)
 		@family[:task_id] = session[:task_id]
 		@family[:user_id] = current_user.id
@@ -38,24 +41,29 @@ class FamiliesController < InheritedResources::Base
     else
       render :new
     end
-	end
-	
+  end
+
+  def destroy
+    if @family.update_attribute(:active, true)
+      redirect_to families_path
+    end
+  end
+
 	def is_completed
 		family = Family.where("is_completed=? AND user_id=? AND task_id=?", false , current_user.id , session[:task_id])
 		family.update(is_completed: true)
 		redirect_to businesses_path
 	end
 
-
 	private
-	
+
 	def fetch_family
     @q = Family.ransack(params[:q])
     result = @q.result
      if result.count.positive?
        @q.sorts = 'name asc' if @q.sorts.empty?
      end
-    @families = result.paginate(:page => params[:page], per_page:10).order('created_at').where(user_id: current_user.id)
+    @families = result.paginate(:page => params[:page], per_page:10).order('created_at').where("user_id = ? and active = ?", current_user.id,false)
   end
 
   def family_params

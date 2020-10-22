@@ -42,7 +42,7 @@ class ContactNumbersController < InheritedResources::Base
   end
 
   def index
-		@numbers = ContactNumber.all.order('created_at').where(user_id: current_user.id)
+		@numbers = ContactNumber.where(user_id: current_user.id)
 		@notes = Note.all
   end
 

@@ -99,8 +99,6 @@ $(".redirect_to_show").click(function (e) {
 
 })
 
-
-
 function address(id, value) {
 	$.ajax({
 		url: `/address/get_address/${value}`,
@@ -269,12 +267,14 @@ $(".question_field2").change(function(e){
 	var value = $( ".question_field2 option:selected" ).text();
 	if (value == 'Yes')
 		$(".question_four3").addClass("required");
-	else 	
+	else
 		$(".question_four3").removeClass("required");
 
 });
 
-
+$(document).ready(function(){
+	$('.datepicker').datepicker();
+});
 
 $("#approval-submit").click(function (e) {
 	$('#new_approval').modal('hide')

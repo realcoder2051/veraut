@@ -13,5 +13,3 @@
 //= require jquery.validate
 //= require_tree
 //= require bootstrap-datepicker
-
-

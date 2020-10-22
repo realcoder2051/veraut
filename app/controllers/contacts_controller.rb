@@ -1,7 +1,7 @@
 class ContactsController < InheritedResources::Base
 	before_action :stepper, only: %i[index]
 	before_action :fetch_contact, only: %i[index]
-	before_action :fetch_change_request, only: %i[contact_change_request_index]
+	#before_action :fetch_change_request, only: %i[contact_change_request_index]
 
 	def update
 		@contact_change_request = ContactChangeRequest.find(params[:id])
@@ -79,8 +79,8 @@ class ContactsController < InheritedResources::Base
 		technician_role = Role.where(name: "Technician").first
 		main_contact_role = Role.where(name: "Main Contact").first
 		@users = []
-		@users << @technician_user = User.find_by(role_id: technician_role.id)
-		@users << @main_contact_user = User.find_by(role_id: main_contact_role.id)
+		@q = User.where("role_id = ? or role_id = ?" , technician_role.id,main_contact_role.id).ransack(params[:q])
+		@users = @q.result
 	end
 
 	def is_completed

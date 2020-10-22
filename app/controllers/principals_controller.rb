@@ -1,14 +1,17 @@
 class PrincipalsController < InheritedResources::Base
 	before_action :stepper, only: %i[index]
-	before_action :fetch_principal, only: %i[index]
+  before_action :fetch_principal, only: %i[index]
+  before_action :find_principal,only: [:edit,:update,:destroy]
 
 
-  def edit
+  def find_principal
     @principal = Principal.find(params[:id])
   end
 
+  def edit
+  end
+
   def update
-    @principal = Principal.find(params[:id])
     if @principal.update_attributes(principal_params)
       redirect_to principals_path
 		else
@@ -33,10 +36,9 @@ class PrincipalsController < InheritedResources::Base
   end
 
   def destroy
-    principal = Principal.find(params[:id])
-    if principal.destroy
-      family = Family.where(related_to: principal.id)
-      family.update(related_to: nil)
+    if @principal.update_attribute(:active, true)
+      family = Family.where(related_to: @principal.id)
+      family.update_all(related_to: nil)
       redirect_to principals_path
     end
 	end
@@ -54,7 +56,7 @@ class PrincipalsController < InheritedResources::Base
      if result.count.positive?
        @q.sorts = 'name asc' if @q.sorts.empty?
      end
-    @principals = result.paginate(:page => params[:page], per_page:10).order('officer ASC').where(user_id: current_user.id)
+    @principals = result.paginate(:page => params[:page], per_page:10).order('officer ASC').where("user_id =? and active = ?", current_user.id,false)
   end
 
 	def principal_params
