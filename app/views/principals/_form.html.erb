@@ -18,6 +18,15 @@
 <div class="row mt-3" >
   <div class="col-lg-4 left-move"></div>
   <div class="col-lg-4 left-move">
+    <%= f.check_box :officer  %>
+    <div class="invalid-feedback">Please provide a time.</div>
+    <div class="valid-feedback">Looks good!</div>
+  </div>
+</div>
+
+<div class="row mt-3 d-none" >
+  <div class="col-lg-4 left-move"></div>
+  <div class="col-lg-4 left-move">
 		<div class="form-check d-flex align-items-center">
 			<input id="principal_officer" class="form-check-input mt-0"  value="1" type="checkbox" name="principal[officer]" >
 			<label  class="form-check-label ml-1 my-1" for="principal_officer" >Officer</label>

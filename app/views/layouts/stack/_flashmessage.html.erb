@@ -1,8 +1,7 @@
- <div class="container">
-  <% flash.each do |name, msg| %>
-    <div class="flash-custom alert alert-<%= name == "notice"? "success" : "danger" %> alert-dismissible fade show">
-    <%= msg %>
-      
-    </div>
-  <% end %>
-</div>
+	<div class="container flash-custom" >
+		<% flash.each do |name, msg| %>
+			<div class="alert alert-<%= name == "notice"? "success" : "danger" %> alert-dismissible fade show">
+			<%= msg %>     
+			</div>
+		<% end %>
+	</div>
