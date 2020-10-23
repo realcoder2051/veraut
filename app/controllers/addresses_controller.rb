@@ -47,21 +47,21 @@ class AddressesController < InheritedResources::Base
 		save_address
 		if @address.save
 			 @old_address.update(active: false)
-			 @old_address.address_mappings.update(active: false)
-			 @old_address.address_mapping_ids.each do |p|
-				address_mapping = AddressMapping.find(p)
-				new_address_mapping =  AddressMapping.new
-				new_address_mapping.address_id = @address.id
-				if address_mapping.id == params[:old_address_mapping].to_i
-					new_address_mapping.address_type_id =  params[:Address_Type]
-				else
-					new_address_mapping.address_type_id = address_mapping.address_type_id
+			 @old_address.address_mappings.where(active: true).each do |p|
+					address_mapping = AddressMapping.find(p.id)
+					new_address_mapping = AddressMapping.new
+					new_address_mapping.address_id = @address.id
+					if address_mapping.id == params[:old_address_mapping].to_i
+						new_address_mapping.address_type_id =  params[:Address_Type]
+					else
+						new_address_mapping.address_type_id = address_mapping.address_type_id
+					end
+					new_address_mapping.user_id = current_user.id
+					new_address_mapping.task_id = session[:task_id]
+					new_address_mapping.active = true
+					new_address_mapping.save
 				end
-				new_address_mapping.user_id = current_user.id
-				new_address_mapping.task_id = session[:task_id]
-				new_address_mapping.active = true
-				new_address_mapping.save
-			end
+				@old_address.address_mappings.where(active: true).update(active: false)
 			redirect_to generals_path
 		else
 			session[:error] = @address.errors.to_a

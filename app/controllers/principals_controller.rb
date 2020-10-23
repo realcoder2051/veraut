@@ -12,22 +12,36 @@ class PrincipalsController < InheritedResources::Base
   end
 
   def update
+    if params[:principal][:name] == "" || params[:principal][:title] == "" || params[:principal][:ownership] == ""
+      session[:error] = "Your choices have been saved, however the step can not be completed because there are additional required fields."
+    end
     if @principal.update_attributes(principal_params)
-      redirect_to principals_path
-		else
-			render :edit
-		end
+      if session[:error]
+				redirect_to principals_path
+			else
+				redirect_to families_path
+      end
+    else
+      render :edit
+    end
   end
 
   def create
     @principal = Principal.new(principal_params)
 		@principal[:task_id] = session[:task_id]
-		@principal[:user_id] = current_user.id
-    if @principal.save
-      redirect_to principals_path
+    @principal[:user_id] = current_user.id
+    if @principal.ownership == "" || @principal.name == "" || @principal.title == ""
+      if @principal.save
+        session[:error] = "Your choices have been saved, however the step can not be completed because there are additional required fields."
+        redirect_to principals_path
+      else
+        render :new
+      end
+    elsif @principal.save
+      redirect_to families_path
     else
       render :new
-		end
+    end
   end
 
   def index

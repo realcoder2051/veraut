@@ -18,7 +18,8 @@ class User::SessionsController < Devise::SessionsController
 
   # DELETE /resource/sign_out
    def destroy
-     session[:task_id]=nil
+     session[:task_id] = nil
+     session[:error] = nil
    end
 
   # protected

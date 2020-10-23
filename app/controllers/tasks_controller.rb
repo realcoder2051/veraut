@@ -42,6 +42,7 @@ class TasksController < InheritedResources::Base
 
   def close_task
     session[:task_id] = nil
+    session[:error] = nil
     redirect_to tasks_path
   end
 

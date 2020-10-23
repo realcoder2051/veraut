@@ -1,7 +1,8 @@
  <div class="row" >
   <div class="col-lg-4 left-move"></div>
   <div class="col-lg-4 left-move">
-    <%= f.text_field :name %>
+    <label for="principal_name">Name <span class="required"></span></label>
+    <%= f.text_field :name,hide_label: true %>
     <div class="invalid-feedback">Please provide a time.</div>
     <div class="valid-feedback">Looks good!</div>
   </div>
@@ -9,7 +10,8 @@
 <div class="row" >
   <div class="col-lg-4 left-move"></div>
   <div class="col-lg-4 left-move">
-    <%=f.select :title,options_for_select([ "Managing Partner", "Note Title", "Other Title", "Partner", "President" , "Secretary" , "Treasurer" , "Vice-President"], @principal[:title]) , { :include_blank => '-- Select One --' }  %>
+  	<label for="principal_title">Title <span class="required"></span></label>
+    <%=f.select :title,options_for_select([ "Managing Partner", "Note Title", "Other Title", "Partner", "President" , "Secretary" , "Treasurer" , "Vice-President"], @principal[:title]) , { :include_blank => '-- Select One --' ,hide_label: true}  %>
     <div class="invalid-feedback">Please provide a time.</div>
     <div class="valid-feedback">Looks good!</div>
   </div>
@@ -24,22 +26,11 @@
   </div>
 </div>
 
-<div class="row mt-3 d-none" >
-  <div class="col-lg-4 left-move"></div>
-  <div class="col-lg-4 left-move">
-		<div class="form-check d-flex align-items-center">
-			<input id="principal_officer" class="form-check-input mt-0"  value="1" type="checkbox" name="principal[officer]" >
-			<label  class="form-check-label ml-1 my-1" for="principal_officer" >Officer</label>
-		</div>
-
-    <div class="invalid-feedback">Please provide a time.</div>
-    <div class="valid-feedback">Looks good!</div>
-  </div>
-</div>
 <div class="row mt-4" >
   <div class="col-lg-4 left-move"></div>
   <div class="col-lg-4 left-move">
-    <%= f.number_field :ownership %>
+    <label for="principal_ownership">Ownership <span class="required"></span></label>
+    <%= f.number_field :ownership,hide_label: true %>
     <div class="invalid-feedback">Please provide a time.</div>
     <div class="valid-feedback">Looks good!</div>
   </div>

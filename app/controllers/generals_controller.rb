@@ -31,6 +31,7 @@ class GeneralsController < InheritedResources::Base
 	def find_task
 		task_id = params[:format].to_i
 		session[:task_id] = task_id
+		session[:error] = nil
 		task = Task.find(task_id)
 		if task.update(flag: true)
 			redirect_to generals_path

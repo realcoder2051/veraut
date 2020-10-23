@@ -369,15 +369,25 @@ color: white;
 .plan_flash_message .alert-danger {
 	color: red;
 	background-color: #F3F5F6 !important; 
-	border-color: #F3F5F6 !important; 
+	border-color: #F3F5F6 !important;
+}
+.company_flash_message {
+	color: red;
+	background-color: #F3F5F6 !important;
+	border-color: #F3F5F6 !important;
 }
 .plan_flash_message .alert-success {
 	color: green;
-	background-color: #F3F5F6 !important; 
-	border-color: #F3F5F6 !important; 
+	background-color: #F3F5F6 !important;
+	border-color: #F3F5F6 !important;
 }
 .plan_flash_message {
 	margin-right: 10em;
+}
+
+.necessary_field
+{
+  position: absolute; color: red;
 }
 
 // ========================================================

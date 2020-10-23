@@ -14,9 +14,16 @@ class BusinessesController < InheritedResources::Base
   def edit
 	end
 
-  def update
+	def update
+		if params[:business][:name] == "" || params[:business][:ein] == "" || params[:business][:does_company_have_employees] == "" || params[:business][:qualified_plan_sponsored] == "" || params[:business][:entity_type] == ""
+      session[:error] = "Your choices have been saved, however the step can not be completed because there are additional required fields."
+    end
     if @business.update_attributes(business_params)
-			redirect_to businesses_path
+			if session[:error]
+				redirect_to businesses_path
+			else
+				redirect_to contacts_path
+      end
 		else
 			render :edit
     end
@@ -31,8 +38,15 @@ class BusinessesController < InheritedResources::Base
   	@business = Business.new(business_params)
 		@business[:task_id] = session[:task_id]
 		@business[:user_id] = current_user.id
-    if @business.save
-      redirect_to businesses_path
+		if @business.name == "" || @business.ein == "" || @business.qualified_plan_sponsored == "" || @business.entity_type == "" || @business.does_company_have_employees == ""
+			session[:error] = "Your choices have been saved, however the step can not be completed because there are additional required fields."
+			if @business.save
+				redirect_to businesses_path
+			else
+				render :new
+			end
+		elsif @business.save
+      redirect_to contacts_path
     else
       render :new
     end

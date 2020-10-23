@@ -23,6 +23,7 @@ class ApprovalsController < InheritedResources::Base
       task = Task.find(session[:task_id])
       task.update(is_submitted: true)
       session[:task_id] = nil
+      session[:error] = nil
     end
   end
 

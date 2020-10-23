@@ -31,7 +31,7 @@ class QuestionaireAnswersController < InheritedResources::Base
 				if question.third.answer == "No" && question.fourth.answer == ""
 					flash[:notice] = "Successfully completed"
 					redirect_to edit_fifty_five_hundred_path(@questionaire_answer)
-				else	
+				else
 					flash[:alert]= "Your choices have been saved, however the step can not be completed because there are additional required fields."
 					redirect_to edit_fifty_five_hundred_path(@questionaire_answer)
 				end
@@ -68,7 +68,7 @@ class QuestionaireAnswersController < InheritedResources::Base
 			if question.third.answer == "No" && question.fourth.answer == ""
 				flash[:notice] = "Successfully completed"
 				redirect_to edit_fifty_five_hundred_path
-			else	
+			else
 				flash[:alert]= "Your choices have been saved, however the step can not be completed because there are additional required fields."
 				redirect_to edit_fifty_five_hundred_path
 			end
@@ -93,7 +93,7 @@ class QuestionaireAnswersController < InheritedResources::Base
 		else
 			flash[:notice] = "Successfully completed"
 			redirect_to edit_plan_path
-		end  
+		end
 	end
 
   def show
@@ -116,7 +116,7 @@ class QuestionaireAnswersController < InheritedResources::Base
     id = session[:task_id]
 		@questionaire_answers = QuestionaireAnswer.order('created_at').where(task_id: id, question_type_id: 2).all
 	end
-	
+
 	def is_completed_fifty_five_hundred
 		question_answer = QuestionaireAnswer.where("is_completed=? AND user_id=? AND task_id=? AND question_type_id=?", false , current_user.id , session[:task_id], 2)
 		question_answer.update(is_completed: true)
@@ -128,9 +128,6 @@ class QuestionaireAnswersController < InheritedResources::Base
 		question_answer.update(is_completed: true)
     redirect_to plans_new_path
 	end
-
-
- 
 
   private
 

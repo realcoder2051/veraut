@@ -19,11 +19,18 @@ class FamiliesController < InheritedResources::Base
 
   def update
     @principals = Principal.where("task_id = ? and active = ?", session[:task_id],false)
+    if params[:family][:name] == "" || params[:family][:relationship] == "" || params[:family][:related_to] == ""
+      session[:error] = "Your choices have been saved, however the step can not be completed because there are additional required fields."
+    end
     if @family.update_attributes(family_params)
-      redirect_to families_path
-		else
-			render :edit
-		end
+      if session[:error]
+				redirect_to families_path
+			else
+				redirect_to businesses_path
+      end
+    else
+      render :edit
+    end
   end
 
   def index
@@ -35,11 +42,16 @@ class FamiliesController < InheritedResources::Base
     @principals = Principal.where("task_id = ? and active = ?", session[:task_id],false)
     @family = Family.new(family_params)
 		@family[:task_id] = session[:task_id]
-		@family[:user_id] = current_user.id
-    if @family.save
-      redirect_to families_path
-    else
-      render :new
+    @family[:user_id] = current_user.id
+    if @family.name == "" || @family.related_to == "" || @family.relationship == ""
+      if @family.save
+        session[:error] = "Your choices have been saved, however the step can not be completed because there are additional required fields."
+        redirect_to families_path
+      else
+        render :new
+      end
+    elsif @family.save
+      redirect_to businesses_path
     end
   end
 

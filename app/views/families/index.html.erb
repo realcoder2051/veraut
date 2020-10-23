@@ -17,8 +17,7 @@
 						<div>
 							<%= render '/shared/stepper' %>
 						</div>
-					</div>    
-
+					</div>
 				</div>
 			</div>
 		</div>
@@ -28,7 +27,7 @@
 			<h3> Step 4 : Family Relationships :
 				<div class="ml-3 my-1 float-right">
 					<%=link_to "Save",save_family_path,class: "btn btn-success " %>
-				</div> 
+				</div>
 				<div class="ml-3 my-1 float-right">
 					<button type="button" class="btn btn-success  px-3 notes_count" data-toggle="modal" data-target="#myModal ">Notes <%= [no_of_notes(controller_name.singularize)] %> </button>			
 				</div> </h3>
@@ -37,6 +36,15 @@
 			<span style="font-style: italic;"> Please complete all the information below for family of all the principals that are employed at your
 				firm. When you have completed your changes, click the Save button to continue.</span>
 		</div>
+		<% if session[:error]%>
+			<div class="company_flash_message">
+				<div class="container flash-custom" >
+					<%= session[:error] %>
+					<% session[:error] = nil%>
+				</div>
+			</div>
+			<div class="container"></div>
+		<%end%>
 
 		<div class="card card-form">
 			<div class="row no-gutters">
