@@ -25,7 +25,7 @@ class CompaniesController < InheritedResources::Base
   end
 
   def index
-		@companies = Company.all.order('created_at').where(user_id: current_user.id)
+		@companies = Company.where("user_id = ?", current_user.id)
   end
 
 	def edit
@@ -50,7 +50,7 @@ class CompaniesController < InheritedResources::Base
 	def note_params
 		params.permit(:description)
 	end
-	
+
 	def company_params
 		params.require(:company).permit(:company_name, :ein, :fiscal_year_end, :entity_type, :naic_code, :payroll_provider, :payroll_frequency)
 	end

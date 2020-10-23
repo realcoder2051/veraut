@@ -43,33 +43,33 @@
 					<table class="table mb-0 thead-border-top-0 mt-1  table-hover">
 						<thead class="table-info">
 							<tr>
-								<th><%= sort_link(@q, :name) %></th>
+								<th><%= sort_link(@q, :username,'Name') %></th>
 								<th><%= sort_link(@q, :company_name) %></th>
-								<th><%= sort_link(@q, :email) %></th>
-								<th><%= sort_link(@q, :roles) %></th>
+								<th><%= sort_link(@q, :email,'Email') %></th>
+								<th><%= sort_link(@q, :role_id,'Role') %></th>
 								<th><%= sort_link(@q, :rights) %></th>
-								<th>Contact Change Request</th>
+								<th>Change Request</th>
 							</tr>
 						</thead>
 						<%if session[:task_id]%>
 							<tbody>
 								<% @users.each do |user|%>
 									<% if user.present?%>
-									<tr>
-										<td><%=user.username%></td>
-										<td><%="Benefit Equity, Inc"%></td>
-										<td><%=user.email%></td>
-										<td><%=user.role.name%></td>
-										<td><%=find_rights(user.role)%></td>
-										<td>
-											<% if is_already_requested(user)%>
-												<%=link_to "View["+total_view_requests.to_s+"]",view_requests_path,class: "btn btn-primary"%>
-											<%else%>
-												<%=link_to "Add[0]",new_contact_path(user_id: user),class: "btn btn-primary"%>
-											<%end%>
-										</td>
-									</tr>
-								<%end%>
+										<tr>
+											<td><%=user.username%></td>
+											<td><%="Benefit Equity, Inc"%></td>
+											<td><%=user.email%></td>
+											<td><%=user.role.name%></td>
+											<td><%=find_rights(user.role)%></td>
+											<td>
+												<% if is_already_requested(user)%>
+													<%=link_to "View["+total_view_requests.to_s+"]",view_requests_path,class: "btn btn-primary"%>
+												<%else%>
+													<%=link_to "Add[0]",new_contact_path(user_id: user),class: "btn btn-primary"%>
+												<%end%>
+											</td>
+										</tr>
+									<%end%>
 								<%end%>
 							</tbody>
 						<%end%>

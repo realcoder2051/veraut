@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_22_070045) do
+ActiveRecord::Schema.define(version: 2020_10_22_092255) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_stat_statements"
@@ -97,6 +97,7 @@ ActiveRecord::Schema.define(version: 2020_10_22_070045) do
     t.bigint "task_id"
     t.bigint "user_id"
     t.boolean "is_completed", default: false
+    t.boolean "active", default: false
     t.index ["task_id"], name: "index_businesses_on_task_id"
     t.index ["user_id"], name: "index_businesses_on_user_id"
   end
@@ -195,6 +196,7 @@ ActiveRecord::Schema.define(version: 2020_10_22_070045) do
     t.integer "status", default: 0
     t.bigint "task_id"
     t.boolean "is_completed", default: false
+    t.boolean "active", default: false
     t.index ["task_id"], name: "index_employees_on_task_id"
   end
 
@@ -207,6 +209,7 @@ ActiveRecord::Schema.define(version: 2020_10_22_070045) do
     t.bigint "task_id"
     t.bigint "user_id"
     t.boolean "is_completed", default: false
+    t.boolean "active", default: false
     t.index ["task_id"], name: "index_families_on_task_id"
     t.index ["user_id"], name: "index_families_on_user_id"
   end
@@ -252,6 +255,7 @@ ActiveRecord::Schema.define(version: 2020_10_22_070045) do
     t.bigint "task_id"
     t.bigint "user_id"
     t.boolean "is_completed", default: false
+    t.boolean "active", default: false
     t.index ["task_id"], name: "index_principals_on_task_id"
     t.index ["user_id"], name: "index_principals_on_user_id"
   end

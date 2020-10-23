@@ -1,14 +1,16 @@
 class EmployeesController < InheritedResources::Base
 	before_action :fetch_employee, only: %i[index]
 	before_action :stepper, only: %i[index]
+  before_action :find_employee , only: [:edit,:update,:destroy]
 
-
-  def edit
+  def find_employee
     @employee = Employee.find(params[:id])
   end
 
+  def edit
+  end
+
   def update
-    @employee = Employee.find(params[:id])
     if @employee.update_attributes(employee_params)
       redirect_to employees_path
 		else
@@ -27,8 +29,6 @@ class EmployeesController < InheritedResources::Base
     redirect_to employees_path
 	end
 	
-
-
 	def index
 		@notes = Note.all
     ransack_search = params[:q]
@@ -66,6 +66,12 @@ class EmployeesController < InheritedResources::Base
     end
   end
 
+  def destroy
+    if @employee.update_attribute(:active, true)
+      redirect_to employees_path
+    end
+  end
+
   private
   def fetch_employee
     @q = Employee.ransack(params[:q])
@@ -73,7 +79,7 @@ class EmployeesController < InheritedResources::Base
      if result.count.positive?
        @q.sorts = 'first_name asc' if @q.sorts.empty?
      end
-    @employees = result.paginate(:page => params[:page], per_page:10).order('status ASC').where(task_id: session[:task_id])
+    @employees = result.paginate(:page => params[:page], per_page:10).order('status ASC').where("task_id = ? and active = ?", session[:task_id],false)
   end
 
   def employee_params
