@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_22_092255) do
+ActiveRecord::Schema.define(version: 2020_10_24_122115) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_stat_statements"
@@ -147,6 +147,7 @@ ActiveRecord::Schema.define(version: 2020_10_22_092255) do
     t.bigint "task_id"
     t.bigint "user_id"
     t.boolean "is_completed", default: false
+    t.boolean "active", default: false
     t.index ["general_id"], name: "index_contact_numbers_on_general_id"
     t.index ["task_id"], name: "index_contact_numbers_on_task_id"
     t.index ["user_id"], name: "index_contact_numbers_on_user_id"

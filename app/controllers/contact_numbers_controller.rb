@@ -1,33 +1,22 @@
 class ContactNumbersController < InheritedResources::Base
 
   def create
-    contact_number = ContactNumber.find(params[:number_dropdown])
-    if contact_number.update(contact_number_params)
-			redirect_to generals_path
-		else
-			redirect_to contact_number_add_path
-    end
-  end
-
-  def new
-    @numbers = ContactNumber.all.where(user_id: current_user.id)
-    @number = ContactNumber.new
-  end
-
-  def add_new_contact_number
-    @number = ContactNumber.new
-  end
-
-  def create_new_contact_number
     contact_number = ContactNumber.new(contact_number_params)
 		contact_number[:task_id] = session[:task_id]
-		contact_number[:user_id] = current_user.id
+    contact_number[:user_id] = current_user.id
+    if contact_number.contact_type == ""
+      session[:error] = "Your choices have been saved, however the step can not be completed because there are additional required fields."
+    end
     if contact_number.save
 			redirect_to generals_path
     else
       @number = ContactNumber.new
-			render :add_new_contact_number
+			render :new
     end
+  end
+
+  def new
+    @number = ContactNumber.new
   end
 
   def edit
@@ -35,10 +24,16 @@ class ContactNumbersController < InheritedResources::Base
   end
 
   def update
-    contact_number = ContactNumber.find(params[:id])
-    if contact_number.update_attributes(contact_number_params)
-      redirect_to generals_path
+    @contact_number = ContactNumber.find(params[:id])
+    if params[:contact_number][:contact_type] == ""
+      session[:error] = "Your choices have been saved, however the step can not be completed because there are additional required fields."
     end
+    if @contact_number.update_attributes(contact_number_params)
+      redirect_to generals_path
+    else
+      render :edit
+    end
+    
   end
 
   def index
@@ -48,9 +43,9 @@ class ContactNumbersController < InheritedResources::Base
 
   def destroy
     contact_number = ContactNumber.find(params[:id])
-    if contact_number.destroy
-      redirect_to generals_path
-    end
+    if contact_number.update_attribute(:active, true)
+			redirect_to generals_path
+		end
 	end
 
   private

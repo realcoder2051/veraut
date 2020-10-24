@@ -23,7 +23,7 @@ class GeneralsController < InheritedResources::Base
 		ransack_search = params[:q]
 		# @address_type = ransack_search[:first_name_cont] if ransack_search.present?
 		@notes = Note.all
-		@q = ContactNumber.ransack(params[:q])
+		@q = ContactNumber.where("active=?",false).ransack(params[:q])
 		result = @q.result
 		@numbers = result.paginate(:page => params[:page], per_page:10).order('contact_type ASC').where(user_id: current_user.id)
 	end

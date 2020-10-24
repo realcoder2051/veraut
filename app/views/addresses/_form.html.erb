@@ -1,7 +1,8 @@
 <div class="row">
 	<div class="col-lg-4 left-move"></div>
 	<div class="col-lg-4 left-move">
-		<%=f.text_field :address1 , { :id => 'first_address',:label=> 'Address 1' }  %>
+		<label for="address_address1">Address1 <span class="required"></span></label>
+		<%=f.text_field :address1 , { :id => 'first_address',hide_label: true }  %>
 		<div class="invalid-feedback">Please provide a time.</div>
 		<div class="valid-feedback">Looks good!</div>
 	</div>
@@ -17,7 +18,8 @@
 <div class="row">
 	<div class="col-lg-4 left-move"></div>
 	<div class="col-lg-4 left-move">
-		<%=f.text_field :city%>
+	  <label for="address_city">City <span class="required"></span></label>
+		<%=f.text_field :city,hide_label: true%>
 		<div class="invalid-feedback">Please provide a time.</div>
 		<div class="valid-feedback">Looks good!</div>
 	</div>
@@ -26,7 +28,8 @@
 <div class="row">
 	<div class="col-lg-4 left-move"></div>
 	<div class="col-lg-4 left-move">
-		<%=f.select :state,options_for_select(['Alabama','Alaska','American Samoa','Arizona','Arkansas','California','Colorado','Connecticut','Delaware','District of Columbia','Federated States of Micronesia','Florida','Georgia','Guam','Hawaii','Idaho','Illinois','Indiana','Iowa','Kansas','Kentucky','Louisiana','Maine','Marshall Islands','Maryland','Massachusetts','Michigan','Minnesota','Mississippi','Missouri','Montana','Nebraska','Nevada','New Hampshire','New Jersey','New Mexico','New York','North Carolina','North Dakota','Northern Mariana Islands','Ohio','Oklahoma','Oregon','Palau','Pennsylvania','Puerto Rico','Rhode Island','South Carolina','South Dakota','Tennessee','Texas','Utah','Vermont','Virgin Island','Virginia','Washington','West Virginia','Wisconsin','Wyoming'], @address[:state]) , { :include_blank => '-- Select One --' }%>
+	  <label for="address_state">State <span class="required"></span></label>
+		<%=f.select :state,options_for_select(['Alabama','Alaska','American Samoa','Arizona','Arkansas','California','Colorado','Connecticut','Delaware','District of Columbia','Federated States of Micronesia','Florida','Georgia','Guam','Hawaii','Idaho','Illinois','Indiana','Iowa','Kansas','Kentucky','Louisiana','Maine','Marshall Islands','Maryland','Massachusetts','Michigan','Minnesota','Mississippi','Missouri','Montana','Nebraska','Nevada','New Hampshire','New Jersey','New Mexico','New York','North Carolina','North Dakota','Northern Mariana Islands','Ohio','Oklahoma','Oregon','Palau','Pennsylvania','Puerto Rico','Rhode Island','South Carolina','South Dakota','Tennessee','Texas','Utah','Vermont','Virgin Island','Virginia','Washington','West Virginia','Wisconsin','Wyoming'], @address[:state]) , { :include_blank => '-- Select One --' ,hide_label: true}%>
 		<div class="invalid-feedback">Please provide a time.</div>
 		<div class="valid-feedback">Looks good!</div>
 	</div>
@@ -35,7 +38,8 @@
 <div class="row">
 	<div class="col-lg-4 left-move"></div>
 	<div class="col-lg-4 left-move">
-		<%=f.text_field :zip%>
+		<label for="address_zip">ZIP <span class="required"></span></label>
+		<%=f.text_field :zip,hide_label: true%>
 		<div class="invalid-feedback">Please provide a time.</div>
 		<div class="valid-feedback">Looks good!</div>
 	</div>

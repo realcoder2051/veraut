@@ -4,7 +4,13 @@ class AddressesController < InheritedResources::Base
 	def create
 		if params[:address][:id].present?
 			@address = Address.find(params[:address][:id])
-			if @address.present?
+			address_type=@address.address_mappings.where(active: true).pluck(:address_type_id) if @address.address_mappings.present?
+			if address_type.include?(params[:Address_Type].to_i)
+				session[:error] = "Address with this Address Type Already Exist"
+				address_collection
+				@address = Address.new
+				render :new
+			elsif @address.present?
 				save_address_mapping
 				redirect_to generals_path
 			end
@@ -17,13 +23,16 @@ class AddressesController < InheritedResources::Base
 
 	def create_new_address
 		save_address
+		if @address.address1 == "" || @address.city == "" || @address.state == "" || @address.zip == ""
+			session[:error] = "Your choices have been saved, however the step can not be completed because there are additional required fields."
+		end
 		if @address.save
 			save_address_mapping
 			redirect_to generals_path
 		else
 			address_collection
 			render :add_new_address
-    end
+		end
 	end
 
   def edit
@@ -45,6 +54,9 @@ class AddressesController < InheritedResources::Base
 	def update
 		@old_address = Address.find(params[:id])
 		save_address
+		if params[:address][:address1] == "" || params[:address][:city] == "" || params[:address][:state] == "" || params[:address][:zip] == ""
+			session[:error] = "Your choices have been saved, however the step can not be completed because there are additional required fields."
+		end
 		if @address.save
 			 @old_address.update(active: false)
 			 @old_address.address_mappings.where(active: true).each do |p|

@@ -39,8 +39,16 @@
 			<span style="font-style: italic;"> Please review the address and phone numbers below. Please add any new
 				information or update existing
 				information as necessary. When you have completed your changes, click the Save button to continue.</span>
-
 		</div>
+		<% if session[:error]%>
+			<div class="company_flash_message">
+				<div class="container flash-custom" >
+					<%= session[:error] %>
+					<% session[:error] = nil%>
+				</div>
+			</div>
+			<div class="container"></div>
+		<%end%>
 		<div class="row no-gutters">
 			<div class="col-lg-6">
 				<div class="card card-no-flex card-form card-form__body ">
@@ -79,7 +87,7 @@
 			<div class="col-lg-5 offset-lg-1">
 				<div class="card card-no-flex card-form card-form__body">
 					<div class="ml-3 my-1 float-right">
-						<%=link_to "Add Contact",contact_number_add_path,class: "btn btn-primary" %>
+						<%=link_to "Add Contact",new_contact_number_path,class: "btn btn-primary" %>
 					</div>
 					<table class="table mb-0 thead-border-top-0 mt-1 table-hover">
 						<thead class="table-info">
