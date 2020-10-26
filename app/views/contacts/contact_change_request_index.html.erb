@@ -26,27 +26,25 @@
 				<table class="table mb-0 thead-border-top-0 mt-1  table-hover">
 					<thead class="table-info">
 						<tr>
-              <th><%= sort_link(@q, :created_by) %></th>
-              <th><%= sort_link(@q, :date) %></th>
-							<th><%= sort_link(@q, :change_request) %></th>
+              <th>Created By</th>
+              <th>Date</th>
+							<th>Change Request</th>
               <th>Actions</th>
 						</tr>
 					</thead>
 					<%if session[:task_id]%>
 						<tbody>
-							<% @contact_change_requests.each do |contact_change_request|%>
-								<%if find_tasks(contact_change_request)%>
-                  <tr>
-                    <td><%=find_created_by_user(contact_change_request)%></td>
-                    <td><%=contact_change_request.date%></td>
-                    <td><%=contact_change_request.change_request%></td>
-                    <td>
-                      <a href=<%=edit_contact_path(contact_change_request)%>><i class="material-icons icon-20pt modal-edit">edit</i></a>
-                      <a data-confirm="Are you sure?" rel="nofollow" data-method="delete" href=<%=contact_path(contact_change_request)%>><i
-                          class="material-icons">delete</i></a>
-                    </td>
-                  </tr>
-                <%end%>
+							<% @change_request_mappings.each do |change_request_mapping|%>
+								<tr>
+									<td><%=find_created_by_user(change_request_mapping)%></td>
+									<td><%=change_request_mapping.contact_change_request.date%></td>
+									<td><%=change_request_mapping.contact_change_request.change_request%></td>
+									<td>
+										<a href=<%=edit_contact_path(change_request_mapping)%>><i class="material-icons icon-20pt modal-edit">edit</i></a>
+										<a data-confirm="Are you sure?" rel="nofollow" data-method="delete" href=<%=contact_path(change_request_mapping)%>><i
+												class="material-icons">delete</i></a>
+									</td>
+								</tr>
 							<%end%>
 						</tbody>
 					<%end%>

@@ -22,8 +22,8 @@ module ContactsHelper
   end
 
   def find_created_by_user(contact_change_request)
-    created_by_id = contact_change_request.created_by
-    User.find(created_by_id).username
+    created_user_id = contact_change_request.user_id
+    User.find(created_user_id).username if User.find(created_user_id).present?
   end
 
   def find_tasks(contact_change_request)
@@ -37,6 +37,10 @@ module ContactsHelper
     else
       return count
     end
+  end
+
+  def check_users_exist?
+    @users.count>0 ? 1 : 0 if @users.present?
   end
 
 end

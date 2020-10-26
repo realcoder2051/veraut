@@ -1,11 +1,10 @@
 class ContactsController < InheritedResources::Base
 	before_action :stepper, only: %i[index]
 	before_action :fetch_contact, only: %i[index]
-	#before_action :fetch_change_request, only: %i[contact_change_request_index]
 
 	def update
-		@contact_change_request = ContactChangeRequest.find(params[:id])
-		if @contact_change_request.update_attributes(change_request_params)
+		@change_request_mapping = ChangeRequestMapping.find(params[:id]).contact_change_request
+		if @change_request_mapping.update_attributes(change_request_params)
       redirect_to view_requests_path
 		else
 			redirect_to view_requests_path
@@ -17,7 +16,7 @@ class ContactsController < InheritedResources::Base
 	end
 
 	def edit
-  	@contact_change_request = ContactChangeRequest.find(params[:id])
+		@change_request_mapping = ChangeRequestMapping.joins(:contact_change_request).find(params[:id]).contact_change_request
 	end
 
 	def new
@@ -62,24 +61,27 @@ class ContactsController < InheritedResources::Base
 	end
 
 	def destroy
-		@contact_change_requests = ContactChangeRequest.find(params[:id])
-		if @contact_change_requests.destroy
+		@change_request_mapping = ChangeRequestMapping.find(params[:id])
+		if @change_request_mapping.destroy
 			redirect_to view_requests_path
 		end
 	end
 
 	def contact_change_request_index
 		ransack_search = params[:q]
+		@change_request_mappings = ChangeRequestMapping.where(task_id: session[:task_id])
 	end
 
 	def index
 		ransack_search = params[:q]
 		@roles_rights = RolesRight.all
 		@notes = Note.all
-		technician_role = Role.where(name: "Technician").first
-		main_contact_role = Role.where(name: "Main Contact").first
 		@users = []
-		@q = User.where("role_id = ? or role_id = ?" , technician_role.id,main_contact_role.id).ransack(params[:q])
+		#begin
+			#rescue
+		technician_user = Role.where(name: "Technician").order('created_at').first.users.first if Role.where(name: "Technician").first.present?
+		main_contact_user = Role.where(name: "Main Contact").order('created_at').first.users.first if Role.where(name: "Main Contact").first.present?
+		@q = User.where("id = ? or id = ?" , technician_user.id,main_contact_user.id).ransack(params[:q])
 		@users = @q.result
 	end
 
