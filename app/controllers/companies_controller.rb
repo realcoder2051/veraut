@@ -41,7 +41,7 @@ class CompaniesController < InheritedResources::Base
 			session[:error] = "Your choices have been saved, however the step can not be completed because there are additional required fields."
 		end
 		if @company.update_attributes(company_params)
-			redirect_to edit_company_path(@company)
+			redirect_to principals_path
 		else
 			stepper
 			render :edit
