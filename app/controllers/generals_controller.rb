@@ -43,7 +43,7 @@ class GeneralsController < InheritedResources::Base
 		contact_number = ContactNumber.where("is_completed=? AND user_id=? AND task_id=?", false , current_user.id , session[:task_id])
 		address.update(is_completed: true)
 		contact_number.update(is_completed: true)
-		redirect_to generals_path
+		redirect_to companies_path
 	end
 
 	private

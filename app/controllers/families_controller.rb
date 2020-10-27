@@ -59,12 +59,9 @@ class FamiliesController < InheritedResources::Base
 		families = Family.where("is_completed=? AND user_id=? AND task_id=?", false , current_user.id , session[:task_id])
     families.each do |family|
       if family.related_to.present? and family.relationship.present? and family.name.present?
-        if family.update(is_completed: true)
-          @family_stepper.is_completed = true
-        end
+        family.update(is_completed: true)
       end
     end
-    #family.update(is_completed: true)
 		redirect_to businesses_path
 	end
 
@@ -76,7 +73,7 @@ class FamiliesController < InheritedResources::Base
      if result.count.positive?
        @q.sorts = 'name asc' if @q.sorts.empty?
      end
-    @families = result.paginate(:page => params[:page], per_page:10).order('created_at').where("user_id = ? and active = ?", current_user.id,false)
+    @families = result.paginate(:page => params[:page], per_page:10).order('created_at').where("task_id = ? and active = ?", session[:task_id],false)
   end
 
   def family_params

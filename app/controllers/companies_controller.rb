@@ -1,5 +1,5 @@
 class CompaniesController < InheritedResources::Base
-	before_action :stepper, only: %i[new edit ]
+	before_action :stepper, only: %i[new edit]
 
 	def new
 		@company = Company.new
@@ -15,7 +15,7 @@ class CompaniesController < InheritedResources::Base
 		@company[:task_id] = session[:task_id]
 		@company[:user_id] = current_user.id
 		@company.is_completed = true
-		if @company.entity_type== "" || @company.payroll_frequency=="" || @company.fiscal_year_end == "" || @company.ein<3 || @company.ein >9
+		if @company.entity_type== "" || @company.payroll_frequency=="" || @company.fiscal_year_end == "" || @company.ein.length<3 || @company.ein.length >9
 			session[:error] = "Your choices have been saved, however the step can not be completed because there are additional required fields."
 		end
 		if @company.save
