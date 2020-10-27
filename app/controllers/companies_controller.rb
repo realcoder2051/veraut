@@ -15,13 +15,11 @@ class CompaniesController < InheritedResources::Base
 		@company[:task_id] = session[:task_id]
 		@company[:user_id] = current_user.id
 		@company.is_completed = true
-		if @company.entity_type== "" || @company.payroll_frequency=="" || @company.fiscal_year_end == ""
-			if @company.save
-				session[:error] = "Your choices have been saved, however the step can not be completed because there are additional required fields."
-				redirect_to edit_company_path(@company)
-			end
-		elsif @company.save
-			redirect_to principals_path
+		if @company.entity_type== "" || @company.payroll_frequency=="" || @company.fiscal_year_end == "" || @company.ein<3 || @company.ein >9
+			session[:error] = "Your choices have been saved, however the step can not be completed because there are additional required fields."
+		end
+		if @company.save
+			redirect_to edit_company_path(@company)
 		else
 			stepper
 			render :new
@@ -39,15 +37,11 @@ class CompaniesController < InheritedResources::Base
 
 	def update
 		@company = Company.find(params[:id])
-		if params[:company][:entity_type] == "" || params[:company][:payroll_frequency]=="" || params[:company][:fiscal_year_end] == ""
+		if params[:company][:entity_type] == "" || params[:company][:payroll_frequency]=="" || params[:company][:fiscal_year_end] == "" || params[:company][:ein].length <3 || params[:company][:ein].length>9
 			session[:error] = "Your choices have been saved, however the step can not be completed because there are additional required fields."
 		end
 		if @company.update_attributes(company_params)
-			if session[:error]
-				redirect_to edit_company_path(@company)
-			else
-				redirect_to principals_path
-			end
+			redirect_to edit_company_path(@company)
 		else
 			stepper
 			render :edit

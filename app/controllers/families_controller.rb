@@ -9,12 +9,12 @@ class FamiliesController < InheritedResources::Base
   end
 
   def edit
-    @principals = Principal.where("task_id = ? and active = ?", session[:task_id],false)
+    @principals = Principal.where("user_id = ? and active = ?", current_user.id,false)
   end
 
   def new
     @family = Family.new
-    @principals = Principal.where("task_id = ? and active = ?", session[:task_id],false)
+    @principals = Principal.where("user_id = ? and active = ?",current_user.id,false)
   end
 
   def update
@@ -23,13 +23,9 @@ class FamiliesController < InheritedResources::Base
       session[:error] = "Your choices have been saved, however the step can not be completed because there are additional required fields."
     end
     if @family.update_attributes(family_params)
-      if session[:error]
-				redirect_to families_path
-			else
-				redirect_to businesses_path
-      end
-    else
-      render :edit
+			redirect_to families_path
+		else
+			render :edit
     end
   end
 
@@ -44,14 +40,12 @@ class FamiliesController < InheritedResources::Base
 		@family[:task_id] = session[:task_id]
     @family[:user_id] = current_user.id
     if @family.name == "" || @family.related_to == "" || @family.relationship == ""
-      if @family.save
-        session[:error] = "Your choices have been saved, however the step can not be completed because there are additional required fields."
-        redirect_to families_path
-      else
-        render :new
-      end
-    elsif @family.save
-      redirect_to businesses_path
+      session[:error] = "Your choices have been saved, however the step can not be completed because there are additional required fields."
+    end
+    if @family.save
+      redirect_to families_path
+    else
+      render :new
     end
   end
 
@@ -62,8 +56,15 @@ class FamiliesController < InheritedResources::Base
   end
 
 	def is_completed
-		family = Family.where("is_completed=? AND user_id=? AND task_id=?", false , current_user.id , session[:task_id])
-		family.update(is_completed: true)
+		families = Family.where("is_completed=? AND user_id=? AND task_id=?", false , current_user.id , session[:task_id])
+    families.each do |family|
+      if family.related_to.present? and family.relationship.present? and family.name.present?
+        if family.update(is_completed: true)
+          @family_stepper.is_completed = true
+        end
+      end
+    end
+    #family.update(is_completed: true)
 		redirect_to businesses_path
 	end
 

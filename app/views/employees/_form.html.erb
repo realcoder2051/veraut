@@ -1,7 +1,8 @@
 <div class="form-row" >
   <div class="col-lg-3 left-move"></div>
   <div class="col-lg-4 left-move">
-    <%=f.text_field :first_name , {:label=> 'First Name'}%>
+    <label for="employee_first_name">First Name <span class="required"></span></label>
+    <%=f.text_field :first_name ,hide_label: true%>
     <div class="invalid-feedback">Please provide a time.</div>
     <div class="valid-feedback">Looks good!</div>
   </div>
@@ -9,7 +10,8 @@
 <div class="row" >
   <div class="col-lg-3 left-move"></div>
   <div class="col-lg-4 left-move">
-    <%=f.text_field :last_name , {:label=> 'Last Name'}%>
+    <label for="employee_last_name">Last Name <span class="required"></span></label>
+    <%=f.text_field :last_name , hide_label: true%>
     <div class="invalid-feedback">Please provide a time.</div>
     <div class="valid-feedback">Looks good!</div>
   </div>
@@ -17,10 +19,11 @@
 <div class="row" >
   <div class="col-lg-3 left-move"></div>
   <div class="col-lg-4 left-move ">
-  <%=f.text_field :ssn,	{:maxlength => 9, :label=> 'SSN'}  %>
-  <div class="invalid-feedback">Please provide a time.</div>
-    <div class="valid-feedback">Looks good!</div>
-  </div>
+    <label for="employee_ssn">SSN (Maximum 9 Characters) <span class="required"></span></label>
+    <%=f.text_field :ssn,	hide_label: true %>
+    <div class="invalid-feedback">Please provide a time.</div>
+      <div class="valid-feedback">Looks good!</div>
+    </div>
 </div>
 <div class="row" >
   <div class="col-lg-3 left-move"></div>
@@ -42,7 +45,8 @@
 <div class="row" >
   <div class="col-lg-3 left-move" ></div>
   <div class="col-lg-4 left-move">
-      <%=f.date_field :date_of_birth , {:label=> 'Date of Birth'}%>
+    <label for="employee_date_of_birth">Date of Birth <span class="required"></span></label>
+    <%=f.date_field :date_of_birth , hide_label: true%>
     <div class="invalid-feedback">Please provide a time.</div>
     <div class="valid-feedback">Looks good!</div>
   </div>
@@ -50,7 +54,8 @@
 <div class="row" >
   <div class="col-lg-3 left-move"></div>
   <div class="col-lg-4 left-move">
-    <%=f.date_field :original_date_of_hire , {:label=> 'Original Date Of Hire'}%>
+    <label for="employee_original_date_of_hire">Original Date Of Hire <span class="required"></span></label>
+    <%=f.date_field :original_date_of_hire ,hide_label: true%>
     <div class="invalid-feedback">Please provide a time.</div>
     <div class="valid-feedback">Looks good!</div>
   </div>
@@ -74,7 +79,8 @@
 <div class="row" >
   <div class="col-lg-3 left-move"></div>
   <div class="col-lg-4 left-move">
-    <%=f.text_field :compensation%>
+    <label for="employee_compensation">compensation <span class="required"></span></label>
+    <%=f.text_field :compensation,hide_label: true%>
     <div class="invalid-feedback">Please provide a time.</div>
     <div class="valid-feedback">Looks good!</div>
   </div>
@@ -82,7 +88,8 @@
 <div class="row" >
   <div class="col-lg-3 left-move"></div>
   <div class="col-lg-4 left-move">
-    <%=f.number_field :hours%>
+      <label for="employee_hours">Hours <span class="required"></span></label>
+    <%=f.number_field :hours,hide_label:true%>
     <div class="invalid-feedback">Please provide a time.</div>
     <div class="valid-feedback">Looks good!</div>
   </div>

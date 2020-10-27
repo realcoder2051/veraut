@@ -1,47 +1,43 @@
 <div class="row bs-wizard" style="border-bottom:0;">
-	<div class="col-md-1 bs-wizard-step <%= wizard_step_status([@address, @contact_number])  %>">
+	<div class="col-md-1 bs-wizard-step <%= wizard_step_status([@address_stepper, @contact_number_stepper])  %>">
 		<div ml-2><%= link_to "General", generals_path,  class: "text-center  bs-wizard-stepnum"  %>		</div>
 		<div class="progress">
 			<div class="progress-bar"></div>
 		</div>
 		<a href="#" class="bs-wizard-dot mr-2"></a>
 	</div>
-
-
 	<div class="col-md-1 bs-wizard-step <%= wizard_step_status(@company_stepper) %>">
 		<!-- complete -->
-		<%= link_to "Company", new_company_path,  class: "text-center  bs-wizard-stepnum"  %>				
+		<%= link_to "Company", new_company_path,  class: "text-center  bs-wizard-stepnum"  %>
 		<div class="progress">
 			<div class="progress-bar"></div>
 		</div>
 		<a href="#" class="bs-wizard-dot "></a>
 	</div>
-	<div class="col-md-1 bs-wizard-step <%=  wizard_step_status(@principal) %>">
+	<div class="col-md-1 bs-wizard-step <%=  wizard_step_status(@principal_stepper) %>">
 		<!-- complete -->
-		<%= link_to "Principal", principals_path,  class: "text-center  bs-wizard-stepnum"  %>				
+		<%= link_to "Principal", principals_path,  class: "text-center  bs-wizard-stepnum"  %>
 		<div class="progress">
 			<div class="progress-bar"></div>
 		</div>
 		<a href="#" class="bs-wizard-dot"></a>
 	</div>
-
-	<div class="col-md-1 bs-wizard-step <%=  wizard_step_status(@family) %>">
+	<div class="col-md-1 bs-wizard-step <%=  wizard_step_status(@family_stepper) %>">
 		<!-- complete -->
-		<%= link_to "Family", families_path,  class: "text-center  bs-wizard-stepnum"  %>				
+		<%= link_to "Family", families_path,  class: "text-center  bs-wizard-stepnum"  %>
 		<div class="progress">
 			<div class="progress-bar"></div>
 		</div>
 		<a href="#" class="bs-wizard-dot"></a>
 	</div>
-	<div class="col-md-1 bs-wizard-step <%= wizard_step_status(@business) %>">
+	<div class="col-md-1 bs-wizard-step <%= wizard_step_status(@business_stepper) %>">
 		<!-- complete -->
-		<%= link_to "Business", businesses_path,  class: "text-center  bs-wizard-stepnum"  %>				
+		<%= link_to "Business", businesses_path,  class: "text-center  bs-wizard-stepnum"  %>
 		<div class="progress">
 			<div class="progress-bar"></div>
 		</div>
 		<a href="#" class="bs-wizard-dot"></a>
 	</div>
-
 	<div class="col-md-1 bs-wizard-step <%= wizard_step_status(@contact) %>">
 		<!-- complete -->
 		<%= link_to "Contacts", contacts_path,  class: "text-center  bs-wizard-stepnum"  %>				
@@ -55,7 +51,7 @@
 		<!-- complete -->
 		<div class="ml-2">
 			<%= link_to "Plan", plans_new_path,  class: "text-center  bs-wizard-stepnum"  %>
-	</div>				
+	</div>
 		<div class="progress">
 			<div class="progress-bar"></div>
 		</div>
@@ -64,7 +60,7 @@
 	<div class="col-md-1 bs-wizard-step <%= wizard_step_status(@fifty_five_hundred_stepper) %>">
 		<div class="ml-2">
 		<%= link_to "5500", fifty_five_hundred_new_path,  class: "text-center  bs-wizard-stepnum"  %>			
-		</div>	
+		</div>
 		<div class="progress">
 			<div class="progress-bar"></div>
 		</div>

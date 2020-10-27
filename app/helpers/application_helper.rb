@@ -18,31 +18,35 @@ module ApplicationHelper
       when :alert then 'alert alert-warning'
     end
 	end
-	
-	def count 
+
+	def count
 		@count = 0
 	end
 
 	def wizard_step_status(steps)
 		steps = steps.kind_of?(Array) ? steps : [steps]
-		
-		step_completed = false			
-		steps.each do |step|	 
-			step_completed = step.present?			
+		step_completed = false
+		puts ("1221231321321132321312----------------------------------------123123123312")
+		steps.each do |step|
+			step_completed = step.present?
 		end
-		@count += 1 if step_completed == false  
+		if @families_stepper.present?
+			@families_stepper
+
+		end
+		@count += 1 if step_completed == false
 		step_completed ?  'complete' : 'disabled'
 	end
-	
+
 	def step_incomplete(incomplete)
 		@step_incomplete ||= incomplete if incomplete.present?
 		@step_incomplete
 	end
-	
+
 	def btn_status
 		@count == 0 ? 'btn-approval-active' : 'btn-approval-disabled'
 	end
-	
+
 	def approval_check
 		@count == 0 ? 'new_approval' : 'approval_warning'
 	end
@@ -51,5 +55,18 @@ module ApplicationHelper
 	def no_of_notes(collection_step)
 		notes = Note.where("data_collection_step =? AND task_id =?" , collection_step , session[:task_id]).count
 	end
-	
+
+	def check_company_stepper?
+		if @company_stepper.present?
+		 if @company_stepper.entity_type == "" || @company_stepper.fiscal_year_end == "" || @company_stepper.payroll_frequency == "" || @company_stepper.ein == ""
+			return false
+		 else
+			return true
+		 end
+		else
+			return false
+		end
+
+	end
+
 end

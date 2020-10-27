@@ -11,11 +11,14 @@ class EmployeesController < InheritedResources::Base
   end
 
   def update
+    if params[:employee][:first_name] == "" || params[:employee][:last_name] == "" || params[:employee][:ssn] == "" || params[:employee][:ssn].length>9 || params[:employee][:hours] == "" || params[:employee][:compensation] == "" || params[:employee][:date_of_birth]== "" || params[:employee][:original_date_of_hire] == ""
+      session[:error] = "Your choices have been saved, however the step can not be completed because there are additional required fields."
+    end
     if @employee.update_attributes(employee_params)
       redirect_to employees_path
-		else
-			render :edit
-		end
+    else
+      render :edit
+    end
   end
 
   def save_employee
@@ -28,7 +31,7 @@ class EmployeesController < InheritedResources::Base
     data = Employee.where("task_id=?", session[:task_id]).destroy_all if Employee.exists?
     redirect_to employees_path
 	end
-	
+
 	def index
 		@notes = Note.all
     ransack_search = params[:q]
@@ -41,23 +44,28 @@ class EmployeesController < InheritedResources::Base
 
   def create
     @employee = Employee.new(employee_params)
-		@employee[:task_id] = session[:task_id]
+    if @employee.first_name == "" || @employee.last_name == "" || @employee.ssn == "" || @employee.date_of_birth == "" || @employee.original_date_of_hire == "" || @employee.hours == "" || @employee.compensation == "" || @employee.ssn.to_s.length>9
+      session[:error] = "Your choices have been saved, however the step can not be completed because there are additional required fields."
+    end
+    @employee[:task_id] = session[:task_id]
     if @employee.save
       redirect_to employees_path
-		else
-			flash.now[:alert] = "Wrong file format"
+    else
+      flash.now[:alert] = "Wrong file format"
       render :new
     end
+
   end
 
   def import_store
     file = params[:file]
     file_type = file.present? ? file.path.split('.').last.to_s.downcase : ''
     if file.present? and (file_type == 'csv' or file_type == 'xlsx')
-			if (Employee.update_imported_store(file,session[:task_id]))
-			flash[:notice] = "File Uploaded Successfully"
-			redirect_to employees_path
-			else
+      if (Employee.update_imported_store(file,session[:task_id]))
+  			flash[:notice] = "File Uploaded Successfully"
+	  		redirect_to employees_path
+      else
+        elssss
 				flash[:alert] = "Wrong file format"
 				redirect_to employees_path
 			end

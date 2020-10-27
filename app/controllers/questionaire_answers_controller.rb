@@ -14,18 +14,18 @@ class QuestionaireAnswersController < InheritedResources::Base
 				flash[:notice] = "Successfully completed"
 				redirect_to edit_plan_path(@questionaire_answer)
 			end
-	 end
+	  end
   end
 
-  def create
-  end
+  # def create
+  # end
 
 	def fifty_five_hundred_new
 		@flash_action = true
 		@notes = Note.all
 		@questionaire_answer = QuestionaireAnswer.new
 		if QuestionaireAnswer.exists?(task_id: session[:task_id], user_id: current_user.id, question_type_id: 2)
-			@questionaire_answer = QuestionaireAnswer.find_by(task_id: session[:task_id])	
+			@questionaire_answer = QuestionaireAnswer.find_by(task_id: session[:task_id])
 			question = QuestionaireAnswer.where("task_id=? AND question_type_id=?", session[:task_id] , 2)
 			if QuestionaireAnswer.where("task_id=? AND answer=? AND question_type_id=?", session[:task_id] , "", 2).present?
 				if question.third.answer == "No" && question.fourth.answer == ""
@@ -43,9 +43,11 @@ class QuestionaireAnswersController < InheritedResources::Base
   end
 
   def create_plan
-    questionaire_answers = choose_plan
+		questionaire_answers = choose_plan
+		status = questionaire_answers.pluck("answer").include?("")
 		QuestionaireAnswer.import questionaire_answers
-		is_completed_plan
+		is_completed_plan(!status)
+		redirect_to plans_new_path
   end
 
   def create_fifty_five_hundred
@@ -89,9 +91,11 @@ class QuestionaireAnswersController < InheritedResources::Base
     QuestionaireAnswer.import questionaire_answers, on_duplicate_key_update: [:answer]
 		if QuestionaireAnswer.where("task_id=? AND answer=? AND question_type_id=?", session[:task_id] , "", 1).present?
 			flash[:alert] = "Your choices have been saved, however the step can not be completed because there are additional required fields."
+			is_completed_plan(false)
 			redirect_to edit_plan_path
 		else
 			flash[:notice] = "Successfully completed"
+			is_completed_plan(true)
 			redirect_to edit_plan_path
 		end
 	end
@@ -123,10 +127,10 @@ class QuestionaireAnswersController < InheritedResources::Base
     redirect_to fifty_five_hundred_new_path
 	end
 
-	def is_completed_plan
+	def is_completed_plan(status)
 		question_answer = QuestionaireAnswer.where("is_completed=? AND user_id=? AND task_id=? AND question_type_id=?", false , current_user.id , session[:task_id], 1)
-		question_answer.update(is_completed: true)
-    redirect_to plans_new_path
+		question_answer.update(is_completed: status)
+    #redirect_to edit_plan_path
 	end
 
   private

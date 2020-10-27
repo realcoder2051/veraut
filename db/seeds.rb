@@ -26,6 +26,7 @@
 # AddressType.create(task_name: "Overnight Address")
 # AddressType.create(task_name: "Physical Address")
 #Address.all.update(active: false)
+
 Address.delete_all
 AddressMapping.delete_all
 

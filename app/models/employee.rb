@@ -1,10 +1,10 @@
 class Employee < ApplicationRecord
-	validates_length_of :ssn, :maximum => 9
-	validates :first_name,:last_name,:ssn,:date_of_birth,:original_date_of_hire, :compensation, :hours, presence: true
+	#validates_length_of :ssn, :maximum => 9
+	#validates :first_name,:last_name,:ssn,:date_of_birth,:original_date_of_hire, :compensation, :hours, presence: true
 
 
 	def self.update_imported_store(file,session)	
-		h1 = ["FIRSTNAME","LASTNAME","SSN","GENDER","DATEOFBIRTH","ORIGINALDATEOFHIRE","DATEOFTERMINATION","DATEOFREHIRE","COMPENSATION","HOURS","PRE-TAXSALARYDEFERRAL","ROUTHSALARYDEFERRAL","EMPLOYERMATCH","COMPANYDIVISION","UNIONEMPLOYEE"]
+		headers = ["FIRSTNAME","LASTNAME","SSN","GENDER","DATEOFBIRTH","ORIGINALDATEOFHIRE","DATEOFTERMINATION","DATEOFREHIRE","COMPENSATION","HOURS","PRE-TAXSALARYDEFERRAL","ROUTHSALARYDEFERRAL","EMPLOYERMATCH","COMPANYDIVISION","UNIONEMPLOYEE"]
 		h2 = ["FIRSTNAME","LASTNAME","FULLNAME","SSN","GENDER","DATEOFBIRTH","ORIGINALDATEOFHIRE","DATEOFTERMINATION","DATEOFREHIRE","COMPENSATION","HOURS","PRE-TAXSALARYDEFERRAL","ROUTHSALARYDEFERRAL","EMPLOYERMATCH","COMPANYDIVISION","UNIONEMPLOYEE"]
 		spreadsheet = open_spreadsheet(file)
 		file_header = spreadsheet.row(1)
@@ -15,8 +15,15 @@ class Employee < ApplicationRecord
 		file_header.each do |s|
 			s.gsub!(' ', '')
 		end
-		if	(file_header == h1 || file_header == h2 )
-			(2..spreadsheet.last_row).each do |i|	
+		array = []
+		headers.each do |header|
+			if file_header.include?(header)
+				array<<header
+			end
+		end
+		#if file_header.include?("FIRSTNAME") || file_header == h2
+		if array.length > 0
+			(2..spreadsheet.last_row).each do |i|
 				row = Hash[[header, spreadsheet.row(i)].transpose]
 				row.delete("full name")
 				if Employee.exists?(ssn: row['ssn'], task_id: session)
@@ -28,7 +35,7 @@ class Employee < ApplicationRecord
 				end
 			end
 			return true
-		else 
+		else
 			return false
 		end
   end

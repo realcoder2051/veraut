@@ -14,17 +14,18 @@ class ApplicationController < ActionController::Base
       format.html { redirect_to root_url}
     end
 	end
-	
-	def stepper
-		@company_stepper =  Company.find_by(user_id: current_user.id)
-		@address = Address.find_by(user_id: current_user.id)
-		@contact_number = ContactNumber.find_by(user_id: current_user.id)
-		@principal = Principal.find_by(user_id: current_user.id)
-		@business = Business.find_by(user_id: current_user.id)
-		@family =  Family.find_by(user_id: current_user.id)	
+
+  def stepper
+    @stepper_list = []
+		@company_stepper =  Company.find_by(task_id: session[:task_id])
+		@address_helper = Address.find_by(task_id: session[:task_id])
+		@contact_number_helper = ContactNumber.find_by(task_id: session[:task_id])
+		@principal_stepper = Principal.find_by(task_id: session[:task_id])
+		@business_stepper = Business.find_by(task_id: session[:task_id])
+		@family_stepper =  Family.find_by(task_id: session[:task_id])
 		@contact =  Contact.find_by(task_id: session[:task_id])
 		@plan_stepper = QuestionaireAnswer.find_by task_id: session[:task_id], question_type_id: 1
-		@fifty_five_hundred_stepper = QuestionaireAnswer.find_by task_id: session[:task_id], question_type_id: 2
+		@fifty_five_hundred_stepper = QuestionaireAnswer.find_by(task_id: session[:task_id], question_type_id: 2)
 		@employee =  Employee.find_by(task_id: session[:task_id])
 	end
 

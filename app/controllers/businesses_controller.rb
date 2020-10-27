@@ -19,11 +19,7 @@ class BusinessesController < InheritedResources::Base
       session[:error] = "Your choices have been saved, however the step can not be completed because there are additional required fields."
     end
     if @business.update_attributes(business_params)
-			if session[:error]
 				redirect_to businesses_path
-			else
-				redirect_to contacts_path
-      end
 		else
 			render :edit
     end
@@ -40,16 +36,12 @@ class BusinessesController < InheritedResources::Base
 		@business[:user_id] = current_user.id
 		if @business.name == "" || @business.ein == "" || @business.qualified_plan_sponsored == "" || @business.entity_type == "" || @business.does_company_have_employees == ""
 			session[:error] = "Your choices have been saved, however the step can not be completed because there are additional required fields."
-			if @business.save
-				redirect_to businesses_path
-			else
-				render :new
-			end
-		elsif @business.save
-      redirect_to contacts_path
-    else
-      render :new
-    end
+		end
+		if @business.save
+			redirect_to businesses_path
+		else
+			render :new
+		end
 	end
 
 	def is_completed
