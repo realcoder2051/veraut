@@ -17,9 +17,10 @@ class CompaniesController < InheritedResources::Base
 		@company.is_completed = true
 		if @company.entity_type== "" || @company.payroll_frequency=="" || @company.fiscal_year_end == "" || @company.ein.length<3 || @company.ein.length >9
 			session[:error] = "Your choices have been saved, however the step can not be completed because there are additional required fields."
+			@company.is_completed = false
 		end
 		if @company.save
-			redirect_to edit_company_path(@company)
+			redirecting_request
 		else
 			stepper
 			render :new
@@ -27,7 +28,7 @@ class CompaniesController < InheritedResources::Base
   end
 
   def index
-		@companies = Company.where("user_id = ?", current_user.id)
+		@companies = Company.where("task_id = ?", session[:task_id])
   end
 
 	def edit
@@ -37,11 +38,17 @@ class CompaniesController < InheritedResources::Base
 
 	def update
 		@company = Company.find(params[:id])
-		if params[:company][:entity_type] == "" || params[:company][:payroll_frequency]=="" || params[:company][:fiscal_year_end] == "" || params[:company][:ein].length <3 || params[:company][:ein].length>9
-			session[:error] = "Your choices have been saved, however the step can not be completed because there are additional required fields."
+		@company.is_completed = true
+		if params[:company][:entity_type] == "" || params[:company][:payroll_frequency]=="" || params[:company][:fiscal_year_end] == "" || (params[:company][:ein].length >=2 && params[:company][:ein].length<=9)== false
+			if (params[:company][:ein].length >=2 && params[:company][:ein].length<=9)== false
+				session[:error] = "EIN must be between 2 to 9 characters but your choices have been saved, however the step can not be completed because there are additional required fields."
+			else
+				session[:error] = "Your choices have been saved, however the step can not be completed because there are additional required fields."
+			end
+				@company.is_completed = false
 		end
 		if @company.update_attributes(company_params)
-			redirect_to edit_company_path(@company)
+			redirecting_request
 		else
 			stepper
 			render :edit
@@ -56,6 +63,14 @@ class CompaniesController < InheritedResources::Base
 
 	def company_params
 		params.require(:company).permit(:company_name, :ein, :fiscal_year_end, :entity_type, :naic_code, :payroll_provider, :payroll_frequency)
+	end
+
+	def redirecting_request
+		if @company.is_completed == true
+			redirect_to principals_path
+		else
+			redirect_to edit_company_path(@company)
+		end
 	end
 
 end

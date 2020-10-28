@@ -15,10 +15,16 @@ class BusinessesController < InheritedResources::Base
 	end
 
 	def update
-		if params[:business][:name] == "" || params[:business][:ein] == "" || params[:business][:does_company_have_employees] == "" || params[:business][:qualified_plan_sponsored] == "" || params[:business][:entity_type] == ""
-      session[:error] = "Your choices have been saved, however the step can not be completed because there are additional required fields."
-    end
-    if @business.update_attributes(business_params)
+		if params[:business][:name] == "" || (params[:business][:ein].length >=2 && params[:business][:ein].length <=9) == false || params[:business][:does_company_have_employees] == "" || params[:business][:qualified_plan_sponsored] == "" || params[:business][:entity_type] == ""
+			if (params[:business][:ein].to_s.length>=2 && params[:business][:ein] .to_s.length <=9) == false
+				session[:error] = "EIN must be between 2 to 9 characters but your choices have been saved, however the step can not be completed because there are additional required fields."
+				params[:business][:ein] = ""
+			else
+				session[:error] = "Your choices have been saved, however the step can not be completed because there are additional required fields."
+			end
+			@business.is_completed = false
+		end
+		if @business.update_attributes(business_params)
 				redirect_to businesses_path
 		else
 			render :edit
@@ -34,9 +40,15 @@ class BusinessesController < InheritedResources::Base
   	@business = Business.new(business_params)
 		@business[:task_id] = session[:task_id]
 		@business[:user_id] = current_user.id
-		if @business.name == "" || @business.ein == "" || @business.qualified_plan_sponsored == "" || @business.entity_type == "" || @business.does_company_have_employees == ""
-			session[:error] = "Your choices have been saved, however the step can not be completed because there are additional required fields."
+		if @business.name == "" || (@business.ein.to_s.length>=2 && @business.ein.to_s.length <=9) == false || @business.qualified_plan_sponsored == "" || @business.entity_type == "" || @business.does_company_have_employees == ""
+			if (@business.ein.to_s.length>=2 && @business.ein.to_s.length <=9 ) == false
+				session[:error] = "EIN must be between 2 to 9 characters but your choices have been saved, however the step can not be completed because there are additional required fields."
+				@business.ein=""
+			else
+				session[:error] = "Your choices have been saved, however the step can not be completed because there are additional required fields."
+			end
 		end
+
 		if @business.save
 			redirect_to businesses_path
 		else
@@ -45,8 +57,13 @@ class BusinessesController < InheritedResources::Base
 	end
 
 	def is_completed
-		business = Business.where("is_completed=? AND user_id=? AND task_id=?", false , current_user.id , session[:task_id])
-		business.update(is_completed: true)
+		businesses = Business.where("is_completed=? AND user_id=? AND task_id=? AND active = ?", false , current_user.id , session[:task_id],false)
+		businesses.each do |business|
+			if business.name == "" || (business.ein.to_s.length >= 2 && business.ein.to_s.length<=9) == false || business.does_company_have_employees == "" || business.qualified_plan_sponsored == "" || business.entity_type == ""
+			else
+				business.update(is_completed: true)
+			end
+		end
 		redirect_to contacts_path
 	end
 

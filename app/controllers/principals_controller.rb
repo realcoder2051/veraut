@@ -14,6 +14,7 @@ class PrincipalsController < InheritedResources::Base
   def update
     if params[:principal][:name] == "" || params[:principal][:title] == "" || params[:principal][:ownership] == ""
       session[:error] = "Your choices have been saved, however the step can not be completed because there are additional required fields."
+      @principal.is_completed = false
     end
     if @principal.update_attributes(principal_params)
 			redirect_to principals_path
@@ -50,9 +51,26 @@ class PrincipalsController < InheritedResources::Base
 	end
 
 	def is_completed
-		principal = Principal.where("is_completed=? AND user_id=? AND task_id=?", false , current_user.id , session[:task_id])
-		principal.update(is_completed: true)
-		redirect_to families_path
+		principals = Principal.where("is_completed=? AND user_id=? AND task_id=? AND active = ?", false , current_user.id , session[:task_id],false)
+    principals.each do |principal|
+      if principal.name == "" || principal.title == "" || principal.ownership.to_s == ""
+      else
+        principal.update(is_completed: true)
+      end
+    end
+    principal_ownership = Principal.where("task_id = ? and is_completed = ? and active = ?",session[:task_id],true,false).pluck("ownership")
+    if principal_ownership.length > 0
+      result = principal_ownership.inject(0){|sum,x| sum + x }
+      if result >= 100
+        redirect_to families_path
+      else
+        session[:error] = "In order to complete this step, total Ownership must be equal to or greater than 100 %"
+        redirect_to principals_path
+      end
+    else
+      session[:error] = "In order to complete this step, total Ownership must be equal to or greater than 100 %"
+      redirect_to principals_path
+    end
 	end
 
 	private

@@ -23,7 +23,7 @@ class EmployeesController < InheritedResources::Base
 
   def save_employee
     Employee.where("status=?", 0).update("status":1)
-    redirect_to employees_path
+    redirect_to approvals_path
   end
 
   def bulk_delete

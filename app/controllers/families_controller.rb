@@ -21,6 +21,7 @@ class FamiliesController < InheritedResources::Base
     @principals = Principal.where("task_id = ? and active = ?", session[:task_id],false)
     if params[:family][:name] == "" || params[:family][:relationship] == "" || params[:family][:related_to] == ""
       session[:error] = "Your choices have been saved, however the step can not be completed because there are additional required fields."
+      @family.is_completed = false
     end
     if @family.update_attributes(family_params)
 			redirect_to families_path
@@ -50,15 +51,15 @@ class FamiliesController < InheritedResources::Base
   end
 
   def destroy
-    if @family.update_attribute(:active, true)
+    if @family.update_attributes(active: true)
       redirect_to families_path
     end
   end
 
 	def is_completed
-		families = Family.where("is_completed=? AND user_id=? AND task_id=?", false , current_user.id , session[:task_id])
+		families = Family.where("is_completed=? AND user_id=? AND active = ? AND task_id=?", false , current_user.id ,false, session[:task_id])
     families.each do |family|
-      if family.related_to.present? and family.relationship.present? and family.name.present?
+      if family.related_to.present? && family.relationship.present? && family.name.present?
         family.update(is_completed: true)
       end
     end
@@ -73,7 +74,7 @@ class FamiliesController < InheritedResources::Base
      if result.count.positive?
        @q.sorts = 'name asc' if @q.sorts.empty?
      end
-    @families = result.paginate(:page => params[:page], per_page:10).order('created_at').where("task_id = ? and active = ?", session[:task_id],false)
+    @families = result.paginate(:page => params[:page], per_page:10).order('created_at').where("user_id = ? and active = ?", current_user.id,false)
   end
 
   def family_params

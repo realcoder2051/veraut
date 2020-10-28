@@ -33,6 +33,7 @@ class ContactNumbersController < InheritedResources::Base
     if params[:contact_number][:contact_type] == ""
       @contact_number.update_attributes(contact_number_params)
       session[:error] = "Your choices have been saved, however the step can not be completed because there are additional required fields."
+      @contact_number.is_completed = false
       redirect_to generals_path
     else
       if check_contact_number_is_exist?

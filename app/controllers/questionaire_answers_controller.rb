@@ -11,7 +11,7 @@ class QuestionaireAnswersController < InheritedResources::Base
 				flash[:alert]= "Your choices have been saved, however the step can not be completed because there are additional required fields."
 				redirect_to edit_plan_path(@questionaire_answer)
 			else
-				flash[:notice] = "Successfully completed"
+				#flash[:notice] = "Successfully completed"
 				redirect_to edit_plan_path(@questionaire_answer)
 			end
 	  end
@@ -29,14 +29,14 @@ class QuestionaireAnswersController < InheritedResources::Base
 			question = QuestionaireAnswer.where("task_id=? AND question_type_id=?", session[:task_id] , 2)
 			if QuestionaireAnswer.where("task_id=? AND answer=? AND question_type_id=?", session[:task_id] , "", 2).present?
 				if question.third.answer == "No" && question.fourth.answer == ""
-					flash[:notice] = "Successfully completed"
+					#flash[:notice] = "Successfully completed"
 					redirect_to edit_fifty_five_hundred_path(@questionaire_answer)
 				else
 					flash[:alert]= "Your choices have been saved, however the step can not be completed because there are additional required fields."
 					redirect_to edit_fifty_five_hundred_path(@questionaire_answer)
 				end
 			else
-				flash[:notice] = "Successfully completed"
+				#flash[:notice] = "Successfully completed"
 				redirect_to edit_fifty_five_hundred_path(@questionaire_answer)
 			end
 	 end
@@ -44,16 +44,23 @@ class QuestionaireAnswersController < InheritedResources::Base
 
   def create_plan
 		questionaire_answers = choose_plan
-		status = questionaire_answers.pluck("answer").include?("")
 		QuestionaireAnswer.import questionaire_answers
-		is_completed_plan(!status)
-		redirect_to plans_new_path
+		if questionaire_answers.pluck("is_completed").include?(false)
+			redirect_to plans_new_path
+		else
+			redirect_to fifty_five_hundred_new_path
+		end
   end
 
   def create_fifty_five_hundred
-    questionaire_answers = fifty_five_hundred_plan
+		questionaire_answers = fifty_five_hundred_plan
+		questionaire_answers[3]&.is_completed=true
 		QuestionaireAnswer.import questionaire_answers
-		is_completed_fifty_five_hundred
+		if questionaire_answers.pluck("is_completed").include?(false)
+			redirect_to fifty_five_hundred_new_path
+		else
+			redirect_to employees_path
+		end
   end
 
 	def edit_5500
@@ -64,19 +71,21 @@ class QuestionaireAnswersController < InheritedResources::Base
 
   def update_5500
     questionaire_answers = fifty_five_hundred_plan
-		QuestionaireAnswer.import questionaire_answers, on_duplicate_key_update: [:answer]
+		QuestionaireAnswer.import questionaire_answers, on_duplicate_key_update: [:answer,:is_completed]
 		question = QuestionaireAnswer.where("task_id=? AND question_type_id=?", session[:task_id] , 2)
-		if QuestionaireAnswer.where("task_id=? AND answer=? AND question_type_id=?", session[:task_id] , "", 2).present?
-			if question.third.answer == "No" && question.fourth.answer == ""
-				flash[:notice] = "Successfully completed"
-				redirect_to edit_fifty_five_hundred_path
+		if question.pluck("answer")&.grep("").count == 1
+			if question.third.answer == "No" && (question.fourth.answer == "" || question.fourth.answer.present?)
+				question.fourth.update(is_completed: true)
+				redirect_to employees_path
 			else
 				flash[:alert]= "Your choices have been saved, however the step can not be completed because there are additional required fields."
 				redirect_to edit_fifty_five_hundred_path
 			end
-		else
-			flash[:notice] = "Successfully completed"
+		elsif question.pluck("answer")&.grep("").count > 1
+			flash[:alert]= "Your choices have been saved, however the step can not be completed because there are additional required fields."
 			redirect_to edit_fifty_five_hundred_path
+		else
+			redirect_to employees_path
 		end
   end
 
@@ -87,16 +96,14 @@ class QuestionaireAnswersController < InheritedResources::Base
   end
 
   def update_plan
-    questionaire_answers = choose_plan
-    QuestionaireAnswer.import questionaire_answers, on_duplicate_key_update: [:answer]
+		questionaire_answers = choose_plan
+    QuestionaireAnswer.import questionaire_answers, on_duplicate_key_update: [:answer,:is_completed]
 		if QuestionaireAnswer.where("task_id=? AND answer=? AND question_type_id=?", session[:task_id] , "", 1).present?
 			flash[:alert] = "Your choices have been saved, however the step can not be completed because there are additional required fields."
-			is_completed_plan(false)
 			redirect_to edit_plan_path
 		else
-			flash[:notice] = "Successfully completed"
-			is_completed_plan(true)
-			redirect_to edit_plan_path
+			#flash[:notice] = "Successfully completed"
+			redirect_to fifty_five_hundred_new_path
 		end
 	end
 
@@ -121,17 +128,17 @@ class QuestionaireAnswersController < InheritedResources::Base
 		@questionaire_answers = QuestionaireAnswer.order('created_at').where(task_id: id, question_type_id: 2).all
 	end
 
-	def is_completed_fifty_five_hundred
-		question_answer = QuestionaireAnswer.where("is_completed=? AND user_id=? AND task_id=? AND question_type_id=?", false , current_user.id , session[:task_id], 2)
-		question_answer.update(is_completed: true)
-    redirect_to fifty_five_hundred_new_path
-	end
+	# def is_completed_fifty_five_hundred
+	# 	question_answer = QuestionaireAnswer.where("is_completed=? AND user_id=? AND task_id=? AND question_type_id=?", false , current_user.id , session[:task_id], 2)
+	# 	question_answer.update(is_completed: true)
+  #   redirect_to fifty_five_hundred_new_path
+	# end
 
-	def is_completed_plan(status)
-		question_answer = QuestionaireAnswer.where("is_completed=? AND user_id=? AND task_id=? AND question_type_id=?", false , current_user.id , session[:task_id], 1)
-		question_answer.update(is_completed: status)
-    #redirect_to edit_plan_path
-	end
+	# def is_completed_plan(status)
+	# 	question_answer = QuestionaireAnswer.where("is_completed=? AND user_id=? AND task_id=? AND question_type_id=?", false , current_user.id , session[:task_id], 1)
+	# 	question_answer.update(is_completed: status)
+  #   #redirect_to edit_plan_path
+	# end
 
   private
 
@@ -140,13 +147,18 @@ class QuestionaireAnswersController < InheritedResources::Base
     end
 
     def choose_plan
-     answers = params[:questionaire_answer][:answer][0].permit!.to_h
+		 answers = params[:questionaire_answer][:answer][0].permit!.to_h
       questionaire_answers = []
       answer_id = params[:questionaire_answer][:id]
 			answers.each do |indx,val|
 				index = indx.to_i
         questionaire_answer = QuestionaireAnswer.find_or_initialize_by(id: answer_id[index].to_i.positive? ? answer_id[index].to_i : nil )
-        questionaire_answer[:answer] = val
+				questionaire_answer[:answer] = val
+				if questionaire_answer[:answer].present?
+					questionaire_answer[:is_completed] = true
+				else
+					questionaire_answer[:is_completed] = false
+				end
 				questionaire_answer[:task_id] = session[:task_id]
 				questionaire_answer[:user_id] = current_user.id
         questionaire_answer[:question_type_id] = 1
@@ -163,7 +175,12 @@ class QuestionaireAnswersController < InheritedResources::Base
 			answers.each do |indx, val|
 				index = indx.to_i
         questionaire_answer = QuestionaireAnswer.find_or_initialize_by(id: id[index].to_i.positive? ? id[index].to_i : nil )
-        questionaire_answer[:answer] = val
+				questionaire_answer[:answer] = val
+				if questionaire_answer[:answer].present?
+					questionaire_answer[:is_completed] = true
+				else
+					questionaire_answer[:is_completed] = false
+				end
 				questionaire_answer[:task_id] = session[:task_id]
 				questionaire_answer[:user_id] = current_user.id
 				questionaire_answer[:question_type_id] = 2
