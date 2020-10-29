@@ -38,14 +38,6 @@
 			<%#div class="mdk-header-layout__content" style="display:none"></div#%%>
 			<!-- Header Layout Content -->
 			<div class="mdk-drawer-layout js-mdk-drawer-layout" data-push data-responsive-width="992px">
-				<div class="mdk-drawer-layout__content page">
-					<% unless @flash_action.present? %>
-						<%= render 'layouts/stack/flashmessage' %>
-					<% end %>
-					<%# CONTENT  %>
-					<%= yield %>
-
-				</div>
 				<!-- // END drawer-layout__content -->
 				<% if action_name == 'internal_dashboard'%>
 				<%else%>
@@ -58,7 +50,14 @@
 						<%= render '/shared/notes_popup', { data_collection_step: controller_name.singularize } %>
 					<% end %>
 				<%end%>
+				<div class="col-9">
+					<% unless @flash_action.present? %>
+						<%= render 'layouts/stack/flashmessage' %>
+					<% end %>
+					<%# CONTENT  %>
+					<%= yield %>
 
+				</div>
 			</div>
 		</div>
 	<%end %>
