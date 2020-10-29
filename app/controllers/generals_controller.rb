@@ -39,12 +39,14 @@ class GeneralsController < InheritedResources::Base
 	end
 
 	def is_completed
-		addresses = Address.where("is_completed=? AND user_id=? AND task_id=? and active =?", false , current_user.id , session[:task_id],true)
+		address_mappings = AddressMapping.where("is_completed=? AND task_id=? and active =?", false , session[:task_id],true)
 		contact_numbers = ContactNumber.where("is_completed=? AND user_id=? AND task_id=? and active = ?", false , current_user.id , session[:task_id],false)
-		addresses.each do |address|
+		address_mappings.each do |address_mapping|
+			address = Address.find(address_mapping.address_id)
 			if address.address1 == "" || address.city == "" || address.state == "" || address.zip == ""
 			else
 				address.update_attributes(is_completed: true)
+				address_mapping.update(is_completed: true)
 			end
 		end
 		contact_numbers.each do |contact_number|

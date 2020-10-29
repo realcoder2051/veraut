@@ -139,7 +139,7 @@
         overflow-y: auto;
       }
       .company_index_scroll{
-        height:1000px;
+        heifght:1000px;
         overflow-y: auto;
       }
       .employee-form-scroll {
@@ -653,4 +653,8 @@ td, th {
 
 .sidebar-light .active > .sidebar-menu-button .sidebar-menu-icon {
   color: #308AF3 !important;
+}
+
+.mdk-drawer__content{
+  transition: none !important;
 }

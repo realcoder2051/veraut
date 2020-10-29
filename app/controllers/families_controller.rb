@@ -59,7 +59,7 @@ class FamiliesController < InheritedResources::Base
 	def is_completed
 		families = Family.where("is_completed=? AND user_id=? AND active = ? AND task_id=?", false , current_user.id ,false, session[:task_id])
     families.each do |family|
-      if family.related_to.present? && family.relationship.present? && family.name.present?
+      if family&.related_to && family&.relationship && family&.name
         family.update(is_completed: true)
       end
     end

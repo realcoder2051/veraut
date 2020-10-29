@@ -16,18 +16,18 @@ class ApplicationController < ActionController::Base
 
   def stepper
     @steppers = {}
-    @steppers[:address] = Address.where(task_id: session[:task_id],active: true)&.pluck("is_completed")
+    @steppers[:address] = AddressMapping.where(task_id: session[:task_id],active: true)&.pluck("is_completed")
     @steppers[:contact_number] = ContactNumber.where(task_id: session[:task_id],active: false)&.pluck("is_completed")
     @steppers[:company] = Company.where(task_id: session[:task_id])&.pluck("is_completed")
     @steppers[:principal] = [calculate_ownership?]
     @steppers[:family] = Family.where(task_id: session[:task_id],active: false)&.pluck("is_completed")
     @steppers[:business] = Business.where(task_id: session[:task_id],active: false)&.pluck("is_completed")
-    @steppers[:contact] = Contact.find_by(task_id: session[:task_id])&.is_completed
+    @steppers[:contact] = Contact.where(task_id: session[:task_id])&.pluck("is_completed")
     plan = QuestionaireAnswer.where(task_id: session[:task_id], question_type_id: 1)&.pluck("is_completed")
     @steppers[:plan] = [plan.present? && !plan.include?(false)]
     fifty_five_hundred = QuestionaireAnswer.where(task_id: session[:task_id], question_type_id: 2)&.pluck("is_completed")
     @steppers[:fifty_five_hundred] = [fifty_five_hundred.present? && !fifty_five_hundred.include?(false)]
-    @steppers[:employee] = Employee.find_by(task_id: session[:task_id])&.is_completed
+    @steppers[:employee] = Employee.where(task_id: session[:task_id],active: false)&.pluck("is_completed")
     @steppers[:general] = @steppers[:address] && @steppers[:contact_number]
   end
 
@@ -38,6 +38,15 @@ class ApplicationController < ActionController::Base
 
   def after_sign_out_path_for(_)
     root_path
+  end
+
+  def check_address_exist
+    address_mappings = AddressMapping.where(task_id: session[:task_id],active: true)
+    is_completed = []
+    address_mappings.each do |address_mapping|
+      is_completed << address_mapping.address.is_completed
+    end
+    return is_completed
   end
 
   def calculate_ownership?

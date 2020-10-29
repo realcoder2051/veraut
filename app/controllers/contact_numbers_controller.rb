@@ -66,7 +66,7 @@ class ContactNumbersController < InheritedResources::Base
     end
 
     def check_contact_number_already_exist?(contact_number)
-      result = ContactNumber.where("number = ? and contact_type = ? and user_id = ? and active = ?",contact_number.number,contact_number.contact_type,contact_number.user_id,false)
+      result = ContactNumber.where("number = ? and contact_type = ? and task_id = ? and active = ?",contact_number.number,contact_number.contact_type,session[:task_id],false)
       result.count > 0 ? true : false
     end
 

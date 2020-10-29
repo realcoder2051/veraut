@@ -24,11 +24,7 @@ module ApplicationHelper
 	end
 
 	def wizard_step_status(steps)
-		if steps == 'principal' || steps == 'family' || steps == 'business' || steps == 'company' || steps == 'general' || steps == 'plan' || steps == 'fifty_five_hundred'
-			@steppers[steps.to_sym].include?(true) ?  'complete' : 'disabled'
-		else
-			@steppers[steps.to_sym]==true   ?  'complete' : 'disabled'
-		end
+		@steppers[steps.to_sym].include?(true) ?  'complete' : 'disabled'
 	end
 
 	def step_incomplete(incomplete)
