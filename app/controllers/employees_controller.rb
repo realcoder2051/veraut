@@ -11,7 +11,7 @@ class EmployeesController < InheritedResources::Base
   end
 
   def update
-    if params[:employee][:first_name] == "" || params[:employee][:last_name] == "" || params[:employee][:ssn] == "" || params[:employee][:ssn].length>9 || params[:employee][:hours] == "" || params[:employee][:compensation] == "" || params[:employee][:date_of_birth]== "" || params[:employee][:original_date_of_hire] == ""
+    if params[:employee][:first_name] == "" || params[:employee][:last_name] == "" || params[:employee][:ssn].length >= 9 || params[:employee][:hours] == "" || params[:employee][:compensation] == "" || params[:employee][:date_of_birth]== "" || params[:employee][:original_date_of_hire] == ""
       session[:error] = "Your choices have been saved, however the step can not be completed because there are additional required fields."
     end
     if @employee.update_attributes(employee_params)
@@ -22,13 +22,17 @@ class EmployeesController < InheritedResources::Base
   end
 
   def save_employee
-    Employee.where("status=?", 0).update("status":1)
+    employees = Employee.where("is_completed=? AND active = ? AND task_id=?", false ,false, session[:task_id])
+    employees.each do |employee|
+      if employee&.first_name && employee&.last_name && employee&.ssn.to_s.length<=9 && employee&.hours && employee.compensation && employee&.date_of_birth && employee&.original_date_of_hire
+        employee.update(is_completed: true)
+      end
+    end
     redirect_to approvals_path
   end
 
   def bulk_delete
-    puts "delete"
-    data = Employee.where("task_id=?", session[:task_id]).destroy_all if Employee.exists?
+    data = Employee.where("task_id=?", session[:task_id]).update(active: true) if Employee.exists?
     redirect_to employees_path
 	end
 
@@ -44,7 +48,7 @@ class EmployeesController < InheritedResources::Base
 
   def create
     @employee = Employee.new(employee_params)
-    if @employee.first_name == "" || @employee.last_name == "" || @employee.ssn == "" || @employee.date_of_birth == "" || @employee.original_date_of_hire == "" || @employee.hours == "" || @employee.compensation == "" || @employee.ssn.to_s.length>9
+    if @employee.first_name == "" || @employee.last_name == "" || @employee.ssn.to_s.length> 9 || @employee.date_of_birth == "" || @employee.original_date_of_hire == "" || @employee.hours == "" || @employee.compensation == "" || @employee.ssn.to_s.length>9
       session[:error] = "Your choices have been saved, however the step can not be completed because there are additional required fields."
     end
     @employee[:task_id] = session[:task_id]
@@ -78,6 +82,9 @@ class EmployeesController < InheritedResources::Base
     if @employee.update_attribute(:active, true)
       redirect_to employees_path
     end
+  end
+
+  def is_completed
   end
 
   private

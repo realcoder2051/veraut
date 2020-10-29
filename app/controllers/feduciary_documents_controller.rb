@@ -3,16 +3,16 @@ class FeduciaryDocumentsController < InheritedResources::Base
   before_action :find_params, only: %i[edit update destroy show]
 
 
-  def index 
+  def index
     ransack_search = params[:q]
-    @name = ransack_search[:name_cont] if ransack_search.present?   
+    @name = ransack_search[:name_cont] if ransack_search.present?
   end
 
   def show
-    
+
   end
 
-	def create  
+	def create
     @feduciary_document = FeduciaryDocument.new(feduciary_document_params)
 		@feduciary_document[:task_group_id] = current_user.task_group.id
     if @feduciary_document.save
@@ -23,7 +23,6 @@ class FeduciaryDocumentsController < InheritedResources::Base
   end
 
 	def edit
-		
   end
 
   def update

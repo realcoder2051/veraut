@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_24_122115) do
+ActiveRecord::Schema.define(version: 2020_10_29_072710) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_stat_statements"
@@ -45,6 +45,7 @@ ActiveRecord::Schema.define(version: 2020_10_24_122115) do
     t.boolean "active"
     t.integer "user_id"
     t.integer "task_id"
+    t.boolean "is_completed", default: false
     t.index ["address_id"], name: "index_address_mappings_on_address_id"
     t.index ["address_type_id"], name: "index_address_mappings_on_address_type_id"
   end

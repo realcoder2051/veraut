@@ -29,6 +29,3 @@
 
 Address.delete_all
 AddressMapping.delete_all
-
-
-

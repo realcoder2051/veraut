@@ -427,7 +427,7 @@
   height: $monthNavHeight;
   display: inline-block;
   text-align: center;
-  transform: translate3d(0px, 0px, 0px);
+  //transform: translate3d(0px, 0px, 0px);
 
   span.cur-month {
     font-family: inherit;
@@ -555,7 +555,7 @@ span.flatpickr-weekday {
   -ms-flex-wrap: wrap;
   -ms-flex-pack: justify;
   justify-content: space-around;
-  transform: translate3d(0px, 0px, 0px);
+  //transform: translate3d(0px, 0px, 0px);
   opacity: 1;
 
   & + .dayContainer {

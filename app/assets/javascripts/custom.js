@@ -38,7 +38,6 @@ var hash = {
 	"/roles": "view-roles",
 	"/roles/new": "add-role",
 	"/rights": "view-rights",
-	"/rights/new": "add-right",
 	"/approvals": "view-approval",
 	"/notes/new": "view-approval",
 	"/notes": "view-approval",
@@ -256,7 +255,6 @@ function update_note()
 }
 
 
-
 $(".question_field2").change(function(e){
 	var value = $( ".question_field2 option:selected" ).text();
 	if (value == 'Yes'){
@@ -272,11 +270,22 @@ $(".question_field2").change(function(e){
 
 $(document).ready(function(){
 	$('.datepicker').datepicker();
+
+	$('#new_approval form').validate({ // initialize the plugin
+		rules: {
+				name: "required",
+				email: "required"
+			}
+	});
 });
 
 $("#approval-submit").click(function (e) {
-	$('#new_approval').modal('hide')
-	$('#welcome_message').modal('show')
+	if($('#new_approval form').valid()){
+		$('#new_approval').modal('hide');
+		$('#welcome_message').modal('show');
+	}else{
+		return false;
+	}
 })
 
 $("#welcome_message_close").click(function (e) {

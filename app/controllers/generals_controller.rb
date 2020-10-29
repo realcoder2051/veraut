@@ -39,10 +39,23 @@ class GeneralsController < InheritedResources::Base
 	end
 
 	def is_completed
-		address = Address.where("is_completed=? AND user_id=? AND task_id=?", false , current_user.id , session[:task_id])
-		contact_number = ContactNumber.where("is_completed=? AND user_id=? AND task_id=?", false , current_user.id , session[:task_id])
-		address.update(is_completed: true)
-		contact_number.update(is_completed: true)
+		address_mappings = AddressMapping.where("is_completed=? AND task_id=? and active =?", false , session[:task_id],true)
+		contact_numbers = ContactNumber.where("is_completed=? AND user_id=? AND task_id=? and active = ?", false , current_user.id , session[:task_id],false)
+		address_mappings.each do |address_mapping|
+			address = Address.find(address_mapping.address_id)
+			if address.address1 == "" || address.city == "" || address.state == "" || address.zip == ""
+			else
+				address.update_attributes(is_completed: true)
+				address_mapping.update(is_completed: true)
+			end
+		end
+		contact_numbers.each do |contact_number|
+			if contact_number.contact_type == ""
+			else
+				contact_number.update(is_completed: true)
+			end
+		end
+		#contact_number.update(is_completed: true)
 		redirect_to new_company_path
 	end
 

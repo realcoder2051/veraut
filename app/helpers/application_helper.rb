@@ -24,18 +24,7 @@ module ApplicationHelper
 	end
 
 	def wizard_step_status(steps)
-		steps = steps.kind_of?(Array) ? steps : [steps]
-		step_completed = false
-		puts ("1221231321321132321312----------------------------------------123123123312")
-		steps.each do |step|
-			step_completed = step.present?
-		end
-		if @families_stepper.present?
-			@families_stepper
-
-		end
-		@count += 1 if step_completed == false
-		step_completed ?  'complete' : 'disabled'
+		@steppers[steps.to_sym].include?(true) ?  'complete' : 'disabled'
 	end
 
 	def step_incomplete(incomplete)

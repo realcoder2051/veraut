@@ -138,8 +138,12 @@
         height:750px;
         overflow-y: auto;
       }
+      .company_index_scroll{
+        heifght:1000px;
+        overflow-y: auto;
+      }
       .employee-form-scroll {
-        height:750px;
+        height:850px;
         overflow-y: auto;
       }
       .modal-open{
@@ -649,4 +653,8 @@ td, th {
 
 .sidebar-light .active > .sidebar-menu-button .sidebar-menu-icon {
   color: #308AF3 !important;
+}
+
+.mdk-drawer__content{
+  transition: none !important;
 }

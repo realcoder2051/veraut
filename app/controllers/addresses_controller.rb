@@ -4,7 +4,7 @@ class AddressesController < InheritedResources::Base
 	def create
 		if params[:address][:id].present?
 			@address = Address.find(params[:address][:id])
-			address_type=@address.address_mappings.where(active: true).pluck(:address_type_id) if @address.address_mappings.present?
+			address_type=@address.address_mappings.where(task_id: session[:task_id],active: true).pluck(:address_type_id) if @address.address_mappings.present?
 			if address_type.include?(params[:Address_Type].to_i)
 				session[:error] = "Address with this Address Type Already Exist"
 				address_collection

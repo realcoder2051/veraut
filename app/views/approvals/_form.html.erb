@@ -1,5 +1,5 @@
  <div class="field">
-    <%= f.text_field :name, :required => true %>
+    <%= f.text_field :name, required: true,class: 'required' %>
   </div>
 
   <div class="field">
@@ -10,8 +10,8 @@
     <%= f.text_field :phone %>
   </div>
   <div class="field">
-  <%= f.email_field :email ,:required => true %>
-</div>
+    <%= f.email_field :email ,:required => true,class: 'required' %>
+  </div>
 
   <div class="mt-2" >
    <%= f.submit :Send,class: "btn btn-success",id: "approval-submit" %>

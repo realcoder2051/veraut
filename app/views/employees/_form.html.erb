@@ -1,6 +1,5 @@
 <div class="form-row" >
-  <div class="col-lg-3 left-move"></div>
-  <div class="col-lg-4 left-move">
+  <div class="col-lg-4 offset-md-4">
     <label for="employee_first_name">First Name <span class="required"></span></label>
     <%=f.text_field :first_name ,hide_label: true%>
     <div class="invalid-feedback">Please provide a time.</div>
@@ -8,8 +7,7 @@
   </div>
 </div>
 <div class="row" >
-  <div class="col-lg-3 left-move"></div>
-  <div class="col-lg-4 left-move">
+  <div class="col-lg-4 offset-md-4">
     <label for="employee_last_name">Last Name <span class="required"></span></label>
     <%=f.text_field :last_name , hide_label: true%>
     <div class="invalid-feedback">Please provide a time.</div>
@@ -17,8 +15,7 @@
   </div>
 </div>
 <div class="row" >
-  <div class="col-lg-3 left-move"></div>
-  <div class="col-lg-4 left-move ">
+  <div class="col-lg-4 offset-md-4">
     <label for="employee_ssn">SSN (Maximum 9 Characters) <span class="required"></span></label>
     <%=f.text_field :ssn,	hide_label: true %>
     <div class="invalid-feedback">Please provide a time.</div>
@@ -26,16 +23,14 @@
     </div>
 </div>
 <div class="row" >
-  <div class="col-lg-3 left-move"></div>
-  <div class="col-lg-4 left-move">
+  <div class="col-lg-4 offset-md-4">
     <%=f.select :gender,options_for_select(["Male","Female"], @employee[:gender]), { :include_blank => '-- Select One --' }%>
     <div class="invalid-feedback">Please provide a time.</div>
     <div class="valid-feedback">Looks good!</div>
   </div>
 </div>
 <div class="row d-none" >
-  <div class="col-lg-3 left-move"></div>
-  <div class="col-lg-4 left-move" >
+  <div class="col-lg-4 offset-md-4" >
 		<input type="text" class='datepicker' >
     <div class="invalid-feedback">Please provide a time.</div>
     <div class="valid-feedback">Looks good!</div>
@@ -43,8 +38,7 @@
 </div>
 
 <div class="row" >
-  <div class="col-lg-3 left-move" ></div>
-  <div class="col-lg-4 left-move">
+  <div class="col-lg-4 offset-md-4">
     <label for="employee_date_of_birth">Date of Birth <span class="required"></span></label>
     <%=f.date_field :date_of_birth , hide_label: true%>
     <div class="invalid-feedback">Please provide a time.</div>
@@ -52,42 +46,37 @@
   </div>
 </div>
 <div class="row" >
-  <div class="col-lg-3 left-move"></div>
-  <div class="col-lg-4 left-move">
-    <label for="employee_original_date_of_hire">Original Date Of Hire <span class="required"></span></label>
+  <div class="col-lg-4 offset-md-4">
+    <label for="employee_original_date_of_hire">Original Date of Hire <span class="required"></span></label>
     <%=f.date_field :original_date_of_hire ,hide_label: true%>
     <div class="invalid-feedback">Please provide a time.</div>
     <div class="valid-feedback">Looks good!</div>
   </div>
 </div>
 <div class="row" >
-  <div class="col-lg-3 left-move"></div>
-  <div class="col-lg-4 left-move">
-    <%=f.date_field :date_of_termination , {:label=> 'Date Of Termination'}%>
+  <div class="col-lg-4 offset-md-4">
+    <%=f.date_field :date_of_termination , {:label=> 'Date of Termination'}%>
     <div class="invalid-feedback">Please provide a time.</div>
     <div class="valid-feedback">Looks good!</div>
   </div>
 </div>
 <div class="row" >
-  <div class="col-lg-3 left-move"></div>
-  <div class="col-lg-4 left-move">
+  <div class="col-lg-4 offset-md-4">
     <%=f.date_field :date_of_retire ,	{:label=> 'Date of Retire'}%>
     <div class="invalid-feedback">Please provide a time.</div>
     <div class="valid-feedback">Looks good!</div>
   </div>
 </div>
 <div class="row" >
-  <div class="col-lg-3 left-move"></div>
-  <div class="col-lg-4 left-move">
-    <label for="employee_compensation">compensation <span class="required"></span></label>
+  <div class="col-lg-4 offset-md-4">
+    <label for="employee_compensation">Compensation <span class="required"></span></label>
     <%=f.text_field :compensation,hide_label: true%>
     <div class="invalid-feedback">Please provide a time.</div>
     <div class="valid-feedback">Looks good!</div>
   </div>
 </div>
 <div class="row" >
-  <div class="col-lg-3 left-move"></div>
-  <div class="col-lg-4 left-move">
+  <div class="col-lg-4 offset-md-4">
       <label for="employee_hours">Hours <span class="required"></span></label>
     <%=f.number_field :hours,hide_label:true%>
     <div class="invalid-feedback">Please provide a time.</div>
@@ -95,40 +84,35 @@
   </div>
 </div>
 <div class="row" >
-  <div class="col-lg-3 left-move"></div>
-  <div class="col-lg-4 left-move">
+  <div class="col-lg-4 offset-md-4">
     <%=f.text_field :pre_tax_salary_deferal, {:label=> 'Pre-Tax Salary Deferral', :value=> '$'} %>
     <div class="invalid-feedback">Please provide a time.</div>
     <div class="valid-feedback">Looks good!</div>
   </div>
 </div>
 <div class="row" >
-  <div class="col-lg-3 left-move"></div>
-  <div class="col-lg-4 left-move">
+  <div class="col-lg-4 offset-md-4">
     <%=f.text_field :roth_salary_deferal,  {:label=> 'Roth Salary Deferral', :value=> '$'}%>
     <div class="invalid-feedback">Please provide a time.</div>
     <div class="valid-feedback">Looks good!</div>
   </div>
 </div>
 <div class="row" >
-  <div class="col-lg-3 left-move"></div>
-  <div class="col-lg-4 left-move">
+  <div class="col-lg-4 offset-md-4">
     <%=f.text_field :employee_match, {:label=> 'Employer Match', :value=> '$'}%>
     <div class="invalid-feedback">Please provide a time.</div>
     <div class="valid-feedback">Looks good!</div>
   </div>
 </div>
 <div class="row" >
-  <div class="col-lg-3 left-move"></div>
-  <div class="col-lg-4 left-move">
+  <div class="col-lg-4 offset-md-4">
     <%=f.text_field :company_divison,  {:label=> 'Company Division'}%>
     <div class="invalid-feedback">Please provide a time.</div>
     <div class="valid-feedback">Looks good!</div>
   </div>
 </div>
 <div class="row" >
-  <div class="col-lg-3 left-move"></div>
-  <div class="col-lg-4 left-move">
+  <div class="col-lg-4 offset-md-4">
     <%=f.check_box :union_employee,  {:label=> 'Union Employee'} %>
     <div class="invalid-feedback">Please provide a time.</div>
     <div class="valid-feedback">Looks good!</div>
@@ -136,8 +120,7 @@
 </div>
 <div class="actions col-lg-12 mt-3">
   <div class="row">
-    <div class="col-lg-4 left-move "></div>
-    <div class="left-move my-2 ">
+    <div class="my-2 offset-md-5 ">
       <%= f.submit value: "Save", class: "btn btn-primary"%>
     </div>
     <div class="col-lg-1 right-move"></div>

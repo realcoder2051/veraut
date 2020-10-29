@@ -79,9 +79,9 @@ class ContactsController < InheritedResources::Base
 		@users = []
 		#begin
 			#rescue
-		technician_user = Role.where(name: "Technician").order('created_at').first.users.first if Role.where(name: "Technician").first.present?
-		main_contact_user = Role.where(name: "Main Contact").order('created_at').first.users.first if Role.where(name: "Main Contact").first.present?
-		@q = User.where("id = ? or id = ?" , technician_user.id,main_contact_user.id).ransack(params[:q])
+		technician_user = Role.where(name: "Technician").order('created_at').first&.users&.first
+		main_contact_user = Role.where(name: "Main Contact").order('created_at').first&.users&.first
+		@q = User.where("id = ? or id = ?" , technician_user&.id,main_contact_user&.id).ransack(params[:q])
 		@users = @q.result
 	end
 
