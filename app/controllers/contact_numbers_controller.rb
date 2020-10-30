@@ -48,7 +48,7 @@ class ContactNumbersController < InheritedResources::Base
   end
 
   def index
-		@numbers = ContactNumber.where(user_id: current_user.id)
+		@numbers = ContactNumber.where(task_id: session[:task_id])
 		@notes = Note.all
   end
 

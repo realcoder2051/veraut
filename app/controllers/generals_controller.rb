@@ -25,7 +25,7 @@ class GeneralsController < InheritedResources::Base
 		@notes = Note.all
 		@q = ContactNumber.where("active=?",false).ransack(params[:q])
 		result = @q.result
-		@numbers = result.paginate(:page => params[:page], per_page:10).order('contact_type ASC').where(user_id: current_user.id)
+		@numbers = result.paginate(:page => params[:page], per_page:10).order('contact_type ASC').where(task_id: session[:task_id])
 	end
 
 	def find_task
@@ -61,7 +61,7 @@ class GeneralsController < InheritedResources::Base
 
 	private
 		def fetch_address
-			@q = AddressMapping.joins(:address).where("address_mappings.active=? and address_mappings.user_id =? ",true, current_user.id).ransack(params[:q])
+			@q = AddressMapping.joins(:address).where("address_mappings.active=? and address_mappings.task_id =? ",true, session[:task_id]).ransack(params[:q])
 			@address_mappings = @q.result
 			# if result.count.positive?
 			#@q.sorts = 'address_type asc' if @q.sorts.empty?

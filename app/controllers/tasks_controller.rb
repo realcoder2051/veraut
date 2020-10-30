@@ -11,7 +11,11 @@ class TasksController < InheritedResources::Base
     @task.update(task_group_id: current_user.task_group.id)
     if @task.save
       if previous_task.present?
+        create_address(previous_task)
+        create_contact_numbers(previous_task)
         create_principals(previous_task)
+        create_families(previous_task)
+        create_businesses(previous_task)
         redirect_to tasks_path
       else
         redirect_to tasks_path
@@ -20,9 +24,41 @@ class TasksController < InheritedResources::Base
   end
 
   def create_principals(previous_task)
-    @principals = Principal.where("task_id = ?",previous_task.id)
-    @principals.each do |principal|
-      Principal.create(name: principal.name,title: principal.title,officer: principal.officer,ownership: principal.ownership,task_id: @task.id,user_id: current_user.id)      
+    principals = Principal.where("task_id = ? and active =?",previous_task.id,false)
+    principals.each do |principal|
+      Principal.create(name: principal.name,title: principal.title,officer: principal.officer,ownership: principal.ownership,task_id: @task.id,user_id: current_user.id)
+    end
+  end
+
+  def create_families(previous_task)
+    families = Family.where("task_id = ? and active = ?",previous_task.id,false)
+    families.each do |family|
+      Family.create(name: family.name,relationship: family.relationship,related_to: family.related_to,task_id: @task.id,user_id: current_user.id)
+    end
+  end
+
+  def create_businesses(previous_task)
+    businesses = Business.where("task_id = ? and active = ?",previous_task.id,false)
+    businesses.each do |business|
+      Business.create(name: business.name,ein: business.ein,date_purchased_or_sold: business.date_purchased_or_sold ,address: business.address,city: business.city,state: business.state,zip: business.zip,phone: business.phone,does_company_have_employees: business.does_company_have_employees,qualified_plan_sponsored: business.qualified_plan_sponsored,entity_type: business.entity_type,task_id: @task.id,user_id: current_user.id)
+    end
+  end
+
+  def create_contact_numbers(previous_task)
+    contact_numbers = ContactNumber.where("task_id = ? and active = ?",previous_task.id,false)
+    contact_numbers.each do |contact_number|
+      ContactNumber.create(number: contact_number.number,contact_type: contact_number.contact_type,task_id: @task.id,user_id: current_user.id)
+    end
+  end
+
+  def create_address(previous_task)
+    addresses = Address.where("task_id = ? and active = ?",previous_task.id,false)
+    addresses.each do |address|
+      Address.create(address1: address.address1,address2: address.address2,city: address.city,state: address.state,zip: address.zip,task_id: @task.id,user_id: current_user.id)
+    end
+    address_mappings = AddressMapping.where("task_id = ? and active = ?",previous_task.id,true)
+    address_mappings.each do |address_mapping|
+      AddressMapping.create(address_id: address_mapping.address_id,address_type_id: address_mapping.address_type_id,active: address_mapping.active,task_id: @task.id,user_id: current_user.id)
     end
   end
 

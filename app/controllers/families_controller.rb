@@ -9,12 +9,12 @@ class FamiliesController < InheritedResources::Base
   end
 
   def edit
-    @principals = Principal.where("user_id = ? and active = ?", current_user.id,false)
+    @principals = Principal.where("task_id = ? and active = ?",session[:task_id],false)
   end
 
   def new
     @family = Family.new
-    @principals = Principal.where("user_id = ? and active = ?",current_user.id,false)
+    @principals = Principal.where("task_id = ? and active = ?",session[:task_id],false)
   end
 
   def update
@@ -74,7 +74,7 @@ class FamiliesController < InheritedResources::Base
      if result.count.positive?
        @q.sorts = 'name asc' if @q.sorts.empty?
      end
-    @families = result.paginate(:page => params[:page], per_page:10).order('created_at').where("user_id = ? and active = ?", current_user.id,false)
+    @families = result.paginate(:page => params[:page], per_page:10).order('created_at').where("task_id = ? and active = ?",session[:task_id],false)
   end
 
   def family_params

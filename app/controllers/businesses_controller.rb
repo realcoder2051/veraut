@@ -18,7 +18,7 @@ class BusinessesController < InheritedResources::Base
 		if params[:business][:name] == "" || (params[:business][:ein].length >=2 && params[:business][:ein].length <=9) == false || params[:business][:does_company_have_employees] == "" || params[:business][:qualified_plan_sponsored] == "" || params[:business][:entity_type] == ""
 			if (params[:business][:ein].to_s.length>=2 && params[:business][:ein] .to_s.length <=9) == false
 				session[:error] = "EIN must be between 2 to 9 characters but your choices have been saved, however the step can not be completed because there are additional required fields."
-				params[:business][:ein] = ""
+				#params[:business][:ein] = ""
 			else
 				session[:error] = "Your choices have been saved, however the step can not be completed because there are additional required fields."
 			end
@@ -43,7 +43,7 @@ class BusinessesController < InheritedResources::Base
 		if @business.name == "" || (@business.ein.to_s.length>=2 && @business.ein.to_s.length <=9) == false || @business.qualified_plan_sponsored == "" || @business.entity_type == "" || @business.does_company_have_employees == ""
 			if (@business.ein.to_s.length>=2 && @business.ein.to_s.length <=9 ) == false
 				session[:error] = "EIN must be between 2 to 9 characters but your choices have been saved, however the step can not be completed because there are additional required fields."
-				@business.ein=""
+				#@business.ein=""
 			else
 				session[:error] = "Your choices have been saved, however the step can not be completed because there are additional required fields."
 			end
@@ -81,7 +81,7 @@ class BusinessesController < InheritedResources::Base
      if result.count.positive?
        @q.sorts = 'name asc' if @q.sorts.empty?
      end
-    @businesses = result.paginate(:page => params[:page], per_page:10).order('created_at').where("user_id = ? and active =?", current_user.id,false)
+    @businesses = result.paginate(:page => params[:page], per_page:10).order('created_at').where("task_id = ? and active =?", session[:task_id],false)
   end
 
 	def business_params
