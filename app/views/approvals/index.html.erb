@@ -1,61 +1,60 @@
-<div class="employee_index_scroll">
-	<div class="container-fluid page__heading-container">
-		<div class="page__heading d-flex align-items-center">
-			<div class="flex">
-				<div class="row">
-					<div class="col-lg-2">
-						<nav aria-label="breadcrumb">
-							<ol class="breadcrumb mb-0">
-								<li class="breadcrumb-item"><a href=<%='#'%>><i class="material-icons icon-20pt">home</i></a></li>
-								<li class="breadcrumb-item active" aria-current="page"><a href=<%='#'%>>Approval</a></li>
-							</ol>
-							<h1 class="m-0" <%= count()%>>Approval</h1>
-						</nav>
-					</div>
-					<!-- Stepper partial -->
-					<div class="container">
-						<div>
-							<%= render '/shared/stepper' %>
-						</div>
-					</div>
+<div class="container-fluid page__heading-container">
+	<div class="page__heading d-flex align-items-center">
+		<div class="flex">
+			<div class="row">
+				<div class="col-lg-2">
+					<nav aria-label="breadcrumb">
+						<ol class="breadcrumb mb-0">
+							<li class="breadcrumb-item"><a href=<%='#'%>><i class="material-icons icon-20pt">home</i></a></li>
+							<li class="breadcrumb-item active" aria-current="page"><a href=<%='#'%>>Approval</a></li>
+						</ol>
+						<h1 class="m-0" <%= count()%>>Approval</h1>
+					</nav>
 				</div>
-			</div>
-		</div>
-	</div>
-
-	<div class="container-fluid page__container">
-		<div>
-			<div class="mr-3 float-right btn-size">
-				<th><button type="button" class=" btn btn-success <%= btn_status %>" id="btn-approval" data-toggle="modal"
-						data-target="#<%= approval_check %> "> <span> </span></button></th>
-			</div>
-			<h3> PLEASE READ CAREFULLY BEFORE SUBMITTING YOUR CENSUS COLLECTION </h3>
-		</div>
-		<div class="mt-4 mb-2">
-			<span style="font-style: italic;"> Please review the information you are about to submit. This information will be
-				used inprocessing your
-				retirement plan's compliance reports and in satisfying the reporting and this closure requirements of the
-				department of labour. If you have any questions or need additional assistance, please contact your
-				administrative
-				team by clicking on the contact button at the top right hand corner of your screen. </span>
-		</div>
-
-		<div class="card card-form">
-			<div class="row no-gutters">
-				<div class="col-lg-12 card-form__body">
-					<%= render '/documents/document.table', documents: @documents  %>
-				</div>
-			</div>
-		</div>
-		<div class="card card-form">
-			<div class="row no-gutters">
-				<div class="col-lg-12 card-form__body">
-					<%= render '/notes/approval_note_table', note: @notes%>
+				<!-- Stepper partial -->
+				<div class="container">
+					<div>
+						<%= render '/shared/stepper' %>
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
+
+<div class="container-fluid page__container">
+	<div>
+		<div class="mr-3 float-right btn-size">
+			<th><button type="button" class=" btn btn-success <%= btn_status %>" id="btn-approval" data-toggle="modal"
+					data-target="#<%= approval_check %> "> <span> </span></button></th>
+		</div>
+		<h3> PLEASE READ CAREFULLY BEFORE SUBMITTING YOUR CENSUS COLLECTION </h3>
+	</div>
+	<div class="mt-4 mb-2">
+		<span style="font-style: italic;"> Please review the information you are about to submit. This information will be
+			used inprocessing your
+			retirement plan's compliance reports and in satisfying the reporting and this closure requirements of the
+			department of labour. If you have any questions or need additional assistance, please contact your
+			administrative
+			team by clicking on the contact button at the top right hand corner of your screen. </span>
+	</div>
+
+	<div class="card card-form">
+		<div class="row no-gutters">
+			<div class="col-lg-12 card-form__body">
+				<%= render '/documents/document.table', documents: @documents  %>
+			</div>
+		</div>
+	</div>
+	<div class="card card-form">
+		<div class="row no-gutters">
+			<div class="col-lg-12 card-form__body">
+				<%= render '/notes/approval_note_table', note: @notes%>
+			</div>
+		</div>
+	</div>
+</div>
+
 
 <div class="modal fade" id="new_approval" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
 	aria-hidden="true">
@@ -77,10 +76,7 @@
 			</div>
 			<%else%>
 
-			<div class="modal-header">$("#approval-submit").click(function (e) {
-	$('#new_approval').modal('hide')
-	$('#welcome_message').modal('show')
-})
+			<div class="modal-header">
 				<h5 class="modal-title" id="exampleModalLabel">Please Complete All steps</h5>
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true">&times;</span>

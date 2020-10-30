@@ -88,13 +88,4 @@ class BusinessesController < InheritedResources::Base
 		params.require(:business).permit(:name, :ein, :date_purchased_or_sold, :address, :city, :state, :zip, :phone,:does_company_have_employees, :qualified_plan_sponsored, :entity_type)
 	end
 
-	# def company_have_employees?
-	# 	have_employees = params[:business][:does_company_have_employees]
-	# 	if have_employees == "No"
-	# 		return false
-	# 	else
-	# 		return true
-	# 	end
-	# end
-
 end

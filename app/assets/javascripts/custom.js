@@ -208,7 +208,6 @@ $("#save_note").click(function (event) {
 		},
 		dataType: "json",
 		success: function (response) {
-			
 			console.log(response);
 			$(".notes_count").text("Notes [" +response.note_count + "]") 
 			$row = response.html;
@@ -216,7 +215,6 @@ $("#save_note").click(function (event) {
 			if ($(".result_found").length){
 				$(".result_found").hide();
 			}
-		
 		}
 	})
 	$("#add_note").modal('hide')
@@ -229,7 +227,7 @@ $("#save_note").click(function (event) {
 $("#update_note_button").click(update_note);
 
 
-function update_note() 
+function update_note()
 {
 	var des = $("#update_note #description").val();
 	var step = $("#update_note #data_collection_step").val();
