@@ -32,5 +32,4 @@ AddressMapping.delete_all
 ContactNumber.delete_all
 Principal.delete_all
 Family.delete_all
-AddressMapping.delete_all
 Business.delete_all

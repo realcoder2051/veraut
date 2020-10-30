@@ -15,6 +15,7 @@ class PrincipalsController < InheritedResources::Base
     if params[:principal][:name] == "" || params[:principal][:title] == "" || params[:principal][:ownership] == ""
       session[:error] = "Your choices have been saved, however the step can not be completed because there are additional required fields."
       @principal.is_completed = false
+      @principal.ownership = 0 if !@principal.ownership.present?
     end
     if @principal.update_attributes(principal_params)
 			redirect_to principals_path
@@ -28,7 +29,9 @@ class PrincipalsController < InheritedResources::Base
 		@principal[:task_id] = session[:task_id]
     @principal[:user_id] = current_user.id
     if @principal.ownership == "" || @principal.name == "" || @principal.title == ""
+      @principal.ownership = 0 if !@principal.ownership.present?
       session[:error] = "Your choices have been saved, however the step can not be completed because there are additional required fields."
+
     end
     if @principal.save
       redirect_to principals_path
