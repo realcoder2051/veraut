@@ -80,7 +80,7 @@ class PrincipalsController < InheritedResources::Base
      if result.count.positive?
        @q.sorts = 'name asc' if @q.sorts.empty?
      end
-    @principals = result.paginate(:page => params[:page], per_page:10).order('officer ASC').where("user_id =? and active = ?", current_user.id,false)
+    @principals = result.paginate(:page => params[:page], per_page:10).order('officer ASC').where("task_id =? and active = ?",session[:task_id],false)
   end
 
 	def principal_params

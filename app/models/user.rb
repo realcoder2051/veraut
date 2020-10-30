@@ -15,7 +15,7 @@ class User < ApplicationRecord
          :trackable,
          :validatable
   #belongs_to :task_group,optional:true
-  has_one :task_group
+  has_one :task_group,dependent: :destroy
   validates :username, presence: true
 
   scope :ordered, -> { order(name: :asc) }

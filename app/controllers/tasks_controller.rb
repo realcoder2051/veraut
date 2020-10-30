@@ -6,10 +6,23 @@ class TasksController < InheritedResources::Base
   end
 
   def create
-    task = Task.new(task_params)
-    task.update(task_group_id: current_user.task_group.id)
-    if task.save
-      redirect_to tasks_path
+    previous_task = TaskGroup.find_by("user_id = ?",current_user.id).tasks&.last
+    @task = Task.new(task_params)
+    @task.update(task_group_id: current_user.task_group.id)
+    if @task.save
+      if previous_task.present?
+        create_principals(previous_task)
+        redirect_to tasks_path
+      else
+        redirect_to tasks_path
+      end
+    end
+  end
+
+  def create_principals(previous_task)
+    @principals = Principal.where("task_id = ?",previous_task.id)
+    @principals.each do |principal|
+      Principal.create(name: principal.name,title: principal.title,officer: principal.officer,ownership: principal.ownership,task_id: @task.id,user_id: current_user.id)      
     end
   end
 
