@@ -32,11 +32,7 @@ module ContactsHelper
 
   def total_view_requests
     count = ChangeRequestMapping.where(task_id: session[:task_id]).pluck("role_change_id").count if ChangeRequestMapping.where(task_id: session[:task_id]).present?
-    if count > 1
-      return count-1
-    else
-      return count
-    end
+    return count
   end
 
   def check_users_exist?

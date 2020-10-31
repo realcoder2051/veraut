@@ -3,16 +3,21 @@ module GeneralsHelper
 
   def find_address(id)
     address = Address.find(id)
-    if address.address2.present?
-      address.address1+", "+address.address2+", "+ address.city+", "+ address.state+", "+ address.zip
-    else
-      address.address1+", "+ address.city+", "+ address.state+", "+ address.zip
-    end
+    address_array = Array.new
+    address_array = address_array.append(address&.address1)
+    address_array = address_array.append(address&.address2)
+    address_array = address_array.append(address&.city)
+    address_array = address_array.append(address&.state)
+    address_array = address_array.append(address&.zip)
+    address_array.reject{|c| c.empty?}
+    address_str=address_array.reject{|c| c.empty?}.join(',')
   end
 
   def find_address_type(id)
-    address_type = AddressType.find(id)
-    address_type.task_name
+    if id.present?
+      address_type = AddressType.find(id)
+      address_type.task_name
+    end
   end
 
   def select_address_type

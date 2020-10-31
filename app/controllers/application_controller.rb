@@ -51,15 +51,15 @@ class ApplicationController < ActionController::Base
 
   def calculate_ownership?
     principals = Principal.where(task_id: session[:task_id],active: false)
-    if principals&.pluck("is_completed").include?(true)
+    if principals&.pluck("is_completed").include?(false)
+      return false
+    else
       sum = principals.pluck("ownership").inject(0){|sum,x| sum + x }
       if sum >=100
         return true
       else
         return false
       end
-    else
-      return false
     end
   end
 

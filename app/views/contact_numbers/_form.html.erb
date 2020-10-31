@@ -9,7 +9,7 @@
 <div class="row">
   <div class="col-lg-4 left-move"></div>
   <div class="col-lg-4 left-move">
-    <label for="business_contact_number">Contact Type <span class="required"></span></label>
+    <label for="business_contact_number">Contact Type</label>
     <%= f.select :contact_type,options_for_select([ "Main", "Cell" , "Direct", "Fax" , "Home" , "Main" , "Phone Number" , "Phone Number 2" , "Toll Free" ], @number[:contact_type]) ,{ :include_blank => '-- Select One --',hide_label: true }%>
     <div class="invalid-feedback">Please provide a time.</div>
     <div class="valid-feedback">Looks good!</div>

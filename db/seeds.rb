@@ -25,7 +25,7 @@
 # AddressType.create(task_name: "Old Address")
 # AddressType.create(task_name: "Overnight Address")
 # AddressType.create(task_name: "Physical Address")
-#Address.all.update(active: false)
+# Address.all.update(active: false)
 
 Address.delete_all
 AddressMapping.delete_all
@@ -33,3 +33,8 @@ ContactNumber.delete_all
 Principal.delete_all
 Family.delete_all
 Business.delete_all
+ContactChangeRequest.delete_all
+ChangeRequestMapping.delete_all
+QuestionaireAnswer.delete_all
+Company.delete_all
+

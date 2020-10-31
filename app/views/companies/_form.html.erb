@@ -5,7 +5,7 @@
 </div>
 <div class="row mt-3">
 	<div class="offset-md-4 col-lg-4">
-		<label for="company_ein">EIN(2 to 9 Characters) <span class="required"></span></label>
+		<label for="company_ein">EIN(9 Characters) <span class="required"></span></label>
 		<%= f.text_field :ein ,hide_label: true %>
 	</div>
 </div>
@@ -51,7 +51,7 @@
 		<div class="valid-feedback">Looks good!</div>
 	</div>
 </div>
-<div class="row">
+<div class="row mb-3">
 	<div class="col-lg-4 offset-md-4">
 	<label for="company_payroll_frequency">Payroll frequency <span class="required"></span></label>
 		<%= f.select :payroll_frequency, options_for_select(["BiWeekly", "Monthly","Multiple Schedules","Semimonthly","Unknown","Weekly"],@company[:payroll_frequency]),{ :include_blank => '-- Select One --', hide_label: true}%>
