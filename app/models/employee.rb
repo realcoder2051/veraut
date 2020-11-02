@@ -20,6 +20,7 @@ class Employee < ApplicationRecord
 			if h1.include?(header) || h2.include?(header)
 				array<<header
 			else
+				adfsdfs
 				return false
 			end
 		end

@@ -54,12 +54,16 @@ class TasksController < InheritedResources::Base
   def create_address(previous_task)
     addresses = Address.where("task_id = ? and active = ?",previous_task.id,true)
     addresses.each do |address|
-      Address.create(address1: address.address1,address2: address.address2,city: address.city,state: address.state,zip: address.zip,task_id: @task.id,user_id: current_user.id)
+      new_address = Address.create(address1: address.address1,address2: address.address2,city: address.city,state: address.state,zip: address.zip,task_id: @task.id,user_id: current_user.id)
+      address_mappings = address.address_mappings.where("task_id = ? and active = ?",previous_task.id,true)
+      address_mappings.each do |address_mapping|
+        AddressMapping.create(address_id: new_address.id,address_type_id: address_mapping.address_type_id,active: address_mapping.active,task_id: @task.id,user_id: current_user.id)
+      end
     end
-    address_mappings = AddressMapping.where("task_id = ? and active = ?",previous_task.id,true)
-    address_mappings.each do |address_mapping|
-      AddressMapping.create(address_id: address_mapping.address_id,address_type_id: address_mapping.address_type_id,active: address_mapping.active,task_id: @task.id,user_id: current_user.id)
-    end
+    # address_mappings = AddressMapping.where("task_id = ? and active = ?",previous_task.id,true)
+    # address_mappings.each do |address_mapping|
+    #   AddressMapping.create(address_id: address_mapping.address_id,address_type_id: address_mapping.address_type_id,active: address_mapping.active,task_id: @task.id,user_id: current_user.id)
+    # end
   end
 
   def edit
