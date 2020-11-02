@@ -37,4 +37,7 @@ ContactChangeRequest.delete_all
 ChangeRequestMapping.delete_all
 QuestionaireAnswer.delete_all
 Company.delete_all
-
+Note.delete_all
+Document.delete_all
+FeduciaryDocument.delete_all
+Task.delete_all
