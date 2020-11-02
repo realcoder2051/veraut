@@ -6,7 +6,7 @@ header_style = styles.add_style ({:alignment => {:horizontal => :center, :vertic
 
 wb.add_worksheet(name: "Employees") do |sheet|
   # this is the head row of your spreadsheet
-  sheet.add_row ["First Name", "Last Name", "Full Name" , "SSN" , "Gender" , "Date of Birth", "Original Date of Hire", "Date of Termination" , "Date of Retire", "Compensation" , "Hours" , "Pre Tax Salary Deferral", "Roth Salary Deferral", "Employee Match" , "Company Division", "Union Employee"]
+  sheet.add_row ["First Name", "Last Name", "Full Name" , "SSN" , "Gender" , "Date of Birth", "Original Date of Hire", "Date of Termination" , "Date of Retire", "Compensation" , "Hours" , "Pre Tax Salary Deferal", "Roth Salary Deferal", "Employee Match" , "Company Division", "Union Employee"]
 
 
   # each user is a row on your spreadsheet
