@@ -58,12 +58,19 @@ class FamiliesController < InheritedResources::Base
 
 	def is_completed
 		families = Family.where("is_completed=? AND user_id=? AND active = ? AND task_id=?", false , current_user.id ,false, session[:task_id])
+    status=true
     families.each do |family|
-      if family&.related_to && family&.relationship && family&.name
+      if family.related_to == "" || family.relationship =="" || family.name==""
+        status = false
+      else
         family.update(is_completed: true)
       end
     end
-		redirect_to businesses_path
+    if status
+      redirect_to businesses_path 
+    else
+     redirect_to families_path
+    end
 	end
 
 	private

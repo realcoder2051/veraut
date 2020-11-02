@@ -658,3 +658,11 @@ td, th {
 .mdk-drawer__content{
   transition: none !important;
 }
+
+
+.numberfield::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+.numberfield[type=number] {
+  -moz-appearance: textfield;
+}

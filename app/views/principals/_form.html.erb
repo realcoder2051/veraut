@@ -30,7 +30,7 @@
   <div class="col-lg-4 left-move"></div>
   <div class="col-lg-4 left-move">
     <label for="principal_ownership">Ownership <span class="required"></span></label>
-    <%= f.number_field :ownership,hide_label: true %>
+    <%= f.number_field :ownership,hide_label: true, min:'0' %>
     <div class="invalid-feedback">Please provide a time.</div>
     <div class="valid-feedback">Looks good!</div>
   </div>
@@ -41,8 +41,7 @@
     <div class="left-move">
       <%= f.submit value: "Save", class: "btn btn-primary"%>
     </div>
-    <div class="col-lg-1 right-move"></div>
-    <div class="right-move">
+    <div class="ml-2">
       <%= link_to 'Cancel', principals_path, class: "btn btn-secondary " %>
     </div>
   </div>

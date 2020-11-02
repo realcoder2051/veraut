@@ -4,19 +4,13 @@ class ContactNumbersController < InheritedResources::Base
     contact_number = ContactNumber.new(contact_number_params)
 		contact_number[:task_id] = session[:task_id]
     contact_number[:user_id] = current_user.id
-    if contact_number.contact_type == ""
-      session[:error] = "Your choices have been saved, however the step can not be completed because there are additional required fields."
+    if check_contact_number_already_exist?(contact_number)
+      session[:error] = "Contact Number with this Contact type already exist"
+      @number = ContactNumber.new
+      render :new
+    else
       contact_number.save
       redirect_to generals_path
-    else
-      if check_contact_number_already_exist?(contact_number)
-        session[:error] = "Contact Number with this Contact type already exist"
-        @number = ContactNumber.new
-        render :new
-      else
-        contact_number.save
-			  redirect_to generals_path
-      end
     end
   end
 
@@ -30,20 +24,13 @@ class ContactNumbersController < InheritedResources::Base
 
   def update
     @contact_number = ContactNumber.find(params[:id])
-    if params[:contact_number][:contact_type] == ""
-      @contact_number.update_attributes(contact_number_params)
-      session[:error] = "Your choices have been saved, however the step can not be completed because there are additional required fields."
-      @contact_number.is_completed = false
-      redirect_to generals_path
+    if check_contact_number_is_exist?
+      session[:error] = "Contact Number with this Contact type already exist"
+      @number = @contact_number
+      render :edit
     else
-      if check_contact_number_is_exist?
-        session[:error] = "Contact Number with this Contact type already exist"
-        @number = @contact_number
-        render :edit
-      else
-        @contact_number.update_attributes(contact_number_params)
-			  redirect_to generals_path
-      end
+      @contact_number.update_attributes(contact_number_params)
+      redirect_to generals_path
     end
   end
 

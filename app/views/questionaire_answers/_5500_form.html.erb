@@ -6,7 +6,7 @@
     <div class="col-lg-3 error_div">
       <input type=hidden name='questionaire_answer[id][]' value= <%=get_id(index)%> />
 			<%if index==3%>
-			<%=number_field_tag "questionaire_answer[answer][][#{index}]" ,get_value(index), id: "question_answer_#{index}" ,class: :"date-class question_four#{index} ", prompt: 'Select One', style: "margin-left: 10px; width: 95%"%>
+			<%=number_field_tag "questionaire_answer[answer][][#{index}]" ,get_value(index), id: "question_answer_#{index}" ,class: :"date-class question_four#{index} ", prompt: 'Select One', style: "margin-left: 10px; width: 95%", min:'0'%>
 			<%else%>
 			<span style="position: absolute; color: red;"> * </span>	
 			<%=select_tag "questionaire_answer[answer][][#{index}]",options_for_select(["Yes","No"], get_value(index) ), id: "question_answer_#{index}",class: :"question_field#{index} ",  prompt: 'Select One',   style: "margin-left: 10px; width: 95%" %>

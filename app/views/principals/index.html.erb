@@ -78,19 +78,21 @@
 						<%if session[:task_id]%>
 						<tbody>
 							<% @principals.each do |principal| %>
-							<tr class="redirect_to_show cursor-pointer" data-url="<%= principal_path(principal) %>">
-								<td><%= principal.name %></td>
-								<td><%= principal.title %></td>
-								<td><%= principal_officer(principal.officer) %></td>
-								<td><%= principal.ownership %></td>
-								<td>
-									<a href=<%=edit_principal_path(principal)%>><i
-											class="material-icons icon-20pt modal-edit">edit</i></a>
-									<a data-confirm="Are you sure?" rel="nofollow" data-method="delete"
-										href=<%=principal_path(principal)%>><i class="material-icons">delete</i></a>
-								</td>
-							</tr>
+								<tr class="redirect_to_show cursor-pointer" data-url="<%= principal_path(principal) %>">
+									<td><%= principal.name %></td>
+									<td><%= principal.title %></td>
+									<td><%= principal_officer(principal.officer) %></td>
+									<td><%= principal.ownership.to_s+"%" %></td>
+									<td>
+										<a href=<%=edit_principal_path(principal)%>><i
+												class="material-icons icon-20pt modal-edit">edit</i></a>
+										<a data-confirm="Are you sure?" rel="nofollow" data-method="delete"
+											href=<%=principal_path(principal)%>><i class="material-icons">delete</i></a>
+									</td>
+								</tr>
 							<% end %>
+							<tr style="background-color:#FFEBCD;"><td></td><td></td><td></td><td><%= calculate_total_ownership.to_s+"%"%></td><td></td>
+							</tr>
 						</tbody>
 						<%end%>
 					</table>

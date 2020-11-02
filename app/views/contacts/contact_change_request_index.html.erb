@@ -24,9 +24,9 @@
 				<table class="table mb-0 thead-border-top-0 mt-1  table-hover">
 					<thead class="table-info">
 						<tr>
-              <th>Created By</th>
-              <th>Date</th>
-							<th>Change Request</th>
+              <th><%=sort_link(@q,:contact_change_request_created_by,'Created By',default_order: :desc)%></th>
+              <th><%=sort_link(@q,:contact_change_request_date,'Date')%></th>
+							<th><%=sort_link(@q,:contact_change_request_change_request,'Change Request',default_order: :desc)%></th>
               <th>Actions</th>
 						</tr>
 					</thead>
@@ -40,7 +40,7 @@
 									<td>
 										<a href=<%=edit_contact_path(change_request_mapping)%>><i class="material-icons icon-20pt modal-edit">edit</i></a>
 										<a data-confirm="Are you sure?" rel="nofollow" data-method="delete" href=<%=contact_path(change_request_mapping)%>><i
-												class="material-icons">delete</i></a>
+											class="material-icons">delete</i></a>
 									</td>
 								</tr>
 							<%end%>

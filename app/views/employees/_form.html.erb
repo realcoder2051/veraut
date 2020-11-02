@@ -78,7 +78,7 @@
 <div class="row" >
   <div class="col-lg-4 offset-md-4">
       <label for="employee_hours">Hours <span class="required"></span></label>
-    <%=f.number_field :hours,hide_label:true%>
+    <%=f.number_field :hours,hide_label:true, min:'0'%>
     <div class="invalid-feedback">Please provide a time.</div>
     <div class="valid-feedback">Looks good!</div>
   </div>
@@ -123,8 +123,7 @@
     <div class="my-2 offset-md-5 ">
       <%= f.submit value: "Save", class: "btn btn-primary"%>
     </div>
-    <div class="col-lg-1 right-move"></div>
-    <div class="right-move my-2">
+    <div class="right-move my-2 ml-2">
       <%= link_to 'Cancel', employees_path, class: "btn btn-secondary " %>
     </div>
   </div>

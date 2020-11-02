@@ -67,11 +67,9 @@ class PrincipalsController < InheritedResources::Base
       if result >= 100
         redirect_to families_path
       else
-        session[:error] = "In order to complete this step, total Ownership must be equal to or greater than 100 %"
         redirect_to principals_path
       end
     else
-      session[:error] = "In order to complete this step, total Ownership must be equal to or greater than 100 %"
       redirect_to principals_path
     end
 	end

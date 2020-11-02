@@ -16,8 +16,8 @@ class ApplicationController < ActionController::Base
 
   def stepper
     @steppers = {}
-    @steppers[:address] = AddressMapping.where(task_id: session[:task_id],active: true)&.pluck("is_completed")
-    @steppers[:contact_number] = ContactNumber.where(task_id: session[:task_id],active: false)&.pluck("is_completed")
+    @steppers[:general] = AddressMapping.where(task_id: session[:task_id],active: true)&.pluck("is_completed")
+    #@steppers[:contact_number] = ContactNumber.where(task_id: session[:task_id],active: false)&.pluck("is_completed")
     @steppers[:company] = Company.where(task_id: session[:task_id])&.pluck("is_completed")
     @steppers[:principal] = [calculate_ownership?]
     @steppers[:family] = Family.where(task_id: session[:task_id],active: false)&.pluck("is_completed")
@@ -28,7 +28,7 @@ class ApplicationController < ActionController::Base
     fifty_five_hundred = QuestionaireAnswer.where(task_id: session[:task_id], question_type_id: 2)&.pluck("is_completed")
     @steppers[:fifty_five_hundred] = [fifty_five_hundred.present? && !fifty_five_hundred.include?(false)]
     @steppers[:employee] = Employee.where(task_id: session[:task_id],active: false)&.pluck("is_completed")
-    @steppers[:general] = @steppers[:address] && @steppers[:contact_number]
+    #@steppers[:general] = @steppers[:address] && @steppers[:contact_number]
   end
 
   protected

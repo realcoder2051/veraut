@@ -19,13 +19,11 @@ class GeneralsController < InheritedResources::Base
 	end
 
 	def index
-		#find_task(task)
 		ransack_search = params[:q]
-		# @address_type = ransack_search[:first_name_cont] if ransack_search.present?
 		@notes = Note.all
 		@q = ContactNumber.where("active=?",false).ransack(params[:q])
 		result = @q.result
-		@numbers = result.paginate(:page => params[:page], per_page:10).order('contact_type ASC').where(task_id: session[:task_id])
+		@numbers = result.order('contact_type ASC').where(task_id: session[:task_id])
 	end
 
 	def find_task
@@ -41,9 +39,11 @@ class GeneralsController < InheritedResources::Base
 	def is_completed
 		address_mappings = AddressMapping.where("is_completed=? AND task_id=? and active =?", false , session[:task_id],true)
 		contact_numbers = ContactNumber.where("is_completed=? AND user_id=? AND task_id=? and active = ?", false , current_user.id , session[:task_id],false)
+		status = true
 		address_mappings.each do |address_mapping|
 			address = Address.find(address_mapping.address_id)
 			if address.address1 == "" || address.city == "" || address.state == "" || address.zip == ""
+				status = false
 			else
 				address.update_attributes(is_completed: true)
 				address_mapping.update(is_completed: true)
@@ -55,8 +55,11 @@ class GeneralsController < InheritedResources::Base
 				contact_number.update(is_completed: true)
 			end
 		end
-		#contact_number.update(is_completed: true)
-		redirect_to new_company_path
+		if status
+			redirect_to new_company_path
+		else
+			redirect_to generals_path
+		end
 	end
 
 	private

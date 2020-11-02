@@ -68,8 +68,8 @@ class ContactsController < InheritedResources::Base
 	end
 
 	def contact_change_request_index
-		ransack_search = params[:q]
-		@change_request_mappings = ChangeRequestMapping.where(task_id: session[:task_id])
+		@q = ChangeRequestMapping.includes(:contact_change_request).joins(:contact_change_request).where("task_id=?", session[:task_id]).ransack(params[:q])
+		@change_request_mappings = @q.result
 	end
 
 	def index
@@ -77,8 +77,6 @@ class ContactsController < InheritedResources::Base
 		@roles_rights = RolesRight.all
 		@notes = Note.all
 		@users = []
-		#begin
-			#rescue
 		technician_user = Role.where(name: "Technician").order('created_at').first&.users&.first
 		main_contact_user = Role.where(name: "Main Contact").order('created_at').first&.users&.first
 		@q = User.where("id = ? or id = ?" , technician_user&.id,main_contact_user&.id).ransack(params[:q])
@@ -88,8 +86,6 @@ class ContactsController < InheritedResources::Base
 	def is_completed
 		save_contact_technician
 		save_contact_main_contact
-		#contact = Contact.where("is_completed=? AND user_id=? AND task_id=?", false , current_user.id , session[:task_id])
-		#contact.update(is_completed: true)
 		redirect_to plans_new_path
 	end
 

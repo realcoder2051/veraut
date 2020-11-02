@@ -52,7 +52,7 @@ class TasksController < InheritedResources::Base
   end
 
   def create_address(previous_task)
-    addresses = Address.where("task_id = ? and active = ?",previous_task.id,false)
+    addresses = Address.where("task_id = ? and active = ?",previous_task.id,true)
     addresses.each do |address|
       Address.create(address1: address.address1,address2: address.address2,city: address.city,state: address.state,zip: address.zip,task_id: @task.id,user_id: current_user.id)
     end

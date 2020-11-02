@@ -15,8 +15,8 @@ class BusinessesController < InheritedResources::Base
 	end
 
 	def update
-		if params[:business][:name] == "" || (params[:business][:ein].length >=2 && params[:business][:ein].length <=9) == false || params[:business][:does_company_have_employees] == "" || params[:business][:qualified_plan_sponsored] == "" || params[:business][:entity_type] == ""
-			if (params[:business][:ein].to_s.length>=2 && params[:business][:ein] .to_s.length <=9) == false
+		if params[:business][:name] == "" || params[:business][:ein].to_s.length !=9 || params[:business][:does_company_have_employees] == "" || params[:business][:qualified_plan_sponsored] == "" || params[:business][:entity_type] == ""
+			if params[:business][:ein].to_s.length!=9
 				session[:error] = "EIN must be 9 characters but your choices have been saved, however the step can not be completed because there are additional required fields."
 				#params[:business][:ein] = ""
 			else
@@ -40,10 +40,9 @@ class BusinessesController < InheritedResources::Base
   	@business = Business.new(business_params)
 		@business[:task_id] = session[:task_id]
 		@business[:user_id] = current_user.id
-		if @business.name == "" || (@business.ein.to_s.length>=2 && @business.ein.to_s.length <=9) == false || @business.qualified_plan_sponsored == "" || @business.entity_type == "" || @business.does_company_have_employees == ""
-			if (@business.ein.to_s.length>=2 && @business.ein.to_s.length <=9 ) == false
+		if @business.name == "" || @business.ein.to_s.length!=9  || @business.qualified_plan_sponsored == "" || @business.entity_type == "" || @business.does_company_have_employees == ""
+			if @business.ein.to_s.length != 9
 				session[:error] = "EIN must be 9 characters but your choices have been saved, however the step can not be completed because there are additional required fields."
-				#@business.ein=""
 			else
 				session[:error] = "Your choices have been saved, however the step can not be completed because there are additional required fields."
 			end
@@ -58,13 +57,19 @@ class BusinessesController < InheritedResources::Base
 
 	def is_completed
 		businesses = Business.where("is_completed=? AND user_id=? AND task_id=? AND active = ?", false , current_user.id , session[:task_id],false)
+		status = true
 		businesses.each do |business|
-			if business.name == "" || (business.ein.to_s.length >= 2 && business.ein.to_s.length<=9) == false || business.does_company_have_employees == "" || business.qualified_plan_sponsored == "" || business.entity_type == ""
+			if business.name == "" || business.ein.to_s.length != 9  || business.does_company_have_employees == "" || business.qualified_plan_sponsored == "" || business.entity_type == ""
+				status = false
 			else
 				business.update(is_completed: true)
 			end
 		end
-		redirect_to contacts_path
+		if status
+			redirect_to contacts_path
+		else
+			redirect_to businesses_path
+		end
 	end
 
 	def destroy

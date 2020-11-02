@@ -23,12 +23,19 @@ class EmployeesController < InheritedResources::Base
 
   def save_employee
     employees = Employee.where("is_completed=? AND active = ? AND task_id=?", false ,false, session[:task_id])
+    status = true
     employees.each do |employee|
-      if employee&.first_name && employee&.last_name && employee&.ssn.to_s.length<=9 && employee&.hours && employee.compensation && employee&.date_of_birth && employee&.original_date_of_hire
+      if employee.first_name=="" || employee.last_name=="" || !(employee.ssn.to_s.length<=9) || employee.hours=="" || employee.compensation=="" || employee&.date_of_birth=="" || employee&.original_date_of_hire==""
+        status = false
+      else
         employee.update(is_completed: true)
       end
     end
-    redirect_to approvals_path
+    if status
+      redirect_to approvals_path
+    else
+      redirect_to employees_path
+    end
   end
 
   def bulk_delete

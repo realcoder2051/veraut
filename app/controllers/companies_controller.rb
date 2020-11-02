@@ -43,8 +43,8 @@ class CompaniesController < InheritedResources::Base
 	def update
 		@company = Company.find(params[:id])
 		@company.is_completed = true
-		if params[:company][:entity_type] == "" || params[:company][:payroll_frequency]=="" || params[:company][:fiscal_year_end] == "" || (params[:company][:ein].length >=2 && params[:company][:ein].length<=9)== false
-			if (params[:company][:ein].length >=2 && params[:company][:ein].length<=9)== false
+		if params[:company][:entity_type] == "" || params[:company][:payroll_frequency]=="" || params[:company][:fiscal_year_end] == "" || params[:company][:ein].length !=9
+			if params[:company][:ein].length !=9
 				session[:error] = "EIN must be 9 characters but your choices have been saved, however the step can not be completed because there are additional required fields."
 			else
 				session[:error] = "Your choices have been saved, however the step can not be completed because there are additional required fields."
