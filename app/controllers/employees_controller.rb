@@ -76,7 +76,6 @@ class EmployeesController < InheritedResources::Base
   			flash[:notice] = "File Uploaded Successfully"
 	  		redirect_to employees_path
       else
-        elssss
 				flash[:alert] = "Wrong file format"
 				redirect_to employees_path
 			end

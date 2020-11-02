@@ -4,8 +4,8 @@ class Employee < ApplicationRecord
 
 
 	def self.update_imported_store(file,session)	
-		headers = ["FIRSTNAME","LASTNAME","SSN","GENDER","DATEOFBIRTH","ORIGINALDATEOFHIRE","DATEOFTERMINATION","DATEOFREHIRE","COMPENSATION","HOURS","PRE-TAXSALARYDEFERRAL","ROUTHSALARYDEFERRAL","EMPLOYERMATCH","COMPANYDIVISION","UNIONEMPLOYEE"]
-		h2 = ["FIRSTNAME","LASTNAME","FULLNAME","SSN","GENDER","DATEOFBIRTH","ORIGINALDATEOFHIRE","DATEOFTERMINATION","DATEOFREHIRE","COMPENSATION","HOURS","PRE-TAXSALARYDEFERRAL","ROUTHSALARYDEFERRAL","EMPLOYERMATCH","COMPANYDIVISION","UNIONEMPLOYEE"]
+		h1 = ["FIRSTNAME","LASTNAME","FULLNAME","SSN","GENDER","DATEOFBIRTH","ORIGINALDATEOFHIRE","DATEOFTERMINATION","DATEOFRETIRE","COMPENSATION","HOURS","PRETAXSALARYDEFERRAL","ROTHSALARYDEFERRAL","EMPLOYEEMATCH","COMPANYDIVISION","UNIONEMPLOYEE"]
+		h2 = ["FIRST_NAME","LAST_NAME","FULL_NAME","SSN","GENDER","DATE_OF_BIRTH","ORIGINAL_DATE_OF_HIRE","DATE_OF_TERMINATION","DATE_OF_RETIRE","COMPENSATION","HOURS","PRE_TAX_SALARY_DEFERRAL","ROTH_SALARY_DEFERRAL","EMPLOYEE_MATCH","COMPANY_DIVISION","UNION_EMPLOYEE"]
 		spreadsheet = open_spreadsheet(file)
 		file_header = spreadsheet.row(1)
 		header = ["first_name", "last_name", "ssn", "gender", "date_of_birth", "original_date_of_hire", "date_of_termination", "date_of_retire", "compensation", "hours", "pre_tax_salary_deferal", "roth_salary_deferal", "employee_match", "company_division", "union_employee"]
@@ -16,9 +16,11 @@ class Employee < ApplicationRecord
 			s.gsub!(' ', '')
 		end
 		array = []
-		headers.each do |header|
-			if file_header.include?(header)
+		file_header.each do |header|
+			if h1.include?(header) || h2.include?(header)
 				array<<header
+			else
+				return false
 			end
 		end
 		#if file_header.include?("FIRSTNAME") || file_header == h2
@@ -26,7 +28,7 @@ class Employee < ApplicationRecord
 			(2..spreadsheet.last_row).each do |i|
 				row = Hash[[header, spreadsheet.row(i)].transpose]
 				row.delete("full name")
-				if Employee.exists?(ssn: row['ssn'], task_id: session)
+				if Employee.exists?(ssn: row['ssn'], task_id: session,active: false)
 					Employee.where(ssn: row['ssn'], task_id: session).update(row)
 				else
 					@employee = Employee.new(row)
