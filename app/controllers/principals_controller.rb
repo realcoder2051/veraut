@@ -12,32 +12,23 @@ class PrincipalsController < InheritedResources::Base
   end
 
   def update
-    if params[:principal][:name] == "" || params[:principal][:title] == "" || params[:principal][:ownership] == ""
-      session[:error] = "Your choices have been saved, however the step can not be completed because there are additional required fields."
-      @principal.is_completed = false
-      @principal.ownership = 0 if !@principal.ownership.present?
-    end
+    @principal.is_completed = false
     if @principal.update_attributes(principal_params)
-			redirect_to principals_path
-    else
-      render :edit
-    end
+      redirect_to principals_path
+		else
+			render :edit
+		end
   end
 
   def create
     @principal = Principal.new(principal_params)
 		@principal[:task_id] = session[:task_id]
     @principal[:user_id] = current_user.id
-    if @principal.ownership == "" || @principal.name == "" || @principal.title == ""
-      @principal.ownership = 0 if !@principal.ownership.present?
-      session[:error] = "Your choices have been saved, however the step can not be completed because there are additional required fields."
-
-    end
     if @principal.save
       redirect_to principals_path
     else
       render :new
-    end
+		end
   end
 
   def index
@@ -61,14 +52,9 @@ class PrincipalsController < InheritedResources::Base
         principal.update(is_completed: true)
       end
     end
-    principal_ownership = Principal.where("task_id = ? and is_completed = ? and active = ?",session[:task_id],true,false).pluck("ownership")
-    if principal_ownership.length > 0
-      result = principal_ownership.inject(0){|sum,x| sum + x }
-      if result >= 100
-        redirect_to families_path
-      else
-        redirect_to principals_path
-      end
+    result = Principal.calculate_total_ownership(session[:task_id])
+    if result >= 100
+      redirect_to families_path
     else
       redirect_to principals_path
     end

@@ -626,7 +626,7 @@ td, th {
   }
 }
 
-.btn-forcol {
+.sidebarCollapse {
 	margin-top: 5px;
 	margin-bottom: 10px;
 	color: #969EA7;
@@ -634,11 +634,10 @@ td, th {
 	font-size: 15px;
 	padding: 0 11px;
 	text-align: center;
-	transition: 0.3s ease;
 	cursor: pointer;
 }
 
-.btn-forcol2 {
+.sidebarExpand {
 	display: none !important;
 	margin-top: 5px;
 	margin-bottom: 10px;
@@ -647,7 +646,6 @@ td, th {
 	font-size: 15px;
 	padding: 0 11px;
 	text-align: center;
-	transition: 0.3s ease;
 	cursor: pointer;
 }
 
@@ -665,4 +663,9 @@ td, th {
 }
 .numberfield[type=number] {
   -moz-appearance: textfield;
+}
+
+.banner-img{
+  height: 100vh;
+  width: 320px;
 }

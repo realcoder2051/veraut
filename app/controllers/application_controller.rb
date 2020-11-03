@@ -3,16 +3,26 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :null_session
   before_action :authenticate_user!,except: :internal_dashboard
   layout 'stack/application'
-
   private
   rescue_from CanCan::AccessDenied do |exception|
    # render 'shared/flash'
     flash[:error] =  'It seems you do not have permission to view this page'
+    format.html { redirect_to root_url}
     respond_to do |format|
       #format.html { redirect_to root_url }
       format.html { redirect_to root_url}
     end
 	end
+
+
+  protected
+  def after_sign_in_path_for(_)
+    root_path
+  end
+
+  def after_sign_out_path_for(_)
+    root_path
+  end
 
   def stepper
     @steppers = {}
@@ -29,15 +39,6 @@ class ApplicationController < ActionController::Base
     @steppers[:fifty_five_hundred] = [fifty_five_hundred.present? && !fifty_five_hundred.include?(false)]
     @steppers[:employee] = Employee.where(task_id: session[:task_id],active: false)&.pluck("is_completed")
     #@steppers[:general] = @steppers[:address] && @steppers[:contact_number]
-  end
-
-  protected
-  def after_sign_in_path_for(_)
-    root_path
-  end
-
-  def after_sign_out_path_for(_)
-    root_path
   end
 
   def check_address_exist

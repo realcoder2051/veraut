@@ -9,7 +9,18 @@ class ContactNumbersController < InheritedResources::Base
       @number = ContactNumber.new
       render :new
     else
-      contact_number.save
+      status = true
+      @contact_numbers = ContactNumber.where(task_id: session[:task_id],active: false)
+      @contact_numbers.each do |contact|
+        if contact.contact_type.eql?(contact_number.contact_type)
+          contact.update_attributes(contact_number_params)
+          status= false
+          break
+        end
+      end
+      if status
+        contact_number.save
+      end
       redirect_to generals_path
     end
   end
@@ -24,20 +35,20 @@ class ContactNumbersController < InheritedResources::Base
 
   def update
     @contact_number = ContactNumber.find(params[:id])
-    if check_contact_number_is_exist?
-      session[:error] = "Contact Number with this Contact type already exist"
-      @number = @contact_number
-      render :edit
-    else
+    status = ContactNumber.where(task_id: session[:task_id],active: false).pluck("contact_type").include?(params[:contact_number][:contact_type])
+    if status
+      if @contact_number.contact_type != params[:contact_number][:contact_type]
+        session[:error] = "Contact With this Contact Type, already exist"
+      end
+    end
+    if !(session[:error].present?)
       @contact_number.update_attributes(contact_number_params)
       redirect_to generals_path
+    else
+      redirect_to edit_contact_number_path(@contact_number)
     end
   end
 
-  def index
-		@numbers = ContactNumber.where(task_id: session[:task_id])
-		@notes = Note.all
-  end
 
   def destroy
     contact_number = ContactNumber.find(params[:id])

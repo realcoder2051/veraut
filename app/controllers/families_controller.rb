@@ -2,6 +2,7 @@ class FamiliesController < InheritedResources::Base
 	before_action :stepper, only: %i[index]
   before_action :fetch_family, only: %i[index]
   before_action :find_family,only: [:edit,:update,:destroy]
+  before_action :load_family_principal,only: [:edit,:new,:update,:create]
 
 
   def find_family
@@ -9,23 +10,17 @@ class FamiliesController < InheritedResources::Base
   end
 
   def edit
-    @principals = Principal.where("task_id = ? and active = ?",session[:task_id],false)
   end
 
   def new
     @family = Family.new
-    @principals = Principal.where("task_id = ? and active = ?",session[:task_id],false)
   end
 
   def update
-    @principals = Principal.where("task_id = ? and active = ?", session[:task_id],false)
-    if params[:family][:name] == "" || params[:family][:relationship] == "" || params[:family][:related_to] == ""
-      session[:error] = "Your choices have been saved, however the step can not be completed because there are additional required fields."
-      @family.is_completed = false
-    end
+    @family.is_completed = false
     if @family.update_attributes(family_params)
 			redirect_to families_path
-		else
+    else
 			render :edit
     end
   end
@@ -36,13 +31,9 @@ class FamiliesController < InheritedResources::Base
   end
 
   def create
-    @principals = Principal.where("task_id = ? and active = ?", session[:task_id],false)
     @family = Family.new(family_params)
 		@family[:task_id] = session[:task_id]
     @family[:user_id] = current_user.id
-    if @family.name == "" || @family.related_to == "" || @family.relationship == ""
-      session[:error] = "Your choices have been saved, however the step can not be completed because there are additional required fields."
-    end
     if @family.save
       redirect_to families_path
     else
@@ -67,7 +58,7 @@ class FamiliesController < InheritedResources::Base
       end
     end
     if status
-      redirect_to businesses_path 
+      redirect_to businesses_path
     else
      redirect_to families_path
     end
@@ -86,6 +77,10 @@ class FamiliesController < InheritedResources::Base
 
   def family_params
     params.require(:family).permit(:name, :relationship, :related_to)
+  end
+
+  def load_family_principal
+    @principals = Principal.where("task_id = ? and active = ?",session[:task_id],false)
   end
 
 end

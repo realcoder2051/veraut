@@ -94,26 +94,27 @@ $('.sidebar .collapse').on('hidden.bs.collapse', function (e) {
   $(this).closest('li').toggleClass('open');
 });
 
-$('.btn-forcol').on('click', function() {
-	$('.mdk-drawer').css("width", 100);
+$('.sidebarCollapse').on('click', function() {
+	$('#sidebarbg').css("width", 100);
 	$('.sidebar').css("width", 100);
 	$('.sidebar-menu-text').css({display: "none"} );
 	$('.sidebar-menu-icon ').css({margin: '10px'});
 	$('.sidebar-menu-toggle-icon').css({display: "none"} );
   $('#flex').removeClass('d-flex');
-  $('.btn-forcol2').attr('style', 'display: block !important');
-		$('.btn-forcol').attr('style', 'display: none !important');
+  $('.sidebarExpand').attr('style', 'display: block !important');
+		$('.sidebarCollapse').attr('style', 'display: none !important');
 		setCookie("sidebar_status", "collapsed", 365);
 });
 
-	$('.btn-forcol2').on('click', function() {
+	$('.sidebarExpand').on('click', function() {
 		$('.sidebar-menu-text').css("display", "block" );
-	$('.sidebar-menu-toggle-icon').css("display", "block" );
-		$('.mdk-drawer').css("width", 300);
-		$('#flex').addClass('d-flex');
-		$('.sidebar').css("width", 300);
-		$('.btn-forcol2').attr('style', 'display: none !important');
-		$('.btn-forcol').attr('style', 'display: block !important');
+  $('.sidebar-menu-toggle-icon').css("display", "block" );
+  $('.sidebar-menu-icon ').css("margin-left", 0);
+    $('#flex').addClass('d-flex');
+    $('#sidebarbg').css("width", 230);
+		$('.sidebar').css("width", 230);
+		$('.sidebarExpand').attr('style', 'display: none !important');
+		$('.sidebarCollapse').attr('style', 'display: block !important');
 		setCookie("sidebar_status", "expanded", 365);
 	});
 
@@ -123,7 +124,7 @@ $('.btn-forcol').on('click', function() {
 	
 		if (username == "collapsed") {
 			
-		$('.mdk-drawer').css("width", 100);
+		$('#sidebarbg').css("width", 100);
 		$('.sidebar').css("width", 100);
 		$('.sidebar-menu-text').css({
 			display: 'none'
@@ -131,15 +132,15 @@ $('.btn-forcol').on('click', function() {
 		$('.sidebar-menu-toggle-icon').css({
 			display: 'none'
 		});
-		$('.sidebar-menu-icon').css('margin-top', 10);
+		$('.sidebar-menu-icon ').css({margin: '10px'});
 		$('.sidebar-menu-toggle-icon').css({
 			display: 'none'
 		});
 		$('.sidebar-heading').css({
 			display: 'none'
 		});
-		$('.btn-forcol2').attr('style', 'display: block !important');
-		$('.btn-forcol').attr('style', 'display: none !important');
+		$('.sidebarExpand').attr('style', 'display: block !important');
+		$('.sidebarCollapse').attr('style', 'display: none !important');
 		setCookie("sidebar_status", "collapsed", 365);
 		} 
 	}
@@ -453,5 +454,3 @@ function getCookie(cname) {
 	}
 	return "";
 }
-
-

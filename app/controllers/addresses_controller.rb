@@ -21,6 +21,14 @@ class AddressesController < InheritedResources::Base
 		end
 	end
 
+	def edit_address_call
+		@address = Address.new(address_params)
+		@address[:active] = true
+		@address[:task_id] = session[:task_id]
+		@address[:user_id] = current_user.id
+	end
+
+
 	def create_new_address
 		save_address
 		if @address.address1 == "" || @address.city == "" || @address.state == "" || @address.zip == ""
@@ -35,7 +43,51 @@ class AddressesController < InheritedResources::Base
 		end
 	end
 
-  def edit
+	def update
+		@old_address = Address.find(params[:id])
+		status = AddressMapping.where(task_id: session[:task_id],active: true).pluck("address_type_id").include?(params[:Address_Type].to_i)
+		if status == true
+			if AddressMapping.find(params[:old_address_mapping]).address_type_id.to_s != params[:Address_Type]
+				session[:error]= "Address with this Address Type Already Exist"
+			end
+		end
+
+		if !(session[:error].present?)
+			edit_address_call
+			if params[:address][:address1] == "" || params[:address][:city] == "" || params[:address][:state] == "" || params[:address][:zip] == ""
+				session[:error] = "Your choices have been saved, however the step can not be completed because there are additional required fields."
+			end
+			if @address.save
+				@old_address.update(active: false)
+				@old_address.address_mappings.where(active: true).each do |p|
+						address_mapping = AddressMapping.find(p.id)
+						new_address_mapping = AddressMapping.new
+						new_address_mapping.address_id = @address.id
+						if address_mapping.id == params[:old_address_mapping].to_i
+							new_address_mapping.address_type_id =  params[:Address_Type]
+						else
+							new_address_mapping.address_type_id = address_mapping.address_type_id
+						end
+						new_address_mapping.user_id = current_user.id
+						new_address_mapping.task_id = session[:task_id]
+						new_address_mapping.active = true
+						new_address_mapping.save
+					end
+					@old_address.address_mappings.where(active: true).update(active: false)
+					redirect_to generals_path
+			else
+				# session[:error] = @address.errors.to_a
+				address_collection
+				redirect_to params[:edit_url]
+			end
+		else
+			address_collection
+			redirect_to params[:edit_url]
+		end
+
+	end
+
+	def edit
 		@address = Address.find(params[:id])
 		@address_types = AddressType.all
 		@address_mapping = AddressMapping.find(params[:address_mapping])
@@ -50,38 +102,6 @@ class AddressesController < InheritedResources::Base
 		@address = Address.new
 		address_collection
   end
-
-	def update
-		@old_address = Address.find(params[:id])
-		save_address
-		if params[:address][:address1] == "" || params[:address][:city] == "" || params[:address][:state] == "" || params[:address][:zip] == ""
-			session[:error] = "Your choices have been saved, however the step can not be completed because there are additional required fields."
-		end
-		if @address.save
-			 @old_address.update(active: false)
-			 @old_address.address_mappings.where(active: true).each do |p|
-					address_mapping = AddressMapping.find(p.id)
-					new_address_mapping = AddressMapping.new
-					new_address_mapping.address_id = @address.id
-					if address_mapping.id == params[:old_address_mapping].to_i
-						new_address_mapping.address_type_id =  params[:Address_Type]
-					else
-						new_address_mapping.address_type_id = address_mapping.address_type_id
-					end
-					new_address_mapping.user_id = current_user.id
-					new_address_mapping.task_id = session[:task_id]
-					new_address_mapping.active = true
-					new_address_mapping.save
-				end
-				@old_address.address_mappings.where(active: true).update(active: false)
-			redirect_to generals_path
-		else
-			session[:error] = @address.errors.to_a
-			address_collection
-			redirect_to params[:edit_url]
-    end
-  end
-
 	def destroy
 		address = Address.find(params[:id])
 		if address.address_mappings.where(active: true).count <= 1
@@ -98,11 +118,32 @@ class AddressesController < InheritedResources::Base
     render json: { data: address }
 	end
 
+	def edit_address
+		@addresses = Address.where(task_id: session[:task_id],active: true)
+		status = true
+
+	end
+
 	def save_address
-		@address = Address.new(address_params)
-		@address[:active] = true
-		@address[:task_id] = session[:task_id]
-		@address[:user_id] = current_user.id
+		@addresses = Address.where(task_id: session[:task_id],active: true)
+		status=true
+		@addresses.each do |address|
+			if address&.address_mappings.where(task_id: session[:task_id],active: true).pluck(:address_type_id).include?(params[:Address_Type].to_i)				
+				address.update_attributes(active: false)
+				address.address_mappings.update_all(active: false)
+				@address = Address.new(address_params)
+				@address[:active] = true
+				@address[:task_id] = session[:task_id]
+				@address[:user_id] = current_user.id
+				status = false
+			end
+		end
+		if status
+			@address = Address.new(address_params)
+			@address[:active] = true
+			@address[:task_id] = session[:task_id]
+			@address[:user_id] = current_user.id
+		end
 	end
 
 	def save_address_mapping

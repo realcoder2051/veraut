@@ -1,21 +1,20 @@
-<div class="col-2 pl-0" id="default-drawer" data-align="start">
-	<div class="bg-white">
+<div id="default-drawer" data-align="start" style="width: 250px">
+	<div id="sidebarbg" class="bg-white h-100">
 		<div class="sidebar sidebar-light sidebar-left open">
-		<div class="d-none">
-			<div class="btn btn-forcol float-right d-none d-lg-block" role="button">
-				<i class="fa fa-angle-double-left"></i>
-			</div>
-			<div class="btn btn-forcol2 float-right d-none d-lg-block" role="button">
-				<i class="fa fa-angle-double-right"></i>
-			</div>
+				<div class="btn sidebarCollapse float-right d-none d-lg-block" role="button">
+					<i class="fa fa-angle-double-left"></i>
+				</div>
+				<div class="btn sidebarExpand float-right d-none d-lg-block" role="button">
+					<i class="fa fa-angle-double-right"></i>
+				</div>
 
-			<div id="flex" class="d-flex align-items-center sidebar-p-a border-bottom">
-			</div>
-</div>
+				<div id="flex" class="d-flex align-items-center sidebar-p-a border-bottom">
+				</div>
+			
 			<ul class="sidebar-menu">
 				<li class="sidebar-menu-item " id="home">
 					<a class="sidebar-menu-button" href="<%=root_path%>" aria-expanded="false">
-					<span><i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">home</i> </span>
+						<span><i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">home</i> </span>
 						<span class="sidebar-menu-text">Home</span>
 					</a>
 				</li>
