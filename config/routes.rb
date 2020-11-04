@@ -40,15 +40,12 @@
 	resources :addresses
   get '/addresses/:id/:address_mapping', to: 'addresses#edit', as: :address_edit
 
-	get '/address/get_address/:id', to: 'addresses#get_address'
+	get '/address/get_address/:id',to: 'addresses#get_address'
 	get 'address/add',to: 'addresses#add_new_address'
   post 'address/create',to: 'addresses#create_new_address'
 
-  resources :employees do
-    collection do
-      get 'bulk_delete', to:  'employees#bulk_delete'
-    end
-  end
+  get '/employees/bulk_delete', to: 'employees#bulk_delete'
+  resources :employees
   get 'save_employee', to: 'employees#save_employee'
 
   # resources :fifty_five_hundreds, only: [:update,:create]

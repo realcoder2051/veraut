@@ -39,8 +39,13 @@ class EmployeesController < InheritedResources::Base
   end
 
   def bulk_delete
-    data = Employee.where("task_id=?", session[:task_id]).update(active: true) if Employee.exists?
-    redirect_to employees_path
+    emp = params[:employees]
+    employees = emp.split(',')
+    employees.each do |employee|
+      Employee.find(employee).update(active: true)
+    end
+    # data = Employee.where("task_id=?", session[:task_id]).update(active: true) if Employee.exists?
+     redirect_to employees_path
 	end
 
 	def index

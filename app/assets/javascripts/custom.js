@@ -289,3 +289,16 @@ $("#approval-submit").click(function (e) {
 $("#welcome_message_close").click(function (e) {
 	window.location.href = 'tasks';
 })
+
+	$("#delete").click(function(e)
+	{
+		var employees= []
+		$("input:checkbox[name=employee_id]:checked").each(function(){
+			employees.push($(this).val());
+		});
+
+		$.ajax({
+			url: '/employees/bulk_delete?employees='+(employees),
+			dataType: 'get'
+		});
+	});

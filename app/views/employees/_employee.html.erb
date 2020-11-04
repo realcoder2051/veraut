@@ -1,6 +1,6 @@
 <tr>
   <td>
-
+    <input type="checkbox" name="employee_id" value=<%=employee.id%> />
   </td>
   <td>
     <div class="media align-items-center">
@@ -68,6 +68,4 @@
   <i class="material-icons icon-20pt modal-edit"><%= link_to 'edit', edit_employee_path(employee) %></i>
   <i class="material-icons icon-20pt"><%= link_to 'delete', employee, method: :delete, data: { confirm: 'Are you sure?' } %></i>
   </td>
-
-  
 </tr>
