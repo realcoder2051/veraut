@@ -2,7 +2,7 @@ class BusinessesController < ApplicationController
 	before_action :stepper, only: [:index,:is_completed]
 	before_action :fetch_business, only: %i[index]
 	before_action :find_business,only: [:edit,:update,:destroy]
-	before_action :find_task,only: %i[is_completed update create]
+	before_action :find_task,only: %i[is_completed update create destroy]
 
 	def find_task
 		@task = Task.find(session[:task_id])
@@ -75,6 +75,8 @@ class BusinessesController < ApplicationController
 
 	def destroy
 		if @business.update_attribute(:active, true)
+			@task.steppers["business"] = false
+			@task.save
 			redirect_to businesses_path
 		end
   end

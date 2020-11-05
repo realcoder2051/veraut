@@ -2,7 +2,7 @@ class PrincipalsController < InheritedResources::Base
 	before_action :stepper, only: %i[index]
   before_action :fetch_principal, only: %i[index]
   before_action :find_principal,only: [:edit,:update,:destroy]
-  before_action :find_task,only: %i[is_completed update]
+  before_action :find_task,only: %i[is_completed update destroy]
 
   def find_task
     @task = Task.find(session[:task_id])
@@ -48,6 +48,8 @@ class PrincipalsController < InheritedResources::Base
     if @principal.update_attribute(:active, true)
       family = Family.where(related_to: @principal.id)
       family.update_all(related_to: nil)
+      @task.steppers["principal"] = false
+			@task.save
       redirect_to principals_path
     end
 	end

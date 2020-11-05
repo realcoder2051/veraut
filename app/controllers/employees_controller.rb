@@ -2,7 +2,7 @@ class EmployeesController < InheritedResources::Base
 	before_action :fetch_employee, only: %i[index]
 	before_action :stepper, only: %i[index]
   before_action :find_employee , only: [:edit,:update,:destroy]
-  before_action :find_task,only: %i[create update save_employee import_store]
+  before_action :find_task,only: %i[create update save_employee import_store bulk_delete destroy]
 
   def find_task
     @task = Task.find(session[:task_id])
@@ -55,8 +55,9 @@ class EmployeesController < InheritedResources::Base
     employees.each do |employee|
       Employee.find(employee).update(active: true)
     end
-    # data = Employee.where("task_id=?", session[:task_id]).update(active: true) if Employee.exists?
-     redirect_to employees_path
+    @task.steppers["employee"] = false
+    @task.save
+    redirect_to employees_path
 	end
 
 	def index
@@ -106,6 +107,8 @@ class EmployeesController < InheritedResources::Base
 
   def destroy
     if @employee.update_attribute(:active, true)
+      @task.steppers["employee"] = false
+			@task.save
       redirect_to employees_path
     end
   end

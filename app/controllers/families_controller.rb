@@ -3,7 +3,7 @@ class FamiliesController < InheritedResources::Base
   before_action :fetch_family, only: %i[index]
   before_action :find_family,only: [:edit,:update,:destroy]
   before_action :load_family_principal,only: [:edit,:new,:update,:create]
-  before_action :find_task, only: %i[is_completed update create]
+  before_action :find_task, only: %i[is_completed update create destroy]
 
   def find_task
     @task = Task.find(session[:task_id])
@@ -50,6 +50,8 @@ class FamiliesController < InheritedResources::Base
 
   def destroy
     if @family.update_attributes(active: true)
+      @task.steppers["family"] = false
+			@task.save
       redirect_to families_path
     end
   end

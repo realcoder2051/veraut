@@ -1,6 +1,6 @@
 class AddressesController < InheritedResources::Base
 	before_action :fetch_address, only: %i[index]
-	before_action :find_task, only: %i[create_new_address create update]
+	before_action :find_task, only: %i[create_new_address create update destroy]
 
 	def find_task
 		@task = Task.find(session[:task_id])
@@ -119,7 +119,9 @@ class AddressesController < InheritedResources::Base
 			address.update(active: false)
 		end
 		address_mapping = AddressMapping.find(params[:address_mapping])
-    if address_mapping.update(active: false)
+		if address_mapping.update(active: false)
+			@task.steppers["general"] = false
+			@task.save
       redirect_to generals_path
     end
 	end
