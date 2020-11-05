@@ -16,10 +16,22 @@ class EmployeesController < InheritedResources::Base
   end
 
   def update
-    if params[:employee][:first_name] == "" || params[:employee][:last_name] == "" || params[:employee][:ssn].length <= 9 || params[:employee][:hours] == "" || params[:employee][:compensation] == "" || params[:employee][:date_of_birth]== "" || params[:employee][:original_date_of_hire] == ""
-      session[:error] = "Your choices have been saved, however the step can not be completed because there are additional required fields."
+    employee = employee_params
+    errors = ""
+    errors += Employee.first_name_exist(employee["first_name"])
+    errors += Employee.last_name_exist(employee["last_name"])
+    errors += Employee.ssn_valid(employee["ssn"])
+    errors += Employee.date_of_birth_exist(employee["date_of_birth"])
+    errors += Employee.original_date_of_hire_exist(employee["original_date_of_hire"])
+    errors += Employee.compensation_exist(employee["compensation"])
+    errors += Employee.hours_exist(employee["hours"])
+    if errors.present?
+      if employee["ssn"].length>9
+        employee["ssn"] = employee["ssn"].first(9)
+      end
+        session[:error] = "Your choices have been saved, however the step can not be completed because there are additional required fields."+errors
     end
-    if @employee.update_attributes(employee_params)
+    if @employee.update_attributes(employee)
       @task.steppers["employee"] = false
       @task.save
       redirect_to employees_path
@@ -71,10 +83,22 @@ class EmployeesController < InheritedResources::Base
   end
 
   def create
-    @employee = Employee.new(employee_params)
-    if @employee.first_name == "" || @employee.last_name == "" || @employee.ssn.to_s.length<=9 || @employee.date_of_birth == "" || @employee.original_date_of_hire == "" || @employee.hours == "" || @employee.compensation == "" || @employee.ssn.to_s.length>9
-      session[:error] = "Your choices have been saved, however the step can not be completed because there are additional required fields."
+    employee = employee_params
+    errors = ""
+    errors += Employee.first_name_exist(employee["first_name"])
+    errors += Employee.last_name_exist(employee["last_name"])
+    errors += Employee.ssn_valid(employee["ssn"])
+    errors += Employee.date_of_birth_exist(employee["date_of_birth"])
+    errors += Employee.original_date_of_hire_exist(employee["original_date_of_hire"])
+    errors += Employee.compensation_exist(employee["compensation"])
+    errors += Employee.hours_exist(employee["hours"])
+    if errors.present?
+      if employee["ssn"].length>9
+        employee["ssn"] = employee["ssn"].first(9)
+      end
+        session[:error] = "Your choices have been saved, however the step can not be completed because there are additional required fields."+errors
     end
+    @employee = Employee.new(employee)
     @employee[:task_id] = session[:task_id]
     if @employee.save
       @task.steppers["employee"] =  false

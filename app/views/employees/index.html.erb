@@ -30,12 +30,14 @@
     <span style="font-style: italic;" > Please enter or import your employee census data using the tools below . When you are satisfied that all of the data is correct, click the save button to continue. If you do not have any employee that report W-2 wages, click the delete all employees button and then click the save button for more information on approving this step. </span>
   </div>
   <% if session[:error]%>
-    <div class="company_flash_message">
-      <div class="container flash-custom" >
-        <%= session[:error] %>
-        <% session[:error] = nil%>
-      </div>
-    </div>
+      <% session[:error].split('.').each do |error|%>
+        <div class="company_flash_message">
+          <div class="container flash-custom" >
+            <%=error%>
+          </div>
+        </div>
+      <%end%>
+      <% session[:error] = nil%>
     <div class="container"></div>
   <%end%>
 

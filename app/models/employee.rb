@@ -1,9 +1,47 @@
 class Employee < ApplicationRecord
-	#validates_length_of :ssn, :maximum => 9
-	#validates :first_name,:last_name,:ssn,:date_of_birth,:original_date_of_hire, :compensation, :hours, presence: true
+	# validates_length_of :ssn, :maximum => 9,presence: true
+	# validates :first_name,:last_name,:ssn,:date_of_birth,:original_date_of_hire, :compensation, :hours, presence: true
 
+	def employee_validation()
+		 [first_name ? "" : "First Name can't be blank",
+		 last_name ? "" : "Last Name can't be blank",
+		 date_of_birth ? "" : "Date of Birth can't be blank",
+		 original_date_of_hire ? "" : "Original Date of hire can't be blank",
+		 compensation.present? ? "" : "Compensation can't be blank",
+		 hours ? "" : "Hours can't be blank",
+		 (ssn.present? and ssn.to_s.length<=9) ? "" : "SSN should not exceed its limit"
+		]
+	end
 
-	def self.update_imported_store(file,session)	
+	def self.first_name_exist(first_name)
+		first_name.present? ? "" : "First Name can't be blank."
+	end
+
+	def self.last_name_exist(last_name)
+		last_name.present? ? "" : "Last Name can't be blank."
+	end
+
+	def self.ssn_valid(ssn)
+		ssn.to_s.length>0 && ssn.to_s.length<=9 ? "" : "SSN must be between 1 to 9 characters."
+	end
+
+	def self.date_of_birth_exist(date_of_birth)
+		date_of_birth.present? ? "" : "Date of Birth can't be blank."
+	end
+
+	def self.original_date_of_hire_exist(original_date_of_hire)
+		original_date_of_hire.present? ? "" : "Original Date Of Hire can't be blank."
+	end
+
+	def self.compensation_exist(compensation)
+		compensation.present? ? "" : "Compensation can't be blank."
+	end
+
+	def self.hours_exist(hours)
+		hours.present? ? "" : "Hours can't be blank."
+	end
+
+	def self.update_imported_store(file,session)
 		h1 = ["FIRSTNAME","LASTNAME","FULLNAME","SSN","GENDER","DATEOFBIRTH","ORIGINALDATEOFHIRE","DATEOFTERMINATION","DATEOFRETIRE","COMPENSATION","HOURS","PRETAXSALARYDEFERAL","ROTHSALARYDEFERAL","EMPLOYEEMATCH","COMPANYDIVISION","UNIONEMPLOYEE"]
 		h2 = ["FIRST_NAME","LAST_NAME","FULL_NAME","SSN","GENDER","DATE_OF_BIRTH","ORIGINAL_DATE_OF_HIRE","DATE_OF_TERMINATION","DATE_OF_RETIRE","COMPENSATION","HOURS","PRE_TAX_SALARY_DEFERAL","ROTH_SALARY_DEFERAL","EMPLOYEE_MATCH","COMPANY_DIVISION","UNION_EMPLOYEE"]
 		spreadsheet = open_spreadsheet(file)
