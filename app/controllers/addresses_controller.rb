@@ -1,5 +1,10 @@
 class AddressesController < InheritedResources::Base
 	before_action :fetch_address, only: %i[index]
+	before_action :find_task, only: %i[create_new_address create update]
+
+	def find_task
+		@task = Task.find(session[:task_id])
+	end
 
 	def create
 		if params[:address][:id].present?
@@ -12,6 +17,8 @@ class AddressesController < InheritedResources::Base
 				render :new
 			elsif @address.present?
 				save_address_mapping
+				@task.steppers["general"] = false
+				@task.save
 				redirect_to generals_path
 			end
 		else
@@ -35,6 +42,8 @@ class AddressesController < InheritedResources::Base
 			session[:error] = "Your choices have been saved, however the step can not be completed because there are additional required fields."
 		end
 		if @address.save
+			@task.steppers["general"] = false
+			@task.save
 			save_address_mapping
 			redirect_to generals_path
 		else
@@ -56,6 +65,8 @@ class AddressesController < InheritedResources::Base
 			edit_address_call
 			if params[:address][:address1] == "" || params[:address][:city] == "" || params[:address][:state] == "" || params[:address][:zip] == ""
 				session[:error] = "Your choices have been saved, however the step can not be completed because there are additional required fields."
+				@task.steppers["general"] = false
+				@task.save
 			end
 			if @address.save
 				@old_address.update(active: false)

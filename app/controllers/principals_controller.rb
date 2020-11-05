@@ -2,7 +2,11 @@ class PrincipalsController < InheritedResources::Base
 	before_action :stepper, only: %i[index]
   before_action :fetch_principal, only: %i[index]
   before_action :find_principal,only: [:edit,:update,:destroy]
+  before_action :find_task,only: %i[is_completed update]
 
+  def find_task
+    @task = Task.find(session[:task_id])
+  end
 
   def find_principal
     @principal = Principal.find(params[:id])
@@ -14,6 +18,8 @@ class PrincipalsController < InheritedResources::Base
   def update
     @principal.is_completed = false
     if @principal.update_attributes(principal_params)
+      @task.steppers["principal"] = false
+      @task.save
       redirect_to principals_path
 		else
 			render :edit
@@ -25,6 +31,8 @@ class PrincipalsController < InheritedResources::Base
 		@principal[:task_id] = session[:task_id]
     @principal[:user_id] = current_user.id
     if @principal.save
+      @task.steppers["principal"] = false
+      @task.save
       redirect_to principals_path
     else
       render :new
@@ -44,18 +52,24 @@ class PrincipalsController < InheritedResources::Base
     end
 	end
 
-	def is_completed
+  def is_completed
 		principals = Principal.where("is_completed=? AND user_id=? AND task_id=? AND active = ?", false , current_user.id , session[:task_id],false)
     principals.each do |principal|
       if principal.name == "" || principal.title == "" || principal.ownership.to_s == ""
+        @task.steppers["principal"] = true
+        @task.save
       else
         principal.update(is_completed: true)
       end
     end
     result = Principal.calculate_total_ownership(session[:task_id])
     if result >= 100
+      @task.steppers["principal"] = true
+      @task.save
       redirect_to families_path
     else
+      @task.steppers["principal"] = false
+      @task.save
       redirect_to principals_path
     end
 	end

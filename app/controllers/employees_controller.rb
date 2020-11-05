@@ -2,6 +2,11 @@ class EmployeesController < InheritedResources::Base
 	before_action :fetch_employee, only: %i[index]
 	before_action :stepper, only: %i[index]
   before_action :find_employee , only: [:edit,:update,:destroy]
+  before_action :find_task,only: %i[create update save_employee import_store]
+
+  def find_task
+    @task = Task.find(session[:task_id])
+  end
 
   def find_employee
     @employee = Employee.find(params[:id])
@@ -11,10 +16,12 @@ class EmployeesController < InheritedResources::Base
   end
 
   def update
-    if params[:employee][:first_name] == "" || params[:employee][:last_name] == "" || params[:employee][:ssn].length >= 9 || params[:employee][:hours] == "" || params[:employee][:compensation] == "" || params[:employee][:date_of_birth]== "" || params[:employee][:original_date_of_hire] == ""
+    if params[:employee][:first_name] == "" || params[:employee][:last_name] == "" || params[:employee][:ssn].length <= 9 || params[:employee][:hours] == "" || params[:employee][:compensation] == "" || params[:employee][:date_of_birth]== "" || params[:employee][:original_date_of_hire] == ""
       session[:error] = "Your choices have been saved, however the step can not be completed because there are additional required fields."
     end
     if @employee.update_attributes(employee_params)
+      @task.steppers["employee"] = false
+      @task.save
       redirect_to employees_path
     else
       render :edit
@@ -32,8 +39,12 @@ class EmployeesController < InheritedResources::Base
       end
     end
     if status
+      @task.steppers["employee"] =  true
+      @task.save
       redirect_to approvals_path
     else
+      @task.steppers["employee"] =  false
+      @task.save
       redirect_to employees_path
     end
   end
@@ -60,11 +71,13 @@ class EmployeesController < InheritedResources::Base
 
   def create
     @employee = Employee.new(employee_params)
-    if @employee.first_name == "" || @employee.last_name == "" || @employee.ssn.to_s.length> 9 || @employee.date_of_birth == "" || @employee.original_date_of_hire == "" || @employee.hours == "" || @employee.compensation == "" || @employee.ssn.to_s.length>9
+    if @employee.first_name == "" || @employee.last_name == "" || @employee.ssn.to_s.length<=9 || @employee.date_of_birth == "" || @employee.original_date_of_hire == "" || @employee.hours == "" || @employee.compensation == "" || @employee.ssn.to_s.length>9
       session[:error] = "Your choices have been saved, however the step can not be completed because there are additional required fields."
     end
     @employee[:task_id] = session[:task_id]
     if @employee.save
+      @task.steppers["employee"] =  false
+      @task.save
       redirect_to employees_path
     else
       flash.now[:alert] = "Wrong file format"
@@ -78,7 +91,9 @@ class EmployeesController < InheritedResources::Base
     file_type = file.present? ? file.path.split('.').last.to_s.downcase : ''
     if file.present? and (file_type == 'csv' or file_type == 'xlsx')
       if (Employee.update_imported_store(file,session[:task_id]))
-  			flash[:notice] = "File Uploaded Successfully"
+        flash[:notice] = "File Uploaded Successfully"
+        @task.steppers["employee"] =  false
+        @task.save
 	  		redirect_to employees_path
       else
 				flash[:alert] = "Wrong file format"
@@ -93,9 +108,6 @@ class EmployeesController < InheritedResources::Base
     if @employee.update_attribute(:active, true)
       redirect_to employees_path
     end
-  end
-
-  def is_completed
   end
 
   private

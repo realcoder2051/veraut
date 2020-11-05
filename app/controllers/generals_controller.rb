@@ -1,6 +1,11 @@
 class GeneralsController < InheritedResources::Base
 	before_action :stepper, only: %i[index]
 	before_action :fetch_address, only: %i[index]
+	before_action :find_current_task, only: %i[is_completed]
+
+	def find_current_task
+		@task = Task.find(session[:task_id])
+	end
 
 	def update
 		general = General.find(params[:id])
@@ -56,8 +61,12 @@ class GeneralsController < InheritedResources::Base
 			end
 		end
 		if status
+			@task.steppers["general"] = true
+			@task.save
 			redirect_to new_company_path
 		else
+			@task.steppers["general"] = false
+			@task.save
 			redirect_to generals_path
 		end
 	end

@@ -2,6 +2,11 @@ class BusinessesController < ApplicationController
 	before_action :stepper, only: [:index,:is_completed]
 	before_action :fetch_business, only: %i[index]
 	before_action :find_business,only: [:edit,:update,:destroy]
+	before_action :find_task,only: %i[is_completed update create]
+
+	def find_task
+		@task = Task.find(session[:task_id])
+	end
 
 	def find_business
 		@business = Business.find(params[:id])
@@ -17,7 +22,8 @@ class BusinessesController < ApplicationController
 	def update
 		@business.is_completed = false
 		if @business.update_attributes(business_params)
-				redirect_to businesses_path
+			@task.steppers["business"] = false
+			redirect_to businesses_path
 		else
 			render :edit
     end
@@ -33,6 +39,8 @@ class BusinessesController < ApplicationController
 		@business[:task_id] = session[:task_id]
 		@business[:user_id] = current_user.id
 		if @business.save
+			@task.steppers["business"] = false
+			@task.save
 			redirect_to businesses_path
 		else
 			render :new
@@ -43,14 +51,18 @@ class BusinessesController < ApplicationController
 		status = true
 		businesses = Business.where("is_completed=? AND user_id=? AND task_id=? AND active = ?", false , current_user.id , session[:task_id],false)
 		if businesses.length == 0
-			@steppers[:business] = [true]
-			#Business.create(name: "1",ein:"111111111",does_company_have_employees: "No",qualified_plan_sponsored: "No",entity_type: "S Corp",task_id: session[:task_id],user_id: current_user.id, is_completed: true,active: true)
+			@task.steppers["business"] = true
+			@task.save
 		else
 			businesses.each do |business|
 				if business.name == "" || business.ein.to_s.length != 9  || business.does_company_have_employees == "" || business.qualified_plan_sponsored == "" || business.entity_type == ""
+					@task.steppers["business"] = false
+					@task.save
 					status = false
 				else
 					business.update(is_completed: true)
+					@task.steppers["business"] = true
+					@task.save
 				end
 			end
 		end

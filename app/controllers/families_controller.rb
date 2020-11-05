@@ -3,7 +3,11 @@ class FamiliesController < InheritedResources::Base
   before_action :fetch_family, only: %i[index]
   before_action :find_family,only: [:edit,:update,:destroy]
   before_action :load_family_principal,only: [:edit,:new,:update,:create]
+  before_action :find_task, only: %i[is_completed update create]
 
+  def find_task
+    @task = Task.find(session[:task_id])
+  end
 
   def find_family
     @family = Family.find(params[:id])
@@ -19,7 +23,8 @@ class FamiliesController < InheritedResources::Base
   def update
     @family.is_completed = false
     if @family.update_attributes(family_params)
-			redirect_to families_path
+      redirect_to families_path
+      @task.steppers["family"] = false
     else
 			render :edit
     end
@@ -35,6 +40,8 @@ class FamiliesController < InheritedResources::Base
 		@family[:task_id] = session[:task_id]
     @family[:user_id] = current_user.id
     if @family.save
+      @task.steppers["family"] = false
+			@task.save
       redirect_to families_path
     else
       render :new
@@ -50,16 +57,27 @@ class FamiliesController < InheritedResources::Base
 	def is_completed
 		families = Family.where("is_completed=? AND user_id=? AND active = ? AND task_id=?", false , current_user.id ,false, session[:task_id])
     status=true
-    families.each do |family|
-      if family.related_to == "" || family.relationship =="" || family.name==""
-        status = false
-      else
-        family.update(is_completed: true)
+    if families.length == 0
+      @task.steppers["family"] = true
+      @task.save
+    else
+      families.each do |family|
+        if family.related_to == "" || family.relationship =="" || family.name==""
+          status = false
+          @task.steppers["family"] = false
+					@task.save
+        else
+          family.update(is_completed: true)
+        end
       end
     end
     if status
+      @task.steppers["family"] = true
+      @task.save
       redirect_to businesses_path
     else
+      task.steppers["family"] = false
+      @task.save
      redirect_to families_path
     end
 	end

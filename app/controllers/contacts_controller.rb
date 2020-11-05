@@ -86,6 +86,9 @@ class ContactsController < InheritedResources::Base
 	def is_completed
 		save_contact_technician
 		save_contact_main_contact
+		task = Task.find(session[:task_id])
+		task.steppers["contact"] = true
+		task.save
 		redirect_to plans_new_path
 	end
 

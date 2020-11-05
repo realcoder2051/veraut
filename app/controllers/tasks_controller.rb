@@ -8,6 +8,7 @@ class TasksController < InheritedResources::Base
   def create
     previous_task = TaskGroup.find_by("user_id = ?",current_user.id).tasks&.last
     @task = Task.new(task_params)
+    @task[:steppers]={general: false,company: false,principal: false,family:  false,business: false,contact: false,plan: false,"5500": false,employee: false}
     @task.update(task_group_id: current_user.task_group.id)
     if @task.save
       if previous_task.present?

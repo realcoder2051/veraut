@@ -1,5 +1,10 @@
 class CompaniesController < InheritedResources::Base
 	before_action :stepper, only: %i[new edit]
+	before_action :find_task,only: [:create,:update]
+
+	def find_task
+		@task = Task.find(session[:task_id])
+	end
 
 	def new
 		@company = Company.new
@@ -21,9 +26,15 @@ class CompaniesController < InheritedResources::Base
 			else
 				session[:error] = "Your choices have been saved, however the step can not be completed because there are additional required fields."
 			end
+			@task.steppers["company"] = false
+			@task.save
 			@company.is_completed = false
 		end
 		if @company.save
+			if !(session[:error].present?)
+				@task.steppers["company"]= true
+				@task.save
+			end
 			redirecting_request
 		else
 			stepper
@@ -49,9 +60,15 @@ class CompaniesController < InheritedResources::Base
 			else
 				session[:error] = "Your choices have been saved, however the step can not be completed because there are additional required fields."
 			end
-				@company.is_completed = false
+			@task.steppers["company"]= false
+			@task.save
+			@company.is_completed = false
 		end
 		if @company.update_attributes(company_params)
+			if !(session[:error].present?)
+				@task.steppers["company"]= true
+				@task.save
+			end
 			redirecting_request
 		else
 			stepper

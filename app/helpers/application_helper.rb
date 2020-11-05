@@ -24,7 +24,7 @@ module ApplicationHelper
 	end
 
 	def wizard_step_status(steps)
-		@steppers[steps.to_sym].include?(false) ||  @steppers[steps.to_sym].empty? ?  'disabled' : 'complete'
+		@steppers[steps.to_sym]== false ?  'disabled' : 'complete'
 	end
 
 	def step_incomplete(incomplete)

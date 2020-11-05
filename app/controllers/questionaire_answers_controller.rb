@@ -1,5 +1,10 @@
 class QuestionaireAnswersController < InheritedResources::Base
 	before_action :stepper, only: %i[fifty_five_hundred_new new edit_plan edit_5500 create_plan create_fifty_five_hundred]
+	before_action :find_task, only: %i[new fifty_five_hundred_new update_plan upadte_5500]
+
+	def find_task
+		@task = Task.find(session[:task_id])
+	end
 
 	def new
 		@flash_action = true
@@ -9,9 +14,13 @@ class QuestionaireAnswersController < InheritedResources::Base
 			@questionaire_answer = QuestionaireAnswer.find_by(task_id: session[:task_id])	
 			if QuestionaireAnswer.where("task_id=? AND answer=? AND question_type_id=?", session[:task_id] , "", 1).present?
 				flash[:alert]= "Your choices have been saved, however the step can not be completed because there are additional required fields."
+				@task.steppers["plan"] = false
+				@task.save
 				redirect_to edit_plan_path(@questionaire_answer)
 			else
 				#flash[:notice] = "Successfully completed"
+				@task.steppers["plan"] = true
+				@task.save
 				redirect_to edit_plan_path(@questionaire_answer)
 			end
 	 end
@@ -29,14 +38,20 @@ class QuestionaireAnswersController < InheritedResources::Base
 			question = QuestionaireAnswer.where("task_id=? AND question_type_id=?", session[:task_id] , 2)
 			if QuestionaireAnswer.where("task_id=? AND answer=? AND question_type_id=?", session[:task_id] , "", 2).present?
 				if question.third.answer == "No" && question.fourth.answer == ""
+					@task.steppers["5500"]=true
+					@task.save
 					#flash[:notice] = "Successfully completed"
 					redirect_to edit_fifty_five_hundred_path(@questionaire_answer)
 				else
+					@task.steppers["5500"]=false
+					@task.save
 					flash[:alert]= "Your choices have been saved, however the step can not be completed because there are additional required fields."
 					redirect_to edit_fifty_five_hundred_path(@questionaire_answer)
 				end
 			else
 				#flash[:notice] = "Successfully completed"
+				@task.steppers["5500"]=true
+				@task.save
 				redirect_to edit_fifty_five_hundred_path(@questionaire_answer)
 			end
 	 end
@@ -66,25 +81,34 @@ class QuestionaireAnswersController < InheritedResources::Base
 	def edit_5500
 		@flash_action = true
 		@notes = Note.all
-    @questionaire_answer = QuestionaireAnswer.where('task_id=? AND question_type_id=? ',session[:task_id],2)
+		@questionaire_answer = QuestionaireAnswer.where('task_id=? AND question_type_id=? ',session[:task_id],2).order('question_no asc')
   end
 
-  def update_5500
+	def update_5500
+		@task = Task.find(session[:task_id])
     questionaire_answers = fifty_five_hundred_plan
 		QuestionaireAnswer.import questionaire_answers, on_duplicate_key_update: [:answer,:is_completed]
 		question = QuestionaireAnswer.where("task_id=? AND question_type_id=?", session[:task_id] , 2)
 		if question.pluck("answer")&.grep("").count == 1
 			if question.third.answer == "No" && (question.fourth.answer == "" || question.fourth.answer.present?)
 				question.fourth.update(is_completed: true)
+				@task.steppers["5500"]=true
+				@task.save
 				redirect_to employees_path
 			else
+				@task.steppers["5500"]=false
+				@task.save
 				flash[:alert]= "Your choices have been saved, however the step can not be completed because there are additional required fields."
 				redirect_to edit_fifty_five_hundred_path
 			end
 		elsif question.pluck("answer")&.grep("").count > 1
 			flash[:alert]= "Your choices have been saved, however the step can not be completed because there are additional required fields."
+			@task.steppers["5500"]=false
+			@task.save
 			redirect_to edit_fifty_five_hundred_path
 		else
+			@task.steppers["5500"]=true
+			@task.save
 			redirect_to employees_path
 		end
   end
@@ -92,17 +116,21 @@ class QuestionaireAnswersController < InheritedResources::Base
 	def edit_plan
 		@flash_action = true
 		@notes = Note.all
-    @questionaire_answer = QuestionaireAnswer.where('task_id=? AND question_type_id=? ',session[:task_id],1).order(:id)
+    @questionaire_answer = QuestionaireAnswer.where('task_id=? AND question_type_id=? ',session[:task_id],1).order('question_no asc')
   end
 
   def update_plan
 		questionaire_answers = choose_plan
     QuestionaireAnswer.import questionaire_answers, on_duplicate_key_update: [:answer,:is_completed]
 		if QuestionaireAnswer.where("task_id=? AND answer=? AND question_type_id=?", session[:task_id] , "", 1).present?
+			@task.steppers["plan"]=false
+			@task.save
 			flash[:alert] = "Your choices have been saved, however the step can not be completed because there are additional required fields."
 			redirect_to edit_plan_path
 		else
 			#flash[:notice] = "Successfully completed"
+			@task[:steppers]["plan"]=true
+			@task.save
 			redirect_to fifty_five_hundred_new_path
 		end
 	end
@@ -127,18 +155,6 @@ class QuestionaireAnswersController < InheritedResources::Base
     id = session[:task_id]
 		@questionaire_answers = QuestionaireAnswer.order('created_at').where(task_id: id, question_type_id: 2).all
 	end
-
-	# def is_completed_fifty_five_hundred
-	# 	question_answer = QuestionaireAnswer.where("is_completed=? AND user_id=? AND task_id=? AND question_type_id=?", false , current_user.id , session[:task_id], 2)
-	# 	question_answer.update(is_completed: true)
-  #   redirect_to fifty_five_hundred_new_path
-	# end
-
-	# def is_completed_plan(status)
-	# 	question_answer = QuestionaireAnswer.where("is_completed=? AND user_id=? AND task_id=? AND question_type_id=?", false , current_user.id , session[:task_id], 1)
-	# 	question_answer.update(is_completed: status)
-  #   #redirect_to edit_plan_path
-	# end
 
   private
 
