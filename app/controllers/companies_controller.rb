@@ -31,10 +31,6 @@ class CompaniesController < InheritedResources::Base
 			@company.is_completed = false
 		end
 		if @company.save
-			if !(session[:error].present?)
-				@task.steppers["company"]= true
-				@task.save
-			end
 			redirecting_request
 		else
 			stepper

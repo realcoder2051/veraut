@@ -2,7 +2,7 @@ class PrincipalsController < InheritedResources::Base
 	before_action :stepper, only: %i[index]
   before_action :fetch_principal, only: %i[index]
   before_action :find_principal,only: [:edit,:update,:destroy]
-  before_action :find_task,only: %i[is_completed update destroy]
+  before_action :find_task,only: %i[is_completed update destroy create]
 
   def find_task
     @task = Task.find(session[:task_id])

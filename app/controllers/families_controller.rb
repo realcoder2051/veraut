@@ -25,6 +25,7 @@ class FamiliesController < InheritedResources::Base
     if @family.update_attributes(family_params)
       redirect_to families_path
       @task.steppers["family"] = false
+      @task.save
     else
 			render :edit
     end

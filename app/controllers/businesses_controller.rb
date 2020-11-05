@@ -23,6 +23,7 @@ class BusinessesController < ApplicationController
 		@business.is_completed = false
 		if @business.update_attributes(business_params)
 			@task.steppers["business"] = false
+			@task.save
 			redirect_to businesses_path
 		else
 			render :edit
