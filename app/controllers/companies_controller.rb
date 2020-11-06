@@ -17,19 +17,21 @@ class CompaniesController < InheritedResources::Base
 
   def create
 		@company = Company.new(company_params)
+		errors = ""
+		errors += Company.company_name_exist(@company["company_name"])
+		errors += Company.ein_valid(@company["ein"])
+		errors += Company.fiscal_year_end_exist(@company["fiscal_year_end"])
+		errors += Company.entity_type_exist(@company["entity_type"])
+    errors += Company.payroll_frequency_exist(@company["payroll_frequency"])
 		@company[:task_id] = session[:task_id]
 		@company[:user_id] = current_user.id
 		@company.is_completed = true
-		if @company.company_name == "" || @company.entity_type== "" || @company.payroll_frequency=="" || @company.fiscal_year_end == "" || @company.ein.length!=9
-			if @company.ein.length!=9
-				session[:error] = "EIN must be 9 characters but your choices have been saved, however the step can not be completed because there are additional required fields."
-			else
-				session[:error] = "Your choices have been saved, however the step can not be completed because there are additional required fields."
-			end
-			@task.steppers["company"] = false
-			@task.save
+		if errors.present?
+			flash[:alert] = "Your choices have been saved, however the step can not be completed because there are additional required fields."+errors
 			@company.is_completed = false
 		end
+			@task.steppers["company"] = false
+			@task.save
 		if @company.save
 			redirecting_request
 		else
@@ -49,19 +51,23 @@ class CompaniesController < InheritedResources::Base
 
 	def update
 		@company = Company.find(params[:id])
+		company = company_params
+		errors = ""
+		errors += Company.company_name_exist(company["company_name"])
+		errors += Company.ein_valid(company["ein"])
+		errors += Company.fiscal_year_end_exist(company["fiscal_year_end"])
+		errors += Company.entity_type_exist(company["entity_type"])
+    errors += Company.payroll_frequency_exist(company["payroll_frequency"])
 		@company.is_completed = true
-		if params[:company][:company_name] == "" || params[:company][:entity_type] == "" || params[:company][:payroll_frequency]=="" || params[:company][:fiscal_year_end] == "" || params[:company][:ein].length !=9
-			if params[:company][:ein].length !=9
-				session[:error] = "EIN must be 9 characters but your choices have been saved, however the step can not be completed because there are additional required fields."
-			else
-				session[:error] = "Your choices have been saved, however the step can not be completed because there are additional required fields."
-			end
+		if errors.present?
+			flash[:alert] = "Your choices have been saved, however the step can not be completed because there are additional required fields."+errors
+			@company.is_completed = false
 			@task.steppers["company"]= false
 			@task.save
-			@company.is_completed = false
 		end
-		if @company.update_attributes(company_params)
-			if !(session[:error].present?)
+
+		if @company.update_attributes(company)
+			if !(errors.present?)
 				@task.steppers["company"]= true
 				@task.save
 			end

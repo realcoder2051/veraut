@@ -1,6 +1,6 @@
 class QuestionaireAnswersController < InheritedResources::Base
 	before_action :stepper, only: %i[fifty_five_hundred_new new edit_plan edit_5500 create_plan create_fifty_five_hundred]
-	before_action :find_task, only: %i[new fifty_five_hundred_new update_plan upadte_5500]
+	before_action :find_task, only: %i[new fifty_five_hundred_new create_fifty_five_hundred create_plan update_plan upadte_5500]
 
 	def find_task
 		@task = Task.find(session[:task_id])
@@ -11,7 +11,7 @@ class QuestionaireAnswersController < InheritedResources::Base
 		@notes = Note.all
 		@questionaire_answer = QuestionaireAnswer.new
 		if QuestionaireAnswer.exists?(task_id: session[:task_id], user_id: current_user.id, question_type_id: 1)
-			@questionaire_answer = QuestionaireAnswer.find_by(task_id: session[:task_id])	
+			@questionaire_answer = QuestionaireAnswer.find_by(task_id: session[:task_id])
 			if QuestionaireAnswer.where("task_id=? AND answer=? AND question_type_id=?", session[:task_id] , "", 1).present?
 				flash[:alert]= "Your choices have been saved, however the step can not be completed because there are additional required fields."
 				@task.steppers["plan"] = false
@@ -63,7 +63,18 @@ class QuestionaireAnswersController < InheritedResources::Base
 		if questionaire_answers.pluck("is_completed").include?(false)
 			redirect_to plans_new_path
 		else
-			redirect_to fifty_five_hundred_new_path
+			if questionaire_answers[11]["question_no"] == 12 && questionaire_answers[11]["answer"].present?
+				if !(questionaire_answers[11]["answer"].to_date < Date.current)
+					flash[:alert] = "Your choices have been saved, however the step can not be completed because Selected Date must be less than Today Date "
+					redirect_to edit_plan_path(questionaire_answers.first)
+				else
+					@task.steppers["plan"] = true
+					@task.save
+					redirect_to fifty_five_hundred_new_path
+				end
+			else
+				redirect_to plans_new_path
+			end
 		end
   end
 
@@ -74,6 +85,8 @@ class QuestionaireAnswersController < InheritedResources::Base
 		if questionaire_answers.pluck("is_completed").include?(false)
 			redirect_to fifty_five_hundred_new_path
 		else
+			@task.steppers["5500"] = true
+			@task.save
 			redirect_to employees_path
 		end
   end
@@ -128,10 +141,20 @@ class QuestionaireAnswersController < InheritedResources::Base
 			flash[:alert] = "Your choices have been saved, however the step can not be completed because there are additional required fields."
 			redirect_to edit_plan_path
 		else
-			#flash[:notice] = "Successfully completed"
-			@task[:steppers]["plan"]=true
-			@task.save
-			redirect_to fifty_five_hundred_new_path
+			if questionaire_answers[11]["question_no"] == 12 && questionaire_answers[11]["answer"].present?
+				if !(questionaire_answers[11]["answer"].to_date < Date.current)
+					flash[:alert] = "Your choices have been saved, however the step can not be completed because Selected Date must be less than Today Date "
+					@task.steppers["plan"]=false
+					@task.save
+					redirect_to edit_plan_path
+				else
+					@task[:steppers]["plan"]=true
+					@task.save
+					redirect_to fifty_five_hundred_new_path
+				end
+			else
+				redirect_to edit_plan_path
+			end
 		end
 	end
 

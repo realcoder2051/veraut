@@ -16,22 +16,7 @@ class EmployeesController < InheritedResources::Base
   end
 
   def update
-    employee = employee_params
-    errors = ""
-    errors += Employee.first_name_exist(employee["first_name"])
-    errors += Employee.last_name_exist(employee["last_name"])
-    errors += Employee.ssn_valid(employee["ssn"])
-    errors += Employee.date_of_birth_exist(employee["date_of_birth"])
-    errors += Employee.original_date_of_hire_exist(employee["original_date_of_hire"])
-    errors += Employee.compensation_exist(employee["compensation"])
-    errors += Employee.hours_exist(employee["hours"])
-    if errors.present?
-      if employee["ssn"].length>9
-        employee["ssn"] = employee["ssn"].first(9)
-      end
-        session[:error] = "Your choices have been saved, however the step can not be completed because there are additional required fields."+errors
-    end
-    if @employee.update_attributes(employee)
+    if @employee.update_attributes(employee_params)
       @task.steppers["employee"] = false
       @task.save
       redirect_to employees_path
@@ -50,7 +35,7 @@ class EmployeesController < InheritedResources::Base
         employee.update(is_completed: true)
       end
     end
-    if status
+    if status && employees.length>0
       @task.steppers["employee"] =  true
       @task.save
       redirect_to approvals_path
@@ -83,29 +68,13 @@ class EmployeesController < InheritedResources::Base
   end
 
   def create
-    employee = employee_params
-    errors = ""
-    errors += Employee.first_name_exist(employee["first_name"])
-    errors += Employee.last_name_exist(employee["last_name"])
-    errors += Employee.ssn_valid(employee["ssn"])
-    errors += Employee.date_of_birth_exist(employee["date_of_birth"])
-    errors += Employee.original_date_of_hire_exist(employee["original_date_of_hire"])
-    errors += Employee.compensation_exist(employee["compensation"])
-    errors += Employee.hours_exist(employee["hours"])
-    if errors.present?
-      if employee["ssn"].length>9
-        employee["ssn"] = employee["ssn"].first(9)
-      end
-        session[:error] = "Your choices have been saved, however the step can not be completed because there are additional required fields."+errors
-    end
-    @employee = Employee.new(employee)
+    @employee = Employee.new(employee_params)
     @employee[:task_id] = session[:task_id]
     if @employee.save
       @task.steppers["employee"] =  false
       @task.save
       redirect_to employees_path
     else
-      flash.now[:alert] = "Wrong file format"
       render :new
     end
 

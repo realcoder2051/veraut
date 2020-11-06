@@ -9,9 +9,9 @@ class AddressesController < InheritedResources::Base
 	def create
 		if params[:address][:id].present?
 			@address = Address.find(params[:address][:id])
-			address_type=@address&.address_mappings.where(task_id: session[:task_id],active: true).pluck(:address_type_id)
+			address_type=AddressMapping.where(task_id: session[:task_id],active: true).pluck(:address_type_id)
 			if address_type.include?(params[:Address_Type].to_i)
-				session[:error] = "Address with this Address Type Already Exist"
+				flash[:alert] = "Address with this Address Type Already Exist"
 				address_collection
 				@address = Address.new
 				render :new
@@ -39,7 +39,7 @@ class AddressesController < InheritedResources::Base
 	def create_new_address
 		save_address
 		if @address.address1 == "" || @address.city == "" || @address.state == "" || @address.zip == ""
-			session[:error] = "Your choices have been saved, however the step can not be completed because there are additional required fields."
+			flash[:alert] = "Your choices have been saved, however the step can not be completed because there are additional required fields."
 		end
 		if @address.save
 			@task.steppers["general"] = false
@@ -57,14 +57,14 @@ class AddressesController < InheritedResources::Base
 		status = AddressMapping.where(task_id: session[:task_id],active: true).pluck("address_type_id").include?(params[:Address_Type].to_i)
 		if status == true
 			if AddressMapping.find(params[:old_address_mapping]).address_type_id.to_s != params[:Address_Type]
-				session[:error]= "Address with this Address Type Already Exist"
+				flash[:alert] = "Address with this Address Type Already Exist"
 			end
 		end
 
-		if !(session[:error].present?)
+		if !(flash[:alert].present?)
 			edit_address_call
 			if params[:address][:address1] == "" || params[:address][:city] == "" || params[:address][:state] == "" || params[:address][:zip] == ""
-				session[:error] = "Your choices have been saved, however the step can not be completed because there are additional required fields."
+				flash[:alert] = "Your choices have been saved, however the step can not be completed because there are additional required fields."
 				@task.steppers["general"] = false
 				@task.save
 			end

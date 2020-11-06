@@ -36,15 +36,6 @@
 			<span style="font-style: italic;"> Please enter the complete list of other businesses that are owned as well as owners of other business. When
 				you have completed your changes, click the Save button to continue.</span>
 		</div>
-		<% if session[:error]%>
-			<div class="company_flash_message">
-				<div class="container flash-custom" >
-					<%= session[:error] %>
-					<% session[:error] = nil%>
-				</div>
-			</div>
-			<div class="container"></div>
-		<%end%>
 		<div class="card card-form">
 			<div class="row no-gutters">
 				<div class="col-lg-12 card-form__body">

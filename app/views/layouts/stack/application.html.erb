@@ -50,7 +50,9 @@
 				<%end%>
 				<div class="col-10">
 					<% unless @flash_action.present? %>
-						<%= render 'layouts/stack/flashmessage' %>
+						<% if !(request.original_fullpath.include?("companies") || request.original_fullpath.include?("generals") || request.original_fullpath.include?("addresses"))%>
+							<%= render 'layouts/stack/flashmessage' %>
+						<%end%>
 					<% end %>
 					<%# CONTENT  %>
 					<%= yield %>

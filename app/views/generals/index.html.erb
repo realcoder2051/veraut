@@ -39,14 +39,13 @@
 				information or update existing
 				information as necessary. When you have completed your changes, click the Save button to continue.</span>
 		</div>
-		<% if session[:error]%>
+		<% if flash[:alert]%>
 			<div class="company_flash_message">
 				<div class="container flash-custom" >
-					<%= session[:error] %>
-					<% session[:error] = nil%>
+					<%=flash[:alert]%>
 				</div>
+				<%flash[:alert]=nil%>
 			</div>
-			<div class="container"></div>
 		<%end%>
 		<div class="row no-gutters">
 			<div class="col-lg-6">
