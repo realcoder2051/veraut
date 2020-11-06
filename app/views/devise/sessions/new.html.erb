@@ -1,4 +1,4 @@
-<div class="form-row" >
+<div class="row" >
   <div class='col-lg-9' id='mt-n1'>
       <%= bootstrap_form_for(resource,as: resource_name,url:session_path(resource_name)) do |f| %>
       <div class='col-lg-6 left-move px-md-5'>
@@ -24,10 +24,10 @@
         <i class="material-icons mr-3 align-self-center">error</i>
         <span><%= alert %></span>
       </div>
-      <% end %>   
+      <% end %>
     <%end%>
   </div>
-  <div class="col-lg-3 h-100"> 
+  <div class="col-lg-3">
     <%= image_tag("Banner.png", class: "banner-img", :alt => "rss feed") %>
   </div>
 

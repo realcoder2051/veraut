@@ -37,20 +37,20 @@
 			<span style="font-style: italic;"> Please review the Employer Data below and complete or update existing information as necessary. When you
 				have completed your changes, click the Save button to continue.</span>
 		</div>
-		<% if flash[:alert]%>
-			<%flash[:alert].split('.').each do |error|%>
-				<div class="company_flash_message">
-					<div class="container flash-custom" >
-						<%=error%>
-					</div>
-				</div>
-			<%end%>
-			<%flash[:alert]=nil%>
-		<%end%>
 
 		<div class="card card-">
 			<div class="row no-gutters">
 				<div class="col-lg-12 card-form__body card-body">
+				<% if flash[:alert]%>
+					<%flash[:alert].split('.').each do |error|%>
+						<div class="company_flash_message">
+							<div class="container flash-custom" >
+								<%=error%>
+							</div>
+						</div>
+					<%end%>
+					<%flash[:alert]=nil%>
+				<%end%>
 					<%= bootstrap_form_with(model:@company,html: {id: "company_form"}, local:true) do |f| %>
 						<%=render 'form', f: f %>
 					<% end %>

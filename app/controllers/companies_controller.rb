@@ -26,11 +26,12 @@ class CompaniesController < InheritedResources::Base
 		@company[:task_id] = session[:task_id]
 		@company[:user_id] = current_user.id
 		@company.is_completed = true
+		@task.steppers["company"] = true
 		if errors.present?
 			flash[:alert] = "Your choices have been saved, however the step can not be completed because there are additional required fields."+errors
 			@company.is_completed = false
-		end
 			@task.steppers["company"] = false
+		end
 			@task.save
 		if @company.save
 			redirecting_request

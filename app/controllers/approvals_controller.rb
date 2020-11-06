@@ -35,7 +35,7 @@ class ApprovalsController < InheritedResources::Base
       if result.count.positive?
         @q.sorts = 'created_at' if @q.sorts.empty?
       end
-    @notes = result.paginate(:page => params[:page], per_page:3).order('created_at desc')
+    @notes = result.paginate(:page => params[:page], per_page:10).order('created_at desc')
   end
 
   def fetch_document
