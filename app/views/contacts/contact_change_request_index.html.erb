@@ -1,4 +1,3 @@
-<div class="container-fluid full-scroll">
 	<div class="page__heading cancel-row">
 		<nav aria-label="breadcrumb">
 			<ol class="breadcrumb mb-0">
@@ -50,4 +49,6 @@
 			</div>
 		</div>
 	</div>
-</div>
+	<div class="pagination card-body float-right mb-3" >
+		<%= will_paginate @change_request_mappings %>
+	</div>

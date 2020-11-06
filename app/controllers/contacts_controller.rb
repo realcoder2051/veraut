@@ -69,7 +69,7 @@ class ContactsController < InheritedResources::Base
 
 	def contact_change_request_index
 		@q = ChangeRequestMapping.includes(:contact_change_request).joins(:contact_change_request).where("task_id=?", session[:task_id]).ransack(params[:q])
-		@change_request_mappings = @q.result
+		@change_request_mappings = @q.result.paginate(:page => params[:page], per_page:10)
 	end
 
 	def index
