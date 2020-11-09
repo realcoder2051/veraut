@@ -3,7 +3,9 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :null_session
   before_action :authenticate_user!,except: :internal_dashboard
   layout 'stack/application'
+
   private
+
   rescue_from CanCan::AccessDenied do |exception|
    # render 'shared/flash'
     flash[:error] =  'It seems you do not have permission to view this page'
