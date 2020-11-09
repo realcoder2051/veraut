@@ -4,12 +4,12 @@ default: &default
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   host: localhost
   username: 'postgres'
-  password: 'postgres'
+  password: 'haris1234'
   port: 5432
 
 development:
   <<: *default
-  database: bei_clientportal_dev
+  database: bei_clientportal_dev10
 
 # test:
 # <<: *default
