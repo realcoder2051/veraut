@@ -122,7 +122,6 @@
 * http://www.opensource.org/licenses/mit-license.php
 *
 */
-
 (function ($) {
   $.fn.CongelarFilaColumna = function (method) {
 
@@ -677,7 +676,6 @@
 $("#scrolling_table").CongelarFilaColumna({ Columnas: 5 });
 $("#pruebatabla").CongelarFilaColumna({ Columnas: 5 });
 function hideColumns(event) {
-  debugger;
 
   $(this).parent().data('colspan', $(this).parent().attr('colspan'))
   $(this).parent().attr('colspan', '1');
@@ -707,7 +705,6 @@ function hideColumns(event) {
 }
 
 function showColumns(event) {
-  debugger;
 
   $(this).parent().attr('colspan', $(this).parent().data('colspan'));
   var colSkip = 0;

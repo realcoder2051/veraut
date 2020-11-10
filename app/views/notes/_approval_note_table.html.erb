@@ -23,6 +23,6 @@
 		</tbody>
 	</table>
 </div>
-<div class="pagination card-body float-right <%= @notes.size < 11 ? 'd-none':''%>" >
+<div class="pagination card-body float-right <%= @notes.present? && @notes.size < 11 ? 'd-none':''%>" >
 	<%= will_paginate @notes %>
 </div>

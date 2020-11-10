@@ -73,7 +73,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="pagination card-body float-right <%= @families.size < 11 ? 'd-none':''%>" >
+		<div class="pagination card-body float-right <%= @families.present? && @families.size < 11 ? 'd-none':''%>" >
 			<%= will_paginate @families %>
 		</div>
 	</div>
