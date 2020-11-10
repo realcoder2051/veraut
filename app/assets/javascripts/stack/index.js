@@ -1,7 +1,11 @@
 //= require stack/core-scripts
 
 $(window).on("load",function(){
-	checkSidebarStatus();
+  checkSidebarStatus();
+  $('.sidebarCollapse').on('click', function () {
+    sidebarfun();
+  });
+  
 })
 // Self Initialize DOM Factory Components
 domFactory.handler.autoInit()
@@ -94,56 +98,49 @@ $('.sidebar .collapse').on('hidden.bs.collapse', function (e) {
   $(this).closest('li').toggleClass('open');
 });
 
-$('.sidebarCollapse').on('click', function() {
-	$('#sidebarbg').css("width", 100);
-	$('.sidebar').css("width", 100);
-	$('.sidebar-menu-text').css({display: "none"} );
-	$('.sidebar-menu-icon ').css({margin: '10px'});
-	$('.sidebar-menu-toggle-icon').css({display: "none"} );
-  $('#flex').removeClass('d-flex');
+function sidebarfun() {
+
+  $('#default-drawer').removeClass('col-3');
+  $('.applicationCol').addClass('col-12');
+  $('.sidebar-menu-text').css({
+    display: "none"
+  });
+  $('.sidebar-menu-icon ').css({
+    margin: '10px'
+  });
+  $('.sidebar-menu-toggle-icon').css({
+    display: "none"
+  });
   $('.sidebarExpand').attr('style', 'display: block !important');
-		$('.sidebarCollapse').attr('style', 'display: none !important');
-		setCookie("sidebar_status", "collapsed", 365);
+  $('.sidebarCollapse').attr('style', 'display: none !important');
+  setCookie("sidebar_status", "collapsed", 365);
+}
+
+
+
+
+$('.sidebarExpand').on('click', function () {
+  $('.sidebar-menu-text').css("display", "block");
+  $('.sidebar-menu-toggle-icon').css("display", "block");
+  $('#default-drawer').addClass('col-3');
+  $('.applicationCol').removeClass('col-12');
+  $('.sidebar-menu-icon ').css({
+    margin: '5px'
+  });
+  $('.sidebarExpand').attr('style', 'display: none !important');
+  $('.sidebarCollapse').attr('style', 'display: block !important');
+  setCookie("sidebar_status", "expanded", 365);
 });
 
-	$('.sidebarExpand').on('click', function() {
-		$('.sidebar-menu-text').css("display", "block" );
-  $('.sidebar-menu-toggle-icon').css("display", "block" );
-  $('.sidebar-menu-icon ').css("margin-left", 0);
-    $('#flex').addClass('d-flex');
-    $('#sidebarbg').css("width", 230);
-		$('.sidebar').css("width", 230);
-		$('.sidebarExpand').attr('style', 'display: none !important');
-		$('.sidebarCollapse').attr('style', 'display: block !important');
-		setCookie("sidebar_status", "expanded", 365);
-	});
 
+function checkSidebarStatus() {
+  var username = getCookie("sidebar_status");
 
-	function checkSidebarStatus() {
-		var username = getCookie("sidebar_status");
-	
-		if (username == "collapsed") {
-			
-		$('#sidebarbg').css("width", 100);
-		$('.sidebar').css("width", 100);
-		$('.sidebar-menu-text').css({
-			display: 'none'
-		});
-		$('.sidebar-menu-toggle-icon').css({
-			display: 'none'
-		});
-		$('.sidebar-menu-icon ').css({margin: '10px'});
-		$('.sidebar-menu-toggle-icon').css({
-			display: 'none'
-		});
-		$('.sidebar-heading').css({
-			display: 'none'
-		});
-		$('.sidebarExpand').attr('style', 'display: block !important');
-		$('.sidebarCollapse').attr('style', 'display: none !important');
-		setCookie("sidebar_status", "collapsed", 365);
-		} 
-	}
+  if (username == "collapsed") {
+
+    sidebarfun();
+  }
+}
 // ENABLE TOOLTIPS
 $('[data-toggle="tooltip"]').tooltip()
 
@@ -433,24 +430,24 @@ document.addEventListener("turbolinks:load", function () {
 });
 
 function setCookie(cname, cvalue, exdays) {
-	var d = new Date();
-	d.setTime(d.getTime() + (exdays  *24  *60  *60  *1000));
-	var expires = "expires=" + d.toUTCString();
-	document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+  var d = new Date();
+  d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+  var expires = "expires=" + d.toUTCString();
+  document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
 }
 
 function getCookie(cname) {
-	var name = cname + "=";
-	var decodedCookie = decodeURIComponent(document.cookie);
-	var ca = decodedCookie.split(';');
-	for (var i = 0; i < ca.length; i++) {
-		var c = ca[i];
-		while (c.charAt(0) == ' ') {
-			c = c.substring(1);
-		}
-		if (c.indexOf(name) == 0) {
-			return c.substring(name.length, c.length);
-		}
-	}
-	return "";
+  var name = cname + "=";
+  var decodedCookie = decodeURIComponent(document.cookie);
+  var ca = decodedCookie.split(';');
+  for (var i = 0; i < ca.length; i++) {
+    var c = ca[i];
+    while (c.charAt(0) == ' ') {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return "";
 }

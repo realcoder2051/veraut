@@ -22,9 +22,9 @@
 	<% if !user_signed_in?%>
 		<%= yield %>
 	<% else%>
-		<div class="mdk-header-layout js-mdk-header-layout">
+		<div class="">
 			<!-- Header -->
-				<div id="header" class="mdk-header js-mdk-header m-0" data-fixed>
+				<div id="header" class="m-0" data-fixed>
 					<div class="">
 					<% if action_name == 'internal_dashboard'%>
 					<%else%>
@@ -35,7 +35,7 @@
 			<!-- // END Header -->
 			<%#div class="mdk-header-layout__content" style="display:none"></div#%%>
 			<!-- Header Layout Content -->
-			<div class="mdk-drawer-layout js-mdk-drawer-layout" data-push data-responsive-width="992px">
+			<div class="d-flex mt-7">
 				<!-- // END drawer-layout__content -->
 				<% if action_name == 'internal_dashboard'%>
 				<%else%>

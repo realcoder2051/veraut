@@ -2,8 +2,9 @@
 
 .sidebar {
 
-  height: 100%;
+  height: calc(100% - 4em);
   text-align: initial;
+  position:fixed;
   &:not([data-simplebar]) {
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
@@ -64,4 +65,11 @@
 
 .sidebar-menu-toggle-icon {
   font-weight: normal;
+}
+
+#default-drawer{
+  max-width: 20% !important;
+}
+.applicationCol{
+max-width: 80% !important;
 }
