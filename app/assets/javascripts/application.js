@@ -13,3 +13,4 @@
 //= require jquery.validate
 //= require_tree
 //= require bootstrap-datepicker
+//= require autonumeric
