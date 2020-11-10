@@ -1,8 +1,8 @@
-<div class="mt-1 float-left ">
-	<h4 > Notes </h4>
+<div class="p-2 float-left ">
+	<h4> Notes </h4>
 </div>
-<div class="mr-3 float-right btn-size">
-	<%= link_to 'Add', new_note_path,id: 'add_note', class:"btn btn-primary px-6 mt-1" %>
+<div class="mr-3 mt-2 float-right btn-size">
+	<%= link_to 'Add', new_note_path,id: 'add_note', class:"btn btn-primary px-6" %>
 </div>
 
 <div class="table-responsive border-bottom" data-toggle="lists" data-lists-values='["js-lists-values-employee-name"]'>
@@ -23,6 +23,6 @@
 		</tbody>
 	</table>
 </div>
-<div class="pagination card-body float-right mb-3" >
+<div class="pagination card-body float-right <%= @notes.size < 11 ? 'd-none':''%>" >
 	<%= will_paginate @notes %>
 </div>

@@ -38,6 +38,7 @@ var hash = {
 	"/roles": "view-roles",
 	"/roles/new": "add-role",
 	"/rights": "view-rights",
+	"/rights/new": "add-right",
 	"/approvals": "view-approval",
 	"/notes/new": "view-approval",
 	"/notes": "view-approval",
