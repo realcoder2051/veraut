@@ -127,7 +127,6 @@ $(".sidebar .collapse").on("hidden.bs.collapse", function(e) {
 });
 
 function sidebarfun() {
-  debugger;
   $("#default-drawer").removeClass("col-3");
   $(".applicationCol").addClass("col-12");
   $(".applicationCol").removeClass("col-10");
@@ -141,16 +140,19 @@ function sidebarfun() {
   $(".sidebar-menu-icon ").css({
     margin: "10px",
   });
-  $(".sidebar-menu-toggle-icon").css({
-    display: "none",
-  });
+  // $(".sidebar-menu-toggle-icon").css({
+  //   display: "none",
+  // });
+  $(".sidebar-menu-toggle-icon").addClass("d-none");
+  $(".sidebar-menu-toggle-icon").removeClass("d-block");
   $(".sidebarExpand").attr("style", "display: block !important");
   $(".sidebarCollapse").attr("style", "display: none !important");
   setCookie("sidebar_status", "collapsed", 365);
 }
 function sidebarExpand() {
   $(".sidebar-menu-text").removeClass("d-none");
-  $(".sidebar-menu-toggle-icon").css("display", "block");
+  $(".sidebar-menu-toggle-icon").removeClass("d-none");
+  $(".sidebar-menu-toggle-icon").addClass("d-block");
   $("#default-drawer").addClass("col-3");
   $(".applicationCol").removeClass("col-12");
   $(".applicationCol").addClass("col-10");
