@@ -84,7 +84,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="pagination card-body float-right" >
+		<div class="pagination card-body float-right <%= @businesses.size < 11 ? 'd-none':''%>" >
 			<%= will_paginate @businesses %>
 		</div>
 	</div>

@@ -48,7 +48,7 @@
 						<%= render '/shared/notes_popup', { data_collection_step: controller_name.singularize } %>
 					<% end %>
 				<%end%>
-				<div class="col-10 applicationCol">
+				<div class="col-10 application-width applicationCol">
 					<% unless @flash_action.present? %>
 						<% if !(request.original_fullpath.include?("companies") || request.original_fullpath.include?("generals") || request.original_fullpath.include?("addresses") || request.original_fullpath.include?("principals") || request.original_fullpath.include?("families") || request.original_fullpath.include?("businesses") || request.original_fullpath.include?("contact") || request.original_fullpath.include?("address"))%>
 							<%= render 'layouts/stack/flashmessage' %>

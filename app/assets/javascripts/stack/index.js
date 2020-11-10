@@ -102,6 +102,9 @@ function sidebarfun() {
 
   $('#default-drawer').removeClass('col-3');
   $('.applicationCol').addClass('col-12');
+  $('.applicationCol').removeClass('application-width');
+  $('#default-drawer').removeClass('drawer-width');
+  $(".applicationCol").css("padding-left", 100);
   $('.sidebar-menu-text').css({
     display: "none"
   });
@@ -124,6 +127,9 @@ $('.sidebarExpand').on('click', function () {
   $('.sidebar-menu-toggle-icon').css("display", "block");
   $('#default-drawer').addClass('col-3');
   $('.applicationCol').removeClass('col-12');
+  $('.applicationCol').addClass('application-width');
+  $('#default-drawer').addClass('drawer-width');
+  $(".applicationCol").css("padding-left", 11);
   $('.sidebar-menu-icon ').css({
     margin: '5px'
   });
