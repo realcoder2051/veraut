@@ -35,14 +35,13 @@
 				<div class="col-lg-12 card-form__body">
 					<div class="plan_flash_message float-left">
 						<% if action_name == 'edit_plan'%>
-							<%= render 'layouts/stack/flashmessage' %>	
+							<%= render 'layouts/stack/flashmessage' %>
 						<% end %>
 					</div>
 					<div class="ml-3 my-1 mr-2 float-right">
 						<button type="button" class="btn btn-success px-3 submit-plan" > Save</button>			
 					</div>
 					<div class="mr-2 my-1 float-right">
-			
 						<button type="button" class="btn btn-success px-3 ml-3 notes_count" data-toggle="modal" data-target="#myModal">Notes
 							<%= [no_of_notes("plan")] %>
 						</button>

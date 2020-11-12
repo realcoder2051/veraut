@@ -70,7 +70,7 @@
 				</button>
 			</div>
 			<div class="modal-body">
-				<%= bootstrap_form_tag(url:'approval', class: 'approval_form')do |f| %>
+				<%= bootstrap_form_tag(:url => { :action => "send_email" }, class: 'approval_form',html: {id: "new_approval_form"})do |f| %>
 					<%=render 'form', f: f %>
 				<% end %>
 			</div>

@@ -28,17 +28,21 @@ class ApplicationController < ActionController::Base
   end
 
   def stepper
-    task = Task.find(session[:task_id])
-    @steppers={}
-    @steppers[:general] = task[:steppers]["general"]
-    @steppers[:company] = task[:steppers]["company"]
-    @steppers[:principal] = task[:steppers]["principal"]
-    @steppers[:family] = task[:steppers]["family"]
-    @steppers[:business] = task[:steppers]["business"]
-    @steppers[:contact] = task[:steppers]["contact"]
-    @steppers[:plan] = task[:steppers]["plan"]
-    @steppers[:fifty_five_hundred] = task[:steppers]["5500"]
-    @steppers[:employee] = task[:steppers]["employee"]
+    if session[:task_id].present?
+      task = Task.find(session[:task_id])
+      @steppers={}
+      @steppers[:general] = task[:steppers]["general"]
+      @steppers[:company] = task[:steppers]["company"]
+      @steppers[:principal] = task[:steppers]["principal"]
+      @steppers[:family] = task[:steppers]["family"]
+      @steppers[:business] = task[:steppers]["business"]
+      @steppers[:contact] = task[:steppers]["contact"]
+      @steppers[:plan] = task[:steppers]["plan"]
+      @steppers[:fifty_five_hundred] = task[:steppers]["5500"]
+      @steppers[:employee] = task[:steppers]["employee"]
+    else
+      redirect_to tasks_path
+    end
   end
 
   def check_address_exist

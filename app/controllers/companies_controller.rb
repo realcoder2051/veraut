@@ -58,21 +58,30 @@ class CompaniesController < InheritedResources::Base
 		errors += Company.ein_valid(company["ein"])
 		errors += Company.fiscal_year_end_exist(company["fiscal_year_end"])
 		errors += Company.entity_type_exist(company["entity_type"])
-    errors += Company.payroll_frequency_exist(company["payroll_frequency"])
+		errors += Company.payroll_frequency_exist(company["payroll_frequency"])
+	  errors.present? ? flash[:alert] = "Your choices have been saved, however the step can not be completed because there are additional required fields."+errors : ""
 		@company.is_completed = true
+		flag = true
 		if errors.present?
-			flash[:alert] = "Your choices have been saved, however the step can not be completed because there are additional required fields."+errors
 			@company.is_completed = false
 			@task.steppers["company"]= false
+			flag = false
 			@task.save
 		end
-
 		if @company.update_attributes(company)
-			if !(errors.present?)
-				@task.steppers["company"]= true
+			if @company.fiscal_year_end.present? == false
+				@task.steppers["company"]= false
 				@task.save
+				@company.update(is_completed: false)
+				flag = false
+				errors.present?  ? "": errors+= "Fiscal Year end can't be blank"
+				errors.present? ? flash[:alert] = "Your choices have been saved, however the step can not be completed because there are additional required fields."+errors: ""
+				redirecting_request
+			else
+				flag ? @task.steppers["company"]=true : @task.steppers["company"]=false
+				@task.save
+				redirecting_request
 			end
-			redirecting_request
 		else
 			stepper
 			render :edit

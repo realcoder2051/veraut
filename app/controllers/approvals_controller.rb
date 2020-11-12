@@ -24,6 +24,9 @@ class ApprovalsController < InheritedResources::Base
       task.update(is_submitted: true)
       session[:task_id] = nil
       session[:error] = nil
+      redirect_to tasks_path
+    else
+      redirect_to tasks_path
     end
   end
 
@@ -40,7 +43,7 @@ class ApprovalsController < InheritedResources::Base
 
   def fetch_document
     @q = Document.ransack(params[:q])
-  result = @q.result
+    result = @q.result
      if result.count.positive?
        @q.sorts = 'name asc' if @q.sorts.empty?
      end

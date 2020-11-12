@@ -146,8 +146,8 @@ $(".submit-company").click(function(){
 	$("#company_form").submit(); 
 });
 
-$(".submit-plan").click(function(){        
-	$("#plan_form").submit(); 
+$(".submit-plan").click(function(){
+	$("#plan_form").submit();
 });
 
 
@@ -266,7 +266,7 @@ $(".question_field2").change(function(e){
 $(document).ready(function(){
 	$('.datepicker').datepicker();
 
-	$('#new_approval form').validate({ // initialize the plugin
+	$('#new_approval_form').validate({ // initialize the plugin
 		rules: {
 				name: "required",
 				email: "required"
@@ -275,12 +275,15 @@ $(document).ready(function(){
 });
 
 $("#approval-submit").click(function (e) {
-	if($('#new_approval form').valid()){
+	//var form = e.target.closest('form');
+	// debugger;
+	// if($('#new_approval_form').valid()){
+	// 	debugger;
 		$('#new_approval').modal('hide');
 		$('#welcome_message').modal('show');
-	}else{
-		return false;
-	}
+
+	// }
+	// return false;
 })
 
 $("#welcome_message_close").click(function (e) {
@@ -304,13 +307,6 @@ $("#welcome_message_close").click(function (e) {
 		// });
 	});
 
-	window.addEventListener("dirty", function (e) {
-    var confirmationMessage = 'It looks like you have been editing something. '
-                            + 'If you leave before saving, your changes will be lost.';
-
-    (e || window.event).returnValue = confirmationMessage; //Gecko + IE
-    return confirmationMessage; //Gecko + Webkit, Safari, Chrome etc.
-});
 $('.custom-file-input').change(function(){
 	$('.custom-file-label').text(this.value.replace(/^C:\\fakepath\\/i, ''));
 });
