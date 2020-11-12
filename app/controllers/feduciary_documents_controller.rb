@@ -2,23 +2,24 @@ class FeduciaryDocumentsController < InheritedResources::Base
 	before_action :fetch_document, only: %i[index]
   before_action :find_params, only: %i[edit update destroy show]
 
-
   def index
     ransack_search = params[:q]
     @name = ransack_search[:name_cont] if ransack_search.present?
   end
 
   def show
-
   end
 
 	def create
     @feduciary_document = FeduciaryDocument.new(feduciary_document_params)
-		@feduciary_document[:task_group_id] = current_user.task_group.id
-    if @feduciary_document.save
+    @feduciary_document[:task_group_id] = current_user.task_group.id
+    status = check_file_format_supported?(@feduciary_document)
+    if status && @feduciary_document.save
+      flash[:notice] = "File Upload Successfully"
       redirect_to feduciary_documents_path
     else
-      redirect_to new_feduciary_document_path
+      flash.now.alert = "File Format Not Supported except pdf"
+      render new_feduciary_document_path
     end
   end
 
@@ -26,10 +27,29 @@ class FeduciaryDocumentsController < InheritedResources::Base
   end
 
   def update
-    if @feduciary_document.update_attributes(feduciary_document_params)
+    filename = feduciary_document_params["feduciary_doc"].original_filename
+    status =  filename.last(4).include?(".pdf") if filename.present?
+    if status && @feduciary_document.update_attributes(feduciary_document_params)
+      flash[:notice] = "File Upload Successfully"
       redirect_to feduciary_documents_path
+    else
+      flash.now.alert = "File Format Not Supported except pdf"
+      render :edit
     end
   end
+
+  def check_file_format_supported?(feduciary_document)
+    if feduciary_document.feduciary_doc.present?
+      if feduciary_document.feduciary_doc.filename.extension == "pdf"
+        return true
+      else
+        return false
+      end
+    else
+      return false
+    end
+  end
+
 
   def destroy
     feduciary_document = FeduciaryDocument.find(params[:id])

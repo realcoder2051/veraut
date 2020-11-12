@@ -10,6 +10,35 @@ class UsersController < ApplicationController
     @username = ransack_search[:username_cont] if ransack_search.present?
   end
 
+  def change_password
+    @user = current_user
+  end
+
+  def update_password
+    if current_user.valid_password?(params[:old_password])
+      if params[:user][:password] == params[:user][:password_confirmation]
+        if params[:user][:password].length>=6
+          flash[:notice] = "Your Password Update Successfully"
+          current_user.update_attributes(password: params[:user][:password])
+          redirect_to root_path
+        else
+          flash.now.alert = "New Password Length must be more than 5 characters"
+          @user = current_user
+          render :change_password
+        end
+      else
+        flash.now.alert = "New Password and Confirm Password did not match"
+        @user = current_user
+        render :change_password
+      end
+    else
+      flash.now.alert = "Incorrect Password"
+      @user = current_user
+      render :change_password
+    end
+
+  end
+
   def show
     load_resource
   end

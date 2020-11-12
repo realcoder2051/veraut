@@ -454,3 +454,27 @@ function getCookie(cname) {
 	}
 	return "";
 }
+$("#dropdownMenuOpen").on("click", function () {
+  $(".dropdown").slideToggle('fast');
+});
+
+$(document).on("click", function () {
+  $(".dropdown").hide();
+
+});
+
+$("#dropdownMenuOpen").on("click", function (event) {
+  event.stopPropagation();
+});
+
+$(".tasktable").on("click", function () {
+  $(".tasktablebody").toggle();
+  $("#collaspse-icon").toggleClass('fa-caret-down');
+  $("#collaspse-icon").toggleClass('fa-caret-right')
+});
+
+$(".tasktable2").on("click", function () {
+  $(".plantable").toggle();
+  $("#collaspse-icon1").toggleClass('fa-caret-down');
+  $("#collaspse-icon1").toggleClass('fa-caret-right')
+});

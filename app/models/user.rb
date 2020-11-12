@@ -5,6 +5,8 @@ class User < ApplicationRecord
   has_many_attached :documents
   has_many :documents, dependent: :destroy
   belongs_to :role,optional:true
+  devise :timeoutable, :timeout_in => 15.minutes
+
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :registerable, :timeoutable, :omniauthable

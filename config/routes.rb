@@ -1,5 +1,10 @@
   Rails.application.routes.draw do
 
+  resources :project_tasks
+  resources :task_items
+  get 'completed' ,to: 'task_items#complete'
+  resources :project_templates
+  resources :projects
   resources :change_request_mappings
   resources :contact_change_requests
   resources :feduciary_documents
@@ -75,6 +80,8 @@
 	get 'save_general', to: 'generals#is_completed'
   devise_for :users
   get 'users/sign_in',to: 'user/sessions#destroy'
+  get 'users/change_password',to: 'users#change_password'
+  put 'users/update_password',to: 'users#update_password'
 
   authenticate :user do
     mount PgHero::Engine, at: '/pghero'

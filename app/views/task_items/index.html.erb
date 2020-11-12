@@ -1,0 +1,45 @@
+<div class="container-fluid page__heading-container">
+  <div class="page__heading d-flex align-items-center">
+    <div class="flex">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb mb-0">
+          <li class="breadcrumb-item"><a href=<%='#'%>><i class="material-icons icon-20pt">home</i></a></li>
+          <li class="breadcrumb-item active" aria-current="page"><a href=<%='task_items'%>>Task Items</a></li>
+        </ol>
+      </nav>
+      <h1 class="m-0">View Task Items</h1>
+    </div>
+  </div>
+</div>
+<div class="container-fluid page__container"  >
+  <div class="card card-form__body">
+    <div class= "row">
+      <div class="col-lg-2 offset-lg-10">
+        <%=link_to 'save',completed_path, class:"btn btn-primary m-1 float-right" %>
+      </div>
+    </div>
+    <div class="table-responsive" >
+      <table class="table mb-0 thead-border-top-0 mt-1  table-hover">
+        <thead class="table-info">
+          <tr>
+            <th>Task</th>
+            <th>Employee</th>
+            <th>Completed On</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><%=Task.last.task_name%></td> <td><%="Unassigned"%></td><td><%=Task.last.created_at.strftime("%m/%d/%Y") %></td>
+          </tr>
+          <% @project_tasks.each do |project_task| %>
+            <tr>
+              <td><%= project_task.task %></td>
+              <td><%="Unassigned"%></td>
+              <td><%=project_task.created_at.strftime("%m/%d/%Y") %></td>
+              <tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

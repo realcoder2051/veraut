@@ -669,3 +669,23 @@ td, th {
   height: 100vh;
   width: 320px;
 }
+.dropdown{
+  border-radius: 5px;
+  display: none;
+  position: absolute;
+  background: #dfdfdf;
+  right: 12px;
+  top: 45px;
+}
+
+hr.dotted{
+  margin: 0px;
+}
+
+.tasktablebody{
+  display: none ;
+}
+
+.plantable{
+  display: none;
+}

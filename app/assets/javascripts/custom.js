@@ -44,10 +44,8 @@ var hash = {
 	"/documents/new": "view-approval",
 	"/tasks": "active-task",
 	"/": "home",
-	"/feduciary_documents": "view-document"
-
-
-
+	"/feduciary_documents": "view-document",
+	"/project_templates": "view-project-template"
 };
 
 $(document).ready((function () {
@@ -56,8 +54,6 @@ $(document).ready((function () {
 	}
 
 }));
-
-
 
 function sidebar(url){
 	console.log(url)
@@ -296,12 +292,17 @@ $("#welcome_message_close").click(function (e) {
 		$("input:checkbox[name=employee_id]:checked").each(function(){
 			employees.push($(this).val());
 		});
-
 		$.ajax({
 			url: '/employees/bulk_delete?employees='+(employees),
 			dataType: 'get'
-		});
+		})//.then((response) => {
+    //   if (response.status == 200) {
+		// 		debugger;
+		// 		window.location.replace("localhost:3000/employees");
+		// 	};
+		// });
 	});
+
 	window.addEventListener("dirty", function (e) {
     var confirmationMessage = 'It looks like you have been editing something. '
                             + 'If you leave before saving, your changes will be lost.';

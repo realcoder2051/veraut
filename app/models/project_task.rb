@@ -1,0 +1,3 @@
+class ProjectTask < ApplicationRecord
+
+end

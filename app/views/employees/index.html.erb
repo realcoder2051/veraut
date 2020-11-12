@@ -76,7 +76,7 @@
           <%if session[:task_id]%>
           <%= render 'employee.table', employees: @employees  %>
             <div class="pagination card-body float-right mb-5" >
-            <%= will_paginate @employees %>
+              <%= will_paginate @employees %>
             </div>
           <%end%>
       </div>

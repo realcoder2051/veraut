@@ -25,7 +25,6 @@
 			<td ><%= feduciary_document.effective_date %></td>
 			<td ><%= feduciary_document.period_end %></td>
 			<td >
-			
 			<a href="<%= rails_blob_path(feduciary_document.feduciary_doc.blob) %>" disposition="attachment" target="_blank"> <i class="material-icons icon-20pt modal-get_app">get_app</i> </a>
 			<% if feduciary_document.plan == "Feduciary Documents" %>
 				<a href=<%=edit_feduciary_document_path(feduciary_document)%> ><i class="material-icons icon-20pt modal-edit">edit</i></a>

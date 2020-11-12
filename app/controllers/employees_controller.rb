@@ -26,13 +26,15 @@ class EmployeesController < InheritedResources::Base
   end
 
   def save_employee
-    employees = Employee.where("is_completed=? AND active = ? AND task_id=?", false ,false, session[:task_id])
+    employees = Employee.where("active = ? AND task_id=?",false, session[:task_id])
     status = true
     employees.each do |employee|
       if employee.first_name=="" || employee.last_name=="" || !(employee.ssn.to_s.length<=9) || employee.hours=="" || employee.compensation=="" || employee&.date_of_birth=="" || employee&.original_date_of_hire==""
         status = false
       else
-        employee.update(is_completed: true)
+        if employee.is_completed == false
+          employee.update(is_completed: true)
+        end
       end
     end
     if status && employees.length>0
