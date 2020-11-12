@@ -38,6 +38,7 @@ var hash = {
 	"/roles": "view-roles",
 	"/roles/new": "add-role",
 	"/rights": "view-rights",
+	"/rights/new": "add-right",
 	"/approvals": "view-approval",
 	"/notes/new": "view-approval",
 	"/notes": "view-approval",
@@ -309,4 +310,7 @@ $("#welcome_message_close").click(function (e) {
 
     (e || window.event).returnValue = confirmationMessage; //Gecko + IE
     return confirmationMessage; //Gecko + Webkit, Safari, Chrome etc.
+});
+$('.custom-file-input').change(function(){
+	$('.custom-file-label').text(this.value.replace(/^C:\\fakepath\\/i, ''));
 });

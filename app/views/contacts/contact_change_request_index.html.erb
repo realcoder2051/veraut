@@ -49,6 +49,6 @@
 			</div>
 		</div>
 	</div>
-	<div class="pagination card-body float-right mb-3" >
+	<div class="pagination card-body float-right <%= @change_request_mappings.present? && @change_request_mappings.size < 11 ? 'd-none':''%>" >
 		<%= will_paginate @change_request_mappings %>
 	</div>

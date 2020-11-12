@@ -85,21 +85,21 @@
 </div>
 <div class="row" >
   <div class="col-lg-4 offset-md-4">
-    <%=f.text_field :pre_tax_salary_deferal, {:label=> 'Pre-Tax Salary Deferral', :value=> '$'} %>
+    <%=f.text_field :pre_tax_salary_deferal,:label=> 'Pre-Tax Salary Deferral', data: {autonumeric: {aSign: '$ '}}, placeholder: "$" %>
     <div class="invalid-feedback">Please provide a time.</div>
     <div class="valid-feedback">Looks good!</div>
   </div>
 </div>
 <div class="row" >
   <div class="col-lg-4 offset-md-4">
-    <%=f.text_field :roth_salary_deferal,  {:label=> 'Roth Salary Deferral', :value=> '$'}%>
+    <%=f.text_field :roth_salary_deferal, :label=> 'Roth Salary Deferral', data: {autonumeric: {aSign: '$ '}}, placeholder: "$" %>
     <div class="invalid-feedback">Please provide a time.</div>
     <div class="valid-feedback">Looks good!</div>
   </div>
 </div>
 <div class="row" >
   <div class="col-lg-4 offset-md-4">
-    <%=f.text_field :employee_match, {:label=> 'Employer Match', :value=> '$'}%>
+    <%=f.text_field :employee_match, :label=> 'Employer Match', data: {autonumeric: {aSign: '$ '}}, placeholder: "$"%>
     <div class="invalid-feedback">Please provide a time.</div>
     <div class="valid-feedback">Looks good!</div>
   </div>
