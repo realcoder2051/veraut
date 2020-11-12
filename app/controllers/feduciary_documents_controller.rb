@@ -27,10 +27,13 @@ class FeduciaryDocumentsController < InheritedResources::Base
   end
 
   def update
-    filename = feduciary_document_params["feduciary_doc"].original_filename
-    status =  filename.last(4).include?(".pdf") if filename.present?
+    filename = feduciary_document_params["feduciary_doc"]&.original_filename
+    status = true
+    if filename.present?
+      status =  filename.last(4).include?(".pdf")
+    end
     if status && @feduciary_document.update_attributes(feduciary_document_params)
-      flash[:notice] = "File Upload Successfully"
+      flash[:notice] = "Data Updated Successfully"
       redirect_to feduciary_documents_path
     else
       flash.now.alert = "File Format Not Supported except pdf"
@@ -65,11 +68,7 @@ class FeduciaryDocumentsController < InheritedResources::Base
 
   def fetch_document
     @q = FeduciaryDocument.ransack(params[:q])
-    result = @q.result
-     if result.count.positive?
-       @q.sorts = 'name asc' if @q.sorts.empty?
-     end
-    @feduciary_documents = result.paginate(:page => params[:page], per_page:10)
+    @feduciary_documents = @q.result
   end
   private
 

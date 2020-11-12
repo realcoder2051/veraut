@@ -1,7 +1,7 @@
 	<div class="row">
 		<div class="col-lg-4 left-move"></div>
 		<div class="col-lg-4 left-move">
-			<%=f.select :plan, options_for_select([ "Administrative forms", "Compilance Reports","Legal Plan Documents","Feduciary Documents"], @feduciary_document[:plan]), { :include_blank => '-- Select One --' }%>
+			<%=f.select :plan, options_for_select([ "Feduciary Documents"], @feduciary_document[:plan]), { :include_blank => '-- Select One --' }%>
 			<div class="invalid-feedback">Please provide a time.</div>
 			<div class="valid-feedback">Looks good!</div>
 		</div>
@@ -9,7 +9,7 @@
 	<div class="row">
 		<div class="col-lg-4 left-move"></div>
 		<div class="col-lg-4 left-move">
-			<%=f.select :feduciary_document_type, options_for_select([ "Annual Valuation Report", "Benificiary Form","Summer Valuation Report","Fund Performance Report"]), { :include_blank => '-- Select One --' }%>
+			<%=f.select :feduciary_document_type, options_for_select([ "Annual Valuation Report", "Benificiary Form","Summer Valuation Report","Fund Performance Report"],@feduciary_document[:feduciary_document_type]), { :include_blank => '-- Select One --' }%>
 			<div class="invalid-feedback">Please provide a time.</div>
 			<div class="valid-feedback">Looks good!</div>
 		</div>

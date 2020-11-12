@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_11_092332) do
+ActiveRecord::Schema.define(version: 2020_11_12_070001) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_stat_statements"
@@ -330,11 +330,25 @@ ActiveRecord::Schema.define(version: 2020_11_11_092332) do
     t.index ["role_id"], name: "index_roles_rights_on_role_id"
   end
 
+  create_table "secure_files", force: :cascade do |t|
+    t.string "file_name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "task_groups", force: :cascade do |t|
     t.bigint "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_task_groups_on_user_id"
+  end
+
+  create_table "task_items", force: :cascade do |t|
+    t.bigint "task_id"
+    t.json "task_completed"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["task_id"], name: "index_task_items_on_task_id"
   end
 
   create_table "tasks", force: :cascade do |t|

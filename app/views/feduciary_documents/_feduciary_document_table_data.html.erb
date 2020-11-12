@@ -16,7 +16,7 @@
 	<tbody class="list" id="blah" >
 	  <% @feduciary_documents.each do |feduciary_document| %>
 		<% if (current_user.id == current_user.id && feduciary_document.plan == document_plan ) %>
-		  <% count += 1 %>
+		  <% #count += 1 %>
 		  <tr class ="redirect_to_show cursor-pointer" data-url="<%= feduciary_document_path(feduciary_document) %>" >
 			<td ><%= feduciary_document.feduciary_doc.filename%></td>
 			<td ><%= feduciary_document.feduciary_document_type %></td>
@@ -35,8 +35,8 @@
 		  </tr>
 	   <% end %>
 	  <% end %>
-	  <% if count == 0 %>
-		<tr> 
+	  <%# <% if count == 0 %>
+		<%# <tr>
 		  <td> no results found </td>
 		</tr>
 	  <%end%>

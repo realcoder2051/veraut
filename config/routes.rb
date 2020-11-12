@@ -1,5 +1,5 @@
   Rails.application.routes.draw do
-
+  resources :secure_files
   resources :project_tasks
   resources :task_items
   get 'completed' ,to: 'task_items#complete'
@@ -33,6 +33,7 @@
 		get 'notes/get_note/:id', to: 'notes#get_note'
 
   resources :documents
+
 	resources :approvals
   resources :roles
   resources :rights
