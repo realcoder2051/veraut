@@ -7,10 +7,11 @@ class ContactNumbersController < InheritedResources::Base
     if check_contact_number_already_exist?(contact_number)
       flash[:alert] = "Contact Number with this Contact type already exist"
       @number = ContactNumber.new
-      redirect_to generals_path
+      render :new
     elsif contact_number.number.eql?("") && contact_number.contact_type.eql?("")
       flash[:alert] = "Contact Number and Contact Type both cannot be empty"
-      redirect_to generals_path
+      @number = contact_number
+      render :new
     else
       status = true
       @contact_numbers = ContactNumber.where(task_id: session[:task_id],active: false)
@@ -42,16 +43,15 @@ class ContactNumbersController < InheritedResources::Base
     if status
       if @contact_number.contact_type != params[:contact_number][:contact_type]
         flash[:alert] = "Contact With this Contact Type, already exist"
-        redirect_to generals_path
       end
     end
     if params[:contact_number][:contact_type].eql?("") && params[:contact_number][:number].eql?("")
       flash[:alert] = "Contact Number and Contact Type both cannot be empty"
-      redirect_to generals_path
     elsif !(flash[:alert].present?)
       @contact_number.update_attributes(contact_number_params)
-      redirect_to generals_path
     end
+    @number = @contact_number
+    render :edit
   end
 
 
