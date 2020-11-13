@@ -16,7 +16,7 @@
 						<%= bootstrap_form_with(model:@business, local:true) do |f| %>
 							<% if @business.errors.any? %>
 								<div id="error_explanation">
-									<h2><%= pluralize(@business.errors.count, "error") %> prohibited this user from being saved:</h2>
+									<h2 class="ml-3"><%= pluralize(@business.errors.count, "error") %> prohibited this user from being saved:</h2>
 									<ul>
 										<% @business.errors.full_messages.each do |message| %>
 											<li><%= message %></li>

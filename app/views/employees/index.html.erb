@@ -24,9 +24,9 @@
 
 <div class="container-fluid page__container">
   <div>
-    <h3> Step 9 : Employee Census </h3>
+    <h3 class="ml-1"> Step 9 : Employee Census </h3>
   </div>
-  <div class="mt-4 mb-2">
+  <div class="mt-4 mb-2 ml-1">
     <span style="font-style: italic;" > Please enter or import your employee census data using the tools below . When you are satisfied that all of the data is correct, click the save button to continue. If you do not have any employee that report W-2 wages, click the delete all employees button and then click the save button for more information on approving this step. </span>
   </div>
   <div class="card card-form">
@@ -58,10 +58,10 @@
         <%= search_form_for @q, url: '#', class: "", method: "get" do |f| %>
           <div class="float-left ml-3 mr-1 search-form search-form--light ">
               <%= f.search_field :last_name_or_first_name_cont, value: @first_name, placeholder: "Search for First or Last Name", title: "first_name" ,:class=>"form-control search pl-1 pr-0" %>
-              <button class="btn pl-1" type="button" role="button"><i class="material-icons">search</i></button>
+              <button class="btn pl-1" type="submit" role="button"><i class="material-icons">search</i></button>
           </div>
           <div class="float-left">
-            <input class="form-control btn btn-primary px-3" name="search_submit" type="submit" value="Search"></input>
+            <input class="form-control btn btn-primary px-3" name="search_submit" type="submit" value="Search">
           </div>
           <div class="float-left ml-2">
             <%= link_to 'Clear', employees_path, class:"btn btn-primary px-3" %>

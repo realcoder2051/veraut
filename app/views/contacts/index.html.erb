@@ -25,17 +25,21 @@
 
 	<div class="container-fluid page__container">
 		<div>
-			<h3> Step 6 : Contacts :
-				<div class="ml-3 my-1 float-right">
+			<h3 class="ml-1"> Step 6 : Contacts :
+				<div class="ml-3 mr-2 my-1 float-right">
 					<%=link_to "Save",save_contact_path,class: "btn btn-success " %>
-				</div> 
+				</div>
 				<div class="ml-3 my-1 float-right">
-					<button type="button" class="btn btn-success  px-3 notes_count" data-toggle="modal" data-target="#myModal ">Notes <%= [no_of_notes(controller_name.singularize)] %> </button>
-				</div> </h3>
+					<button type="button" class="btn btn-success  px-3 notes_count" data-toggle="modal"
+						data-target="#myModal ">Notes <%= [no_of_notes(controller_name.singularize)] %> </button>
+				</div>
+			</h3>
 		</div>
-		<div class="mt-4 mb-2">
-			<span style="font-style: italic;"> Please verify the list of contacts that are associated with your plan. To notify us of change that need to
-				be made, click the Add button in the upper right corner of the grid to notify your change. When you have completed your change request. Once you have reviewed the list, click the Save button.</span>
+		<div class="mt-4 mb-2 ml-1">
+			<span style="font-style: italic;"> Please verify the list of contacts that are associated with your plan. To
+				notify us of change that need to
+				be made, click the Add button in the upper right corner of the grid to notify your change. When you have
+				completed your change request. Once you have reviewed the list, click the Save button.</span>
 		</div>
 		<div class="card card-form">
 			<div class="row no-gutters">
@@ -62,8 +66,9 @@
 										</td>
 									</tr>
 							</tbody>
-						<%end%>
-					</table>
+							<%end%>
+						</table>
+					</div>
 				</div>
 			</div>
 		</div>

@@ -21,8 +21,8 @@
           <%= bootstrap_form_with(url:employees_path,model:@employee, local:true) do |f| %>
             <% if @employee.errors.any? %>
               <div id="error_explanation">
-                <h2><%= pluralize(@employee.errors.count, "error") %> prohibited this  from being saved:</h2>
-                <ul>
+                <h2 class="pl-0 ml-0"><%= pluralize(@employee.errors.count, "error") %> prohibited this  from being saved:</h2>
+                <ul class="pl-4">
 								<% @employee.errors.full_messages.each do |message| %>
                   <li><%= message %></li>
                 <% end %>
