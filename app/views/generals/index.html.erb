@@ -24,7 +24,7 @@
 	<div class="container-fluid page__container">
 		<div>
 			<h3> Step 1 : Company Address and Phone Numbers :
-				<div class="ml-3 my-1 float-right">
+				<div class="ml-3 mr-2 my-1 float-right">
 					<%=link_to "Save",save_general_path,class: "btn btn-success " %>
 				</div>
 				<div class="ml-3 my-1 float-right">
@@ -34,14 +34,14 @@
 			</h3>
 
 		</div>
-		<div class="mt-4 mb-2">
+		<div class="mt-4 mb-2 ml-1">
 			<span style="font-style: italic;"> Please review the address and phone numbers below. Please add any new
 				information or update existing
 				information as necessary. When you have completed your changes, click the Save button to continue.</span>
 		</div>
 		<% if flash[:alert]%>
 			<div class="company_flash_message">
-				<div class="container flash-custom" >
+				<div class="container flash-custom pl-1" >
 					<%=flash[:alert]%>
 				</div>
 				<%flash[:alert]=nil%>
@@ -50,10 +50,11 @@
 		<div class="row no-gutters">
 			<div class="col-lg-6">
 				<div class="card card-no-flex card-form card-form__body ">
-					<div class="ml-3 my-1 float-right">
+					<div class="ml-3 my-1 float-right pl-2 pr-2">
 						<%=link_to "Add Address",new_address_path,class: "btn btn-primary " %>
 					</div>
-					<table class="table mb-0 thead-border-top-0 mt-1 table-hover">
+					<div class="table-responsive pl-2 pr-2">
+					<table class="table mb-0 thead-border-top-0 mt-1 table-hover ">
 						<thead class="table-info">
 							<tr>
 								<th><%= sort_link(@q, :address_type_id, 'Type') %></th>
@@ -79,14 +80,16 @@
 						</tbody>
 						<%end%>
 					</table>
+					</div>
 				</div>
 			</div>
 
 			<div class="col-lg-5 offset-lg-1">
 				<div class="card card-no-flex card-form card-form__body">
-					<div class="ml-3 my-1 float-right">
+					<div class="ml-3 my-1 mr-2 float-right">
 						<%=link_to "Add Contact",new_contact_number_path,class: "btn btn-primary" %>
 					</div>
+					<div class="table-responsive pl-2 pr-2">
 					<table class="table mb-0 thead-border-top-0 mt-1 table-hover">
 						<thead class="table-info">
 							<tr>
@@ -110,6 +113,7 @@
 						</tbody>
 						<%end%>
 					</table>
+					</div>
 				</div>
 			</div>
 		</div>

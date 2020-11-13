@@ -33,7 +33,6 @@ var hash = {
 	"/5500": "view-5500",
 	"/employees": "view-employee",
 	"/employees/new": "view-employee",
-	"/distribution": "distribution",
 	"/my_active_task": "active-task",
 	"/roles": "view-roles",
 	"/roles/new": "add-role",
@@ -46,7 +45,8 @@ var hash = {
 	"/tasks": "active-task",
 	"/": "home",
 	"/feduciary_documents": "view-document",
-	"/project_templates": "view-project-template"
+	"/project_templates": "view-project-template",
+	"/secure_files": "Secure-file"
 };
 
 $(document).ready((function () {

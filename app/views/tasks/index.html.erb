@@ -15,15 +15,16 @@
 	<div class="card card-form__body">
 		<div class="row ">
 			<div class="col-lg-12">
-				<div class="row tasktable2">
-					<div style="display:inline-block">
-						<h4 class="ml-1 my-2"><i id="collaspse-icon1" class="fa fa-caret-right mr-1 ml-2"></i>Plan</h4>
+				<div class="row">
+					<div style="display:inline-block" class="tasktable2">
+						<h4 class="ml-4"><i id="collaspse-icon1" class="fa fa-caret-right mr-1 ml-2"></i>Plan</h4>
 					</div>
 				</div>
 
 			</div>
 			<div class="col-lg-12 ">
-				<table class="table mb-0 thead-border-top-0 mt-1 table-hover plantable">
+			<div class="table-responsive pl-2 pr-2 ">
+				<table class="table mb-0 thead-border-top-0 mt-1 table-hover plantable mb-2">
 					<thead class="table-info task ">
 						<tr>
 							<th colspan="20" class="forExpand">Task Name</th>
@@ -33,6 +34,7 @@
 					<tbody>
 					</tbody>
 				</table>
+				</div>
 			</div>
 
 		</div>
@@ -42,19 +44,19 @@
 <div class="container-fluid page__container mt-2">
 	<div class="card card-form__body">
 		<div class="row">
-			<div class="col-lg-12">
+			<div class="col-lg-12 ">
 				<div class="ml-3 my-1 float-right">
-					<%=link_to 'Add New Task',new_task_path,id:"new_task", class:"btn btn-primary m-1 float-right" %>
+					<%=link_to 'Add New Task',new_task_path,id:"new_task", class:"btn btn-primary m-1 float-right mr-2" %>
 				</div>
 				<div class="ml-2 my-1 float-right">
-					<%=link_to 'Refresh',close_task_path,id:"new_task", class:"btn btn-success m-1 float-right" %>
+					<%=link_to 'Refresh',close_task_path,id:"new_task", class:"btn btn-success m-1 float-right " %>
 				</div>
 				<div style="display:inline-block" class="tasktable">
 					<h4 class="ml-3 my-2"> <i id="collaspse-icon" class="fa fa-caret-right mr-1 "></i>Defined Benefit Pension Plan
 					</h4>
 				</div>
-				<div class="table-responsive">
-					<table class="table mb-0 thead-border-top-0 mt-1 table-hover tasktablebody">
+				<div class="table-responsive pl-2 pr-2">
+					<table class="table mb-0 thead-border-top-0 mt-1 table-hover tasktablebody ">
 						<thead class="table-info task ">
 							<tr>
 								<th colspan="20">Task Name</th>
