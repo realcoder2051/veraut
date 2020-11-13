@@ -17,20 +17,24 @@
 		<ul class="sidebar-menu <%=cookies[:sidebar_status] == 'collapsed' ? 'pt-5':''%>">
 			<li class="sidebar-menu-item " id="home">
 				<a class="sidebar-menu-button" href="<%=root_path%>" aria-expanded="false">
-					<i class="sidebar-menu-icon sidebar-menu-icon--left material-icons " style="<%=cookies[:sidebar_status] == 'collapsed' ? 'margin:10px':'margin:5px'%>">home</i>
+					<i class="sidebar-menu-icon sidebar-menu-icon--left material-icons " title="Home"
+						style="<%=cookies[:sidebar_status] == 'collapsed' ? 'margin:10px':'margin:5px'%>">home</i>
 					<span class="sidebar-menu-text <%=cookies[:sidebar_status] == 'collapsed' ? 'd-none':''%>">Home</span>
 				</a>
 			</li>
 			<li class="sidebar-menu-item" id="active-task">
 				<a class="sidebar-menu-button" href="<%=tasks_path%>" aria-expanded="false">
-					<i class="sidebar-menu-icon sidebar-menu-icon--left material-icons" style="<%=cookies[:sidebar_status] == 'collapsed' ? 'margin:10px':'margin:5px'%>">spellcheck</i>
-					<span class=" sidebar-menu-text <%=cookies[:sidebar_status] == 'collapsed' ? 'd-none':''%>">My Active
+					<i class="sidebar-menu-icon sidebar-menu-icon--left material-icons" title="My Active Tasks"
+						style="<%=cookies[:sidebar_status] == 'collapsed' ? 'margin:10px':'margin:5px'%>">spellcheck</i>
+					<span class=" sidebar-menu-text <%=cookies[:sidebar_status] == 'collapsed' ? 'd-none':''%>">My
+						Active
 						Tasks</span>
 				</a>
 			</li>
 			<li class="sidebar-menu-item" id="view-document">
 				<a class="sidebar-menu-button" href="<%=feduciary_documents_path%>" aria-expanded="false">
-					<i class="sidebar-menu-icon sidebar-menu-icon--left material-icons" style="<%=cookies[:sidebar_status] == 'collapsed' ? 'margin:10px':'margin:5px'%>">assignment</i>
+					<i class="sidebar-menu-icon sidebar-menu-icon--left material-icons" title="Documents"
+						style="<%=cookies[:sidebar_status] == 'collapsed' ? 'margin:10px':'margin:5px'%>">assignment</i>
 					<span class="sidebar-menu-text <%=cookies[:sidebar_status] == 'collapsed' ? 'd-none':''%>">Documents</span>
 				</a>
 			</li>
@@ -39,24 +43,29 @@
 				<%if session[:task_id]==nil%>
 				<a class="sidebar-menu-button collapsed disable-menu-item" data-toggle="collapse" href="#holiday_menu"
 					aria-expanded="false">
-					<i class="sidebar-menu-icon sidebar-menu-icon--left material-icons disable-menu-item" style="<%=cookies[:sidebar_status] == 'collapsed' ? 'margin:10px':'margin:5px'%>">dvr</i>
+					<i class="sidebar-menu-icon sidebar-menu-icon--left material-icons disable-menu-item" title="Data Collection"
+						style="<%=cookies[:sidebar_status] == 'collapsed' ? 'margin:10px':'margin:5px'%>">dvr</i>
 					<span class="sidebar-menu-text <%=cookies[:sidebar_status] == 'collapsed' ? 'd-none':''%> cursor-pointer"
 						title="Go to My active tasks to begin your tasks">Data
 						collection</span>
-					<span class="ml-auto sidebar-menu-toggle-icon disable-menu-item <%=cookies[:sidebar_status] == 'collapsed' ? 'd-none':''%>"></span>
+					<span
+						class="ml-auto sidebar-menu-toggle-icon disable-menu-item <%=cookies[:sidebar_status] == 'collapsed' ? 'd-none':''%>"></span>
 				</a>
 				<% elsif session[:task_id]%>
 				<a class="sidebar-menu-button collapsed" data-toggle="collapse" href="#holiday_menu" aria-expanded="false">
-					<i class="sidebar-menu-icon sidebar-menu-icon--left material-icons" style="<%=cookies[:sidebar_status] == 'collapsed' ? 'margin:10px':'margin:5px'%>">library_books</i>
+					<i class="sidebar-menu-icon sidebar-menu-icon--left material-icons" title="Data Collectionn"
+						style="<%=cookies[:sidebar_status] == 'collapsed' ? 'margin:10px':'margin:5px'%>">library_books</i>
 					<span class="sidebar-menu-text <%=cookies[:sidebar_status] == 'collapsed' ? 'd-none':''%>"> Data
 						collection</span>
-					<span class="ml-auto sidebar-menu-toggle-icon <%=cookies[:sidebar_status] == 'collapsed' ? 'd-none':''%>"></span>
+					<span
+						class="ml-auto sidebar-menu-toggle-icon <%=cookies[:sidebar_status] == 'collapsed' ? 'd-none':''%>"></span>
 				</a>
 				<%end%>
 				<ul class="sidebar-submenu collapse" id="holiday_menu">
 					<li class="sidebar-menu-item" id="view-general">
 						<a class="sidebar-menu-button" href="<%=generals_path%>">
-							<i class="sidebar-menu-icon sidebar-menu-icon--left material-icons" style="<%=cookies[:sidebar_status] == 'collapsed' ? 'margin:10px':'margin:5px'%>">bookmark</i>
+							<i class="sidebar-menu-icon sidebar-menu-icon--left material-icons" title="General"
+								style="<%=cookies[:sidebar_status] == 'collapsed' ? 'margin:10px':'margin:5px'%>">bookmark</i>
 							<span class="sidebar-menu-text <%=cookies[:sidebar_status] == 'collapsed' ? 'd-none':''%>">General</span>
 						</a>
 					</li>
@@ -66,59 +75,68 @@
 							<%else%>
 							<a class="sidebar-menu-button" href="<%=new_company_path%>">
 								<%end%>
-								<i class="sidebar-menu-icon sidebar-menu-icon--left material-icons" style="<%=cookies[:sidebar_status] == 'collapsed' ? 'margin:10px':'margin:5px'%>">domain</i>
+								<i class="sidebar-menu-icon sidebar-menu-icon--left material-icons" title="Company"
+									style="<%=cookies[:sidebar_status] == 'collapsed' ? 'margin:10px':'margin:5px'%>">domain</i>
 								<span
 									class="sidebar-menu-text <%=cookies[:sidebar_status] == 'collapsed' ? 'd-none':''%>">Company</span>
 							</a>
 					</li>
 					<li class="sidebar-menu-item" id="view-principal">
 						<a class="sidebar-menu-button" href="<%=principals_path%>">
-							<i class="sidebar-menu-icon sidebar-menu-icon--left material-icons" style="<%=cookies[:sidebar_status] == 'collapsed' ? 'margin:10px':'margin:5px'%>">add_to_queue</i>
+							<i class="sidebar-menu-icon sidebar-menu-icon--left material-icons" title="Principals"
+								style="<%=cookies[:sidebar_status] == 'collapsed' ? 'margin:10px':'margin:5px'%>">add_to_queue</i>
 							<span
 								class="sidebar-menu-text <%=cookies[:sidebar_status] == 'collapsed' ? 'd-none':''%>">Principals</span>
 						</a>
 					</li>
 					<li class="sidebar-menu-item" id="view-family">
 						<a class="sidebar-menu-button" href="<%=families_path%>">
-							<i class="sidebar-menu-icon sidebar-menu-icon--left material-icons" style="<%=cookies[:sidebar_status] == 'collapsed' ? 'margin:10px':'margin:5px'%>">people</i>
+							<i class="sidebar-menu-icon sidebar-menu-icon--left material-icons" title="Family"
+								style="<%=cookies[:sidebar_status] == 'collapsed' ? 'margin:10px':'margin:5px'%>">people</i>
 							<span class="sidebar-menu-text <%=cookies[:sidebar_status] == 'collapsed' ? 'd-none':''%>">Family</span>
 						</a>
 					</li>
 					<li class="sidebar-menu-item" id="view-business">
 						<a class="sidebar-menu-button" href="<%=businesses_path%>">
-							<i class="sidebar-menu-icon sidebar-menu-icon--left material-icons" style="<%=cookies[:sidebar_status] == 'collapsed' ? 'margin:10px':'margin:5px'%>">business</i>
+							<i class="sidebar-menu-icon sidebar-menu-icon--left material-icons" title="Businesses"
+								style="<%=cookies[:sidebar_status] == 'collapsed' ? 'margin:10px':'margin:5px'%>">business</i>
 							<span
 								class="sidebar-menu-text <%=cookies[:sidebar_status] == 'collapsed' ? 'd-none':''%>">Businesses</span>
 						</a>
 					</li>
 					<li class="sidebar-menu-item" id="view-contact">
 						<a class="sidebar-menu-button" href="<%=contacts_path%>">
-							<i class="sidebar-menu-icon sidebar-menu-icon--left material-icons" style="<%=cookies[:sidebar_status] == 'collapsed' ? 'margin:10px':'margin:5px'%>">contact_page</i>
+							<i class="sidebar-menu-icon sidebar-menu-icon--left material-icons" title="Contacts"
+								style="<%=cookies[:sidebar_status] == 'collapsed' ? 'margin:10px':'margin:5px'%>">contact_page</i>
 							<span class="sidebar-menu-text <%=cookies[:sidebar_status] == 'collapsed' ? 'd-none':''%>">Contacts</span>
 						</a>
 					</li>
 					<li class="sidebar-menu-item" id="view-plan">
 						<a class="sidebar-menu-button" href="<%=plans_new_path%>">
-							<i class="sidebar-menu-icon sidebar-menu-icon--left material-icons" style="<%=cookies[:sidebar_status] == 'collapsed' ? 'margin:10px':'margin:5px'%>">next_plan</i>
+							<i class="sidebar-menu-icon sidebar-menu-icon--left material-icons" title="Plan"
+								style="<%=cookies[:sidebar_status] == 'collapsed' ? 'margin:10px':'margin:5px'%>">next_plan</i>
 							<span class="sidebar-menu-text <%=cookies[:sidebar_status] == 'collapsed' ? 'd-none':''%>">Plan</span>
 						</a>
 					</li>
 					<li class="sidebar-menu-item" id="view-5500">
 						<a class="sidebar-menu-button" href="<%=fifty_five_hundred_new_path%>">
-							<i class="sidebar-menu-icon sidebar-menu-icon--left material-icons" style="<%=cookies[:sidebar_status] == 'collapsed' ? 'margin:10px':'margin:5px'%>">add_to_queue</i>
+							<i class="sidebar-menu-icon sidebar-menu-icon--left material-icons" title="5500"
+								style="<%=cookies[:sidebar_status] == 'collapsed' ? 'margin:10px':'margin:5px'%>">add_to_queue</i>
 							<span class="sidebar-menu-text <%=cookies[:sidebar_status] == 'collapsed' ? 'd-none':''%>">5500</span>
 						</a>
 					</li>
 					<li class="sidebar-menu-item" id="view-employee">
 						<a class="sidebar-menu-button" href="<%=employees_path%>">
-							<i class="sidebar-menu-icon sidebar-menu-icon--left material-icons" style="<%=cookies[:sidebar_status] == 'collapsed' ? 'margin:10px':'margin:5px'%>">people</i>
+							<i class="sidebar-menu-icon sidebar-menu-icon--left material-icons" title="Employees"
+								style="<%=cookies[:sidebar_status] == 'collapsed' ? 'margin:10px':'margin:5px'%>">people</i>
 							<span
 								class="sidebar-menu-text <%=cookies[:sidebar_status] == 'collapsed' ? 'd-none':''%>">Employees</span>
 						</a>
 					</li>
 					<li class="sidebar-menu-item" id="view-approval">
 						<a class="sidebar-menu-button" href="<%=approvals_path%>">
-							<i class="sidebar-menu-icon sidebar-menu-icon--left material-icons" style="<%=cookies[:sidebar_status] == 'collapsed' ? 'margin:10px':'margin:5px'%>">check_box</i>
+							<i class="sidebar-menu-icon sidebar-menu-icon--left material-icons" title="Approval"
+								style="<%=cookies[:sidebar_status] == 'collapsed' ? 'margin:10px':'margin:5px'%>">check_box</i>
 							<span class="sidebar-menu-text <%=cookies[:sidebar_status] == 'collapsed' ? 'd-none':''%>">Approval</span>
 						</a>
 					</li>
@@ -128,29 +146,38 @@
 			<!--session ends-->
 			<li class="sidebar-menu-item" id="Secure-file">
 				<a class="sidebar-menu-button collapsed" href="<%=secure_files_path%>" aria-expanded="false">
-					<i class="sidebar-menu-icon sidebar-menu-icon--left material-icons" style="<%=cookies[:sidebar_status] == 'collapsed' ? 'margin:10px':'margin:5px'%>">file_copy</i>
-					<span class="sidebar-menu-text <%=cookies[:sidebar_status] == 'collapsed' ? 'd-none':''%>">Secure File</span>
+					<i class="sidebar-menu-icon sidebar-menu-icon--left material-icons" title="Secure File"
+						style="<%=cookies[:sidebar_status] == 'collapsed' ? 'margin:10px':'margin:5px'%>">file_copy</i>
+					<span class="sidebar-menu-text <%=cookies[:sidebar_status] == 'collapsed' ? 'd-none':''%>">Secure
+						File</span>
 				</a>
 			</li>
 			<% if can? :manage,@user%>
 			<li class="sidebar-menu-item">
 				<a class="sidebar-menu-button" data-toggle="collapse" href="#attendance_menu" aria-expanded="false">
-					<i class="sidebar-menu-icon sidebar-menu-icon--left material-icons" style="<%=cookies[:sidebar_status] == 'collapsed' ? 'margin:10px':'margin:5px'%>">people</i>
-					<span class="sidebar-menu-text <%=cookies[:sidebar_status] == 'collapsed' ? 'd-none':''%>"> Users</span>
-					<span class="ml-auto sidebar-menu-toggle-icon <%=cookies[:sidebar_status] == 'collapsed' ? 'd-none':''%>" id="show-user"></span>
+					<i class="sidebar-menu-icon sidebar-menu-icon--left material-icons" title="Users"
+						style="<%=cookies[:sidebar_status] == 'collapsed' ? 'margin:10px':'margin:5px'%>">people</i>
+					<span class="sidebar-menu-text <%=cookies[:sidebar_status] == 'collapsed' ? 'd-none':''%>">
+						Users</span>
+					<span class="ml-auto sidebar-menu-toggle-icon <%=cookies[:sidebar_status] == 'collapsed' ? 'd-none':''%>"
+						id="show-user"></span>
 				</a>
 				<ul class="sidebar-submenu collapse show" id="attendance_menu" style="">
 					<li class="sidebar-menu-item" id="view-user">
 						<a class="sidebar-menu-button active-item" href="<%=users_path %>">
-							<i class="sidebar-menu-icon sidebar-menu-icon--left material-icons" style="<%=cookies[:sidebar_status] == 'collapsed' ? 'margin:10px':'margin:5px'%>">account_box</i>
-							<span class="sidebar-menu-text <%=cookies[:sidebar_status] == 'collapsed' ? 'd-none':''%>">View All
+							<i class="sidebar-menu-icon sidebar-menu-icon--left material-icons" title="View All Users"
+								style="<%=cookies[:sidebar_status] == 'collapsed' ? 'margin:10px':'margin:5px'%>">account_box</i>
+							<span class="sidebar-menu-text <%=cookies[:sidebar_status] == 'collapsed' ? 'd-none':''%>">View
+								All
 								Users</span>
 						</a>
 					</li>
 					<li class="sidebar-menu-item active-item" id="new-user">
 						<a class="sidebar-menu-button" href="<%=new_user_path%>">
-							<i class="sidebar-menu-icon sidebar-menu-icon--left material-icons" style="<%=cookies[:sidebar_status] == 'collapsed' ? 'margin:10px':'margin:5px'%>">local_hospital</i>
-							<span class="sidebar-menu-text <%=cookies[:sidebar_status] == 'collapsed' ? 'd-none':''%>">Add New
+							<i class="sidebar-menu-icon sidebar-menu-icon--left material-icons" title="Add New User"
+								style="<%=cookies[:sidebar_status] == 'collapsed' ? 'margin:10px':'margin:5px'%>">local_hospital</i>
+							<span class="sidebar-menu-text <%=cookies[:sidebar_status] == 'collapsed' ? 'd-none':''%>">Add
+								New
 								User</span>
 						</a>
 					</li>
@@ -162,37 +189,47 @@
 			<%if can? :manage,@role%>
 			<li class="sidebar-menu-item" id="roles-list">
 				<a class="sidebar-menu-button" data-toggle="collapse" href="#roles-menu" aria-expanded="false">
-					<i class="sidebar-menu-icon sidebar-menu-icon--left material-icons" style="<%=cookies[:sidebar_status] == 'collapsed' ? 'margin:10px':'margin:5px'%>">fact_check</i>
+					<i class="sidebar-menu-icon sidebar-menu-icon--left material-icons" title="Roles and Permissions"
+						style="<%=cookies[:sidebar_status] == 'collapsed' ? 'margin:10px':'margin:5px'%>">fact_check</i>
 					<span class="sidebar-menu-text <%=cookies[:sidebar_status] == 'collapsed' ? 'd-none':''%>">Roles and
 						Permissions</span>
-					<span class="ml-auto sidebar-menu-toggle-icon <%=cookies[:sidebar_status] == 'collapsed' ? 'd-none':''%>"></span>
+					<span
+						class="ml-auto sidebar-menu-toggle-icon <%=cookies[:sidebar_status] == 'collapsed' ? 'd-none':''%>"></span>
 				</a>
 				<ul class="sidebar-submenu collapse show" id="roles-menu" style="">
 					<li class="sidebar-menu-item" id="view-roles">
 						<a class="sidebar-menu-button active-item" href="<%=roles_path %>">
-							<i class="sidebar-menu-icon sidebar-menu-icon--left material-icons" style="<%=cookies[:sidebar_status] == 'collapsed' ? 'margin:10px':'margin:5px'%>">preview</i>
-							<span class="sidebar-menu-text <%=cookies[:sidebar_status] == 'collapsed' ? 'd-none':''%>">View All
+							<i class="sidebar-menu-icon sidebar-menu-icon--left material-icons" title="View All Roles"
+								style="<%=cookies[:sidebar_status] == 'collapsed' ? 'margin:10px':'margin:5px'%>">preview</i>
+							<span class="sidebar-menu-text <%=cookies[:sidebar_status] == 'collapsed' ? 'd-none':''%>">View
+								All
 								Roles</span>
 						</a>
 					</li>
 					<li class="sidebar-menu-item active-item" id="add-role">
 						<a class="sidebar-menu-button" href="<%=new_role_path%>">
-							<i class="sidebar-menu-icon sidebar-menu-icon--left material-icons" style="<%=cookies[:sidebar_status] == 'collapsed' ? 'margin:10px':'margin:5px'%>">local_hospital</i>
-							<span class="sidebar-menu-text <%=cookies[:sidebar_status] == 'collapsed' ? 'd-none':''%>">Add New Role
+							<i class="sidebar-menu-icon sidebar-menu-icon--left material-icons" title="Add New Role"
+								style="<%=cookies[:sidebar_status] == 'collapsed' ? 'margin:10px':'margin:5px'%>">local_hospital</i>
+							<span class="sidebar-menu-text <%=cookies[:sidebar_status] == 'collapsed' ? 'd-none':''%>">Add
+								New Role
 							</span>
 						</a>
 					</li>
 					<li class="sidebar-menu-item" id="view-rights">
 						<a class="sidebar-menu-button active-item" href="<%=rights_path %>">
-							<i class="sidebar-menu-icon sidebar-menu-icon--left material-icons" style="<%=cookies[:sidebar_status] == 'collapsed' ? 'margin:10px':'margin:5px'%>">preview</i>
-							<span class="sidebar-menu-text <%=cookies[:sidebar_status] == 'collapsed' ? 'd-none':''%>">View All
+							<i class="sidebar-menu-icon sidebar-menu-icon--left material-icons" title="View All Rights"
+								style="<%=cookies[:sidebar_status] == 'collapsed' ? 'margin:10px':'margin:5px'%>">preview</i>
+							<span class="sidebar-menu-text <%=cookies[:sidebar_status] == 'collapsed' ? 'd-none':''%>">View
+								All
 								Rights</span>
 						</a>
 					</li>
 					<li class="sidebar-menu-item active-item" id="add-right">
 						<a class="sidebar-menu-button" href="<%=new_right_path%>">
-							<i class="sidebar-menu-icon sidebar-menu-icon--left material-icons" style="<%=cookies[:sidebar_status] == 'collapsed' ? 'margin:10px':'margin:5px'%>">local_hospital</i>
-							<span class="sidebar-menu-text <%=cookies[:sidebar_status] == 'collapsed' ? 'd-none':''%>">Add New
+							<i class="sidebar-menu-icon sidebar-menu-icon--left material-icons" title="Add New Rights"
+								style="<%=cookies[:sidebar_status] == 'collapsed' ? 'margin:10px':'margin:5px'%>">local_hospital</i>
+							<span class="sidebar-menu-text <%=cookies[:sidebar_status] == 'collapsed' ? 'd-none':''%>">Add
+								New
 								Right</span>
 						</a>
 					</li>
@@ -207,72 +244,84 @@
 				<ul class="sidebar-menu" id="acomponents_menu">
 					<li class="sidebar-menu-item active">
 						<a class="sidebar-menu-button">
-							<i class="sidebar-menu-icon sidebar-menu-icon--left material-icons" style="<%=cookies[:sidebar_status] == 'collapsed' ? 'margin:10px':'margin:5px'%>">mouse</i>
+							<i class="sidebar-menu-icon sidebar-menu-icon--left material-icons"
+								style="<%=cookies[:sidebar_status] == 'collapsed' ? 'margin:10px':'margin:5px'%>">mouse</i>
 							<span class="sidebar-menu-text <%=cookies[:sidebar_status] == 'collapsed' ? 'd-none':''%>">Buttons</span>
 						</a>
 					</li>
 					<li class="sidebar-menu-item active">
 						<a class="sidebar-menu-button">
-							<i class="sidebar-menu-icon sidebar-menu-icon--left material-icons" style="<%=cookies[:sidebar_status] == 'collapsed' ? 'margin:10px':'margin:5px'%>">notifications</i>
+							<i class="sidebar-menu-icon sidebar-menu-icon--left material-icons"
+								style="<%=cookies[:sidebar_status] == 'collapsed' ? 'margin:10px':'margin:5px'%>">notifications</i>
 							<span class="sidebar-menu-text <%=cookies[:sidebar_status] == 'collapsed' ? 'd-none':''%>">Alerts</span>
 						</a>
 					</li>
 					<li class="sidebar-menu-item active">
 						<a class="sidebar-menu-button">
-							<i class="sidebar-menu-icon sidebar-menu-icon--left material-icons" style="<%=cookies[:sidebar_status] == 'collapsed' ? 'margin:10px':'margin:5px'%>">aspect_ratio</i>
+							<i class="sidebar-menu-icon sidebar-menu-icon--left material-icons"
+								style="<%=cookies[:sidebar_status] == 'collapsed' ? 'margin:10px':'margin:5px'%>">aspect_ratio</i>
 							<span class="sidebar-menu-text <%=cookies[:sidebar_status] == 'collapsed' ? 'd-none':''%>">Modals</span>
 						</a>
 					</li>
 					<li class="sidebar-menu-item active">
 						<a class="sidebar-menu-button">
-							<i class="sidebar-menu-icon sidebar-menu-icon--left material-icons" style="<%=cookies[:sidebar_status] == 'collapsed' ? 'margin:10px':'margin:5px'%>">brush</i>
+							<i class="sidebar-menu-icon sidebar-menu-icon--left material-icons"
+								style="<%=cookies[:sidebar_status] == 'collapsed' ? 'margin:10px':'margin:5px'%>">brush</i>
 							<span class="sidebar-menu-text <%=cookies[:sidebar_status] == 'collapsed' ? 'd-none':''%>">Icons</span>
 						</a>
 					</li>
 					<li class="sidebar-menu-item active">
 						<a class="sidebar-menu-button">
-							<i class="sidebar-menu-icon sidebar-menu-icon--left material-icons" style="<%=cookies[:sidebar_status] == 'collapsed' ? 'margin:10px':'margin:5px'%>">text_format</i>
+							<i class="sidebar-menu-icon sidebar-menu-icon--left material-icons"
+								style="<%=cookies[:sidebar_status] == 'collapsed' ? 'margin:10px':'margin:5px'%>">text_format</i>
 							<span class="sidebar-menu-text <%=cookies[:sidebar_status] == 'collapsed' ? 'd-none':''%>">Forms</span>
 						</a>
 					</li>
 					<li class="sidebar-menu-item active">
 						<a class="sidebar-menu-button">
-							<i class="sidebar-menu-icon sidebar-menu-icon--left material-icons" style="<%=cookies[:sidebar_status] == 'collapsed' ? 'margin:10px':'margin:5px'%>">refresh</i>
+							<i class="sidebar-menu-icon sidebar-menu-icon--left material-icons"
+								style="<%=cookies[:sidebar_status] == 'collapsed' ? 'margin:10px':'margin:5px'%>">refresh</i>
 							<span class="sidebar-menu-text <%=cookies[:sidebar_status] == 'collapsed' ? 'd-none':''%>">Loaders</span>
 						</a>
 					</li>
 					<li class="sidebar-menu-item active">
 						<a class="sidebar-menu-button">
-							<i class="sidebar-menu-icon sidebar-menu-icon--left material-icons" style="<%=cookies[:sidebar_status] == 'collapsed' ? 'margin:10px':'margin:5px'%>">last_page</i>
+							<i class="sidebar-menu-icon sidebar-menu-icon--left material-icons"
+								style="<%=cookies[:sidebar_status] == 'collapsed' ? 'margin:10px':'margin:5px'%>">last_page</i>
 							<span
 								class="sidebar-menu-text <%=cookies[:sidebar_status] == 'collapsed' ? 'd-none':''%>">Pagination</span>
 						</a>
 					</li>
 					<li class="sidebar-menu-item active">
 						<a class="sidebar-menu-button">
-							<i class="sidebar-menu-icon sidebar-menu-icon--left material-icons" style="<%=cookies[:sidebar_status] == 'collapsed' ? 'margin:10px':'margin:5px'%>">person</i>
+							<i class="sidebar-menu-icon sidebar-menu-icon--left material-icons"
+								style="<%=cookies[:sidebar_status] == 'collapsed' ? 'margin:10px':'margin:5px'%>">person</i>
 							<span class="sidebar-menu-text <%=cookies[:sidebar_status] == 'collapsed' ? 'd-none':''%>">Avatars</span>
 							<span class="badge badge-warning ml-auto">PRO</span>
 						</a>
 					</li>
 					<li class="sidebar-menu-item active">
 						<a class="sidebar-menu-button">
-							<i class="sidebar-menu-icon sidebar-menu-icon--left material-icons" style="<%=cookies[:sidebar_status] == 'collapsed' ? 'margin:10px':'margin:5px'%>">pie_chart_outlined</i>
+							<i class="sidebar-menu-icon sidebar-menu-icon--left material-icons"
+								style="<%=cookies[:sidebar_status] == 'collapsed' ? 'margin:10px':'margin:5px'%>">pie_chart_outlined</i>
 							<span class="sidebar-menu-text <%=cookies[:sidebar_status] == 'collapsed' ? 'd-none':''%>">Charts</span>
 							<span class="badge badge-warning ml-auto">PRO</span>
 						</a>
 					</li>
 					<li class="sidebar-menu-item active">
 						<a class="sidebar-menu-button">
-							<i class="sidebar-menu-icon sidebar-menu-icon--left material-icons" style="<%=cookies[:sidebar_status] == 'collapsed' ? 'margin:10px':'margin:5px'%>">event_available</i>
-							<span class="sidebar-menu-text <%=cookies[:sidebar_status] == 'collapsed' ? 'd-none':''%>">Time &amp;
+							<i class="sidebar-menu-icon sidebar-menu-icon--left material-icons"
+								style="<%=cookies[:sidebar_status] == 'collapsed' ? 'margin:10px':'margin:5px'%>">event_available</i>
+							<span class="sidebar-menu-text <%=cookies[:sidebar_status] == 'collapsed' ? 'd-none':''%>">Time
+								&amp;
 								Date</span>
 							<span class="badge badge-warning ml-auto">PRO</span>
 						</a>
 					</li>
 					<li class="sidebar-menu-item active">
 						<a class="sidebar-menu-button">
-							<i class="sidebar-menu-icon sidebar-menu-icon--left material-icons" style="<%=cookies[:sidebar_status] == 'collapsed' ? 'margin:10px':'margin:5px'%>">dns</i>
+							<i class="sidebar-menu-icon sidebar-menu-icon--left material-icons"
+								style="<%=cookies[:sidebar_status] == 'collapsed' ? 'margin:10px':'margin:5px'%>">dns</i>
 							<span class="sidebar-menu-text <%=cookies[:sidebar_status] == 'collapsed' ? 'd-none':''%>">Custom
 								Tables</span>
 							<span class="badge badge-warning ml-auto">PRO</span>
@@ -280,14 +329,17 @@
 					</li>
 					<li class="sidebar-menu-item active">
 						<a class="sidebar-menu-button">
-							<i class="sidebar-menu-icon sidebar-menu-icon--left material-icons" style="<%=cookies[:sidebar_status] == 'collapsed' ? 'margin:10px':'margin:5px'%>">control_point</i>
-							<span class="sidebar-menu-text <%=cookies[:sidebar_status] == 'collapsed' ? 'd-none':''%>">Drag &amp;
+							<i class="sidebar-menu-icon sidebar-menu-icon--left material-icons"
+								style="<%=cookies[:sidebar_status] == 'collapsed' ? 'margin:10px':'margin:5px'%>">control_point</i>
+							<span class="sidebar-menu-text <%=cookies[:sidebar_status] == 'collapsed' ? 'd-none':''%>">Drag
+								&amp;
 								Drop</span>
 							<span class="badge badge-warning ml-auto">PRO</span>
 						</a>
 					</li>
 					<a class="sidebar-menu-button" href="<%= root_path %>">
-						<i class="sidebar-menu-icon sidebar-menu-icon--left material-icons" style="<%=cookies[:sidebar_status] == 'collapsed' ? 'margin:10px':'margin:5px'%>">location_on</i>
+						<i class="sidebar-menu-icon sidebar-menu-icon--left material-icons"
+							style="<%=cookies[:sidebar_status] == 'collapsed' ? 'margin:10px':'margin:5px'%>">location_on</i>
 						<span class="sidebar-menu-text <%=cookies[:sidebar_status] == 'collapsed' ? 'd-none':''%>">Vector
 							Maps</span>
 						<span class="badge badge-warning ml-auto">PRO</span>

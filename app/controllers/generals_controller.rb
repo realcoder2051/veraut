@@ -42,7 +42,7 @@ class GeneralsController < InheritedResources::Base
 	end
 
 	def is_completed
-		address_mappings = AddressMapping.where("is_completed=? AND task_id=? and active =?", false , session[:task_id],true)
+		address_mappings = AddressMapping.where(" task_id=? and active =?", session[:task_id],true)
 		contact_numbers = ContactNumber.where("is_completed=? AND user_id=? AND task_id=? and active = ?", false , current_user.id , session[:task_id],false)
 		status = true
 		address_mappings.each do |address_mapping|
@@ -50,8 +50,11 @@ class GeneralsController < InheritedResources::Base
 			if address.address1 == "" || address.city == "" || address.state == "" || address.zip == ""
 				status = false
 			else
-				address.update_attributes(is_completed: true)
-				address_mapping.update(is_completed: true)
+				if address.is_completed==true
+				else
+					address.update_attributes(is_completed: true)
+					address_mapping.update(is_completed: true)
+				end
 			end
 		end
 		contact_numbers.each do |contact_number|
@@ -60,7 +63,7 @@ class GeneralsController < InheritedResources::Base
 				contact_number.update(is_completed: true)
 			end
 		end
-		if status
+		if status && address_mappings.length>0
 			@task.steppers["general"] = true
 			@task.save
 			redirect_to new_company_path

@@ -38,9 +38,6 @@ class AddressesController < InheritedResources::Base
 
 	def create_new_address
 		save_address
-		if @address.address1 == "" || @address.city == "" || @address.state == "" || @address.zip == ""
-			flash[:alert] = "Your choices have been saved, however the step can not be completed because there are additional required fields."
-		end
 		if @address.save
 			@task.steppers["general"] = false
 			@task.save
@@ -63,11 +60,6 @@ class AddressesController < InheritedResources::Base
 
 		if !(flash[:alert].present?)
 			edit_address_call
-			if params[:address][:address1] == "" || params[:address][:city] == "" || params[:address][:state] == "" || params[:address][:zip] == ""
-				flash[:alert] = "Your choices have been saved, however the step can not be completed because there are additional required fields."
-				@task.steppers["general"] = false
-				@task.save
-			end
 			if @address.save
 				@old_address.update(active: false)
 				@old_address.address_mappings.where(active: true).each do |p|
@@ -88,8 +80,9 @@ class AddressesController < InheritedResources::Base
 					redirect_to generals_path
 			else
 				# session[:error] = @address.errors.to_a
+				@task.steppers["general"] = false
 				address_collection
-				redirect_to params[:edit_url]
+				render :edit
 			end
 		else
 			address_collection

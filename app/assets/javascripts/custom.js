@@ -48,7 +48,7 @@ var hash = {
 	"/project_templates": "view-project-template",
 	"/secure_files": "Secure-file"
 };
-
+this.url;
 $(document).ready((function () {
 	if (document.getElementById("home")) {
 		sidebar(window.location.pathname);
@@ -71,7 +71,8 @@ function sidebar(url){
   {
     search_index = url.search(/\d/g)
     url = url.substring(0,search_index-1)
-  }
+	}
+	this.url = url
 
   if(url != "/welcome")
   {
@@ -84,7 +85,7 @@ function sidebar(url){
   }
   else
   {
-    document.getElementById("dashboard_icon").classList.add("active");
+    var e = document.getElementById("dashboard_icon").classList.add("active");
   }
 }
 
@@ -310,3 +311,101 @@ $("#welcome_message_close").click(function (e) {
 $('.custom-file-input').change(function(){
 	$('.custom-file-label').text(this.value.replace(/^C:\\fakepath\\/i, ''));
 });
+
+// console.log("!233223");
+// var formSubmitting = false;
+// 	var isDirty =function() { return false; }
+
+// 	window.onload = function() {
+// 			window.addEventListener("beforeunload", function (e) {
+// 				console.log("onload")
+// 					if (formSubmitting || !isDirty()) {
+// 							return undefined;
+// 					}
+
+// 					var confirmationMessage = 'It looks like you have been editing something. '
+// 																	+ 'If you leave before saving, your changes will be lost.';
+
+// 					(e || window.event).returnValue = confirmationMessage; //Gecko + IE
+// 					return confirmationMessage; //Gecko + Webkit, Safari, Chrome etc.
+// 			});
+// 	};
+
+
+// "use strict";
+// (() => {
+// 	const modified_inputs = new Set;
+// 	const defaultValue = "defaultValue";
+// 	// store default values
+// 	addEventListener("beforeinput", (evt) => {
+// 			const target = evt.target;
+// 			if (!(defaultValue in target || defaultValue in target.dataset)) {
+// 					target.dataset[defaultValue] = ("" + (target.value || target.textContent)).trim();
+// 			}
+// 	});
+// 	// detect input modifications
+// 	addEventListener("input", (evt) => {
+// 			const target = evt.target;
+// 			let original;
+// 			if (defaultValue in target) {
+// 					original = target[defaultValue];
+// 			} else {
+// 					original = target.dataset[defaultValue];
+// 			}
+// 			if (original !== ("" + (target.value || target.textContent)).trim()) {
+// 					if (!modified_inputs.has(target)) {
+// 							modified_inputs.add(target);
+// 					}
+// 			} else if (modified_inputs.has(target)) {
+// 					modified_inputs.delete(target);
+// 			}
+// 	});
+// 	// clear modified inputs upon form submission
+// 	addEventListener("submit", () => {
+// 			modified_inputs.clear();
+// 			// to prevent the warning from happening, it is advisable
+// 			// that you clear your form controls back to their default
+// 			// state with form.reset() after submission
+// 	});
+// 	// warn before closing if any inputs are modified
+// 	addEventListener("beforeunload", (evt) => {
+// 			if (modified_inputs.size) {
+// 					const unsaved_changes_warning = "Changes you made may not be saved.";
+// 					evt.returnValue = unsaved_changes_warning;
+// 					return unsaved_changes_warning;
+// 			}
+// 	});
+// })();
+
+var isSubmitting = false
+
+$(document).ready(function () {
+	if (url.includes("plan",0)){
+    $('#plan_form').submit(function(){
+        isSubmitting = true
+    })
+
+		$('#plan_form').data('initial-state', $('#plan_form').serialize());
+			$(window).on('beforeunload', function() {
+					if (!isSubmitting && $('#plan_form').serialize() != $('#plan_form').data('initial-state')){
+							return 'You have unsaved changes which will not be saved.'
+					}
+			});
+	}
+})
+
+var isSubmittingResponse = false
+$(document).ready(function () {
+	if (url.includes("5500",0)){
+    $('#employee_response_form').submit(function(){
+			isSubmittingResponse = true
+    })
+
+		$('#employee_response_form').data('initial-state', $('#employee_response_form').serialize());
+			$(window).on('beforeunload', function() {
+					if (!isSubmittingResponse && $('#employee_response_form').serialize() != $('#employee_response_form').data('initial-state')){
+							return 'You have unsaved changes which will not be saved.'
+					}
+			});
+	}
+})

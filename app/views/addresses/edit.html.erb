@@ -14,14 +14,25 @@
 				<div class="row no-gutters">
 					<div class="col-lg-12 card-form__body card-body">
 						<%= bootstrap_form_for(@address, local:true) do |f| %>
-							<% if flash[:alert]%>
-								<div class="company_flash_message">
-									<div class="container flash-custom" >
-										<%=flash[:alert]%>
-									</div>
+							<% if @address.errors.any? %>
+								<div id="error_explanation">
+									<h2 class="ml-3"><%= pluralize(@address.errors.count, "error") %> prohibited this user from being saved:</h2>
+									<ul>
+										<% @address.errors.full_messages.each do |message| %>
+										<li><%=message %></li>
+										<% end %>
+									</ul>
 								</div>
+							<%elsif flash[:alert]%>
+								<%flash[:alert].split('.').each do |error|%>
+									<div class="company_flash_message">
+										<div class="container flash-custom" >
+											<%=error%>
+										</div>
+									</div>
+								<%end%>
 								<%flash[:alert]=nil%>
-							<%end%>
+							<% end %>
 						<%=render 'form', f: f %>
 						<% end %>
 					</div>
