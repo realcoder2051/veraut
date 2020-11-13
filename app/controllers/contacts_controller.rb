@@ -78,14 +78,13 @@ class ContactsController < InheritedResources::Base
 	end
 
 	def index
-		ransack_search = params[:q]
 		@roles_rights = RolesRight.all
 		@notes = Note.all
-		@users = []
-		# technician_user = Role.where(name: "Technician").order('created_at').first&.users&.first
-		main_contact_user = Role.where(name: "Main Contact").order('created_at').first&.users&.first
-		@q = User.where("id = ?" ,main_contact_user&.id).ransack(params[:q])
-		@users = @q.result
+		# @users = []
+		# # technician_user = Role.where(name: "Technician").order('created_at').first&.users&.first
+		# main_contact_user = Role.where(name: "Main Contact").order('created_at').first&.users&.first
+		# @q = User.where("id = ?" ,main_contact_user&.id).ransack(params[:q])
+		# @users = @q.result
 		find_company_name
 	end
 
