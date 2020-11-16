@@ -1,7 +1,7 @@
 <div class="container flash-custom pl-0" style="width: 600px;">
 	<% flash.each do |name, msg| %>
 		<div class="alert alert-<%= name == "notice"? "success" : "danger" %> alert-dismissible fade show">
-		<%= msg %>
+			<%= msg %>
 		</div>
 	<% end %>
 </div>

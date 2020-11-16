@@ -45,27 +45,4 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def check_address_exist
-    address_mappings = AddressMapping.where(task_id: session[:task_id],active: true)
-    is_completed = []
-    address_mappings.each do |address_mapping|
-      is_completed << address_mapping.address.is_completed
-    end
-    return is_completed
-  end
-
-  def calculate_ownership?
-    principals = Principal.where(task_id: session[:task_id],active: false)
-    if principals&.pluck("is_completed").include?(false)
-      return false
-    else
-      sum = principals.pluck("ownership").inject(0){|sum,x| sum + x }
-      if sum >=100
-        return true
-      else
-        return false
-      end
-    end
-  end
-
 end

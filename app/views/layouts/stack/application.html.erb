@@ -50,7 +50,8 @@
 				<%end%>
 				<div class="applicationCol <%=cookies[:sidebar_status] == "collapsed" ? 'col-12':'col-10 application-width '%>" style="<%=cookies[:sidebar_status] == "collapsed" ? 'padding-left:100px':'padding-left:11px'%>">
 					<% unless @flash_action.present? %>
-						<% if !(request.original_fullpath.include?("companies") || request.original_fullpath.include?("generals") || request.original_fullpath.include?("address")  || request.original_fullpath.include?("principals") || request.original_fullpath.include?("view_requests") ||request.original_fullpath.include?("families") || request.original_fullpath.include?("businesses") || request.original_fullpath.include?("contact") ) %>
+						<% if (request.original_fullpath.include?("tasks") || request.original_fullpath.include?("secure_files") ||request.original_fullpath.include?("companies") || request.original_fullpath.include?("generals") || request.original_fullpath.include?("address")  || request.original_fullpath.include?("principals") || request.original_fullpath.include?("view_requests") ||request.original_fullpath.include?("families") || request.original_fullpath.include?("businesses") || request.original_fullpath.include?("contact") || request.original_fullpath=="/") %>
+						<%else%>
 							<%= render 'layouts/stack/flashmessage' %>
 						<%end%>
 					<% end %>

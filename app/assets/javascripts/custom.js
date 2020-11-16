@@ -62,7 +62,7 @@ function sidebar(url){
   // {
   //   return;
 	// }
-	
+
 	if (url.match(/5500/g))
 	{
 		url = url.substring(0,5)
@@ -81,7 +81,16 @@ function sidebar(url){
     var item = document.getElementById(hash[url]);
 		var li = $(item).parent().parent().toggleClass("open");
 		if(item)
-    	item.classList.add("active")
+		{
+			if (item.id.includes("business") || item.id.includes("family") || item.id.includes("principal") || item.id.includes("company") || item.id.includes("general") || item.id.includes("contact") || item.id.includes("plan") || item.id.includes("5500") || item.id.includes("employee"))
+			{
+				var stepper = item.id.substring(5);
+				document.getElementById(stepper).style.fontWeight = "900"
+			}
+
+			item.classList.add("active")
+
+		}
   }
   else
   {
@@ -143,8 +152,8 @@ $(".fiscal_date").change(function (event) {
 
 });
 
-$(".submit-company").click(function(){        
-	$("#company_form").submit(); 
+$(".submit-company").click(function(){
+	$("#company_form").submit();
 });
 
 $(".submit-plan").click(function(){
@@ -152,20 +161,17 @@ $(".submit-plan").click(function(){
 });
 
 
-$(".submit-5500").click(function(){        
-	$(".new_questionaire_answer").submit(); 
+$(".submit-5500").click(function(){
+	$(".new_questionaire_answer").submit();
 });
 
-$(".submit-edit-5500").click(function(){        
-	$(".edit_questionaire_answer").submit(); 
+$(".submit-edit-5500").click(function(){
+	$(".edit_questionaire_answer").submit();
 });
 
 
 // $(".alert").delay(4000).slideUp(200);
 
-
-
-	
 function delete_note(){
 	var del = confirm("Are you sure")
 	if (del == true)
@@ -185,7 +191,7 @@ function delete_note(){
 	else {
 		return false;
 	}
-}	
+}
 
 $('#add_note_popup').click(function(e)
 {
@@ -250,7 +256,6 @@ function update_note()
 	return false;
 }
 
-
 $(".question_field2").change(function(e){
 	var value = $( ".question_field2 option:selected" ).text();
 	if (value == 'Yes'){
@@ -296,86 +301,16 @@ $("#welcome_message_close").click(function (e) {
 		var employees= []
 		$("input:checkbox[name=employee_id]:checked").each(function(){
 			employees.push($(this).val());
-		});
+		})
 		$.ajax({
 			url: '/employees/bulk_delete?employees='+(employees),
 			dataType: 'get'
-		})//.then((response) => {
-    //   if (response.status == 200) {
-		// 		debugger;
-		// 		window.location.replace("localhost:3000/employees");
-		// 	};
-		// });
+		})
 	});
 
 $('.custom-file-input').change(function(){
 	$('.custom-file-label').text(this.value.replace(/^C:\\fakepath\\/i, ''));
 });
-
-// console.log("!233223");
-// var formSubmitting = false;
-// 	var isDirty =function() { return false; }
-
-// 	window.onload = function() {
-// 			window.addEventListener("beforeunload", function (e) {
-// 				console.log("onload")
-// 					if (formSubmitting || !isDirty()) {
-// 							return undefined;
-// 					}
-
-// 					var confirmationMessage = 'It looks like you have been editing something. '
-// 																	+ 'If you leave before saving, your changes will be lost.';
-
-// 					(e || window.event).returnValue = confirmationMessage; //Gecko + IE
-// 					return confirmationMessage; //Gecko + Webkit, Safari, Chrome etc.
-// 			});
-// 	};
-
-
-// "use strict";
-// (() => {
-// 	const modified_inputs = new Set;
-// 	const defaultValue = "defaultValue";
-// 	// store default values
-// 	addEventListener("beforeinput", (evt) => {
-// 			const target = evt.target;
-// 			if (!(defaultValue in target || defaultValue in target.dataset)) {
-// 					target.dataset[defaultValue] = ("" + (target.value || target.textContent)).trim();
-// 			}
-// 	});
-// 	// detect input modifications
-// 	addEventListener("input", (evt) => {
-// 			const target = evt.target;
-// 			let original;
-// 			if (defaultValue in target) {
-// 					original = target[defaultValue];
-// 			} else {
-// 					original = target.dataset[defaultValue];
-// 			}
-// 			if (original !== ("" + (target.value || target.textContent)).trim()) {
-// 					if (!modified_inputs.has(target)) {
-// 							modified_inputs.add(target);
-// 					}
-// 			} else if (modified_inputs.has(target)) {
-// 					modified_inputs.delete(target);
-// 			}
-// 	});
-// 	// clear modified inputs upon form submission
-// 	addEventListener("submit", () => {
-// 			modified_inputs.clear();
-// 			// to prevent the warning from happening, it is advisable
-// 			// that you clear your form controls back to their default
-// 			// state with form.reset() after submission
-// 	});
-// 	// warn before closing if any inputs are modified
-// 	addEventListener("beforeunload", (evt) => {
-// 			if (modified_inputs.size) {
-// 					const unsaved_changes_warning = "Changes you made may not be saved.";
-// 					evt.returnValue = unsaved_changes_warning;
-// 					return unsaved_changes_warning;
-// 			}
-// 	});
-// })();
 
 var isSubmitting = false
 
@@ -409,3 +344,4 @@ $(document).ready(function () {
 			});
 	}
 })
+

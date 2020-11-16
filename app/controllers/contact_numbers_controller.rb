@@ -18,7 +18,7 @@ class ContactNumbersController < InheritedResources::Base
       @contact_numbers.each do |contact|
         if contact.contact_type.eql?(contact_number.contact_type)
           contact.update_attributes(contact_number_params)
-          status= false
+          status = false
           break
         end
       end
