@@ -6,6 +6,7 @@
 # Family.delete_all
 # Principal.destroy_all
 # Business.delete_all
+  Employee.delete_all
 # Note.delete_all
 # Address.delete_all
 # AddressMapping.delete_all
@@ -35,15 +36,15 @@
 # AddressType.create(task_name: "Overnight Address")
 # AddressType.create(task_name: "Physical Address")
 
-ProjectTask.create(task: "Company Contact")
-ProjectTask.create(task: "Company Data")
-ProjectTask.create(task: "Principals")
-ProjectTask.create(task: "Family Relationships")
-ProjectTask.create(task: "Other Companies Owned")
-ProjectTask.create(task: "Contacts")
-ProjectTask.create(task: "Plan Compilance Questions")
-ProjectTask.create(task: "Trust Compilance Questions")
-ProjectTask.create(task: "Employee Census")
+# ProjectTask.create(task: "Company Contact")
+# ProjectTask.create(task: "Company Data")
+# ProjectTask.create(task: "Principals")
+# ProjectTask.create(task: "Family Relationships")
+# ProjectTask.create(task: "Other Companies Owned")
+# ProjectTask.create(task: "Contacts")
+# ProjectTask.create(task: "Plan Compilance Questions")
+# ProjectTask.create(task: "Trust Compilance Questions")
+# ProjectTask.create(task: "Employee Census")
 
 # Role.create(name: "Admin")
 # RolesRight.create(role_id: Role.last.id,role_type: {"rights":""})
@@ -59,5 +60,5 @@ ProjectTask.create(task: "Employee Census")
 # TaskGroup.create(user_id: User.last.id)
 
 # Company.delete_all
-# Note.delete_all
+Note.delete_all
 

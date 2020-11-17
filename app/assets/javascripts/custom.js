@@ -282,12 +282,18 @@ $(document).ready(function(){
 
 $("#approval-submit").click(function (e) {
 	var form = e.target.closest('form');
-
-	//  if($('#new_approval_form').valid()){
-	// 	debugger;
-		$('#new_approval').modal('hide');
+	var email = document.getElementById("email")
+	var name = document.getElementById("name")
+	if (name.value == "" || email.value == "")
+	{
+		$('#new_approval_form').valid()
+			return false;
+	}
+	else
+	{
+		$('#new_approval').addClass('d-none');
 		$('#welcome_message').modal('show');
-
+	}
 	//  }
 	//  return false;
 })

@@ -6,7 +6,11 @@ class Employee < ApplicationRecord
 		h1 = ["FIRSTNAME","LASTNAME","FULLNAME","SSN","GENDER","DATEOFBIRTH","ORIGINALDATEOFHIRE","DATEOFTERMINATION","DATEOFRETIRE","COMPENSATION","HOURS","PRETAXSALARYDEFERAL","ROTHSALARYDEFERAL","EMPLOYEEMATCH","COMPANYDIVISION","UNIONEMPLOYEE"]
 		h2 = ["FIRST_NAME","LAST_NAME","FULL_NAME","SSN","GENDER","DATE_OF_BIRTH","ORIGINAL_DATE_OF_HIRE","DATE_OF_TERMINATION","DATE_OF_RETIRE","COMPENSATION","HOURS","PRE_TAX_SALARY_DEFERAL","ROTH_SALARY_DEFERAL","EMPLOYEE_MATCH","COMPANY_DIVISION","UNION_EMPLOYEE"]
 		spreadsheet = open_spreadsheet(file)
-		file_header = spreadsheet.row(1)
+		if spreadsheet.first_column.present?
+			file_header = spreadsheet.row(1)
+		else
+			return false
+		end
 		header = ["first_name", "last_name", "ssn", "gender", "date_of_birth", "original_date_of_hire", "date_of_termination", "date_of_retire", "compensation", "hours", "pre_tax_salary_deferal", "roth_salary_deferal", "employee_match", "company_division", "union_employee"]
 		header.insert(2,"full name")	if (file_header[2] == "Full Name")
 		header = header.to_a
@@ -27,7 +31,7 @@ class Employee < ApplicationRecord
 			end
 		end
 		#if file_header.include?("FIRSTNAME") || file_header == h2
-		if array.length > 0
+		if array.length > 0 && array.length==header.length
 			(2..spreadsheet.last_row).each do |i|
 				row = Hash[[header, spreadsheet.row(i)].transpose]
 				row.delete("full name")
