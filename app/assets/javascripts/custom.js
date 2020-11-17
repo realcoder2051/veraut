@@ -298,21 +298,14 @@ $("#welcome_message_close").click(function (e) {
 
 	$("#delete").click(function(e)
 	{
-		var employees= []
-		$("input:checkbox[name=employee_id]:checked").each(function(){
-			employees.push($(this).val());
-		})
-		$.ajax({
-			url: '/employees/bulk_delete?employees='+(employees),
-			dataType: 'get'
-		})
+		//debugger;
+		document.querySelector('#elm_id').submit();
 	});
 
 $('.custom-file-input').change(function(){
 	$('.custom-file-label').text(this.value.replace(/^C:\\fakepath\\/i, ''));
 });
 
-var isSubmitting = false
 
 $(document).ready(function () {
 	if (url.includes("plan",0)){

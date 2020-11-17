@@ -6,7 +6,7 @@
           <nav aria-label="breadcrumb">
             <ol class="breadcrumb mb-0">
               <li class="breadcrumb-item"><a href=<%='#'%>><i class="material-icons icon-20pt">home</i></a></li>
-              <li class="breadcrumb-item active" aria-current="page"><a href=<%='#'%>>employee</a></li>
+              <li class="breadcrumb-item active" aria-current="page"><a href=<%='#'%>>employees</a></li>
             </ol>
             <h1 class="m-0" <%= count()%>>Employees</h1>
           </nav>
@@ -46,14 +46,14 @@
           <%= link_to 'Save',save_employee_path, class: 'btn btn-success px-3'%>
         </div>
         <div class="mr-2 my-3 float-right">
-        <button type="submit" value="delete" id="delete" class = "btn btn-danger px-3">Delete</button>
+          <button type="button" class="btn btn-danger px-3" id= "delete">Delete</button>
         </div>
         <div class="mr-2 my-3 float-right">
           <button type="button" class="btn btn-success  px-3 notes_count" data-toggle="modal" data-target="#myModal">Notes  <%= [no_of_notes(controller_name.singularize)] %> </button>
         </div>
       <% end %>
 
-      </div>
+    </div>
       <div class="col-lg-12 card-form__body">
         <%= search_form_for @q, url: '#', class: "", method: "get" do |f| %>
           <div class="float-left ml-3 mr-1 search-form search-form--light ">
@@ -70,12 +70,13 @@
             <%= link_to 'Add Employee', new_employee_path,id: 'add_employee', class:"btn btn-primary px-5" %>
           </div>
         <% end %>
-
           <%if session[:task_id]%>
-          <%= render 'employee.table', employees: @employees  %>
-            <div class="pagination card-body float-right <%= @employees.present? && @employees.size < 11 ? 'd-none':''%>" >
-            <%= will_paginate @employees %>
-            </div>
+            <%=form_tag(employees_bulk_delete_path,:action => "bulk_delete",:id => 'elm_id') do |f|%>
+              <%= render 'employee.table', employees: @employees  %>
+              <div class="pagination card-body float-right <%= @employees.present? && @employees.size < 11 ? 'd-none':''%>" >
+                <%= will_paginate @employees %>
+              </div>
+            <%end%>
           <%end%>
       </div>
     </div>

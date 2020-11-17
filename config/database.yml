@@ -1,10 +1,10 @@
 default: &default
   adapter: postgresql
   encoding: unicode
-  pool: <%=  15  %>
+  pool:  15
   host: localhost
   username: 'postgres'
-  password: 'postgres'
+  password: 'haris1234'
   port: 5432
 
 development:

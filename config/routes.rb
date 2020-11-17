@@ -1,4 +1,6 @@
   Rails.application.routes.draw do
+  post 'employees/bulk_delete', to: 'employees#bulk_delete'
+
   resources :secure_files
   resources :project_tasks
   resources :task_items
@@ -50,7 +52,6 @@
 	get 'address/add',to: 'addresses#add_new_address'
   post 'address/create',to: 'addresses#create_new_address'
 
-  post 'employees/bulk_delete', to: 'employees#bulk_delete'
   resources :employees
   get 'save_employee', to: 'employees#save_employee'
 

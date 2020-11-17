@@ -8,6 +8,14 @@ class EmployeesController < InheritedResources::Base
     @task = Task.find(session[:task_id])
   end
 
+  def bulk_delete
+    employees =  params[:employee_ids]
+    status = Employee.where(id: employees).update(active: true)
+    @task.steppers["employee"] = false
+    @task.save
+    redirect_to employees_path
+  end
+
   def find_employee
     @employee = Employee.find(params[:id])
   end
@@ -48,18 +56,8 @@ class EmployeesController < InheritedResources::Base
     end
   end
 
-  def bulk_delete
-    emp = params[:employees]
-    employees = emp.split(',')
-    employees.each do |employee|
-      Employee.find(employee).update(active: true)
-    end
-    @task.steppers["employee"] = false
-    @task.save
-    redirect_to employees_path
-	end
-
-	def index
+  def index
+    @employee = Employee.new
 		@notes = Note.all
     ransack_search = params[:q]
     @first_name = ransack_search[:last_name_or_first_name_cont] if ransack_search.present?
@@ -106,6 +104,9 @@ class EmployeesController < InheritedResources::Base
 			@task.save
       redirect_to employees_path
     end
+  end
+  def show
+
   end
 
   private
