@@ -20,8 +20,8 @@ class ApprovalsController < InheritedResources::Base
     phone = params[:phone]
     email = params[:email]
     if UserMailer.welcome_email(name,title,phone,email).deliver
-      task = Task.find(session[:task_id])
-      task.update(is_submitted: true)
+      # task = Task.find(session[:task_id])
+      # task.update(is_submitted: true)
       session[:task_id] = nil
       session[:error] = nil
       redirect_to tasks_path

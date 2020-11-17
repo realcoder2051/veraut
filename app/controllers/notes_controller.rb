@@ -11,13 +11,12 @@ class NotesController < InheritedResources::Base
   def show
 
 	end
-	
-	
-	def edit 
-		
+
+	def edit
+
 	end
 
-  def create  
+  def create
 		@note = Note.new(note_params)
 		@note[:created_by] = current_user.email
 		@note[:task_id] = session[:task_id]

@@ -10,7 +10,11 @@ class Employee < ApplicationRecord
 		header = ["first_name", "last_name", "ssn", "gender", "date_of_birth", "original_date_of_hire", "date_of_termination", "date_of_retire", "compensation", "hours", "pre_tax_salary_deferal", "roth_salary_deferal", "employee_match", "company_division", "union_employee"]
 		header.insert(2,"full name")	if (file_header[2] == "Full Name")
 		header = header.to_a
-		file_header = file_header.map(&:upcase)
+		if file_header.include?(nil)
+			return false
+		else
+			file_header = file_header&.map(&:upcase)
+		end
 		file_header.each do |s|
 			s.gsub!(' ', '')
 		end

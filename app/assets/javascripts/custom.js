@@ -281,15 +281,15 @@ $(document).ready(function(){
 });
 
 $("#approval-submit").click(function (e) {
-	//var form = e.target.closest('form');
-	// debugger;
-	// if($('#new_approval_form').valid()){
+	var form = e.target.closest('form');
+
+	//  if($('#new_approval_form').valid()){
 	// 	debugger;
 		$('#new_approval').modal('hide');
 		$('#welcome_message').modal('show');
 
-	// }
-	// return false;
+	//  }
+	//  return false;
 })
 
 $("#welcome_message_close").click(function (e) {
