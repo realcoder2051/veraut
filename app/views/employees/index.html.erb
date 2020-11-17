@@ -46,7 +46,7 @@
           <%= link_to 'Save',save_employee_path, class: 'btn btn-success px-3'%>
         </div>
         <div class="mr-2 my-3 float-right">
-          <button type="button" class="btn btn-danger px-3" id= "delete">Delete</button>
+          <button type="button" class="btn btn-danger px-3" id= "delete_bulk">Delete</button>
         </div>
         <div class="mr-2 my-3 float-right">
           <button type="button" class="btn btn-success  px-3 notes_count" data-toggle="modal" data-target="#myModal">Notes  <%= [no_of_notes(controller_name.singularize)] %> </button>
@@ -71,7 +71,7 @@
           </div>
         <% end %>
           <%if session[:task_id]%>
-            <%=form_tag(employees_bulk_delete_path,:action => "bulk_delete",:id => 'elm_id') do |f|%>
+            <%=form_tag(employees_bulk_delete_path,:action => "bulk_delete",:id => 'employee_form_bulk_delete') do |f|%>
               <%= render 'employee.table', employees: @employees  %>
               <div class="pagination card-body float-right <%= @employees.present? && @employees.size < 11 ? 'd-none':''%>" >
                 <%= will_paginate @employees %>

@@ -296,17 +296,16 @@ $("#welcome_message_close").click(function (e) {
 	window.location.href = 'tasks';
 })
 
-	$("#delete").click(function(e)
+	$("#delete_bulk").click(function(e)
 	{
-		//debugger;
-		document.querySelector('#elm_id').submit();
+		document.querySelector('#employee_form_bulk_delete').submit();
 	});
 
 $('.custom-file-input').change(function(){
 	$('.custom-file-label').text(this.value.replace(/^C:\\fakepath\\/i, ''));
 });
 
-
+var isSubmitting = false
 $(document).ready(function () {
 	if (url.includes("plan",0)){
     $('#plan_form').submit(function(){
