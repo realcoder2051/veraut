@@ -73,9 +73,9 @@
           <%if session[:task_id]%>
             <%=form_tag(employees_bulk_delete_path,:action => "bulk_delete",:id => 'employee_form_bulk_delete') do |f|%>
               <%= render 'employee.table', employees: @employees  %>
-              <div class="pagination card-body float-right <%= @employees.present? && @employees.size < 11 ? 'd-none':''%>" >
-                <%= will_paginate @employees %>
-              </div>
+            <div class="pagination card-body float-right <%= @employees.present? && @employees.size < 11 ? 'd-none':''%>" >
+              <%= will_paginate @employees %>
+            </div>
             <%end%>
           <%end%>
       </div>
