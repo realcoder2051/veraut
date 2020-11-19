@@ -111,7 +111,7 @@
   .flickr_pagination .next_page {
     margin-left: 1em; }
       #mt-n1 {
-        margin-top: 15rem !important;
+        margin-top: 256px !important;
       }
       .topnav .search-container button {
         float: left;
@@ -679,9 +679,13 @@ td, th {
 }
 
 .banner-img{
-  margin-top: 15rem;
-  width: 18.125rem;
-  height: 6.25rem;
+  margin-top: 260px;
+  width: auto;
+  height: 7rem;
+  display:block !important;
+  margin-left: auto !important;
+  margin-right: auto !important;;
+
 }
 
 .banner-text{

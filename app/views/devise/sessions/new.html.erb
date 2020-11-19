@@ -1,5 +1,6 @@
-<div class="row row-no-margin">
-  <div class='col-lg-9' id='mt-n1'>
+<div class="container-fluid">
+  <div class="row">
+    <div class='col-lg-8' id='mt-n1'>
       <%= bootstrap_form_for(resource,as: resource_name,url:session_path(resource_name)) do |f| %>
       <div class='col-lg-6 pl-5'>
         <h1>READY?</h1>
@@ -20,19 +21,21 @@
         </div>
       </div>
       <% if alert.present? %>
-      <div class="alert alert-soft-danger d-flex col-lg-3 mt-3 ml-5"  role="alert">
+      <div class="alert alert-soft-danger d-flex col-lg-3 mt-3 ml-5" role="alert">
         <i class="material-icons mr-3 align-self-center">error</i>
         <span><%= alert %></span>
       </div>
       <% end %>
-    <%end%>
+      <%end%>
+    </div>
+    <div class="col-lg-3 banner">
+    <div class="w-100">
+      <%= image_tag("Banner.jpg", class: "banner-img mb-3 ml-1 d-flex", :alt => "rss feed") %>
+      <div class="banner-text ml-1 d-flex mx-4"><b>At BEI,building and cultivating relationship is the foundation of what
+          we do. It's our experienced, talented and long-tenured team⸺and their
+          commitment to treating people with
+          the greatest level of respect⸺that sets BEI apart from others.</b></div>
+    </div>
+    </div>
   </div>
-  <div class="col-lg-3 banner">
-  <%= image_tag("Banner.jpg", class: "banner-img mb-3 ml-1", :alt => "rss feed") %>
-   <p class="banner-text ml-1"><b>At BEI,building and cultivating relationship is the foundation of what
-        we do. It's our experienced,talented and long-tenured team--and their
-        commitment to treating people with
-        the greatest level of respect--that sets BEI apart from others.</b></p>
-  </div>
-
 </div>
