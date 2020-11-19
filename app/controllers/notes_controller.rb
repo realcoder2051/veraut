@@ -2,9 +2,7 @@ class NotesController < InheritedResources::Base
   before_action :fetch_note, only: %i[index]
   before_action :find_params, only: %i[update destroy show update_note edit]
 
-
-
-  def index 
+  def index
     ransack_search = params[:q]
   end
 

@@ -9,7 +9,7 @@
 <div class="row" >
   <div class="col-lg-4 left-move"></div>
   <div class="col-lg-4 left-move">
-    <%= f.select :data_collection_step , options_for_select(["general","company", "principals", "family", "business", "contacts", "plan", "5500", "employee"], @note[:data_collection_step]), { :include_blank => '-- Select One --' }  %>
+    <%= f.select :data_collection_step , options_for_select(["general","company", "principals", "family", "business", "contact", "plan", "5500", "employee"], @note[:data_collection_step]), { :include_blank => '-- Select One --' }  %>
     <div class="invalid-feedback">Please provide a time.</div>
     <div class="valid-feedback">Looks good!</div>
   </div>
