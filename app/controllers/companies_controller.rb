@@ -41,10 +41,6 @@ class CompaniesController < InheritedResources::Base
 		end
   end
 
-  def index
-		@companies = Company.where("task_id = ?", session[:task_id])
-  end
-
 	def edit
 		@notes = Note.all
     @company = Company.find(params[:id])

@@ -48,7 +48,7 @@
 							</div>
 						</div>
 					<%end%>
-					<%flash[:alert]=nil%>
+					<%flash.now.alert=""%>
 				<%end%>
 					<%= bootstrap_form_with(model:@company,html: {id: "company_form"}, local:true) do |f| %>
 						<%=render 'form', f: f %>

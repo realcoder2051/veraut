@@ -52,7 +52,7 @@
 									<th><%= sort_link(@q, :company_name) %></th>
 									<th><%= sort_link(@q, :email,'Email') %></th>
 									<th><%= sort_link(@q, :role_id,'Role') %></th>
-									<th>Actions</th>
+									<th style="display:none;">Actions</th>
 								</tr>
 							</thead>
 							<%if session[:task_id]%>
@@ -62,7 +62,7 @@
 									<td><%=@name%></td>
 									<td><%=current_user.email%></td>
 									<td><%=current_user.role&.name%></td>
-									<td>
+									<td style="display:none;">
 										<%=link_to "Add[0]",new_contact_path(user_id: current_user),class: "btn btn-secondary disabled"%>
 									</td>
 								</tr>

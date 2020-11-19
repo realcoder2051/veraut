@@ -49,6 +49,11 @@ class EmployeesController < InheritedResources::Base
       @task.steppers["employee"] =  true
       @task.save
       redirect_to approvals_path
+    elsif employees.length == 0
+      flash[:alert] = "It is required to provide at least one employee record before the Step can be completed."
+      @task.steppers["employee"] =  false
+      @task.save
+      redirect_to employees_path
     else
       @task.steppers["employee"] =  false
       @task.save
@@ -94,6 +99,7 @@ class EmployeesController < InheritedResources::Base
 				redirect_to employees_path
 			end
     else
+      flash[:alert] = "File format not supported except xlxs or csv"
       redirect_to employees_path
     end
   end
@@ -105,6 +111,7 @@ class EmployeesController < InheritedResources::Base
       redirect_to employees_path
     end
   end
+
   def show
 
   end

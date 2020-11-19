@@ -47,50 +47,49 @@
 				</div>
 
 				<%if calculate_total_ownership<100 %>
-				<div class="container-fluid page__container col-lg-12" style="background: yellow;padding-top:0px;">
-					<div class="row" style="color:red;">
-						<div class="col-lg-4"></div>
-						<span>Total Ownership must be equal to or greater than 100 % </span>
+					<div class=" col-lg-12" style="color:red;background-color:#f3f5f6">
+						<div class="row offset-lg-4" >
+							<span>Total Ownership must be equal to or greater than 100 % </span>
+						</div>
 					</div>
-				</div>
 				<%end%>
 				<div class="col-lg-12 card-form__body">
-				<div class="table-responsive pl-2 pr-2">
-					<table class="table mb-0 thead-border-top-0 mt-1  table-hover">
-						<thead class="table-info">
-							<tr>
-								<th><%= sort_link(@q, :name) %></th>
-								<th><%= sort_link(@q, :title) %></th>
-								<th><%= sort_link(@q, :officer) %></th>
-								<th><%= sort_link(@q, :ownership) %></th>
-								<th colspan="1">Actions</th>
-							</tr>
-						</thead>
-						<%if session[:task_id]%>
-						<tbody>
-							<% @principals.each do |principal| %>
-								<tr class="redirect_to_show cursor-pointer" data-url="<%= principal_path(principal) %>">
-									<td><%= principal.name %></td>
-									<td><%= principal.title %></td>
-									<td><%= principal_officer(principal.officer) %></td>
-									<td><%= principal.ownership.to_s+"%" %></td>
-									<td>
-										<a href=<%=edit_principal_path(principal)%>><i
-												class="material-icons icon-20pt modal-edit">edit</i></a>
-										<a data-confirm="Are you sure?" rel="nofollow" data-method="delete"
-											href=<%=principal_path(principal)%>><i class="material-icons">delete</i></a>
-									</td>
+					<div class="table-responsive pl-2 pr-2">
+						<table class="table mb-0 thead-border-top-0 mt-1  table-hover">
+							<thead class="table-info">
+								<tr>
+									<th><%= sort_link(@q, :name) %></th>
+									<th><%= sort_link(@q, :title) %></th>
+									<th><%= sort_link(@q, :officer) %></th>
+									<th><%= sort_link(@q, :ownership) %></th>
+									<th colspan="1">Actions</th>
 								</tr>
-							<% end %>
-							<tr style="background-color:#FFEBCD;"><td></td><td></td><td></td><td><%= calculate_total_ownership.to_s+"%"%></td><td></td>
-							</tr>
-						</tbody>
-						<%end%>
-					</table>
+							</thead>
+							<%if session[:task_id]%>
+							<tbody>
+								<% @principals.each do |principal| %>
+									<tr class="redirect_to_show cursor-pointer" data-url="<%= principal_path(principal) %>">
+										<td><%= principal.name %></td>
+										<td><%= principal.title %></td>
+										<td><%= principal_officer(principal.officer) %></td>
+										<td><%= principal.ownership.to_s+"%" %></td>
+										<td>
+											<a href=<%=edit_principal_path(principal)%>><i
+													class="material-icons icon-20pt modal-edit">edit</i></a>
+											<a data-confirm="Are you sure?" rel="nofollow" data-method="delete"
+												href=<%=principal_path(principal)%>><i class="material-icons">delete</i></a>
+										</td>
+									</tr>
+								<% end %>
+								<tr style="background-color:#FFEBCD;"><td></td><td></td><td></td><td><%= calculate_total_ownership.to_s+"%"%></td><td></td>
+								</tr>
+							</tbody>
+							<%end%>
+						</table>
+						</div>
 					</div>
 				</div>
 			</div>
-		</div>
 			<div class="pagination card-body float-right <%= @principals.present? && @principals.size < 11 ? 'd-none':''%>" >
 				<%= will_paginate @principals %>
 			</div>

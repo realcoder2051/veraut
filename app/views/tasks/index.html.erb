@@ -3,7 +3,7 @@
 		<div class="flex">
 			<nav aria-label="breadcrumb">
 				<ol class="breadcrumb mb-0">
-					<li class="breadcrumb-item"><a href=<%='#'%>><i class="material-icons icon-20pt">home</i></a></li>
+					<li class="breadcrumb-item"><a href=<%=root_path%>><i class="material-icons icon-20pt">home</i></a></li>
 					<li class="breadcrumb-item active" aria-current="page"><a href=<%='#'%>>Tasks</a></li>
 				</ol>
 			</nav>
@@ -25,10 +25,15 @@
 			<div class="col-lg-12 ">
 			<div class="table-responsive pl-2 pr-2 ">
 				<table class="table mb-0 thead-border-top-0 mt-1 table-hover plantable mb-2">
-					<thead class="table-info task ">
-						<tr>
-							<th colspan="20" class="forExpand">Task Name</th>
-							<th colspan="5">Actions</th>
+					<thead class="table ">
+						<tr class ="forExpand">
+							<td>
+								<div class="container-fluid page__container col-lg-12" style="background-color:#f3f5f6">
+									<div class="row offset-md-4" style="font-size:large;" >
+										<span>Currently you have no active plans </span>
+									</div>
+								</div>
+							<td>
 						</tr>
 					</thead>
 					<tbody>
@@ -45,14 +50,14 @@
 	<div class="card card-form__body">
 		<div class="row">
 			<div class="col-lg-12 ">
-				<div class="ml-3 my-1 float-right">
+				<div class="ml-3 my-1 float-right" >
 					<%=link_to 'Add New Task',new_task_path,id:"new_task", class:"btn btn-primary m-1 float-right mr-2" %>
 				</div>
-				<div class="ml-2 my-1 float-right">
+				<div class="ml-2 my-1 float-right" style="display:none">
 					<%=link_to 'Refresh',close_task_path,id:"new_task", class:"btn btn-success m-1 float-right " %>
 				</div>
 				<div style="display:inline-block" class="tasktable">
-					<h4 class="ml-3 my-2"> <i id="collaspse-icon" class="fa fa-caret-right mr-1 "></i>Defined Benefit Pension Plan
+					<h4 class="ml-3 my-2"> <i id="collaspse-icon" class="fa fa-caret-down mr-1 "></i>Defined Benefit Pension Plan
 					</h4>
 				</div>
 				<div class="table-responsive pl-2 pr-2">
@@ -88,6 +93,4 @@
 			</div>
 		</div>
 	</div>
-	<div class="card"></div>
-	<div class="card"></div>
 </div>

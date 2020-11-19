@@ -1,20 +1,20 @@
-<div class="row" >
+<div class="row row-no-margin">
   <div class='col-lg-9' id='mt-n1'>
       <%= bootstrap_form_for(resource,as: resource_name,url:session_path(resource_name)) do |f| %>
-      <div class='col-lg-6 left-move px-md-5'>
+      <div class='col-lg-6 pl-5'>
         <h1>READY?</h1>
       </div>
-      <div class='col-lg-6 left-move px-md-5'>
+      <div class='col-lg-6 pl-5'>
         <div class="row col-sm-12 ">
           <%= f.email_field :email,required: true %>
         </div>
       </div>
-      <div class='col-lg-6 left-move px-md-5'>
+      <div class='col-lg-6 pl-5'>
         <div class="row col-sm-12 ">
           <%= f.password_field :password,required: true %>
         </div>
       </div>
-      <div class='col-lg-6 left-move px-md-5'>
+      <div class='col-lg-6 pl-5'>
         <div class="row col-sm-12">
           <input type="submit" name="commit" value="Let's Go" class="btn btn-primary" data-disable-with="logging User">
         </div>
@@ -27,8 +27,12 @@
       <% end %>
     <%end%>
   </div>
-  <div class="col-lg-3">
-    <%= image_tag("Banner.png", class: "banner-img", :alt => "rss feed") %>
+  <div class="col-lg-3 banner">
+  <%= image_tag("Banner.jpg", class: "banner-img mb-3 ml-1", :alt => "rss feed") %>
+   <p class="banner-text ml-1"><b>At BEI,building and cultivating relationship is the foundation of what
+        we do. It's our experienced,talented and long-tenured team--and their
+        commitment to treating people with
+        the greatest level of respect--that sets BEI apart from others.</b></p>
   </div>
 
 </div>

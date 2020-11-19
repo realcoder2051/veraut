@@ -23,6 +23,13 @@
 </div>
 
 <div class="container-fluid page__container">
+	<div class="plan_flash_message float-left">
+    <% if action_name == 'save_employee'%>
+    <%ghcf%>
+      <%= render 'layouts/stack/flashmessage' %>
+      <%flash.now.alert=""%>
+    <% end %>
+  </div>
   <div>
     <h3 class="ml-1"> Step 9 : Employee Census </h3>
   </div>
@@ -73,7 +80,7 @@
           <%if session[:task_id]%>
             <%=form_tag(employees_bulk_delete_path,:action => "bulk_delete",:id => 'employee_form_bulk_delete') do |f|%>
               <%= render 'employee.table', employees: @employees  %>
-            <div class="pagination card-body float-right <%= @employees.present? && @employees.size < 11 ? 'd-none':''%>" >
+            <div class="pagination card-body float-right" >
               <%= will_paginate @employees %>
             </div>
             <%end%>

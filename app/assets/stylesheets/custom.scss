@@ -668,10 +668,27 @@ td, th {
   -moz-appearance: textfield;
 }
 
+.banner{
+  height: calc(100vh - 0.1em);
+  background-color: #00529c;
+}
+
+.row-no-margin{
+  margin-left: 0px !important;
+  margin-right: 0px !important;
+}
+
 .banner-img{
-  height: 100vh;
-  width: 320px;
-} 
+  margin-top: 15rem;
+  width: 18.125rem;
+  height: 6.25rem;
+}
+
+.banner-text{
+  color: white;
+  font-size: large;
+  
+}
 .dropdown{
   border-radius: 5px;
   display: none;

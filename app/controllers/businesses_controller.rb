@@ -1,7 +1,7 @@
 class BusinessesController < ApplicationController
 	before_action :stepper, only: [:index,:is_completed]
 	before_action :fetch_business, only: %i[index]
-	before_action :find_business,only: [:edit,:update,:destroy]
+	before_action :find_business,only: [:show,:edit,:update,:destroy]
 	before_action :find_task,only: %i[is_completed update create destroy]
 
 	def find_task

@@ -36,6 +36,7 @@
 					<div class="plan_flash_message float-left">
 						<% if action_name == 'new_plan'%>
 							<%= render 'layouts/stack/flashmessage' %>
+							<%flash.now.alert=""%>
 						<% end %>
 					</div>
 					<div class="ml-3 my-1 mr-1 mt-3 float-right">
