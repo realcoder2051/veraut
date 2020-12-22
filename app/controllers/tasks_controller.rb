@@ -5,21 +5,21 @@ class TasksController < InheritedResources::Base
   end
 
   def create
-    previous_task = TaskGroup.find_by("user_id = ?",current_user.id).tasks&.last
+ #previous_task = TaskGroup.find_by("user_id = ?",current_user.id).tasks&.last
     @task = Task.new(task_params)
     @task[:steppers]={general: false,company: false,principal: false,family:  false,business: false,contact: false,plan: false,"5500": false,employee: false}
     @task.update(task_group_id: current_user.task_group.id)
     if @task.save
-      if previous_task.present?
-        create_address(previous_task)
-        create_contact_numbers(previous_task)
-        create_principals(previous_task)
-        create_families(previous_task)
-        create_businesses(previous_task)
+      # if previous_task.present?
+      #   create_address(previous_task)
+      #   create_contact_numbers(previous_task)
+      #   create_principals(previous_task)
+      #   create_families(previous_task)
+      #   create_businesses(previous_task)
+      #   redirect_to tasks_path
+      # else
         redirect_to tasks_path
-      else
-        redirect_to tasks_path
-      end
+      # end
     end
   end
 
@@ -100,10 +100,12 @@ class TasksController < InheritedResources::Base
   end
 
   def index
-    id = current_user.task_group.id
-    @active_tasks = Task.where("is_submitted=true and task_group_id=?",id).all
-    @inactive_tasks = Task.where("is_submitted=false and task_group_id=?",id).all
-
+    if current_user.client.present?
+      current_user.client.tasks.last if current_user.client_id.present? && current_user.client.tasks.count>0
+      id = current_user.client if current_user.client.present?
+      @active_tasks = Task.where("is_submitted=true and client_id=?",id).all
+      @inactive_tasks = Task.where("is_submitted=false and client_id=?",id).all
+    end
   end
 
   private

@@ -10,7 +10,6 @@ class ApplicationController < ActionController::Base
   rescue_from CanCan::AccessDenied do |exception|
    # render 'shared/flash'
     flash[:error] =  'It seems you do not have permission to view this page'
-    format.html { redirect_to root_url}
     respond_to do |format|
       #format.html { redirect_to root_url }
       format.html { redirect_to root_url}
