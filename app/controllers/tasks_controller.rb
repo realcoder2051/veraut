@@ -1,27 +1,27 @@
 class TasksController < InheritedResources::Base
 
-  def new
-    @task = Task.new
-  end
+#   def new
+#     @task = Task.new
+#   end
 
-  def create
- #previous_task = TaskGroup.find_by("user_id = ?",current_user.id).tasks&.last
-    @task = Task.new(task_params)
-    @task[:steppers]={general: false,company: false,principal: false,family:  false,business: false,contact: false,plan: false,"5500": false,employee: false}
-    @task.update(task_group_id: current_user.task_group.id)
-    if @task.save
-      # if previous_task.present?
-      #   create_address(previous_task)
-      #   create_contact_numbers(previous_task)
-      #   create_principals(previous_task)
-      #   create_families(previous_task)
-      #   create_businesses(previous_task)
-      #   redirect_to tasks_path
-      # else
-        redirect_to tasks_path
-      # end
-    end
-  end
+#   def create
+#  #previous_task = TaskGroup.find_by("user_id = ?",current_user.id).tasks&.last
+#     @task = Task.new(task_params)
+#     @task[:steppers]={general: false,company: false,principal: false,family:  false,business: false,contact: false,plan: false,"5500": false,employee: false}
+#     @task.update(task_group_id: current_user.task_group.id)
+#     if @task.save
+#       # if previous_task.present?
+#       #   create_address(previous_task)
+#       #   create_contact_numbers(previous_task)
+#       #   create_principals(previous_task)
+#       #   create_families(previous_task)
+#       #   create_businesses(previous_task)
+#       #   redirect_to tasks_path
+#       # else
+#         redirect_to tasks_path
+#       # end
+#     end
+#   end
 
   def create_principals(previous_task)
     principals = Principal.where("task_id = ? and active =?",previous_task.id,false)
@@ -66,16 +66,16 @@ class TasksController < InheritedResources::Base
     # end
   end
 
-  def edit
-    @task = Task.find(params[:id])
-  end
+  # def edit
+  #   @task = Task.find(params[:id])
+  # end
 
-  def update
-    task = Task.find(params[:id])
-    if task.update_attributes(task_params)
-      redirect_to tasks_path
-    end
-  end
+  # def update
+  #   task = Task.find(params[:id])
+  #   if task.update_attributes(task_params)
+  #     redirect_to tasks_path
+  #   end
+  # end
 
   def start_data_collection_process
     redirect_to generals_path
