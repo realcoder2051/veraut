@@ -1,6 +1,5 @@
 module GeneralsHelper
 
-
   def find_address(id)
     address = Address.find(id)
     address_array = Array.new
@@ -16,7 +15,7 @@ module GeneralsHelper
   def find_address_type(id)
     if id.present?
       address_type = AddressType.find(id)
-      address_type.task_name
+      address_type.address_type
     end
   end
 

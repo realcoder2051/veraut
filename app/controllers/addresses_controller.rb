@@ -57,7 +57,6 @@ class AddressesController < InheritedResources::Base
 				flash[:alert] = "Address with this Address Type Already Exist"
 			end
 		end
-
 		if !(flash[:alert].present?)
 			edit_address_call
 			if @address.save

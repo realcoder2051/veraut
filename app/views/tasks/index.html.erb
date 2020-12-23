@@ -66,23 +66,23 @@
 							</tr>
 						</thead>
 						<tbody>
-							<% @inactive_tasks.each do |task| %>
-							<tr class="redirect_to_show cursor-pointer" data-url=<%= task_path(task) %>>
-								<td colspan="20"><%= task.task_name %></td>
-								<td colspan="2">
-									<a href=<%=edit_task_path(task)%>><i class="material-icons">edit</i></a>
-									<a data-confirm="Are you sure?" rel="nofollow" data-method="delete" href=<%=task_path(task)%>><i
-											class="material-icons">delete</i></a>
-									<% if task.flag%>
-								<td colspan="3">
-									<%=link_to 'View Task',general_path(task.id),id:"begin-task",class:"btn btn-primary"%>
-								</td>
-								<% else %>
-								<td colspan="3">
-									<%=link_to 'Begin Task',general_path(task.id),id:"begin-task",class:"btn btn-success"%>
-								</td>
-								<%end%>
-							</tr>
+							<% @inactive_tasks&.each do |task| %>
+								<tr class="redirect_to_show cursor-pointer" data-url=<%= task_path(task) %>>
+									<td colspan="20"><%= task.task_name %></td>
+									<td colspan="2">
+										<a href=<%=edit_task_path(task)%>><i class="material-icons">edit</i></a>
+										<a data-confirm="Are you sure?" rel="nofollow" data-method="delete" href=<%=task_path(task)%>><i
+												class="material-icons">delete</i></a>
+									<% if task.begin_task%>
+											<td colspan="3">
+												<%=link_to 'View Task',general_path(task.id),id:"begin-task",class:"btn btn-primary"%>
+											</td>
+									<% else %>
+										<td colspan="3">
+											<%=link_to 'Begin Task',general_path(task.id),id:"begin-task",class:"btn btn-success"%>
+										</td>
+									<%end%>
+								</tr>
 							<% end %>
 						</tbody>
 					</table>

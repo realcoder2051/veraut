@@ -103,8 +103,8 @@ class TasksController < InheritedResources::Base
     if current_user.client.present?
       current_user.client.tasks.last if current_user.client_id.present? && current_user.client.tasks.count>0
       id = current_user.client if current_user.client.present?
-      @active_tasks = Task.where("is_submitted=true and client_id=?",id).all
-      @inactive_tasks = Task.where("is_submitted=false and client_id=?",id).all
+      @active_tasks = Task.where("is_submitted=true and client_id=?",id)
+      @inactive_tasks = Task.where("is_submitted=false and client_id=?",id)
     end
   end
 

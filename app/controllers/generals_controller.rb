@@ -7,22 +7,6 @@ class GeneralsController < InheritedResources::Base
 		@task = Task.find(session[:task_id])
 	end
 
-	def update
-		general = General.find(params[:id])
-		if general.update_attributes(general_params)
-			redirect_to generals_path
-		end
-	end
-
-	def create
-		general = General.new(general_params)
-		if general.save
-			redirect_to generals_path
-		else
-			redirect_to new_general_path
-		end
-	end
-
 	def index
 		ransack_search = params[:q]
 		@notes = Note.all
@@ -36,7 +20,7 @@ class GeneralsController < InheritedResources::Base
 		session[:task_id] = task_id
 		session[:error] = nil
 		task = Task.find(task_id)
-		if task.update(flag: true)
+		if task.update(begin_task: true)
 			redirect_to generals_path
 		end
 	end
@@ -78,11 +62,6 @@ class GeneralsController < InheritedResources::Base
 		def fetch_address
 			@q = AddressMapping.joins(:address).where("address_mappings.active=? and address_mappings.task_id =? ",true, session[:task_id]).ransack(params[:q])
 			@address_mappings = @q.result
-			# if result.count.positive?
-			#@q.sorts = 'address_type asc' if @q.sorts.empty?
-			#end
-			# @addresses = result.paginate(:page => params[:page], per_page:10).order('address_type ASC').where(user_id: current_user.id)
-			# @address_mappings = result.paginate(:page => params[:page], per_page:10).order('address_type_id ASC')
 	end
 
 	def general_params
