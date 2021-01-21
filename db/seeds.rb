@@ -6,7 +6,7 @@
 # Family.delete_all
 # Principal.destroy_all
 # Business.delete_all
-  Employee.delete_all
+  # Employee.delete_all
 # Note.delete_all
 # Address.delete_all
 # AddressMapping.delete_all
@@ -27,14 +27,14 @@
 # #Creating Data collection
 # QuestionType.create(name: "5500")
 # QuestionType.create(name: "Plans")
-# AddressType.create(address_type: "Biling Address")
-# AddressType.create(address_type: "Mailing Address")
-# AddressType.create(address_type: "Business Address")
-# AddressType.create(address_type: "Home Address")
-# AddressType.create(address_type: "Legal Address")
-# AddressType.create(address_type: "Old Address")
-# AddressType.create(address_typee: "Overnight Address")
-# AddressType.create(address_type: "Physical Address")
+AddressType.create(address_type: "Biling Address")
+AddressType.create(address_type: "Mailing Address")
+AddressType.create(address_type: "Business Address")
+AddressType.create(address_type: "Home Address")
+AddressType.create(address_type: "Legal Address")
+AddressType.create(address_type: "Old Address")
+AddressType.create(address_type: "Overnight Address")
+AddressType.create(address_type: "Physical Address")
 
 # ProjectTask.create(task: "Company Contact")
 # ProjectTask.create(task: "Company Data")
@@ -60,5 +60,5 @@
 # TaskGroup.create(user_id: User.last.id)
 
 # Company.delete_all
-Note.delete_all
+# Note.delete_all
 
