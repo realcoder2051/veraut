@@ -49,7 +49,7 @@
 	<div class="col-lg-4 left-move"></div>
 	<div class="col-lg-4 left-move">
 	<%= f.label :Address_Type%>
-		<%=select_tag "Address_Type" ,options_from_collection_for_select(@address_types,:id,:task_name,select_address_type), { :include_blank => '-- Select One --' } %>
+		<%=select_tag "Address_Type" ,options_from_collection_for_select(@address_types,:id,:address_type,select_address_type), { :include_blank => '-- Select One --' } %>
 		<div class="invalid-feedback">Please provide a time.</div>
 		<div class="valid-feedback">Looks good!</div>
 	</div>
