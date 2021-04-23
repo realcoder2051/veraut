@@ -8,6 +8,8 @@
 /.bundle
 /vendor/*
 config/database.yml
+/config/database.yml
+
 
 # Ignore local files
 Procfile.*
