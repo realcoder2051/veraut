@@ -1,6 +1,5 @@
 class UsersController < ApplicationController
   include Pagy::Backend
-  load_and_authorize_resource :except => [:update_password,:change_password]
   before_action :build_resource,only: [:new,:create,:update]
   before_action :load_resource,only: [:destroy]
   before_action :fetch_user, only: %i[index]

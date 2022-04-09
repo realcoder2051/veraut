@@ -19,17 +19,14 @@
 
 <body class="<%= @body_class || 'layout-default' %>">
 	<!-- Header Layout -->
-	<% if !user_signed_in?%>
+	<% if false %>
 		<%= yield %>
 	<% else%>
 		<div class="">
 			<!-- Header -->
 				<div id="header" class="m-0" data-fixed>
 					<div class="">
-					<% if action_name == 'internal_dashboard'%>
-					<%else%>
 						<%= render 'layouts/stack/navbar'%>
-					<%end%>
 					</div>
 				</div>
 			<!-- // END Header -->
@@ -37,23 +34,10 @@
 			<!-- Header Layout Content -->
 			<div class="d-flex mt-7">
 				<!-- // END drawer-layout__content -->
-				<% if action_name == 'internal_dashboard'%>
-				<%else%>
 					<%= render 'layouts/stack/drawer_left' %>
-					<% if (request.original_fullpath == "/plans_new" || request.original_fullpath[1,5]	== "plans") %>
-						<%= render '/shared/notes_popup', { data_collection_step: "plan" } %>
-					<% elsif (request.original_fullpath == "/5500_new"  || request.original_fullpath[1,4]	== "5500") %>
-						<%= render '/shared/notes_popup', { data_collection_step: "5500" } %>
-					<% else %>
-						<%= render '/shared/notes_popup', { data_collection_step: controller_name.singularize } %>
-					<% end %>
-				<%end%>
 				<div class="applicationCol <%=cookies[:sidebar_status] == "collapsed" ? 'col-12':'col-10 application-width '%>" style="<%=cookies[:sidebar_status] == "collapsed" ? 'padding-left:100px':'padding-left:11px'%>">
 					<% unless @flash_action.present? %>
-						<% if (request.original_fullpath.include?("tasks") || request.original_fullpath.include?("secure_files") ||request.original_fullpath.include?("companies") || request.original_fullpath.include?("generals") || request.original_fullpath.include?("address")  || request.original_fullpath.include?("principals") || request.original_fullpath.include?("view_requests") ||request.original_fullpath.include?("families") || request.original_fullpath.include?("businesses") || request.original_fullpath.include?("contact")) %>
-						<%else%>
-							<%= render 'layouts/stack/flashmessage' %>
-						<%end%>
+						<%= render 'layouts/stack/flashmessage' %>
 					<% end %>
 					<%# CONTENT  %>
 					<%= yield %>

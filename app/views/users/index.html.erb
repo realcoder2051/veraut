@@ -25,7 +25,6 @@
             <tr>
             <th><%= sort_link(@q, :username) %></th>
             <th><%= sort_link(@q, :email) %></th>
-            <th scope="col">Role Type</th>
               <th colspan="1">Actions</th>
               </tr>
           </thead>
@@ -35,7 +34,6 @@
               <tr class="redirect_to_show cursor-pointer" data-url=<%= user_path(user) %>>
                 <td ><%=user.username%></td>
                 <td ><%=user.email%></td>
-                <td ><%=user.role.name if user.role.present?%></td>
                 <td>
                   <a href=<%=edit_user_path(user)%> ><i class="material-icons">edit</i></a>
                   <a data-confirm="Are you sure?" rel="nofollow" data-method="delete" href=<%=user_path(user)%>><i class="material-icons">delete</i></a>

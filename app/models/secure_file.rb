@@ -1,3 +1,0 @@
-class SecureFile < ApplicationRecord
-
-end
