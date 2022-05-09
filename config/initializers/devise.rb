@@ -1,5 +1,11 @@
 # frozen_string_literal: true
 
+# Assuming you have not yet modified this file, each configuration option below
+# is set to its default value. Note that some are commented out while others
+# are not: uncommented lines are intended to protect your configuration from
+# breaking changes in upgrades (i.e., in the event that future versions of
+# Devise change the default values for those options).
+#
 # Use this hook to configure devise mailer, warden hooks and so forth.
 # Many of these configuration options can be set straight in your model.
 Devise.setup do |config|
@@ -8,7 +14,7 @@ Devise.setup do |config|
   # confirmation, reset password and unlock tokens in the database.
   # Devise will use the `secret_key_base` as its `secret_key`
   # by default. You can change it below and use your own secret key.
-  # config.secret_key = '19825d6fe338d66e6c2a7f5aa6c638fe3636e3270b2c9d267da871a938ff3c9fbbf38ce3175a2b4566dc9b54ed5bdefd5aa26bf2131d0ebc6919fc22c928907c'
+  # config.secret_key = 'dba66a4655e06754037774eab8d4b0803a1b1af2a2de2a314fcd42d10dc40e48fd9e87e73f2d075731abe3225f3eee117ee70283219fed780aedd7a1e404c773'
 
   # ==> Controller configuration
   # Configure the parent class to the devise controllers.
@@ -18,7 +24,6 @@ Devise.setup do |config|
   # Configure the e-mail address which will be shown in Devise::Mailer,
   # note that it will be overwritten if you use your own mailer class
   # with default "from" parameter.
-  config.timeout_in = 15.minutes
   config.mailer_sender = 'hariszahid944@gmail.com'
 
   # Configure the class responsible to send e-mails.
@@ -69,7 +74,10 @@ Devise.setup do |config|
   # Tell if authentication through HTTP Auth is enabled. False by default.
   # It can be set to an array that will enable http authentication only for the
   # given strategies, for example, `config.http_authenticatable = [:database]` will
-  # enable it only for database authentication. The supported strategies are:
+  # enable it only for database authentication.
+  # For API-only applications to support authentication "out-of-the-box", you will likely want to
+  # enable this with :database unless you are using a custom strategy.
+  # The supported strategies are:
   # :database      = Support basic authentication with authentication key + password
   # config.http_authenticatable = false
 
@@ -104,18 +112,21 @@ Devise.setup do |config|
   # config.reload_routes = true
 
   # ==> Configuration for :database_authenticatable
-  # For bcrypt, this is the cost for hashing the password and defaults to 11. If
+  # For bcrypt, this is the cost for hashing the password and defaults to 12. If
   # using other algorithms, it sets how many times you want the password to be hashed.
+  # The number of stretches used for generating the hashed password are stored
+  # with the hashed password. This allows you to change the stretches without
+  # invalidating existing passwords.
   #
   # Limiting the stretches to just one in testing will increase the performance of
   # your test suite dramatically. However, it is STRONGLY RECOMMENDED to not use
   # a value less than 10 in other environments. Note that, for bcrypt (the default
   # algorithm), the cost increases exponentially with the number of stretches (e.g.
   # a value of 20 is already extremely slow: approx. 60 seconds for 1 calculation).
-  config.stretches = Rails.env.test? ? 1 : 11
+  config.stretches = Rails.env.test? ? 1 : 12
 
   # Set up a pepper to generate the hashed password.
-  # config.pepper = '27aa1752886ec5f381179173157e39a046e2f08335593cea76057d3a5acec41edbdca2d891cd253c947c006c3137f80aac9bfd2e39cb8eee9264150d452fcf9d'
+  # config.pepper = '437f6805d106f914b72d93630712f342b5197777ab55a2230e19b8084afc7bf448a81724be2456d1177537272c9f3fcfa9e74154d96376f080d354e6b38bd09b'
 
   # Send a notification to the original email when the user's email is changed.
   # config.send_email_changed_notification = false
@@ -255,7 +266,7 @@ Devise.setup do |config|
   # config.navigational_formats = ['*/*', :html]
 
   # The default HTTP method used to sign out a resource. Default is :delete.
-  config.sign_out_via = :get
+  config.sign_out_via = :delete
 
   # ==> OmniAuth
   # Add a new OmniAuth provider. Check the wiki for more information on setting

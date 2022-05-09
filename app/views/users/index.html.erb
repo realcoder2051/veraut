@@ -15,15 +15,16 @@
   <div class="container-fluid page__container">
     <div class="card card-form__body">
       <div class= "row ">
-        <div class = "col-lg-2 offset-lg-10 ">
-          <%=link_to 'Add New User',new_user_path, class:"btn btn-primary float-right m-1 mr-2" %>
+        <div class = "offset-lg-10 ">
+          <%=link_to 'Add New User',users_path, class:"btn btn-primary float-right m-1 mr-2" %>
         </div>
       </div>
       <div class = "table-responsive pl-2 pr-2">
         <table class="table mb-0 thead-border-top-0 mt-1 " id = "dataTable">
           <thead class="table-info">
             <tr>
-            <th><%= sort_link(@q, :username) %></th>
+            <th><%= sort_link(@q, :first_name) %></th>
+            <th><%= sort_link(@q, :last_name) %></th>
             <th><%= sort_link(@q, :email) %></th>
               <th colspan="1">Actions</th>
               </tr>
@@ -32,11 +33,12 @@
           <tbody >
             <% @users.each do |user| %>
               <tr class="redirect_to_show cursor-pointer" data-url=<%= user_path(user) %>>
-                <td ><%=user.username%></td>
+                <td class="dropdownMenuOpen"><%=user.first_name%></td>
+                <td ><%=user.last_name%></td>
                 <td ><%=user.email%></td>
                 <td>
-                  <a href=<%=edit_user_path(user)%> ><i class="material-icons">edit</i></a>
-                  <a data-confirm="Are you sure?" rel="nofollow" data-method="delete" href=<%=user_path(user)%>><i class="material-icons">delete</i></a>
+                  <a href=<%="#"%> ><i class="material-icons">edit</i></a>
+                  <a data-confirm="Are you sure?" rel="nofollow" data-method="delete" href=<%="#"%>><i class="material-icons">delete</i></a>
                 </td>
               </tr>
             <%end%>

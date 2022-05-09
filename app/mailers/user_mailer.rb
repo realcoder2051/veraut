@@ -6,7 +6,7 @@ class UserMailer < ApplicationMailer
     @title = title
     @phone = phone
     @email = email
-    mail(:to => email, :subject => "Welcome to Benefit Equity")
+    mail(:to => email, :subject => "Welcome to Veraut")
   end
 
 end

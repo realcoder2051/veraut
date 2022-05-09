@@ -2,7 +2,7 @@
 <html lang="en" dir="ltr">
 
 <head>
-	<title>Benefit Equity, Inc</title>
+	<title>Veraut</title>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -18,36 +18,22 @@
 </head>
 
 <body class="<%= @body_class || 'layout-default' %>">
-	<!-- Header Layout -->
-	<% if false %>
-		<%= yield %>
-	<% else%>
-		<div class="">
-			<!-- Header -->
-				<div id="header" class="m-0" data-fixed>
-					<div class="">
-						<%= render 'layouts/stack/navbar'%>
-					</div>
-				</div>
-			<!-- // END Header -->
-			<%#div class="mdk-header-layout__content" style="display:none"></div#%%>
-			<!-- Header Layout Content -->
-			<div class="d-flex mt-7">
-				<!-- // END drawer-layout__content -->
-					<%= render 'layouts/stack/drawer_left' %>
-				<div class="applicationCol <%=cookies[:sidebar_status] == "collapsed" ? 'col-12':'col-10 application-width '%>" style="<%=cookies[:sidebar_status] == "collapsed" ? 'padding-left:100px':'padding-left:11px'%>">
-					<% unless @flash_action.present? %>
-						<%= render 'layouts/stack/flashmessage' %>
-					<% end %>
-					<%# CONTENT  %>
-					<%= yield %>
 
-				</div>
-			</div>
+	<div id="header" class="m-0" data-fixed>
+		<%= render 'layouts/stack/navbar' if user_signed_in? %>
+	</div>
+
+	<div class="d-flex mt-7">
+		<%= render 'layouts/stack/drawer_left' if user_signed_in? %>
+		<div class="applicationCol <%= user_signed_in? ? "col-9" : "col-12" %>">
+			<% unless @flash_action.present? %>
+				<%= render 'layouts/stack/flashmessage' %>
+			<% end %>
+			<%# CONTENT  %>
+			<%= yield %>
+
 		</div>
-	<%end %>
-	<!-- // END header-layout__content -->
-	<!-- // END header-layout -->
+	</div>	
 
 	<%= content_for :footer %>
 	<%= javascript_include_tag 'core-scripts', 'data-turbolinks-track' => 'reload' %>

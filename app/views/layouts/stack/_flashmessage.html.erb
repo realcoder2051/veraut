@@ -1,7 +1,16 @@
-<div class="container flash-custom pl-0" style="width: 600px;">
+<div class="container flash-custom pl-0 align-center" style="width: 600px;">
 	<% flash.each do |name, msg| %>
 		<div class="alert alert-<%= name == "notice"? "success" : "danger" %> alert-dismissible fade show">
 			<%= msg %>
 		</div>
 	<% end %>
 </div>
+
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		setTimeout(function(){
+			$('#flash').remove();
+		}, 5000);
+	})
+</script>

@@ -1,7 +1,10 @@
 class UsersController < ApplicationController
-  include Pagy::Backend
-  before_action :build_resource,only: [:new,:create,:update]
-  before_action :load_resource,only: [:destroy]
+  # include Pagy::Backend
+  # load_and_authorize_resource
+  before_action :authenticate_user!
+
+  # before_action :build_resource,only: [:new,:create,:update]
+  # before_action :load_resource,only: [:destroy]
   before_action :fetch_user, only: %i[index]
 
   def index
@@ -48,8 +51,6 @@ class UsersController < ApplicationController
 
   def edit
     load_resource
-    @roles = Role.all
-    @role = @resource.role
   end
 
 	def create
@@ -91,7 +92,7 @@ class UsersController < ApplicationController
     @q = User.ransack(params[:q])
     result = @q.result
      if result.count.positive?
-       @q.sorts = 'username asc' if @q.sorts.empty?
+       @q.sorts = 'email asc' if @q.sorts.empty?
      end
     @users = result.paginate(:page => params[:page], per_page:10)
   end
@@ -125,7 +126,6 @@ class UsersController < ApplicationController
 
   def resource_params
     return {} unless params[:user]
-     params[:user].permit(:username, :email, :password, :password_confirmation,:role_id)
+     params[:user].permit(:first_name, :last_name, :email, :password, :password_confirmation, :role_id)
   end
-
 end

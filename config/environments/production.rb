@@ -111,13 +111,12 @@ Rails.application.configure do
   # config.active_record.database_resolver_context = ActiveRecord::Middleware::DatabaseSelector::Resolver::Session
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-  address:              'smtp.zoho.com',
+  address:              'smtp.gmail.com',
   port:                  587,
-  domain:               'zoho.com',
-  user_name:            'mohammad.haris@devbox.co',
+  domain:               'gmail.com',
+  user_name:            'hariszahid944@gmail.com',
   password:             'harris..,,12345',
-  authentication:       'plain',
-  enable_starttls_auto: true
+  authentication:       'plain'
  }
 
   config.action_mailer.default_url_options = { :host => "http://3.23.210.212:3000"}

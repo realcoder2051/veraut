@@ -1,0 +1,39 @@
+<div class="row" >
+  <div class="col-lg-5 mb-4 mx-auto left-move">
+    <h2 style="text-align: center">Forgot your password?</h2>
+  </div>
+</div>
+
+<div class="container-fluid">
+  <div class="row" >
+    <div class="col-lg-6 mx-auto d-flex">
+      <img src="<%= image_url('veraut.png') %>" class="mx-auto signin-image-height-width signin-page-image-height">
+    </div>
+  </div>
+  
+  <div class='col-lg-12' id='mt-n1'>
+    <%= bootstrap_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+
+      <div class="row" >
+        <div class="col-lg-5 mx-auto left-move">
+          <%= f.email_field :email %>
+          <div class="invalid-feedback">Please provide a time.</div>
+          <div class="valid-feedback">Looks good!</div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-lg-5 mx-auto left-move">
+          <%=f.submit "Send me reset password instructions.", class: "btn btn-primary w-full" %>
+        </div>
+      </div>
+
+    <%end%>
+  </div>
+  
+  <div class="row">
+    <div class="col-lg-5 mx-auto left-move">
+      <%= render "devise/shared/links" %>
+    </div>
+  </div>
+</div>

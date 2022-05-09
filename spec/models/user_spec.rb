@@ -1,9 +1,5 @@
 require 'rails_helper'
 
-describe User, type: :model do
-
-  subject(:user) { build(:user) }
-
-  specify { expect(user).to be_valid }
-
+RSpec.describe User, type: :model do
+  pending "add some examples to (or delete) #{__FILE__}"
 end

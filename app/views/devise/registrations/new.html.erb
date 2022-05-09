@@ -1,0 +1,61 @@
+<div class="container-fluid">
+  
+  <div class="row" >
+    <div class="col-lg-6 mx-auto d-flex">
+      <img src="<%= image_url('veraut.png') %>" class="mx-auto signin-image-height-width signin-page-image-height">
+    </div>
+  </div>
+
+  <div class='col-lg-12' id='mt-n1'>
+    <%= bootstrap_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+
+      <%= render "devise/shared/error_messages", resource: resource %>
+
+      <div class="row" >
+        <div class="col-lg-5 mx-auto left-move">
+          <%= f.text_field :first_name %>
+          <div class="invalid-feedback">Please provide a time.</div>
+          <div class="valid-feedback">Looks good!</div>
+        </div>
+      </div>
+
+      <div class="row" >
+        <div class="col-lg-5 mx-auto left-move">
+          <%= f.text_field :last_name %>
+          <div class="invalid-feedback">Please provide a time.</div>
+          <div class="valid-feedback">Looks good!</div>
+        </div>
+      </div>
+
+      <div class="row" >
+        <div class="col-lg-5 mx-auto left-move">
+          <%= f.email_field :email %>
+          <div class="invalid-feedback">Please provide a time.</div>
+          <div class="valid-feedback">Looks good!</div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-lg-5 mx-auto left-move">
+          <%= f.password_field :password %>
+          <div class="invalid-feedback">Please provide a time.</div>
+          <div class="valid-feedback">Looks good!</div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-lg-5 mx-auto left-move">
+          <%= f.password_field :password_confirmation, required: true %>
+          <div class="invalid-feedback">Please provide a time.</div>
+          <div class="valid-feedback">Looks good!</div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-lg-5 mx-auto left-move">
+          <%=f.submit "Signup", class: "btn btn-primary w-full" %>
+        </div>
+      </div>
+    <%end%>
+  </div>
+</div>

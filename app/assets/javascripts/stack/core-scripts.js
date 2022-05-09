@@ -8,7 +8,6 @@
 //= require stack/plugins/charts.js
 //= require stack/plugins/daterangepicker.js
 //= require stack/plugins/dragula.js
-//= require stack/plugins/dropzone.js
 //= require stack/plugins/flatpickr.js
 //= require stack/plugins/fullcalendar.js
 //= require stack/plugins/list.js

@@ -10,7 +10,6 @@ gem 'devise'
 gem 'activeadmin'
 gem 'turbolinks', '~> 5.2.0'
 gem 'aws-sdk-s3'
-gem 'bootstrap-datepicker-rails'
 #gem 'jbuilder'
 gem 'pagy'
 gem 'draper'
@@ -37,6 +36,8 @@ gem 'bootstrap_form', '~> 4.4.0'
 gem 'chart-js-rails', '~> 0.1.7'
 gem 'sprockets', '~> 3.7.2'
 gem 'bcrypt', '~> 3.1.7'
+gem 'role_model', '~> 0.8.2'
+
 # Export file 
 gem 'rubyzip'
 
