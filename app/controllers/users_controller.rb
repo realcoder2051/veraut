@@ -3,8 +3,8 @@ class UsersController < ApplicationController
   # load_and_authorize_resource
   before_action :authenticate_user!
 
-  # before_action :build_resource,only: [:new,:create,:update]
-  # before_action :load_resource,only: [:destroy]
+  before_action :build_resource, only: [:new, :create_users, :update]
+  before_action :load_resource, only: [:destroy]
   before_action :fetch_user, only: %i[index]
 
   def index
@@ -14,6 +14,14 @@ class UsersController < ApplicationController
 
   def change_password
     @user = current_user
+  end
+
+  def create_users
+    if @resource.save
+      redirect_to users_path
+		else
+			render :new
+		end
   end
 
   def update_password
@@ -41,12 +49,18 @@ class UsersController < ApplicationController
 
   end
 
+  def bulk_users
+  end
+
+  def create_bulk_users
+    byebug
+  end
+
   def show
     load_resource
   end
 
   def new
-    @roles = Role.all
   end
 
   def edit
@@ -54,14 +68,8 @@ class UsersController < ApplicationController
   end
 
 	def create
-    @roles = Role.all
-    role_id = params[:user][:role_type].to_i
-    @resource[:role_id] = role_id
     if @resource.save
-      task_group = TaskGroup.create(user_id: @resource.id)
-      if task_group.save
-        redirect_to users_path
-			end
+      redirect_to users_path
 		else
 			render :new
 		end
@@ -73,12 +81,10 @@ class UsersController < ApplicationController
       params[:user].delete(:password_confirmation)
     end
     @resource = User.find(params[:id])
-    role = params[:user][:role_type].to_i
-    @resource[:role_id] = role
     if @resource.update_attributes(resource_params)
+      flash[:notice] = "User updated successfully."
 			redirect_to users_path
 		else
-			@roles = Role.all
 			render :edit
     end
   end
@@ -126,6 +132,6 @@ class UsersController < ApplicationController
 
   def resource_params
     return {} unless params[:user]
-     params[:user].permit(:first_name, :last_name, :email, :password, :password_confirmation, :role_id)
+     params[:user].permit(:first_name, :last_name, :email, :password, :password_confirmation)
   end
 end

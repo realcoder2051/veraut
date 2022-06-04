@@ -12,7 +12,7 @@
   <div class="card mb-5">
     <div class="row no-gutters">
       <div class="col-lg-12 card-form__body card-body">
-        <%= bootstrap_form_with(url:users_path,model:@resource, local:true) do |f| %>
+        <%= bootstrap_form_for(@resource, url: create_users_path, method: :post) do |f| %>
           <% if @resource.errors.any? %>
             <div id="error_explanation">
               <h2 class="ml-3"><%= pluralize(@resource.errors.count, "error") %> prohibited this user from being saved:</h2>

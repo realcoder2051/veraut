@@ -16,7 +16,7 @@
     <div class="card card-form__body">
       <div class= "row ">
         <div class = "offset-lg-10 ">
-          <%=link_to 'Add New User',users_path, class:"btn btn-primary float-right m-1 mr-2" %>
+          <%=link_to 'Add New User', new_user_path, class:"btn btn-primary float-right m-1 mr-2" %>
         </div>
       </div>
       <div class = "table-responsive pl-2 pr-2">
@@ -37,8 +37,8 @@
                 <td ><%=user.last_name%></td>
                 <td ><%=user.email%></td>
                 <td>
-                  <a href=<%="#"%> ><i class="material-icons">edit</i></a>
-                  <a data-confirm="Are you sure?" rel="nofollow" data-method="delete" href=<%="#"%>><i class="material-icons">delete</i></a>
+                  <a href=<%=edit_user_path(user)%> ><i class="material-icons">edit</i></a>
+                  <a data-confirm="Are you sure?" rel="nofollow" data-method="delete" href=<%=user_path(user)%>><i class="material-icons">delete</i></a>
                 </td>
               </tr>
             <%end%>
