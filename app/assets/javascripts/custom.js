@@ -5,5 +5,7 @@ $(".redirect_to_show").click(function (e) {
 })
 
 $(document).ready(function(){
-	console.log("dfsafdsfsad")
+	$(".upload_data").on('click', function(e){
+		debugger;
+	})
 });

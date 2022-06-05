@@ -1,0 +1,11 @@
+<div class="md:px-5 px-2 py-2 mb-3 border">
+  <div class = 'mt-4'>
+    <%= form_for process, url: url do |f| %>
+      <div class="form-group flex">
+        <%= f.label :file, "CSV File:" %>
+        <%= f.file_field :file, required: true, class: 'form-control-file upload_messaging_bulk', accept: ".csv"  %>
+        <%= f.submit submit_text, value: "Upload CSV", class: "btn btn-primary upload_data", style: "margin-top: 10px", data: { disable_with: "Please wait"} %>
+      </div>
+    <% end %>
+  </div>
+</div>

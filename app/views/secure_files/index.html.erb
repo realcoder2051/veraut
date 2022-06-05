@@ -1,0 +1,6 @@
+<div class="m-2 md:m-7 w-full md:max-w-2xl">
+  <h4 class="text-xl-center">Upload CSV file</h4>
+  <%= render(partial: 'secure_files/form',
+             locals: { url:  upload_csv_secure_files_path, process: @csv_file, process_title: 'Upload CSV',
+                       svg_file_name: 'user-wtm.svg', submit_text: 'Process' }) %>
+</div>

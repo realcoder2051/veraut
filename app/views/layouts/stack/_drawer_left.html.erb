@@ -19,16 +19,37 @@
 		
 			<% if current_user.admin? %>
 				<!--session ends-->
-				<li class="sidebar-menu-item" id="Secure-file">
-					<a class="sidebar-menu-button collapsed" href="<%=%>" aria-expanded="false">
+				<li class="sidebar-menu-item" id="secure-files-only">
+					<a class="sidebar-menu-button" data-toggle="collapse" href="#secure-files-menu" aria-expanded="false">
 						<i class="sidebar-menu-icon sidebar-menu-icon--left material-icons" title="Secure File"
 							style="<%=cookies[:sidebar_status] == 'collapsed' ? 'margin:10px':'margin:5px'%>">file_copy</i>
 						<span class="sidebar-menu-text <%=cookies[:sidebar_status] == 'collapsed' ? 'd-none':''%>">Secure
 							File</span>
+						<span class="ml-auto sidebar-menu-toggle-icon <%=cookies[:sidebar_status] == 'collapsed' ? 'd-none':''%>"
+							id="show-secure-data"></span>
 					</a>
+					<ul class="sidebar-submenu collapse show" id="secure-files-menu" style="">
+						<li class="sidebar-menu-item" id="view-secure-file">
+							<a class="sidebar-menu-button active-item" href="<%= secure_files_path %>">
+								<i class="sidebar-menu-icon sidebar-menu-icon--left material-icons" title="Upload Secure File"
+									style="<%=cookies[:sidebar_status] == 'collapsed' ? 'margin:10px':'margin:5px'%>">account_box</i>
+								<span class="sidebar-menu-text <%=cookies[:sidebar_status] == 'collapsed' ? 'd-none':''%>">Upload Secure File
+								</span>
+							</a>
+						</li>
+						<li class="sidebar-menu-item" id="view-secure-file">
+							<a class="sidebar-menu-button active-item" href="<%=csv_data_secure_files_path %>">
+								<i class="sidebar-menu-icon sidebar-menu-icon--left material-icons" title="View Users"
+									style="<%=cookies[:sidebar_status] == 'collapsed' ? 'margin:10px':'margin:5px'%>">account_box</i>
+								<span class="sidebar-menu-text <%=cookies[:sidebar_status] == 'collapsed' ? 'd-none':''%>">View
+									All
+									CSV Data</span>
+							</a>
+						</li>
+					</ul>
 				</li>
 
-				<li class="sidebar-menu-item">
+				<li class="sidebar-menu-item" id="users">
 					<a class="sidebar-menu-button" data-toggle="collapse" href="#attendance_menu" aria-expanded="false">
 						<i class="sidebar-menu-icon sidebar-menu-icon--left material-icons" title="Users"
 							style="<%=cookies[:sidebar_status] == 'collapsed' ? 'margin:10px':'margin:5px'%>">people</i>
@@ -39,7 +60,7 @@
 					</a>
 					<ul class="sidebar-submenu collapse show" id="attendance_menu" style="">
 						<li class="sidebar-menu-item" id="view-user">
-							<a class="sidebar-menu-button active-item" href="<%=users_path %>">
+							<a class="sidebar-menu-button active-item" href="<%=users_path%>">
 								<i class="sidebar-menu-icon sidebar-menu-icon--left material-icons" title="View All Users"
 									style="<%=cookies[:sidebar_status] == 'collapsed' ? 'margin:10px':'margin:5px'%>">account_box</i>
 								<span class="sidebar-menu-text <%=cookies[:sidebar_status] == 'collapsed' ? 'd-none':''%>">View
@@ -48,7 +69,7 @@
 							</a>
 						</li>
 						<li class="sidebar-menu-item active-item" id="new-user">
-							<a class="sidebar-menu-button" href="<%=%>">
+							<a class="sidebar-menu-button" href="<%=new_user_path%>">
 								<i class="sidebar-menu-icon sidebar-menu-icon--left material-icons" title="Add New User"
 									style="<%=cookies[:sidebar_status] == 'collapsed' ? 'margin:10px':'margin:5px'%>">local_hospital</i>
 								<span class="sidebar-menu-text <%=cookies[:sidebar_status] == 'collapsed' ? 'd-none':''%>">Add

@@ -49,13 +49,6 @@ class UsersController < ApplicationController
 
   end
 
-  def bulk_users
-  end
-
-  def create_bulk_users
-    byebug
-  end
-
   def show
     load_resource
   end

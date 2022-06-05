@@ -1,0 +1,38 @@
+<div class="full-scroll">
+  <div class="container-fluid page__heading-container">
+    <div class="page__heading d-flex align-items-center">
+      <div class="flex">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb mb-0">
+            <li class="breadcrumb-item"><a href=<%='#'%>><i class="material-icons icon-20pt">home</i></a></li>
+          </ol>
+        </nav>
+        <h1 class="m-0">Uploaded Data</h1>
+      </div>
+    </div>
+  </div>
+  <div class="container-fluid page__container">
+    <div class="card card-form__body">
+      <div class = "table-responsive pl-2 pr-2">
+        <table class="table mb-0 thead-border-top-0 mt-1 " id = "dataTable">
+          <thead class="table-info">
+            <tr>
+              <th>Data</th>
+              <th>Uploaded At</th>
+            </tr>
+          </thead>
+
+          <tbody >
+            <% @csv_files.each do |csv_file| %>
+              <tr class="redirect_to_show cursor-pointer">
+                <td class="dropdownMenuOpen"><%=csv_file.data.split(";")%></td>
+                <td ><%=csv_file.created_at%></td>
+              </tr>
+            <%end%>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+</div>

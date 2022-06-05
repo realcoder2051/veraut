@@ -13,8 +13,12 @@
   resources :users
   post 'users/create_users', to: 'users#create_users', as: :create_users
   
-  # get 'bulk_users', to: 'users#bulk_users', as: :bulk_users
-  # get 'create_bulk_users', to: 'users#create_bulk_users', as: :create_bulk_users
+  resources :secure_files, only: %i[index] do
+    collection do
+      post :upload_csv
+      get :csv_data
+    end
+  end
 
   root :to => "users#index"
 end

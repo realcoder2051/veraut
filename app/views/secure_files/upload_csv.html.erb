@@ -1,0 +1,17 @@
+<div class = "table-responsive pl-2 pr-2">
+  <table class="table mb-0 thead-border-top-0 mt-1 " id = "dataTable">
+    <thead class="table-info">
+      <tr>
+        <th>Csv Data</th>
+      </tr>
+    </thead>
+
+    <tbody >
+      <% @row.each do |row| %>
+        <tr>
+          <td class="dropdownMenuOpen"><%=row%></td>
+        </tr>
+      <%end%>
+    </tbody>
+  </table>
+</div>
