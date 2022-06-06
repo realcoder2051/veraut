@@ -10,7 +10,7 @@
 
       <div class="row" >
         <div class="col-lg-5 mx-auto left-move">
-          <%= f.email_field :email %>
+          <%= f.email_field :email, placeholder: "Email"%>
           <div class="invalid-feedback">Please provide a time.</div>
           <div class="valid-feedback">Looks good!</div>
         </div>
@@ -18,7 +18,7 @@
 
       <div class="row">
         <div class="col-lg-5 mx-auto left-move">
-          <%= f.password_field :password %>
+          <%= f.password_field :password, placeholder: "Password" %>
           <div class="invalid-feedback">Please provide a time.</div>
           <div class="valid-feedback">Looks good!</div>
         </div>
@@ -32,7 +32,7 @@
         </div>
       <% end %>
 
-      <div class="row">
+      <div class="row pt-1">
         <div class="col-lg-5 mx-auto left-move">
           <%=f.submit "Login", class: "btn btn-primary w-full" %>
         </div>
@@ -41,7 +41,7 @@
     <%end%>
   </div>
   
-  <div class="row">
+  <div class="row m-1">
     <div class="col-lg-5 mx-auto left-move">
       <%= render "devise/shared/links" %>
     </div>

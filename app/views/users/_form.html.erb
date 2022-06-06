@@ -1,7 +1,7 @@
 <div class="row" >
   <div class="col-lg-4 left-move"></div>
   <div class="col-lg-4 left-move">
-    <%= f.text_field :first_name %>
+    <%= f.text_field :first_name, placeholder: "First Name"%>
     <div class="invalid-feedback">Please provide a time.</div>
     <div class="valid-feedback">Looks good!</div>
   </div>
@@ -9,7 +9,7 @@
 <div class="row" >
   <div class="col-lg-4 left-move"></div>
   <div class="col-lg-4 left-move">
-    <%= f.text_field :last_name %>
+    <%= f.text_field :last_name, placeholder: "Last Name" %>
     <div class="invalid-feedback">Please provide a time.</div>
     <div class="valid-feedback">Looks good!</div>
   </div>
@@ -27,9 +27,9 @@
   <div class="col-lg-4 left-move"></div>
   <div class="col-lg-4 left-move">
   <% if action_name == 'edit' %>
-    <%= f.password_field :password, hint: 'To keep the current password leave the password fields blank.' %>
+    <%= f.password_field :password, placeholder: "Password", hint: 'To keep the current password leave the password fields blank.' %>
   <% else %>
-    <%= f.password_field :password %>
+    <%= f.password_field :password, placeholder: "Password" %>
   <% end %>
     <div class="invalid-feedback">Please provide a correct password.</div>
     <div class="valid-feedback">Looks good!</div>
@@ -38,7 +38,7 @@
 <div class="row" >
   <div class="col-lg-4 left-move"></div>
   <div class="col-lg-4 left-move">
-  <%= f.password_field :password_confirmation %>
+  <%= f.password_field :password_confirmation, placeholder: "Password Confirmation" %>
     <div class="invalid-feedback">Please provide a same password.</div>
     <div class="valid-feedback">Looks good!</div>
   </div>
